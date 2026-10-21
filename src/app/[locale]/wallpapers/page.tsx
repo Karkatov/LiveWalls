@@ -4,14 +4,14 @@ import { routing, type Locale } from '@/i18n/routing';
 import { buildMetadata } from '@/lib/seo/metadata';
 import { getCategories, getWallpapers } from '@/lib/api/wallpapers';
 import { parseFilters } from '@/lib/catalog/filters';
+import { isStaticExport } from '@/config/build';
 import { CatalogBrowser } from '@/components/catalog/catalog-browser';
 
 /**
- * В статическом экспорте (GitHub Pages) query-параметры недоступны на сервере —
- * фильтры применяются на клиенте. Поэтому searchParams читаются только
- * в серверном режиме, иначе страница не смогла бы быть статической.
+ * В статическом экспорте (Cloudflare Pages, GitHub Pages) query-параметры
+ * недоступны на сервере — фильтры применяются на клиенте. Поэтому searchParams
+ * читаются только в серверном режиме, иначе страница не смогла бы быть статической.
  */
-const isStaticExport = process.env.NEXT_OUTPUT === 'export';
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));

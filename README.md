@@ -29,30 +29,36 @@ npm run dev                  # http://localhost:3000 → редирект на /
 
 ## Команды
 
-| Команда                           | Что делает                                       |
-| --------------------------------- | ------------------------------------------------ |
-| `npm run dev`                     | Dev-сервер с HMR                                 |
-| `npm run build`                   | Продакшен-сборка (+ `postbuild`)                 |
-| `npm run start`                   | Запуск собранного приложения                     |
-| `npm run typecheck`               | `tsc --noEmit`                                   |
-| `npm run lint` / `lint:fix`       | ESLint                                           |
-| `npm run format` / `format:check` | Prettier                                         |
-| `npm test`                        | Юнит-тесты (Vitest)                              |
-| `npm run test:e2e`                | E2E-тесты (Playwright, собирает приложение сама) |
-| `npm run assets`                  | Перегенерация плейсхолдеров и иконок в `public/` |
+| Команда                            | Что делает                                        |
+| ---------------------------------- | ------------------------------------------------- |
+| `npm run dev`                      | Dev-сервер с HMR                                  |
+| `npm run build`                    | Статический экспорт → `out/` (режим по умолчанию) |
+| `NEXT_OUTPUT=server npm run build` | Серверная сборка → `.next`                        |
+| `npm run start`                    | Запуск собранного серверного приложения           |
+| `npm run typecheck`                | `tsc --noEmit`                                    |
+| `npm run lint` / `lint:fix`        | ESLint                                            |
+| `npm run format` / `format:check`  | Prettier                                          |
+| `npm test`                         | Юнит-тесты (Vitest)                               |
+| `npm run test:e2e`                 | E2E-тесты (Playwright, собирает приложение сама)  |
+| `npm run assets`                   | Перегенерация плейсхолдеров и иконок в `public/`  |
 
 ## Режимы сборки
 
-Управляются переменной окружения `NEXT_OUTPUT`:
+**По умолчанию всегда статический экспорт** — он включается в `next.config.ts`
+принудительно и не зависит от `NEXT_OUTPUT`: часть хостингов (Cloudflare Pages)
+не передаёт переменные окружения в процесс сборки, а каталог `out/` там обязателен.
+Серверные режимы включаются явно:
 
-| `NEXT_OUTPUT`            | Результат                              | Куда деплоить                                             |
-| ------------------------ | -------------------------------------- | --------------------------------------------------------- |
-| `default` (по умолчанию) | Обычный Next.js-сервер, ISR            | Vercel, Netlify, VPS                                      |
-| `standalone`             | `output: 'standalone'`                 | Docker / VPS (запуск `node .next/standalone/server.js`)   |
-| `export`                 | Полностью статический экспорт в `out/` | GitHub Pages, Cloudflare Pages, любой статический хостинг |
+| `NEXT_OUTPUT`           | Результат                              | Куда деплоить                                             |
+| ----------------------- | -------------------------------------- | --------------------------------------------------------- |
+| `export` (по умолчанию) | Полностью статический экспорт в `out/` | Cloudflare Pages, GitHub Pages, любой статический хостинг |
+| `server`                | Обычный Next.js-сервер, ISR            | Vercel, Netlify, VPS                                      |
+| `standalone`            | `output: 'standalone'`                 | Docker / VPS (запуск `node .next/standalone/server.js`)   |
 
 ```bash
-NEXT_OUTPUT=standalone npm run build
+npm run build                                   # статический экспорт → out/
+NEXT_OUTPUT=server npm run build                # серверный режим → .next
+NEXT_OUTPUT=standalone npm run build            # Docker → .next/standalone
 NEXT_OUTPUT=export NEXT_BASE_PATH=/LiveWallsSite NEXT_ASSET_PREFIX=/LiveWallsSite npm run build
 ```
 
@@ -117,15 +123,21 @@ tests/                 — unit/ и e2e/
 
 ## Деплой
 
-- **Vercel**: Framework Preset = Next.js, env `NEXT_OUTPUT=default`. Build → `npm run build`.
+**Cloudflare Pages** (основная цель):
+
+- Build command: `npm run build`, Output directory: `out`, Node.js: 20+.
+- Переменные окружения оставьте пустыми — статический экспорт включён в коде.
+- Заголовки безопасности — из `public/_headers`, корень `/` редиректит
+  `scripts/postbuild.mjs` на `/ru`.
+- Свой домен: Cloudflare → DNS → Custom domain.
+
+- **Vercel**: Framework Preset = Next.js, env `NEXT_OUTPUT=server`. Build → `npm run build`.
 - **Netlify**: `netlify.toml` уже в репозитории (build `npm run build`, publish `.next`,
-  заголовки и редиректы). Env: `NEXT_OUTPUT=default`.
+  заголовки и редиректы). Env: `NEXT_OUTPUT=server`.
 - **Docker / VPS**: `NEXT_OUTPUT=standalone npm run build`, затем
   `node .next/standalone/server.js` (не забудьте скопировать `.next/static` и `public`).
-- **GitHub Pages / Cloudflare Pages** (статика):
-  `NEXT_OUTPUT=export NEXT_BASE_PATH=/<repo> NEXT_ASSET_PREFIX=/<repo> npm run build`,
-  публиковать содержимое `out/`. Заголовки безопасности — из `public/_headers`,
-  корень `/` редиректит `scripts/postbuild.mjs`.
+- **GitHub Pages**: `NEXT_OUTPUT=export NEXT_BASE_PATH=/<repo> NEXT_ASSET_PREFIX=/<repo> npm run build`,
+  публиковать содержимое `out/`.
 
 Проверка перед деплоем:
 

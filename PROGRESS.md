@@ -8,7 +8,7 @@
 - [x] `git init` в `/Users/duxxless/LiveWallsSite`
 - [x] `package.json` (Next 15, React 19, TS, Tailwind v4, next-intl, zustand, framer-motion, zod)
 - [x] `tsconfig.json` (strict + `noUncheckedIndexedAccess`)
-- [x] `next.config.ts` (режимы `default` / `standalone` / `export`, CSP, SVG для `next/image`)
+- [x] `next.config.ts` (режимы `export` — по умолчанию / `server` / `standalone`, CSP, SVG для `next/image`)
 - [x] `tailwind.config.ts`, `postcss.config.mjs`, `eslint.config.mjs`, `.prettierrc`, `.gitignore`, `.env.example`
 - [x] `npm install` (578 пакетов)
 

@@ -4,7 +4,7 @@
 
 [build.environment]
   NODE_VERSION = "20"
-  NEXT_OUTPUT = "default"
+  NEXT_OUTPUT = "server"
 
 # Статический экспорт (GitHub Pages / Cloudflare Pages) — раскомментировать вместо блока выше:
 #

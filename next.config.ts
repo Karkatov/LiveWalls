@@ -1,15 +1,27 @@
 import type { NextConfig } from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
+import { resolveBuildMode } from './src/config/build';
 
 /**
- * Режим сборки управляется переменной окружения NEXT_OUTPUT:
- *  - 'default'    (по умолчанию) — обычный Next.js сервер / ISR. Подходит для Vercel, Netlify, VPS.
+ * Режим сборки.
+ *
+ * Статический экспорт включён ПРИНУДИТЕЛЬНО и не зависит от NEXT_OUTPUT:
+ * часть хостингов (Cloudflare Pages) не передаёт переменные окружения
+ * в процесс сборки, а каталог `out/` там обязателен — из-за этого сборка
+ * падала с «Output directory "out" not found».
+ *
+ * Значения NEXT_OUTPUT:
+ *  - 'export'     (по умолчанию, любое другое значение) — статический экспорт
+ *                  в `out/`: Cloudflare Pages, GitHub Pages, любой статический хостинг.
+ *  - 'server'     — обычный Next.js сервер / ISR: Vercel, Netlify, VPS.
  *  - 'standalone' — output: 'standalone' для Docker/VPS.
- *  - 'export'     — полностью статический экспорт (GitHub Pages). Обязательно ставить
- *                   NEXT_BASE_PATH (например '/LiveWallsSite') и NEXT_ASSET_PREFIX.
+ *
+ * Для статического экспорта с поддоменом задайте NEXT_BASE_PATH
+ * (например '/LiveWallsSite') и NEXT_ASSET_PREFIX.
  */
-const outputMode = (process.env.NEXT_OUTPUT ?? 'default') as 'default' | 'standalone' | 'export';
-const isStaticExport = outputMode === 'export';
+const buildMode = resolveBuildMode();
+const isStandaloneMode = buildMode === 'standalone';
+const isStaticExport = buildMode === 'export';
 const basePath = process.env.NEXT_BASE_PATH ?? '';
 const assetPrefix = process.env.NEXT_ASSET_PREFIX ?? '';
 
@@ -52,12 +64,16 @@ const nextConfig: NextConfig = {
   assetPrefix: assetPrefix || undefined,
 
   // --- Режим вывода ---
-  ...(outputMode === 'standalone' ? { output: 'standalone' as const } : {}),
+  ...(isStandaloneMode ? { output: 'standalone' as const } : {}),
   ...(isStaticExport ? { output: 'export' as const } : {}),
 
   reactStrictMode: true,
   poweredByHeader: false,
   trailingSlash: false,
+
+  // Явно задаём корень проекта: иначе Next ищет ближайший package-lock.json
+  // вверх по дереву и может выбрать чужой (предупреждение про workspace root).
+  outputFileTracingRoot: process.cwd(),
 
   // В статическом экспорте next/image требует unoptimized (нет image-сервера).
   images: {

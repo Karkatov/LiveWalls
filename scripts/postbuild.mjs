@@ -14,8 +14,16 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
-const outputMode = process.env.NEXT_OUTPUT ?? 'default';
 const basePath = process.env.NEXT_BASE_PATH ?? '';
+
+/**
+ * Режим сборки определяем по фактическому результату, а не только по env:
+ * статический экспорт включается в next.config.ts принудительно, поэтому
+ * NEXT_OUTPUT на хостинге может отсутствовать или не совпадать с режимом.
+ */
+const requestedMode = (process.env.NEXT_OUTPUT ?? '').toLowerCase();
+const outputMode =
+  requestedMode === 'server' ? 'server' : requestedMode === 'standalone' ? 'standalone' : 'export';
 
 function dirSize(dir) {
   let total = 0;
@@ -109,4 +117,4 @@ if (outputMode === 'standalone') {
 
 console.log('✔ Сборка готова: .next');
 console.log('  Локально: npm run start');
-console.log('  Деплой: Vercel / Netlify — автоопределение Next.js, env: NEXT_OUTPUT=default.');
+console.log('  Деплой: Vercel / Netlify — env: NEXT_OUTPUT=server.');

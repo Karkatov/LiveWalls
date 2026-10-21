@@ -28,7 +28,8 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: `npm run build && npm run start -- --port ${PORT}`,
+    // Собираем в серверном режиме: по умолчанию сборка даёт статический экспорт.
+    command: `NEXT_OUTPUT=server npm run build && NEXT_OUTPUT=server npm run start -- --port ${PORT}`,
     url: baseURL,
     reuseExistingServer: !process.env.CI,
     timeout: 240_000,

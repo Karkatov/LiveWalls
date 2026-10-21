@@ -20,8 +20,22 @@
 
 ## Три режима сборки через `NEXT_OUTPUT`
 
-`default` / `standalone` / `export` (см. `next.config.ts`).
-Один код — три способа задеплоить: Vercel/Netlify, Docker/VPS, GitHub Pages.
+`export` (по умолчанию) / `server` / `standalone` (см. `next.config.ts`).
+
+**Статический экспорт включён принудительно** и не зависит от `NEXT_OUTPUT`:
+Cloudflare Pages не передаёт переменные окружения в процесс сборки, а каталог
+`out/` там обязателен — из-за этого сборка падала с
+`Error: Output directory "out" not found`. Теперь режим определяется так:
+
+- `NEXT_OUTPUT` отсутствует или не равен `server`/`standalone` → `output: 'export'`;
+- `NEXT_OUTPUT=server` → обычный Next.js-сервер (Vercel, Netlify, VPS);
+- `NEXT_OUTPUT=standalone` → `output: 'standalone'` (Docker).
+
+`scripts/postbuild.mjs` определяет режим по фактическому результату сборки,
+а не по env, — иначе он печатал бы неверные подсказки по деплою.
+
+Один код — три способа задеплоить: Cloudflare Pages / GitHub Pages (статика),
+Vercel/Netlify (сервер), Docker/VPS (standalone).
 
 В `export` недоступны: server actions, серверные редиректы, `headers()`,
 оптимизация картинок. Отсюда:
