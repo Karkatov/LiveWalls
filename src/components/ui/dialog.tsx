@@ -26,7 +26,7 @@ DialogOverlay.displayName = DialogPrimitive.Overlay.displayName;
 export const DialogContent = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> & { hideClose?: boolean }
->(({ className, children, hideClose = false, ...props }, ref) => (
+>(({ className, children, hideClose = false, 'aria-label': ariaLabel, ...props }, ref) => (
   <DialogPortal>
     <DialogOverlay />
     <DialogPrimitive.Content
@@ -37,13 +37,14 @@ export const DialogContent = React.forwardRef<
         'max-h-[calc(100vh-4rem)] overflow-y-auto',
         className,
       )}
+      aria-label={ariaLabel}
       {...props}
     >
       {children}
       {!hideClose && (
         <DialogPrimitive.Close
           className="text-muted-foreground hover:bg-secondary hover:text-foreground focus-visible:outline-ring absolute top-4 right-4 rounded-md p-1.5 transition-colors focus-visible:outline-2"
-          aria-label="Закрыть"
+          aria-label={ariaLabel === undefined ? 'Close' : undefined}
         >
           <X className="size-4" />
         </DialogPrimitive.Close>

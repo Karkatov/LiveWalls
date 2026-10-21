@@ -54,7 +54,10 @@ export function QuickView({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-3xl p-0" hideClose={false}>
+      <DialogContent
+        className="max-w-3xl p-0"
+        aria-label={`${tCatalog('quickView')}: ${wallpaper.title}`}
+      >
         <div className="grid gap-0 sm:grid-cols-[1.15fr_1fr]">
           <div className="bg-ink-700 relative aspect-video sm:aspect-auto sm:min-h-[320px]">
             <WallpaperMedia

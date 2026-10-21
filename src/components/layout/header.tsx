@@ -154,9 +154,47 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
   const reduce = useReducedMotion();
   const closeRef = useRef<HTMLButtonElement>(null);
 
+  const panelRef = useRef<HTMLElement>(null);
+
   useEffect(() => {
     if (open) closeRef.current?.focus();
   }, [open]);
+
+  // Закрытие по Escape и удержание фокуса внутри панели.
+  useEffect(() => {
+    if (!open) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        onClose();
+        return;
+      }
+
+      if (event.key !== 'Tab') return;
+
+      const focusable = panelRef.current?.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      );
+      if (!focusable?.length) return;
+
+      const first = focusable.item(0);
+      const last = focusable.item(focusable.length - 1);
+      if (!first || !last) return;
+      const active = document.activeElement;
+
+      if (event.shiftKey && (active === first || !panelRef.current?.contains(active))) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && active === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, [open, onClose]);
 
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
 
@@ -176,6 +214,7 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
 
           <motion.aside
             key="mobile-panel"
+            ref={panelRef}
             role="dialog"
             aria-modal="true"
             aria-label={t('mainNav')}
