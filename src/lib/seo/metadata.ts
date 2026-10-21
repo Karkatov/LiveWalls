@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 import { routing, type Locale } from '@/i18n/routing';
 import { siteConfig } from '@/config/site';
 
@@ -95,16 +96,19 @@ export function buildMetadata({
   };
 }
 
-/** Метаданные по умолчанию для сайта. */
-export function defaultMetadata(locale: Locale = routing.defaultLocale): Metadata {
+/** Метаданные по умолчанию для сайта (локаль — из namespace `meta`). */
+export async function defaultMetadata(locale: Locale = routing.defaultLocale): Promise<Metadata> {
+  const t = await getTranslations({ locale, namespace: 'meta' });
+  const siteTitle = t('siteTitle');
+  const siteDescription = t('siteDescription');
+
   return {
     metadataBase: new URL(BASE_URL),
     title: {
-      default: 'LiveWalls — живые обои для macOS',
+      default: siteTitle,
       template: '%s · LiveWalls',
     },
-    description:
-      'LiveWalls — macOS-приложение для живых обоев: видео и изображения на рабочем столе, экране блокировки и заставке. Триал 24 часа, цены в рублях.',
+    description: siteDescription,
     applicationName: siteConfig.name,
     authors: [{ name: siteConfig.name }],
     creator: siteConfig.name,
@@ -127,15 +131,14 @@ export function defaultMetadata(locale: Locale = routing.defaultLocale): Metadat
       locale: locale === 'ru' ? 'ru_RU' : 'en_US',
       url: absoluteLocalizedUrl('/', locale),
       siteName: siteConfig.name,
-      title: 'LiveWalls — живые обои для macOS',
-      description:
-        'Видео и изображения на рабочем столе, экране блокировки и заставке. Триал 24 часа, цены в рублях.',
+      title: siteTitle,
+      description: t('ogDescription'),
       images: [{ url: `${BASE_URL}/og/og-default.png`, width: 1200, height: 630 }],
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'LiveWalls — живые обои для macOS',
-      description: 'Живые обои, экран блокировки и заставка. Триал 24 часа.',
+      title: siteTitle,
+      description: t('twitterDescription'),
       images: [`${BASE_URL}/og/og-default.png`],
     },
   };

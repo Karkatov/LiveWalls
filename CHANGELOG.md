@@ -39,6 +39,8 @@
   `npx next build` и не запускает `postbuild`).
 - Предупреждение Next.js о постороннем `package-lock.json` в корне проекта —
   задано `outputFileTracingRoot`.
+- SEO: английские страницы отдавали русские `<title>` и `description` —
+  метаданные по умолчанию переведены в namespace `meta` (`ru.json` / `en.json`).
 
 ### Известные ограничения
 

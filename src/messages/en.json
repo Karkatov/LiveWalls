@@ -1,4 +1,10 @@
 {
+  "meta": {
+    "siteTitle": "LiveWalls — live wallpapers for macOS",
+    "siteDescription": "LiveWalls is a macOS app for live wallpapers: videos and images on your desktop, lock screen and screensaver. 24-hour trial, prices in rubles.",
+    "ogDescription": "Videos and images on your desktop, lock screen and screensaver. 24-hour trial, prices in rubles.",
+    "twitterDescription": "Live wallpapers, lock screen and screensaver. 24-hour trial."
+  },
   "common": {
     "skipToContent": "Skip to content",
     "appName": "LiveWalls",

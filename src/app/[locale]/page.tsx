@@ -28,9 +28,10 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'home.hero' });
+  const tMeta = await getTranslations({ locale, namespace: 'meta' });
 
   return buildMetadata({
-    title: 'LiveWalls — живые обои для macOS',
+    title: tMeta('siteTitle'),
     description: t('subtitle'),
     path: '/',
     locale,

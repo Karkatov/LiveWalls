@@ -40,7 +40,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const base = defaultMetadata(isValidLocale(locale) ? locale : routing.defaultLocale);
+  const base = await defaultMetadata(isValidLocale(locale) ? locale : routing.defaultLocale);
 
   return {
     ...base,
