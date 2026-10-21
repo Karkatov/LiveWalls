@@ -7,29 +7,36 @@
  * Тёмная тема — основная. Светлая — аккуратная вторичная.
  */
 export const palette = {
-  /* ── Базовые поверхности ── */
-  background: '#0A0A0C',
-  backgroundElevated: '#101014',
-  surface: 'rgba(255,255,255,0.04)',
-  surfaceStrong: 'rgba(255,255,255,0.08)',
-  surfaceGlass: 'rgba(255,255,255,0.06)',
+  /* ── Базовые поверхности (тёплый night Daylight) ── */
+  background: '#18190F',
+  backgroundElevated: '#21231A',
+  surface: 'rgba(250,244,242,0.04)',
+  surfaceStrong: 'rgba(250,244,242,0.08)',
+  surfaceGlass: 'rgba(250,244,242,0.06)',
+
+  /* ── Палитра Daylight ── */
+  cream: '#FAF5F2',
+  creamDark: '#E8DED8',
+  night: '#18190F',
+  moonlight: '#FAF4F2',
+  amber: '#FF9D00',
 
   /* ── Границы и разделители ── */
-  border: 'rgba(255,255,255,0.08)',
-  borderStrong: 'rgba(255,255,255,0.16)',
+  border: 'rgba(250,244,242,0.08)',
+  borderStrong: 'rgba(250,244,242,0.16)',
 
   /* ── Текст ── */
-  foreground: '#F5F5F7',
-  foregroundSecondary: 'rgba(245,245,247,0.68)',
-  foregroundMuted: 'rgba(245,245,247,0.42)',
+  foreground: '#FAF4F2',
+  foregroundSecondary: 'rgba(250,244,242,0.68)',
+  foregroundMuted: 'rgba(250,244,242,0.42)',
 
-  /* ── Бренд ── */
-  brandFrom: '#7C5CFF',
-  brandVia: '#6366F1',
-  brandTo: '#22D3EE',
-  brandGlow: 'rgba(124,92,255,0.35)',
-  brandGlowStrong: 'rgba(124,92,255,0.55)',
-  cyanGlow: 'rgba(34,211,238,0.28)',
+  /* ── Бренд (янтарь) ── */
+  brandFrom: '#FFB340',
+  brandVia: '#FF9D00',
+  brandTo: '#D97F00',
+  brandGlow: 'rgba(255,157,0,0.35)',
+  brandGlowStrong: 'rgba(255,157,0,0.55)',
+  cyanGlow: 'rgba(255,179,64,0.28)',
 
   /* ── Состояния ── */
   success: '#34D399',
@@ -39,6 +46,9 @@ export const palette = {
 
 /** Градиент бренда — CSS-строка для inline-стилей и SVG. */
 export const brandGradient = `linear-gradient(135deg, ${palette.brandFrom} 0%, ${palette.brandVia} 50%, ${palette.brandTo} 100%)`;
+
+/** Фирменная кривая Daylight. */
+export const easeOutQuint = [0.23, 1, 0.32, 1] as const;
 
 /** Скругления (px). */
 export const radius = {
@@ -55,8 +65,8 @@ export const radius = {
 export const shadows = {
   card: '0 1px 0 0 rgba(255,255,255,0.04) inset, 0 12px 40px -12px rgba(0,0,0,0.6)',
   cardHover: '0 1px 0 0 rgba(255,255,255,0.08) inset, 0 24px 60px -20px rgba(0,0,0,0.8)',
-  glow: `0 0 0 1px rgba(124,92,255,0.18), 0 18px 60px -18px ${palette.brandGlow}`,
-  glowStrong: `0 0 0 1px rgba(124,92,255,0.35), 0 26px 80px -20px ${palette.brandGlowStrong}`,
+  glow: `0 0 0 1px rgba(255,157,0,0.18), 0 18px 60px -18px ${palette.brandGlow}`,
+  glowStrong: `0 0 0 1px rgba(255,157,0,0.35), 0 26px 80px -20px ${palette.brandGlowStrong}`,
 } as const;
 
 /** Breakpoint’ы (px) — синхронизированы с Tailwind. */

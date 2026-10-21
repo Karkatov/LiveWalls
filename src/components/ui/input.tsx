@@ -11,8 +11,8 @@ export const Input = React.forwardRef<
     type={type}
     className={cn(
       'border-input/70 bg-background/60 text-foreground flex h-11 w-full rounded-xl border px-4 py-2 text-sm',
-      'placeholder:text-muted-foreground/70 transition-colors duration-200',
-      'focus-visible:border-brand/60 focus-visible:bg-background focus-visible:ring-brand/30 focus-visible:ring-2 focus-visible:outline-none',
+      'placeholder:text-muted-foreground/70 transition-colors duration-300 ease-[cubic-bezier(0.23,1,0.32,1)]',
+      'focus-visible:border-brand/60 focus-visible:bg-background focus-visible:shadow-[0_0_20px_-4px_var(--brand-glow)] focus-visible:outline-none',
       'disabled:cursor-not-allowed disabled:opacity-50',
       'aria-invalid:border-destructive/70 aria-invalid:ring-destructive/20',
       className,

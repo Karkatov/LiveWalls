@@ -41,7 +41,7 @@ export function Header() {
   return (
     <header
       className={cn(
-        'fixed inset-x-0 top-0 z-40 transition-all duration-300',
+        'fixed inset-x-0 top-0 z-40 transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)]',
         scrolled
           ? 'border-border/60 bg-background/70 supports-[backdrop-filter]:bg-background/55 border-b backdrop-blur-xl'
           : 'border-b border-transparent bg-transparent',
@@ -50,9 +50,10 @@ export function Header() {
       <div className="mx-auto flex h-[72px] max-w-[1200px] items-center justify-between gap-4 px-4 sm:px-6">
         <Link
           href="/"
-          className="focus-visible:outline-ring rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4"
+          aria-label="LiveWalls"
+          className="border-border/70 bg-background/40 hover:border-amber/40 focus-visible:outline-ring flex size-11 items-center justify-center rounded-[10px] border backdrop-blur-md transition-colors duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] focus-visible:outline-2 focus-visible:outline-offset-4"
         >
-          <Logo />
+          <Logo variant="compact" />
         </Link>
 
         {/* Десктопная навигация */}
@@ -62,7 +63,7 @@ export function Header() {
               key={link.href}
               href={link.href}
               className={cn(
-                'relative rounded-full px-3.5 py-2 text-sm transition-colors',
+                'link-underline relative px-3.5 py-2 text-sm transition-colors duration-300',
                 'focus-visible:outline-ring focus-visible:outline-2 focus-visible:outline-offset-2',
                 isActive(link.href)
                   ? 'text-foreground'
@@ -70,13 +71,6 @@ export function Header() {
               )}
             >
               {t(link.labelKey)}
-              {isActive(link.href) && (
-                <motion.span
-                  layoutId="nav-active"
-                  className="bg-secondary/70 absolute inset-0 -z-10 rounded-full"
-                  transition={{ type: 'spring', stiffness: 380, damping: 32 }}
-                />
-              )}
             </Link>
           ))}
         </nav>
@@ -96,7 +90,7 @@ export function Header() {
           <Button
             variant="ghost"
             size="icon"
-            className="lg:hidden"
+            className="border-border/70 bg-background/40 hover:border-amber/40 rounded-[10px] border backdrop-blur-md transition-colors duration-300 lg:hidden"
             aria-label={menuOpen ? t('closeMenu') : t('openMenu')}
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((value) => !value)}

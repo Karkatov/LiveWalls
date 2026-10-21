@@ -6,23 +6,26 @@ import { cn } from '@/lib/utils/cn';
 /**
  * Кнопка.
  *
- * Варианты: gradient (главная CTA), default, secondary, outline, ghost, destructive, link.
+ * Варианты: primary/gradient (главная CTA), default, secondary, outline, ghost, destructive, link.
  * Тактильность обеспечивает active:scale + transition — без JS-анимаций,
- * чтобы не тянуть Framer Motion в каждую кнопку.
+ * чтобы не тянуть Framer Motion в каждую кнопку. Ховер основной кнопки —
+ * «свечение-ореол» (как в референсе Daylight), а не смена цвета.
  */
 const buttonVariants = cva(
-  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-sm font-medium transition-all duration-200 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring',
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-sm font-medium transition-[box-shadow,opacity,background-color,color,border-color,transform] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring',
   {
     variants: {
       variant: {
         gradient:
-          'bg-gradient-brand text-white shadow-[0_10px_30px_-12px_var(--brand-glow)] hover:shadow-[0_16px_44px_-12px_var(--brand-glow-strong)] hover:brightness-110',
+          'bg-gradient-brand text-night shadow-[0_0_0_0_var(--brand-glow)] hover:shadow-[0_0_24px_0_var(--brand-glow-strong)] hover:brightness-105',
+        primary:
+          'bg-amber text-night shadow-[0_0_0_0_var(--brand-glow)] hover:shadow-[0_0_24px_0_var(--brand-glow-strong)]',
         default:
-          'bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_8px_24px_-14px_rgba(0,0,0,0.8)]',
+          'bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_0_0_0_var(--brand-glow)] hover:shadow-[0_0_20px_0_var(--brand-glow)]',
         secondary:
-          'bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border/60',
+          'bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border/60 hover:shadow-[0_0_18px_-2px_var(--brand-glow)]',
         outline:
-          'border border-border bg-transparent text-foreground hover:bg-secondary/60 hover:border-border',
+          'border border-border bg-transparent text-foreground hover:bg-secondary/60 hover:border-amber/50',
         ghost: 'text-foreground hover:bg-secondary/70',
         destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
         link: 'text-foreground underline-offset-4 hover:underline',

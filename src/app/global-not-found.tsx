@@ -45,8 +45,8 @@ export default function GlobalNotFound() {
           alignItems: 'center',
           justifyContent: 'center',
           padding: '2rem',
-          background: '#0A0A0C',
-          color: '#F7F7F9',
+          background: '#18190F',
+          color: '#FAF4F2',
           fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif',
         }}
       >
@@ -57,7 +57,7 @@ export default function GlobalNotFound() {
               fontSize: '0.8rem',
               letterSpacing: '0.16em',
               textTransform: 'uppercase',
-              color: '#7C5CFF',
+              color: '#FF9D00',
             }}
           >
             {t.code}
@@ -65,7 +65,7 @@ export default function GlobalNotFound() {
 
           <h1 style={{ margin: '1rem 0 0', fontSize: '2.25rem', lineHeight: 1.1 }}>{t.title}</h1>
 
-          <p style={{ margin: '1rem 0 0', color: 'rgba(247,247,249,0.7)', lineHeight: 1.6 }}>
+          <p style={{ margin: '1rem 0 0', color: 'rgba(250,244,242,0.7)', lineHeight: 1.6 }}>
             {t.body}
           </p>
 
@@ -77,8 +77,8 @@ export default function GlobalNotFound() {
               style={{
                 padding: '0.75rem 1.5rem',
                 borderRadius: '999px',
-                background: 'linear-gradient(120deg, #7C5CFF, #22D3EE)',
-                color: '#fff',
+                background: 'linear-gradient(120deg, #FFB340, #D97F00)',
+                color: '#18190F',
                 fontSize: '0.9rem',
                 textDecoration: 'none',
               }}
@@ -90,8 +90,8 @@ export default function GlobalNotFound() {
               style={{
                 padding: '0.75rem 1.5rem',
                 borderRadius: '999px',
-                border: '1px solid rgba(247,247,249,0.25)',
-                color: '#F7F7F9',
+                border: '1px solid rgba(250,244,242,0.25)',
+                color: '#FAF4F2',
                 fontSize: '0.9rem',
                 textDecoration: 'none',
               }}

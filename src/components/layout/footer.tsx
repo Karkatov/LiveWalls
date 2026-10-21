@@ -112,7 +112,7 @@ function FooterColumn({
           <li key={link.href}>
             <Link
               href={link.href}
-              className="text-muted-foreground hover:text-foreground focus-visible:outline-ring rounded text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
+              className="link-underline text-muted-foreground hover:text-foreground focus-visible:outline-ring inline-block text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               {link.label}
             </Link>
@@ -129,7 +129,7 @@ function SocialLink({ href, label, icon }: { href: string; label: string; icon: 
       href={href}
       aria-label={label}
       title={label}
-      className="border-border/70 bg-secondary/40 text-muted-foreground hover:border-brand/40 hover:text-foreground focus-visible:outline-ring flex size-9 items-center justify-center rounded-full border transition-all focus-visible:outline-2 focus-visible:outline-offset-2"
+      className="border-border/70 bg-secondary/40 text-muted-foreground hover:border-amber/40 hover:text-foreground focus-visible:outline-ring flex size-9 items-center justify-center rounded-full border transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:shadow-[0_0_18px_-4px_var(--brand-glow)] focus-visible:outline-2 focus-visible:outline-offset-2"
     >
       {icon}
     </a>

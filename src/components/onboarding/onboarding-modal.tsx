@@ -197,7 +197,7 @@ function ThemeOption({
         'flex flex-col items-center gap-2 rounded-xl border px-3 py-4 text-xs transition-all',
         'focus-visible:outline-ring focus-visible:outline-2 focus-visible:outline-offset-2',
         active
-          ? 'border-brand/60 bg-brand/12 text-foreground shadow-[0_0_0_1px_rgba(124,92,255,0.25)]'
+          ? 'border-brand/60 bg-brand/12 text-foreground shadow-[0_0_0_1px_color-mix(in_srgb,var(--brand-via)_28%,transparent)]'
           : 'border-border/70 bg-secondary/40 text-muted-foreground hover:border-brand/30 hover:text-foreground',
       )}
     >

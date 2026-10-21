@@ -4,7 +4,7 @@ import { ArrowRight } from 'lucide-react';
 import type { Wallpaper } from '@/types';
 import { Button } from '@/components/ui/button';
 import { SectionHeading } from '@/components/shared/section-heading';
-import { Reveal } from '@/components/shared/motion';
+import { StaggerGroup, StaggerItem } from '@/components/shared/motion';
 import { WallpaperCard } from '@/components/catalog/wallpaper-card';
 
 /**
@@ -29,13 +29,13 @@ export async function FeaturedWallpapers({ wallpapers }: { wallpapers: Wallpaper
         }
       />
 
-      <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <StaggerGroup className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {wallpapers.map((wallpaper, index) => (
-          <Reveal key={wallpaper.id} delay={index * 0.05}>
+          <StaggerItem key={wallpaper.id} className="h-full">
             <WallpaperCard wallpaper={wallpaper} priority={index < 4} />
-          </Reveal>
+          </StaggerItem>
         ))}
-      </div>
+      </StaggerGroup>
     </section>
   );
 }

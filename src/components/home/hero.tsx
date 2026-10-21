@@ -3,7 +3,13 @@ import { getTranslations } from 'next-intl/server';
 import { ArrowRight, Download, Sparkles } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 import { Button } from '@/components/ui/button';
-import { Reveal, StaggerGroup, StaggerItem } from '@/components/shared/motion';
+import {
+  LetterReveal,
+  ParallaxLayer,
+  Reveal,
+  StaggerGroup,
+  StaggerItem,
+} from '@/components/shared/motion';
 import { mockWallpapers } from '@/data/mock/wallpapers';
 import { mockCategories } from '@/data/mock/categories';
 
@@ -11,6 +17,8 @@ import { mockCategories } from '@/data/mock/categories';
  * Первый экран главной страницы.
  *
  * Слева — обещание и CTA, справа — мокап приложения.
+ * Заголовок появляется пословно с лёгким 3D-переворотом; декоративные
+ * слои фона слегка уезжают при прокрутке (параллакс).
  */
 export async function Hero() {
   const t = await getTranslations('home.hero');
@@ -26,8 +34,10 @@ export async function Hero() {
   return (
     <section className="relative overflow-hidden">
       {/* Фоновые слои */}
-      <div className="bg-aurora pointer-events-none absolute inset-0 -z-10 opacity-70" />
-      <div className="bg-grid pointer-events-none absolute inset-x-0 top-0 -z-10 h-[520px] opacity-[0.18]" />
+      <ParallaxLayer className="pointer-events-none absolute inset-0 -z-10" distance={80}>
+        <div className="bg-aurora absolute inset-0 opacity-70" />
+        <div className="bg-grid absolute inset-x-0 top-0 h-[520px] opacity-[0.18]" />
+      </ParallaxLayer>
 
       <div className="mx-auto grid max-w-[1200px] items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.05fr_1fr] lg:py-24">
         <div>
@@ -38,19 +48,15 @@ export async function Hero() {
             </span>
           </Reveal>
 
-          <Reveal delay={0.06}>
-            <h1 className="text-foreground mt-6 text-4xl font-bold tracking-tight text-balance sm:text-5xl lg:text-6xl">
-              {t('title')}{' '}
-              <span className="text-gradient bg-gradient-brand bg-clip-text text-transparent">
-                {t('titleAccent')}
-              </span>
-            </h1>
-          </Reveal>
+          <h1 className="text-foreground text-display-xl mt-6">
+            <LetterReveal text={t('title')} delay={0.05} />
+            <span className="text-gradient bg-gradient-brand bg-clip-text text-transparent">
+              <LetterReveal text={t('titleAccent')} delay={0.2} />
+            </span>
+          </h1>
 
           <Reveal delay={0.12}>
-            <p className="text-muted-foreground mt-5 max-w-xl text-base leading-relaxed text-pretty sm:text-lg">
-              {t('subtitle')}
-            </p>
+            <p className="text-muted-foreground text-lead mt-5 max-w-xl">{t('subtitle')}</p>
           </Reveal>
 
           <Reveal delay={0.18}>
@@ -77,7 +83,9 @@ export async function Hero() {
             {stats.map((stat) => (
               <StaggerItem key={stat.label}>
                 <div className="border-border/60 bg-card/40 rounded-2xl border px-4 py-3 backdrop-blur-xl">
-                  <p className="text-foreground text-2xl font-bold tracking-tight">{stat.value}</p>
+                  <p className="text-foreground font-display text-2xl font-medium tracking-tight">
+                    {stat.value}
+                  </p>
                   <p className="text-muted-foreground mt-0.5 text-xs leading-snug">{stat.label}</p>
                 </div>
               </StaggerItem>
@@ -86,7 +94,7 @@ export async function Hero() {
         </div>
 
         <Reveal delay={0.1} y={34}>
-          <div className="relative">
+          <ParallaxLayer className="relative" distance={40}>
             <div className="bg-brand/15 pointer-events-none absolute -inset-6 -z-10 rounded-[40px] blur-3xl" />
 
             <div className="border-border/70 bg-card/50 relative overflow-hidden rounded-3xl border shadow-[0_40px_120px_-40px_rgba(0,0,0,0.9)] backdrop-blur-xl">
@@ -111,7 +119,7 @@ export async function Hero() {
               <p className="text-muted-foreground text-xs">Bend effect</p>
               <p className="text-foreground text-sm font-semibold">macOS 26+</p>
             </div>
-          </div>
+          </ParallaxLayer>
         </Reveal>
       </div>
     </section>

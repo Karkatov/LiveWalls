@@ -18,44 +18,68 @@
   --radius-2xl: 1.5rem;
   --radius-3xl: 2rem;
 
-  /* Бренд */
-  --brand-from: #7c5cff;
-  --brand-via: #6366f1;
-  --brand-to: #22d3ee;
-  --brand-glow: rgba(124, 92, 255, 0.35);
-  --brand-glow-strong: rgba(124, 92, 255, 0.55);
+  /* ─── Палитра Daylight: тёплый оливково-чёрный вместо чистого чёрного ─── */
+  --color-cream: #faf5f2;
+  --color-cream-dark: #e8ded8;
+  --color-night: #18190f;
+  --color-night-soft: #21231a;
+  --color-moonlight: #faf4f2;
+  --color-amber: #ff9d00;
 
-  /* Поверхности */
-  --background: #0a0a0c;
-  --background-elevated: #101014;
-  --foreground: #f5f5f7;
-  --card: rgba(255, 255, 255, 0.04);
-  --card-foreground: #f5f5f7;
-  --popover: #121216;
-  --popover-foreground: #f5f5f7;
+  /* Бренд (акцент = янтарь Daylight) */
+  --brand-from: #ffb340;
+  --brand-via: #ff9d00;
+  --brand-to: #d97f00;
+  --brand-glow: rgba(255, 157, 0, 0.35);
+  --brand-glow-strong: rgba(255, 157, 0, 0.55);
 
-  --primary: #f5f5f7;
-  --primary-foreground: #0a0a0c;
+  /* Поверхности: тёплый night */
+  --background: #18190f;
+  --background-elevated: #21231a;
+  --foreground: #faf4f2;
+  --card: rgba(250, 244, 242, 0.04);
+  --card-foreground: #faf4f2;
+  --popover: #21231a;
+  --popover-foreground: #faf4f2;
 
-  --secondary: rgba(255, 255, 255, 0.07);
-  --secondary-foreground: #f5f5f7;
+  --primary: #faf4f2;
+  --primary-foreground: #18190f;
 
-  --muted: rgba(255, 255, 255, 0.05);
-  --muted-foreground: rgba(245, 245, 247, 0.62);
+  --secondary: rgba(250, 244, 242, 0.07);
+  --secondary-foreground: #faf4f2;
 
-  --accent: rgba(124, 92, 255, 0.16);
-  --accent-foreground: #c9bcff;
+  --muted: rgba(250, 244, 242, 0.05);
+  --muted-foreground: rgba(250, 244, 242, 0.64);
+
+  --accent: rgba(255, 157, 0, 0.16);
+  --accent-foreground: #ffcf7a;
 
   --destructive: #f87171;
   --destructive-foreground: #1a0a0a;
 
-  --border: rgba(255, 255, 255, 0.09);
-  --input: rgba(255, 255, 255, 0.12);
-  --ring: #7c5cff;
+  --border: rgba(250, 244, 242, 0.1);
+  --input: rgba(250, 244, 242, 0.14);
+  --ring: #ff9d00;
 
-  --glass-bg: rgba(255, 255, 255, 0.055);
-  --glass-border: rgba(255, 255, 255, 0.12);
-  --glass-blur: 24px;
+  --glass-bg: rgba(250, 244, 242, 0.055);
+  --glass-border: rgba(250, 244, 242, 0.12);
+  --glass-blur: 16px;
+
+  /* Фирменная кривая Daylight */
+  --ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1);
+  --hover-shadow-color: var(--brand-glow);
+
+  /* Типографическая шкала (fluid, clamp) */
+  --tracking-display: -0.07em;
+  --tracking-body: -0.05em;
+
+  --text-display-xl: clamp(3rem, 8vw, 7.5rem);
+  --text-display-lg: clamp(2.5rem, 6vw, 4.5rem);
+  --text-display-md: clamp(2rem, 4vw, 3.25rem);
+  --text-display-sm: clamp(1.6rem, 2.6vw, 2.25rem);
+  --text-lead: clamp(1.125rem, 1.6vw, 1.5rem);
+  --text-body: clamp(1rem, 1.1vw, 1.125rem);
+  --text-caption: 0.8125rem;
 }
 
 .dark {
@@ -63,37 +87,37 @@
 }
 
 :root:not(.dark) {
-  /* Светлая тема */
-  --background: #f7f7f9;
+  /* Светлая тема — cream Daylight */
+  --background: #faf5f2;
   --background-elevated: #ffffff;
-  --foreground: #101014;
+  --foreground: #18190f;
   --card: rgba(255, 255, 255, 0.72);
-  --card-foreground: #101014;
+  --card-foreground: #18190f;
   --popover: #ffffff;
-  --popover-foreground: #101014;
+  --popover-foreground: #18190f;
 
-  --primary: #101014;
-  --primary-foreground: #ffffff;
+  --primary: #18190f;
+  --primary-foreground: #faf5f2;
 
-  --secondary: rgba(16, 16, 20, 0.06);
-  --secondary-foreground: #101014;
+  --secondary: rgba(24, 25, 15, 0.06);
+  --secondary-foreground: #18190f;
 
-  --muted: rgba(16, 16, 20, 0.05);
-  --muted-foreground: rgba(16, 16, 20, 0.6);
+  --muted: rgba(24, 25, 15, 0.05);
+  --muted-foreground: rgba(24, 25, 15, 0.62);
 
-  --accent: rgba(124, 92, 255, 0.12);
-  --accent-foreground: #4c1d95;
+  --accent: rgba(255, 157, 0, 0.14);
+  --accent-foreground: #8a5300;
 
   --destructive: #dc2626;
   --destructive-foreground: #ffffff;
 
-  --border: rgba(16, 16, 20, 0.1);
-  --input: rgba(16, 16, 20, 0.16);
-  --ring: #7c5cff;
+  --border: rgba(24, 25, 15, 0.1);
+  --input: rgba(24, 25, 15, 0.16);
+  --ring: #d97f00;
 
-  --glass-bg: rgba(255, 255, 255, 0.62);
-  --glass-border: rgba(16, 16, 20, 0.1);
-  --glass-blur: 20px;
+  --glass-bg: rgba(250, 245, 242, 0.62);
+  --glass-border: rgba(24, 25, 15, 0.1);
+  --glass-blur: 16px;
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -127,6 +151,13 @@
   --color-brand-via: var(--brand-via);
   --color-brand-to: var(--brand-to);
 
+  --color-night: var(--color-night);
+  --color-night-soft: var(--color-night-soft);
+  --color-cream: var(--color-cream);
+  --color-cream-dark: var(--color-cream-dark);
+  --color-moonlight: var(--color-moonlight);
+  --color-amber: var(--color-amber);
+
   --radius-sm: var(--radius-sm);
   --radius-md: var(--radius-md);
   --radius-lg: var(--radius-lg);
@@ -135,14 +166,28 @@
   --radius-3xl: var(--radius-3xl);
 
   --font-sans:
-    ui-sans-serif, -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Segoe UI',
-    system-ui, sans-serif;
+    var(--font-sans-ui), ui-sans-serif, -apple-system, BlinkMacSystemFont, 'SF Pro Display',
+    'Inter', 'Segoe UI', system-ui, sans-serif;
+  --font-display: var(--font-display-serif), ui-serif, Georgia, 'Times New Roman', serif;
   --font-mono: ui-monospace, 'SF Mono', 'JetBrains Mono', 'Menlo', monospace;
+
+  /* Типографическая шкала */
+  --text-display-xl: var(--text-display-xl);
+  --text-display-lg: var(--text-display-lg);
+  --text-display-md: var(--text-display-md);
+  --text-display-sm: var(--text-display-sm);
+  --text-lead: var(--text-lead);
+  --text-body: var(--text-body);
+  --text-caption: var(--text-caption);
+
+  --ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1);
 
   --animate-marquee: marquee 32s linear infinite;
   --animate-float: float 9s ease-in-out infinite;
   --animate-shimmer: shimmer 2.4s linear infinite;
   --animate-pulse-glow: pulse-glow 4s ease-in-out infinite;
+  --animate-scale-fade-in: scale-fade-in 0.4s var(--ease-out-quint) both;
+  --animate-slide-fade-in: slide-fade-in 0.4s var(--ease-out-quint) both;
 }
 
 @keyframes marquee {
@@ -183,6 +228,38 @@
   }
 }
 
+@keyframes scale-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slide-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 var(--hover-shadow-color);
+  }
+  50% {
+    box-shadow: 0 0 24px 0 var(--hover-shadow-color);
+  }
+}
+
 /* ═══════════════════════════════════════════════════════════════
    Базовые стили
    ═══════════════════════════════════════════════════════════════ */
@@ -208,8 +285,8 @@
   }
 
   ::selection {
-    background: var(--brand-glow);
-    color: #ffffff;
+    background: var(--color-amber);
+    color: var(--color-night);
   }
 
   :focus-visible {
@@ -246,6 +323,96 @@
    ═══════════════════════════════════════════════════════════════ */
 
 @layer utilities {
+  /* ─── Типографические роли Daylight ─── */
+  .text-display-xl,
+  .text-display-lg,
+  .text-display-md,
+  .text-display-sm {
+    font-family: var(--font-display);
+    font-weight: 300;
+    line-height: 0.97;
+    letter-spacing: var(--tracking-display);
+    text-wrap: balance;
+  }
+
+  .text-display-xl {
+    font-size: var(--text-display-xl);
+  }
+
+  .text-display-lg {
+    font-size: var(--text-display-lg);
+  }
+
+  .text-display-md {
+    font-size: var(--text-display-md);
+  }
+
+  .text-display-sm {
+    font-size: var(--text-display-sm);
+  }
+
+  .text-lead {
+    font-family: var(--font-sans);
+    font-size: var(--text-lead);
+    line-height: 1.35;
+    letter-spacing: var(--tracking-body);
+    text-wrap: pretty;
+  }
+
+  .text-body {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: 1.6;
+    letter-spacing: var(--tracking-body);
+    text-wrap: pretty;
+  }
+
+  .text-drop-shadow {
+    filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.5));
+  }
+
+  /* ─── Animated underline (link_link из Daylight) ─── */
+  .link-underline {
+    position: relative;
+  }
+
+  .link-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -0.15em;
+    width: 100%;
+    height: 0.055em;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .link-underline:hover::after,
+  .link-underline:focus-visible::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+
+  /* ─── Hover glow (кнопки Daylight) ─── */
+  .hover-glow {
+    box-shadow: 0 0 0 0 var(--hover-shadow-color);
+    transition:
+      box-shadow 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+      opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .hover-glow:hover {
+    box-shadow: 0 0 24px 0 var(--hover-shadow-color);
+  }
+
+  /* ─── Marquee: бегущая строка с затемнением краёв ─── */
+  .marquee-mask {
+    mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
+  }
+
   /* Liquid Glass: полупрозрачная поверхность + blur + тонкая рамка */
   .glass {
     background: var(--glass-bg);
@@ -287,29 +454,37 @@
   /* Свечение */
   .glow-brand {
     box-shadow:
-      0 0 0 1px rgba(124, 92, 255, 0.2),
+      0 0 0 1px color-mix(in srgb, var(--brand-via) 22%, transparent),
       0 18px 60px -18px var(--brand-glow);
   }
 
   .glow-brand-strong {
     box-shadow:
-      0 0 0 1px rgba(124, 92, 255, 0.38),
+      0 0 0 1px color-mix(in srgb, var(--brand-via) 40%, transparent),
       0 26px 80px -20px var(--brand-glow-strong);
   }
 
-  /* Мягкая радиальная подсветка фона */
+  /* Мягкая радиальная подсветка фона — тёплый янтарь */
   .bg-aurora {
     background-image:
-      radial-gradient(60% 55% at 15% 10%, rgba(124, 92, 255, 0.22), transparent 60%),
-      radial-gradient(50% 45% at 85% 5%, rgba(34, 211, 238, 0.16), transparent 60%),
-      radial-gradient(70% 60% at 50% 100%, rgba(99, 102, 241, 0.14), transparent 65%);
+      radial-gradient(60% 55% at 15% 10%, rgba(255, 157, 0, 0.16), transparent 60%),
+      radial-gradient(50% 45% at 85% 5%, rgba(255, 179, 64, 0.12), transparent 60%),
+      radial-gradient(70% 60% at 50% 100%, rgba(217, 127, 0, 0.1), transparent 65%);
   }
 
-  /* Тонкая сетка-фон */
+  /* Тонкая сетка-фон (адаптируется к теме) */
   .bg-grid {
     background-image:
-      linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      linear-gradient(
+        to right,
+        color-mix(in srgb, var(--foreground) 5%, transparent) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        color-mix(in srgb, var(--foreground) 5%, transparent) 1px,
+        transparent 1px
+      );
     background-size: 56px 56px;
   }
 

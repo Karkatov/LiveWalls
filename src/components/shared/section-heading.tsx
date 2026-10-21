@@ -1,8 +1,10 @@
 import { cn } from '@/lib/utils/cn';
-import { Reveal } from './motion';
+import { MaskReveal, Reveal } from './motion';
 
 /**
  * Заголовок секции: надзаголовок, заголовок, описание.
+ *
+ * Заголовок «выезжает» снизу из-под маски, как крупные заголовки в референсе.
  */
 export function SectionHeading({
   eyebrow,
@@ -33,14 +35,12 @@ export function SectionHeading({
         </span>
       ) : null}
 
-      <h2 className="text-foreground max-w-3xl text-3xl font-bold tracking-tight text-balance sm:text-4xl">
-        {title}
+      <h2 className="text-foreground text-display-md max-w-3xl">
+        <MaskReveal>{title}</MaskReveal>
       </h2>
 
       {description ? (
-        <p className="text-muted-foreground max-w-2xl text-base leading-relaxed text-pretty sm:text-lg">
-          {description}
-        </p>
+        <p className="text-muted-foreground text-lead max-w-2xl">{description}</p>
       ) : null}
 
       {action ? <div className="mt-2">{action}</div> : null}

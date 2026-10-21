@@ -11,8 +11,11 @@ import type { Transition, Variants } from 'framer-motion';
  * и переключаются на `reducedVariants` (см. src/lib/hooks/use-reduced-motion.ts).
  */
 
-/** Плавная кривая — для появления и скролла. */
-export const easeSmooth: Transition['ease'] = [0.22, 1, 0.36, 1];
+/** Фирменная кривая Daylight — основная для появления и скролла. */
+export const easeOutQuint: Transition['ease'] = [0.23, 1, 0.32, 1];
+
+/** Плавная кривая — для появления и скролла (совместимость). */
+export const easeSmooth: Transition['ease'] = easeOutQuint;
 
 /** Пружинистая кривая — для нажатий и смены состояний. */
 export const easeSnappy: Transition['ease'] = [0.34, 1.56, 0.64, 1];
@@ -27,6 +30,22 @@ export const transitions = {
   spring: { type: 'spring', stiffness: 380, damping: 32, mass: 0.8 } satisfies Transition,
   springSoft: { type: 'spring', stiffness: 180, damping: 26, mass: 1 } satisfies Transition,
 } as const;
+
+/** Настройки viewport для whileInView: срабатывает, когда элемент в кадре на ~20%. */
+export const revealViewport = { once: true, amount: 0.2 } as const;
+export const revealViewportMargin = { once: true, margin: '-80px 0px -60px 0px' } as const;
+
+/** Заголовок «проявляется» снизу из-под маски. */
+export const maskReveal: Variants = {
+  hidden: { y: '110%' },
+  visible: { y: '0%', transition: { duration: 0.75, ease: easeOutQuint } },
+};
+
+/** Буква/слово заголовка: мягкий подъём с масштабом. */
+export const letterReveal: Variants = {
+  hidden: { opacity: 0, y: '0.5em', rotateX: -55 },
+  visible: { opacity: 1, y: 0, rotateX: 0, transition: { duration: 0.6, ease: easeOutQuint } },
+};
 
 /** Появление снизу вверх. */
 export const fadeUp: Variants = {

@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { cn } from '@/lib/utils/cn';
 
-/** Карточка — базовая поверхность с эффектом Liquid Glass. */
+/** Карточка — базовая поверхность с эффектом Liquid Glass и тонкой hairline-рамкой. */
 export const Card = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
     <div
       ref={ref}
       className={cn(
-        'border-border/70 bg-card text-card-foreground rounded-2xl border backdrop-blur-xl',
+        'border-border/60 bg-card text-card-foreground rounded-2xl border backdrop-blur-xl',
+        'transition-[border-color,box-shadow] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)]',
         className,
       )}
       {...props}
@@ -29,7 +30,7 @@ export const CardTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <h3
     ref={ref}
-    className={cn('text-foreground text-lg font-semibold tracking-tight', className)}
+    className={cn('text-foreground font-display text-lg font-medium tracking-tight', className)}
     {...props}
   />
 ));

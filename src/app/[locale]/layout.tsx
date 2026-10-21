@@ -11,6 +11,7 @@ import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { OnboardingModal } from '@/components/onboarding/onboarding-modal';
 import { PageTransition } from '@/components/shared/page-transition';
+import { fontClasses } from '@/styles/fonts';
 import '../globals.css';
 
 /**
@@ -70,7 +71,7 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={locale} className={fontClasses} suppressHydrationWarning>
       <body className="bg-background text-foreground min-h-dvh font-sans antialiased">
         <NextIntlClientProvider locale={locale} messages={messages} timeZone="Europe/Moscow">
           <ThemeProvider

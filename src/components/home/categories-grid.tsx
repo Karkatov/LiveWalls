@@ -14,7 +14,7 @@ import {
 import { Link } from '@/i18n/navigation';
 import type { Category } from '@/types';
 import { SectionHeading } from '@/components/shared/section-heading';
-import { Reveal } from '@/components/shared/motion';
+import { StaggerGroup, StaggerItem } from '@/components/shared/motion';
 import { cn } from '@/lib/utils/cn';
 
 /** Соответствие «имя иконки из мока» → компонент Lucide. */
@@ -52,18 +52,18 @@ export async function CategoriesGrid({ categories }: { categories: Category[] })
         }
       />
 
-      <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {categories.map((category, index) => {
+      <StaggerGroup className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {categories.map((category) => {
           const Icon = ICONS[category.icon] ?? LayoutGrid;
 
           return (
-            <Reveal key={category.id} delay={index * 0.04}>
+            <StaggerItem key={category.id} className="h-full">
               <Link
                 href={{ pathname: '/wallpapers', query: { category: category.id } }}
                 className={cn(
-                  'group border-border/60 bg-card/40 flex items-center gap-4 rounded-2xl border p-5',
-                  'backdrop-blur-xl transition-all duration-300',
-                  'hover:border-brand/35 hover:bg-card/70 hover:-translate-y-0.5',
+                  'group border-border/60 bg-card/40 flex h-full items-center gap-4 rounded-2xl border p-5',
+                  'backdrop-blur-xl transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)]',
+                  'hover:border-amber/40 hover:bg-card/70 hover:-translate-y-1 hover:shadow-[0_24px_60px_-28px_var(--brand-glow)]',
                   'focus-visible:outline-ring focus-visible:outline-2 focus-visible:outline-offset-4',
                 )}
               >
@@ -86,10 +86,10 @@ export async function CategoriesGrid({ categories }: { categories: Category[] })
                   </span>
                 </span>
               </Link>
-            </Reveal>
+            </StaggerItem>
           );
         })}
-      </div>
+      </StaggerGroup>
     </section>
   );
 }

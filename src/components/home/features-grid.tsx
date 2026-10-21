@@ -38,7 +38,7 @@ export async function FeaturesGrid() {
 
           return (
             <StaggerItem key={key} className="h-full">
-              <article className="group border-border/60 bg-card/40 hover:border-brand/30 hover:bg-card/70 h-full rounded-2xl border p-6 backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5">
+              <article className="group border-border/60 bg-card/40 hover:border-amber/35 hover:bg-card/70 h-full rounded-2xl border p-6 backdrop-blur-xl transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-1 hover:shadow-[0_24px_60px_-28px_var(--brand-glow)]">
                 <span className="bg-brand/10 text-brand-foreground ring-brand/20 group-hover:bg-brand/20 flex size-11 items-center justify-center rounded-xl ring-1 transition-colors">
                   <Icon className="size-5" aria-hidden="true" />
                 </span>
