@@ -75,6 +75,8 @@
 - [x] `not-found.tsx`, `error.tsx` (500 + reset), `global-not-found.tsx` (без layout, свой html/body)
 - [x] `scripts/generate-placeholders.mjs` — 43 ассета: обои, категории, паки, аватары, скрины, лого, favicon, OG, манифест
 - [x] `scripts/postbuild.mjs` — редирект `/` → `/ru` для статического экспорта
+- [x] `public/index.html` — редирект `/` → `/ru` независимо от команды сборки
+      (Cloudflare выполняет `npx next build` и не запускает `postbuild`)
 - [x] `public/_headers` — заголовки безопасности и кеш для статических хостингов
 - [x] Vitest: 25 unit-тестов (фильтры, форматирование, локали)
 - [x] Playwright: 7 E2E-смоков (главная, каталог, пак, загрузка, /en, редирект, 404)

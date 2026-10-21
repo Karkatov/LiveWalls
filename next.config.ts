@@ -106,9 +106,15 @@ const nextConfig: NextConfig = {
         },
       }),
 
-  async headers() {
-    return [{ source: '/:path*', headers: securityHeaders }];
-  },
+  // Заголовки применяются только в серверном режиме: в статическом экспорте
+  // next.config не умеет их отдавать (статичные хостинги читают public/_headers).
+  ...(isStaticExport
+    ? {}
+    : {
+        async headers() {
+          return [{ source: '/:path*', headers: securityHeaders }];
+        },
+      }),
 
   // Webpack-оптимизация: выносим тяжёлые библиотеки в отдельные чанки.
   experimental: {

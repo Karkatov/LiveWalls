@@ -23,10 +23,22 @@
   (брендированная 404 для маршрутов вне локалей).
 - Публичные ассеты: генератор SVG-плейсхолдеров, логотипы, favicon,
   apple-touch-icon, OG-изображение, манифест.
-- Режимы сборки: `NEXT_OUTPUT=default|standalone|export`; скрипты
+- Режимы сборки: статический экспорт по умолчанию (`out/`), серверный —
+  `NEXT_OUTPUT=server`, Docker — `NEXT_OUTPUT=standalone`; скрипты
   `scripts/generate-placeholders.mjs` и `scripts/postbuild.mjs`.
 - Тесты: Vitest (фильтры каталога, форматирование, локали) и Playwright (E2E-смок).
 - Документация: README.md, TODO.md, DECISIONS.md, CHANGELOG.md.
+
+### Исправлено
+
+- Сборка на Cloudflare Pages падала с `Error: Output directory "out" not found`:
+  статический экспорт теперь включён в `next.config.ts` принудительно и не
+  зависит от `NEXT_OUTPUT` (Cloudflare не передаёт переменные окружения в сборку).
+- Корень `/` в статическом экспорте редиректит на `/ru` при любом способе
+  сборки: добавлен `public/index.html` (Cloudflare по умолчанию выполняет
+  `npx next build` и не запускает `postbuild`).
+- Предупреждение Next.js о постороннем `package-lock.json` в корне проекта —
+  задано `outputFileTracingRoot`.
 
 ### Известные ограничения
 

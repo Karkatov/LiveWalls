@@ -65,8 +65,9 @@ NEXT_OUTPUT=export NEXT_BASE_PATH=/LiveWallsSite NEXT_ASSET_PREFIX=/LiveWallsSit
 В режиме `export`:
 
 - `images.unoptimized` включён автоматически (нет image-сервера);
-- серверные редиректы недоступны — корень `/` закрывает `scripts/postbuild.mjs`
-  (мета-редирект + JS на `/ru`);
+- серверные редиректы недоступны — корень `/` закрывает `public/index.html`
+  (мета-редирект + JS на `/ru`); `scripts/postbuild.mjs` перезаписывает его
+  с учётом `NEXT_BASE_PATH`;
 - `next.config.ts` → `headers()` не применяются — для статических хостингов
   используйте `public/_headers` (Netlify / Cloudflare Pages);
 - `next-intl` и `searchParams` работают: на странице каталога `searchParams`
@@ -126,9 +127,11 @@ tests/                 — unit/ и e2e/
 **Cloudflare Pages** (основная цель):
 
 - Build command: `npm run build`, Output directory: `out`, Node.js: 20+.
+  (По умолчанию Cloudflare подставляет `npx next build` — он тоже даёт `out/`,
+  но без `postbuild`; рекомендуется именно `npm run build`.)
 - Переменные окружения оставьте пустыми — статический экспорт включён в коде.
 - Заголовки безопасности — из `public/_headers`, корень `/` редиректит
-  `scripts/postbuild.mjs` на `/ru`.
+  `public/index.html` на `/ru`.
 - Свой домен: Cloudflare → DNS → Custom domain.
 
 - **Vercel**: Framework Preset = Next.js, env `NEXT_OUTPUT=server`. Build → `npm run build`.
