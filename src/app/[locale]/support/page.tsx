@@ -55,7 +55,7 @@ export default async function SupportPage({ params }: { params: Promise<{ locale
   ];
 
   return (
-    <div className="mx-auto max-w-[1280px] px-4 py-12 sm:px-6 lg:py-16">
+    <div className="mx-auto max-w-[1280px] px-4 py-16 sm:px-8 lg:py-24">
       <header className="max-w-2xl">
         <h1 className="text-display-md">{t('title')}</h1>
         <p className="text-muted-foreground mt-3 text-base leading-relaxed text-pretty">

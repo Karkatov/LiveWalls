@@ -57,7 +57,7 @@ export default async function FaqPage({ params }: { params: Promise<{ locale: Lo
   }));
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:py-16">
+    <div className="mx-auto max-w-3xl px-4 py-16 sm:px-8 lg:py-24">
       <header className="text-center">
         <span className="border-signal/25 bg-signal/10 text-signal-foreground inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium tracking-[0.14em] uppercase">
           {t('title')}

@@ -106,7 +106,7 @@ export default async function PricingPage({ params }: { params: Promise<{ locale
   ];
 
   return (
-    <div className="mx-auto max-w-[1280px] px-4 py-12 sm:px-6 lg:py-16">
+    <div className="mx-auto max-w-[1280px] px-4 py-16 sm:px-8 lg:py-24">
       <SectionHeading eyebrow={tNav('pricing')} title={t('title')} description={t('subtitle')} />
 
       {/* Тарифы */}

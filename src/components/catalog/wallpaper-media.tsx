@@ -40,7 +40,7 @@ export function WallpaperMedia({
         playsInline
         // При prefers-reduced-motion видео не запускается автоматически.
         autoPlay={!reduceMotion}
-        preload="metadata"
+        preload={priority ? 'auto' : 'none'}
         aria-label={wallpaper.title}
       />
     );

@@ -61,7 +61,7 @@ export default async function DownloadPage({ params }: { params: Promise<{ local
   const steps = [t('step1'), t('step2'), t('step3')];
 
   return (
-    <div className="mx-auto max-w-[1000px] px-4 py-12 sm:px-6 lg:py-16">
+    <div className="mx-auto max-w-[1000px] px-4 py-16 sm:px-8 lg:py-24">
       <header className="mx-auto max-w-2xl text-center">
         <h1 className="text-display-md">{t('title')}</h1>
         <p className="text-muted-foreground mt-3 text-base leading-relaxed text-pretty">
