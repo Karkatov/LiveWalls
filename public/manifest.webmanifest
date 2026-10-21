@@ -1,0 +1,23 @@
+{
+  "name": "LiveWalls — живые обои для macOS",
+  "short_name": "LiveWalls",
+  "description": "Живые обои для macOS: рабочий стол, экран блокировки и заставка.",
+  "start_url": "/ru",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0A0A0C",
+  "theme_color": "#0A0A0C",
+  "lang": "ru",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

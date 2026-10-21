@@ -1,0 +1,505 @@
+{
+  "common": {
+    "skipToContent": "Skip to content",
+    "appName": "LiveWalls",
+    "tagline": "Live wallpapers for macOS",
+    "loading": "Loading…",
+    "error": "Something went wrong",
+    "retry": "Try again",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "search": "Search",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "add": "Add",
+    "apply": "Apply",
+    "reset": "Reset",
+    "more": "More",
+    "all": "All",
+    "free": "Free",
+    "paid": "Paid",
+    "buy": "Buy",
+    "download": "Download",
+    "install": "Install",
+    "viewAll": "View all",
+    "copy": "Copy",
+    "copied": "Copied",
+    "notFound": "Not found",
+    "mockBadge": "Demo data",
+    "page": "Page"
+  },
+  "nav": {
+    "wallpapers": "Catalog",
+    "packs": "Packs",
+    "pricing": "Pricing",
+    "about": "About",
+    "faq": "FAQ",
+    "support": "Support",
+    "account": "Account",
+    "admin": "Admin",
+    "download": "Download",
+    "install": "Install",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "mainNav": "Main navigation",
+    "theme": "Theme",
+    "themeDark": "Dark",
+    "themeLight": "Light",
+    "themeSystem": "System",
+    "language": "Language"
+  },
+  "home": {
+    "hero": {
+      "badge": "Version 1.0 for macOS 15+",
+      "title": "Live wallpapers for your Mac",
+      "titleAccent": "in 4K",
+      "subtitle": "Video and images on your desktop, Lock Screen and Screen Saver. Lid-fold effect, music sync and the full catalog in one native app.",
+      "cta": "Download for free",
+      "ctaSecondary": "Browse the catalog",
+      "trialNote": "24-hour free trial — no card required",
+      "appPreviewLabel": "LiveWalls app preview",
+      "stats": {
+        "wallpapers": "wallpapers in the catalog",
+        "categories": "categories",
+        "resolution": "maximum resolution",
+        "trial": "hours of free trial"
+      }
+    },
+    "featured": {
+      "eyebrow": "Featured",
+      "title": "The wallpapers people pick most",
+      "description": "Curated by our team: loops that look great on a Retina display and never get in the way.",
+      "cta": "Full catalog"
+    },
+    "categories": {
+      "eyebrow": "Categories",
+      "title": "Pick your mood",
+      "description": "Nine categories — from calm nature to neon cyberpunk.",
+      "cta": "See all",
+      "count": "{count} wallpapers"
+    },
+    "benefits": {
+      "eyebrow": "Features",
+      "title": "Built for macOS, not for a browser",
+      "description": "A native Swift app: hardware video decoding, better battery life and no unnecessary permissions.",
+      "items": {
+        "menuBar": {
+          "title": "Lives in the menu bar",
+          "description": "No extra Dock icon. Pause, switch and manage playlists straight from the menu bar."
+        },
+        "lockScreen": {
+          "title": "Lock Screen and Screen Saver",
+          "description": "Live wallpapers run on the Lock Screen and in Screen Saver on macOS 26 (Tahoe) and later."
+        },
+        "bend": {
+          "title": "Bend effect",
+          "description": "When you close the lid, the display physically folds with it. Duo, Ghost, Roll and Iris modes."
+        },
+        "performance": {
+          "title": "Battery friendly",
+          "description": "VideoToolbox instead of the CPU, auto-pause behind full-screen apps and in Low Power Mode."
+        },
+        "playlists": {
+          "title": "Playlists",
+          "description": "Build collections for every mood and switch between them on a schedule."
+        },
+        "import": {
+          "title": "Your own videos",
+          "description": "Import MP4, MOV and M4V — the app picks the optimal quality and bitrate for you."
+        }
+      }
+    },
+    "reviews": {
+      "eyebrow": "Reviews",
+      "title": "What users say",
+      "description": "First impressions of the stable 1.0 release.",
+      "rating": "Rated {rating} out of 5"
+    },
+    "cta": {
+      "title": "Try it free for 24 hours",
+      "description": "Full catalog, live Lock Screen and the Bend effect. No card needed.",
+      "button": "Download LiveWalls",
+      "secondary": "See pricing"
+    },
+    "faq": {
+      "eyebrow": "FAQ",
+      "title": "Frequent questions",
+      "description": "Short answers about compatibility, payment and refunds.",
+      "cta": "All questions"
+    }
+  },
+  "catalog": {
+    "title": "Live wallpaper catalog",
+    "subtitle": "4K video and images, ready to set in a single click.",
+    "searchPlaceholder": "Search by title, tag or author…",
+    "searchLabel": "Search the catalog",
+    "filters": "Filters",
+    "filterCategory": "Category",
+    "filterType": "Type",
+    "filterPrice": "Price",
+    "filterFavorites": "Favorites only",
+    "sort": "Sort",
+    "sortNewest": "Newest first",
+    "sortPopular": "Most popular",
+    "sortPriceAsc": "Cheapest first",
+    "sortPriceDesc": "Most expensive",
+    "sortName": "By title",
+    "results": "Found",
+    "resultsCount": "{count} wallpapers",
+    "noResults": "Nothing found",
+    "noResultsHint": "Try a different query or reset the filters.",
+    "clearFilters": "Reset filters",
+    "loadMore": "Show more",
+    "page": "Page",
+    "of": "of",
+    "quickView": "Quick view",
+    "quickViewLabel": "Open quick view for “{title}”",
+    "allCategories": "All categories",
+    "allTypes": "All types",
+    "priceAll": "Any price",
+    "priceFree": "Free",
+    "pricePaid": "Paid",
+    "typeAll": "Any",
+    "typeVideo": "Video",
+    "typeImage": "Images",
+    "showing": "Showing",
+    "filterOpen": "Filters"
+  },
+  "wallpaper": {
+    "backToCatalog": "Back to catalog",
+    "overview": "Overview",
+    "description": "Description",
+    "tags": "Tags",
+    "specs": "Specifications",
+    "resolution": "Resolution",
+    "duration": "Duration",
+    "size": "File size",
+    "author": "Author",
+    "location": "Shot in",
+    "published": "Published",
+    "likes": "Likes",
+    "views": "Views",
+    "category": "Category",
+    "buy": "Buy",
+    "buyWithPrice": "Buy for {price}",
+    "addToFavorites": "Add to favorites",
+    "removeFromFavorites": "Remove from favorites",
+    "download": "Download",
+    "downloadReady": "Download file",
+    "owned": "Already in your library",
+    "similar": "Similar wallpapers",
+    "similarTitle": "More from this category",
+    "notFoundTitle": "Wallpaper not found",
+    "notFoundBody": "The link may be outdated or the item may no longer be available.",
+    "videoUnavailable": "Preview unavailable",
+    "premiumBadge": "Premium",
+    "freeBadge": "Free",
+    "videoBadge": "Video",
+    "imageBadge": "Image"
+  },
+  "packs": {
+    "title": "Wallpaper packs",
+    "subtitle": "Bundles of 10 wallpapers — cheaper than buying one by one.",
+    "includes": "What's inside",
+    "wallpapers": "wallpapers in the pack",
+    "count": "{count} wallpapers",
+    "buyPack": "Buy pack",
+    "packNotFound": "Pack not found",
+    "packNotFoundBody": "This pack is not in the catalog. Have a look at the full list.",
+    "backToPacks": "All packs",
+    "featuredPacks": "Featured packs",
+    "viewPack": "Open pack",
+    "inPack": "Included in the pack"
+  },
+  "pricing": {
+    "title": "Pricing",
+    "subtitle": "One-time purchase, no subscription. All prices in roubles.",
+    "trial": "Free trial",
+    "trialBadge": "24 hours free",
+    "trialPrice": "0 ₽",
+    "trialDescription": "Full catalog, live Lock Screen and the Bend effect for 24 hours.",
+    "lifetime": "Premium forever",
+    "lifetimeDescription": "One payment, all updates — forever. Activated on up to three personal Macs.",
+    "yearly": "Premium for a year",
+    "yearlyDescription": "The same features for 12 months. Cheaper than buying packs separately.",
+    "pack": "Wallpaper pack",
+    "packDescription": "10 wallpapers from one theme. Forever, no subscription.",
+    "single": "Single wallpaper",
+    "singleDescription": "A single loop or image from the catalog.",
+    "mostPopular": "Most popular",
+    "perYear": "per year",
+    "oneTime": "one-time",
+    "trialDiscountTitle": "−22% during the first 24 hours",
+    "trialDiscountBody": "If you decide to buy Premium during the trial, the price is 690 ₽ instead of 890 ₽.",
+    "featuresTitle": "What Premium includes",
+    "features": {
+      "catalog": "Full cloud catalog",
+      "lockscreen": "Live Lock Screen and Screen Saver",
+      "favorites": "Unlimited favorites and playlists",
+      "updates": "Updates and new effects",
+      "support": "Priority support",
+      "import": "Import of your own videos"
+    },
+    "faqTitle": "Payment questions",
+    "cta": "Download and try it",
+    "packTitle": "Packs",
+    "packBody": "10 wallpapers for 199 ₽ — twice as cheap as buying them separately.",
+    "singleTitle": "Single wallpapers",
+    "singleBody": "Any loop from the catalog can be bought separately for 99 ₽.",
+    "refundTitle": "Refunds",
+    "refundBody": "Full refund within 7 days if the app does not work for you. No reason needed.",
+    "compareTitle": "Plan comparison"
+  },
+  "about": {
+    "title": "About the app",
+    "subtitle": "LiveWalls is a native macOS app for live wallpapers, written in Swift.",
+    "whatTitle": "What is LiveWalls",
+    "whatBody": "LiveWalls turns video loops and still images into your desktop, Lock Screen and Screen Saver background. The app lives in the menu bar, stays out of the Dock and runs on a dedicated wallpaper extension, so the animation keeps going even when the window is closed.",
+    "featuresTitle": "Key features",
+    "featuresBody": "Everything that makes the app feel alive.",
+    "screenshotsTitle": "Interface",
+    "screenshotsBody": "Main window, player, catalog and the Bend effect.",
+    "demoTitle": "Video walkthrough",
+    "demoBody": "A two-minute tour of every feature. The video ships with the release.",
+    "requirementsTitle": "System requirements",
+    "requirementsBody": "Check whether your Mac is supported.",
+    "macos": "macOS",
+    "chip": "Processor",
+    "architecture": "Apple Silicon and Intel",
+    "extensions": "Extensions",
+    "extensionsValue": "Live Lock Screen and Screen Saver — from macOS 26 (Tahoe)",
+    "version": "Version",
+    "download": "Download the app"
+  },
+  "faq": {
+    "title": "Frequently asked questions",
+    "subtitle": "Everything people usually ask before buying.",
+    "contactCta": "Did not find an answer?",
+    "contactLink": "Contact support",
+    "items": {
+      "trial": {
+        "q": "What is included in the free trial?",
+        "a": "For all 24 hours you get the full catalog, live Lock Screen wallpapers and the Bend effect. No card or registration required. The counter does not reset when you reinstall the app."
+      },
+      "system": {
+        "q": "What are the system requirements?",
+        "a": "LiveWalls requires macOS 15 (Sequoia) or later. It runs on Apple Silicon and Intel. Live Lock Screen and Screen Saver motion require macOS 26 (Tahoe) or later."
+      },
+      "battery": {
+        "q": "How does the app affect battery life?",
+        "a": "Video is decoded on the hardware through VideoToolbox instead of the CPU. Playback pauses automatically behind full-screen apps, on low battery and in Low Power Mode. Actual usage depends on your Mac, the codec and the number of displays."
+      },
+      "bends": {
+        "q": "What is the Bend effect?",
+        "a": "When you close the MacBook lid, the display folds along with it — just like on flexible panels. Several modes are available: Duo, Ghost, Roll, Shutter, Flex and Iris. It needs the lid angle sensor and works on Apple laptops."
+      },
+      "music": {
+        "q": "Do the wallpapers react to music?",
+        "a": "Yes. The app includes Music Sync: wallpapers react to album art from Apple Music and Spotify, and the built-in player syncs volume and rhythm."
+      },
+      "license": {
+        "q": "Is it a subscription or a one-time purchase?",
+        "a": "One-time purchase. Premium forever costs 890 ₽ and never expires, including every future update. A lifetime license activates on up to three personal Macs."
+      },
+      "devices": {
+        "q": "How many devices does one purchase cover?",
+        "a": "Premium forever covers three personal Macs. If you stop using one, deactivate it and activate the license on the new device. The yearly plan is limited to one Mac for the period of subscription."
+      },
+      "payment": {
+        "q": "How does payment work?",
+        "a": "Payments go through Russian providers (LAVA or Robokassa): bank card, SBP and other available methods. Card details never reach the website — the provider handles the payment. Demo mode: purchase buttons show a placeholder."
+      },
+      "refund": {
+        "q": "Can I get a refund?",
+        "a": "Yes. Within 7 days of purchase we refund the full amount if the app does not work for you — no reason needed. Write to support with the email address used for the purchase."
+      },
+      "import": {
+        "q": "Can I use my own videos?",
+        "a": "Yes. Drag an MP4, MOV or M4V file into the app window and it is added to your library. Your files stay on your Mac and are never uploaded."
+      },
+      "catalog": {
+        "q": "How often do new wallpapers arrive?",
+        "a": "The catalog is updated several times a month. Premium users get new loops automatically, and single wallpapers or packs can be bought at any time."
+      }
+    }
+  },
+  "support": {
+    "title": "Support",
+    "subtitle": "Describe the problem — we reply within one business day.",
+    "formTitle": "Contact support",
+    "name": "Your name",
+    "namePlaceholder": "John Smith",
+    "email": "Email",
+    "emailPlaceholder": "you@example.com",
+    "topic": "Subject",
+    "topicPlaceholder": "For example: the video will not play",
+    "message": "Message",
+    "messagePlaceholder": "Describe the problem in as much detail as you can…",
+    "send": "Send",
+    "sending": "Sending…",
+    "success": "Message sent",
+    "successBody": "We will reply to the email you provided. In demo mode nothing is actually sent.",
+    "error": "Could not send",
+    "contactsTitle": "Other ways to reach us",
+    "emailLabel": "Email",
+    "telegramLabel": "Telegram",
+    "responseTime": "Response time",
+    "responseTimeValue": "Within one business day, Mon–Fri 10:00–19:00 (MSK)",
+    "faqLink": "Check the FAQ first — it answers half of the questions.",
+    "errors": {
+      "name": "Please enter your name — at least 2 characters",
+      "email": "Please enter a valid email address",
+      "topic": "Please describe the subject — at least 3 characters",
+      "message": "The message is too short — at least 10 characters"
+    }
+  },
+  "account": {
+    "title": "Account",
+    "subtitle": "Purchases, downloads and access status.",
+    "loginTitle": "Sign in with email",
+    "loginSubtitle": "No password needed — we send a sign-in link to your address.",
+    "email": "Email",
+    "emailPlaceholder": "you@example.com",
+    "signIn": "Sign in",
+    "signOut": "Sign out",
+    "signedInAs": "Signed in as {email}",
+    "purchases": "Purchases",
+    "purchasesSubtitle": "Payment history and receipts.",
+    "downloads": "Downloads",
+    "downloadsSubtitle": "Wallpaper files available to you.",
+    "emptyPurchases": "No purchases yet",
+    "emptyPurchasesHint": "Buy something in the catalog and it will show up here.",
+    "emptyDownloads": "No downloads yet",
+    "emptyDownloadsHint": "Buy wallpapers or a pack to download the files.",
+    "amount": "Amount",
+    "date": "Date",
+    "status": "Status",
+    "invoice": "Receipt",
+    "statusPaid": "Paid",
+    "statusPending": "Pending",
+    "statusRefunded": "Refunded",
+    "download": "Download",
+    "mockNotice": "Demo mode: sign-in, purchases and downloads are placeholders. See the README for wiring up the real API.",
+    "demoHint": "For the demo use email: demo@livewalls.app"
+  },
+  "admin": {
+    "title": "Admin",
+    "subtitle": "Manage the catalog, packs and users.",
+    "password": "Password",
+    "passwordPlaceholder": "Enter the ADMIN_PASSWORD value",
+    "enter": "Sign in",
+    "unauthorized": "Access denied",
+    "unauthorizedBody": "Wrong password. Check the ADMIN_PASSWORD environment variable.",
+    "tabs": {
+      "wallpapers": "Wallpapers",
+      "packs": "Packs",
+      "users": "Users"
+    },
+    "add": "Add",
+    "remove": "Remove",
+    "edit": "Edit",
+    "columns": {
+      "title": "Title",
+      "category": "Category",
+      "type": "Type",
+      "price": "Price",
+      "count": "Count",
+      "email": "Email",
+      "status": "Status",
+      "created": "Created"
+    },
+    "mockNotice": "Demo mode: tables run on mock data, buttons are placeholders. Real CRUD operations appear once the API is connected.",
+    "success": "Action executed (placeholder)"
+  },
+  "legal": {
+    "lastUpdated": "Revision from {date}",
+    "disclaimer": "Document template. Requires review by a lawyer before publication.",
+    "tocTitle": "Contents",
+    "backToTop": "Back to top",
+    "privacyTitle": "Personal data processing policy",
+    "termsTitle": "Terms of use",
+    "offerTitle": "Public offer",
+    "operatorTitle": "Personal data operator",
+    "operatorValue": "Ivanov Ivan Ivanovich (placeholder)",
+    "requisitesTitle": "Company details",
+    "requisitesValue": "INN 000000000000, OGRNIP 000000000000000, Moscow, 1 Example Street"
+  },
+  "errors": {
+    "notFoundTitle": "Page not found",
+    "notFoundBody": "The link may be outdated or there is a typo in the address. Head back to the catalog — it has 34 live wallpapers.",
+    "notFoundCta": "To the catalog",
+    "errorTitle": "Something broke",
+    "errorBody": "We already know about the issue. Try reloading the page — it may help.",
+    "errorCta": "Reload the page",
+    "home": "Go home",
+    "code": "Error code"
+  },
+  "onboarding": {
+    "step1Title": "Welcome to LiveWalls",
+    "step1Body": "Live wallpapers for macOS: video on your desktop, Lock Screen and Screen Saver. Here is how it all works.",
+    "step2Title": "Pick a theme",
+    "step2Body": "The site works in both dark and light themes. Your choice is stored in the browser.",
+    "step3Title": "Install the app",
+    "step3Body": "The app is free for the first 24 hours: the full catalog and the Bend effect with no limits.",
+    "feature1": "Full 4K catalog",
+    "feature2": "Live Lock Screen wallpapers",
+    "feature3": "The Bend lid-fold effect",
+    "next": "Next",
+    "back": "Back",
+    "skip": "Skip",
+    "finish": "Get started"
+  },
+  "download": {
+    "title": "Download LiveWalls",
+    "subtitle": "The macOS 15+ app. The first 24 hours are free.",
+    "button": "Download for macOS",
+    "universal": "Universal build (Apple Silicon and Intel)",
+    "universalNote": "Works on any Mac — the file is bigger, but it installs everywhere.",
+    "silicon": "Apple Silicon only",
+    "siliconNote": "Optimized for M1–M4: faster decoding and less load.",
+    "version": "Version",
+    "size": "Size",
+    "requirementsTitle": "Requirements",
+    "macos": "macOS 15 (Sequoia) or later",
+    "chip": "Apple Silicon or Intel",
+    "freeSpace": "300 MB of free space",
+    "stepsTitle": "Installation in a minute",
+    "step1": "Download the .dmg file",
+    "step2": "Open it and drag LiveWalls into Applications",
+    "step3": "Launch the app from the menu bar and pick a wallpaper",
+    "faqTitle": "What happens next?",
+    "faqBody": "After installation you get a 24-hour trial: the full catalog, live Lock Screen wallpapers and the Bend effect. No account required.",
+    "trust": "No registration · No subscription · 24-hour trial",
+    "note": "Demo mode: the real application files appear once the build is published."
+  },
+  "footer": {
+    "description": "Live wallpapers for macOS: desktop, Lock Screen and Screen Saver.",
+    "product": "Product",
+    "company": "Company",
+    "legalColumn": "Legal",
+    "privacy": "Privacy policy",
+    "terms": "Terms of use",
+    "offer": "Public offer",
+    "download": "Download",
+    "rights": "All rights reserved.",
+    "inn": "INN",
+    "ogrnip": "OGRNIP",
+    "disclaimer": "Demo content — placeholders. Commercial use requires licensed content (Pexels, Coverr, your own footage). MacWall content cannot be sold — personal testing only."
+  },
+  "toast": {
+    "paymentSoon": "Payments are coming soon",
+    "paymentSoonBody": "The provider is not connected yet. Card and SBP payments will be available here shortly.",
+    "sent": "Message sent",
+    "sentBody": "In demo mode nothing is sent to the server.",
+    "sentError": "Could not send",
+    "favoriteAdded": "Added to favorites",
+    "favoriteRemoved": "Removed from favorites",
+    "downloadSoon": "Downloads appear once storage is connected",
+    "adminAction": "Action executed",
+    "adminActionBody": "This is a placeholder — real CRUD operations appear once the API is connected.",
+    "copied": "Copied",
+    "linkCopied": "Link copied to clipboard"
+  }
+}

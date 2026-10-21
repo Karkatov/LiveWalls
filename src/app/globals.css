@@ -1,0 +1,360 @@
+@import 'tailwindcss';
+
+@config '../../tailwind.config.ts';
+
+/* Тёмная тема по умолчанию: используем class-вариант из tailwind.config.ts */
+@custom-variant dark (&:is(.dark *));
+
+/* ═══════════════════════════════════════════════════════════════
+   Токены темы
+   Тёмная — основная (по умолчанию), светлая — вторичная.
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
+
+  /* Бренд */
+  --brand-from: #7c5cff;
+  --brand-via: #6366f1;
+  --brand-to: #22d3ee;
+  --brand-glow: rgba(124, 92, 255, 0.35);
+  --brand-glow-strong: rgba(124, 92, 255, 0.55);
+
+  /* Поверхности */
+  --background: #0a0a0c;
+  --background-elevated: #101014;
+  --foreground: #f5f5f7;
+  --card: rgba(255, 255, 255, 0.04);
+  --card-foreground: #f5f5f7;
+  --popover: #121216;
+  --popover-foreground: #f5f5f7;
+
+  --primary: #f5f5f7;
+  --primary-foreground: #0a0a0c;
+
+  --secondary: rgba(255, 255, 255, 0.07);
+  --secondary-foreground: #f5f5f7;
+
+  --muted: rgba(255, 255, 255, 0.05);
+  --muted-foreground: rgba(245, 245, 247, 0.62);
+
+  --accent: rgba(124, 92, 255, 0.16);
+  --accent-foreground: #c9bcff;
+
+  --destructive: #f87171;
+  --destructive-foreground: #1a0a0a;
+
+  --border: rgba(255, 255, 255, 0.09);
+  --input: rgba(255, 255, 255, 0.12);
+  --ring: #7c5cff;
+
+  --glass-bg: rgba(255, 255, 255, 0.055);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-blur: 24px;
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+:root:not(.dark) {
+  /* Светлая тема */
+  --background: #f7f7f9;
+  --background-elevated: #ffffff;
+  --foreground: #101014;
+  --card: rgba(255, 255, 255, 0.72);
+  --card-foreground: #101014;
+  --popover: #ffffff;
+  --popover-foreground: #101014;
+
+  --primary: #101014;
+  --primary-foreground: #ffffff;
+
+  --secondary: rgba(16, 16, 20, 0.06);
+  --secondary-foreground: #101014;
+
+  --muted: rgba(16, 16, 20, 0.05);
+  --muted-foreground: rgba(16, 16, 20, 0.6);
+
+  --accent: rgba(124, 92, 255, 0.12);
+  --accent-foreground: #4c1d95;
+
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+
+  --border: rgba(16, 16, 20, 0.1);
+  --input: rgba(16, 16, 20, 0.16);
+  --ring: #7c5cff;
+
+  --glass-bg: rgba(255, 255, 255, 0.62);
+  --glass-border: rgba(16, 16, 20, 0.1);
+  --glass-blur: 20px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Маппинг токенов в Tailwind-утилиты
+   ═══════════════════════════════════════════════════════════════ */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-background-elevated: var(--background-elevated);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-brand: var(--brand-from);
+  --color-brand-from: var(--brand-from);
+  --color-brand-via: var(--brand-via);
+  --color-brand-to: var(--brand-to);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-2xl: var(--radius-2xl);
+  --radius-3xl: var(--radius-3xl);
+
+  --font-sans:
+    ui-sans-serif, -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Segoe UI',
+    system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', 'JetBrains Mono', 'Menlo', monospace;
+
+  --animate-marquee: marquee 32s linear infinite;
+  --animate-float: float 9s ease-in-out infinite;
+  --animate-shimmer: shimmer 2.4s linear infinite;
+  --animate-pulse-glow: pulse-glow 4s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Базовые стили
+   ═══════════════════════════════════════════════════════════════ */
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--brand-glow);
+    color: #ffffff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Аккуратный скроллбар */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, var(--foreground) 18%, transparent);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: color-mix(in srgb, var(--foreground) 32%, transparent);
+    background-clip: content-box;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Утилиты
+   ═══════════════════════════════════════════════════════════════ */
+
+@layer utilities {
+  /* Liquid Glass: полупрозрачная поверхность + blur + тонкая рамка */
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+    border: 1px solid var(--glass-border);
+  }
+
+  .glass-strong {
+    background: color-mix(in srgb, var(--background) 72%, transparent);
+    backdrop-filter: blur(32px) saturate(200%);
+    -webkit-backdrop-filter: blur(32px) saturate(200%);
+    border: 1px solid var(--glass-border);
+  }
+
+  /* Градиентный текст */
+  .text-gradient {
+    background-image: linear-gradient(
+      135deg,
+      var(--brand-from) 0%,
+      var(--brand-via) 50%,
+      var(--brand-to) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Фирменный градиент */
+  .bg-gradient-brand {
+    background-image: linear-gradient(
+      135deg,
+      var(--brand-from) 0%,
+      var(--brand-via) 50%,
+      var(--brand-to) 100%
+    );
+  }
+
+  /* Свечение */
+  .glow-brand {
+    box-shadow:
+      0 0 0 1px rgba(124, 92, 255, 0.2),
+      0 18px 60px -18px var(--brand-glow);
+  }
+
+  .glow-brand-strong {
+    box-shadow:
+      0 0 0 1px rgba(124, 92, 255, 0.38),
+      0 26px 80px -20px var(--brand-glow-strong);
+  }
+
+  /* Мягкая радиальная подсветка фона */
+  .bg-aurora {
+    background-image:
+      radial-gradient(60% 55% at 15% 10%, rgba(124, 92, 255, 0.22), transparent 60%),
+      radial-gradient(50% 45% at 85% 5%, rgba(34, 211, 238, 0.16), transparent 60%),
+      radial-gradient(70% 60% at 50% 100%, rgba(99, 102, 241, 0.14), transparent 65%);
+  }
+
+  /* Тонкая сетка-фон */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  .mask-fade-b {
+    mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+  }
+
+  .mask-fade-x {
+    mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Скелетон */
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--foreground) 6%, transparent) 25%,
+      color-mix(in srgb, var(--foreground) 12%, transparent) 37%,
+      color-mix(in srgb, var(--foreground) 6%, transparent) 63%
+    );
+    background-size: 400% 100%;
+    animation: var(--animate-shimmer);
+  }
+}
+
+/* Уважение к настройкам доступности */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

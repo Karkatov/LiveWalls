@@ -1,0 +1,52 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "20"
+  NEXT_OUTPUT = "default"
+
+# Статический экспорт (GitHub Pages / Cloudflare Pages) — раскомментировать вместо блока выше:
+#
+# [build]
+#   command = "npm run build"
+#   publish = "out"
+#
+# [build.environment]
+#   NODE_VERSION = "20"
+#   NEXT_OUTPUT = "export"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-DNS-Prefetch-Control = "on"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Редиректы коротких ссылок работают только в серверном режиме.
+[[redirects]]
+  from = "/"
+  to = "/ru"
+  status = 307
+
+[[redirects]]
+  from = "/wallpapers"
+  to = "/ru/wallpapers"
+  status = 307
+
+[[redirects]]
+  from = "/packs"
+  to = "/ru/packs"
+  status = 307
+
+[[redirects]]
+  from = "/pricing"
+  to = "/ru/pricing"
+  status = 307
