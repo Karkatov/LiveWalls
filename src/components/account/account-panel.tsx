@@ -19,6 +19,9 @@ import { EmptyState } from '@/components/shared/empty-state';
  *
  * Вход — по email без пароля (демо-режим): после запроса показывается
  * профиль, история покупок и список доступных загрузок.
+ *
+ * TODO(бэкенд): magic-link на почту или OAuth, синхронизация избранного
+ * и корзины с аккаунтом, управление лицензиями и повторная выдача ключей.
  */
 export function AccountPanel() {
   const t = useTranslations('account');

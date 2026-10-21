@@ -16,6 +16,9 @@ import { useCart } from '@/lib/hooks/use-cart';
  * Сейчас — заглушка: показывает тост «Оплата будет доступна позже».
  * Чтобы подключить LAVA/Robokassa, достаточно реализовать `createPayment`
  * в `src/lib/api/payments.ts` и добавить редирект на `paymentUrl`.
+ *
+ * TODO(бэкенд): выдача лицензионного ключа после оплаты, проверка ключа
+ * в приложении LiveWalls, промокоды и реферальная программа.
  */
 export function BuyButton({
   kind,

@@ -117,11 +117,22 @@ tests/                 — unit/ и e2e/
 
 ## Деплой
 
-- **Vercel / Netlify**: Framework Preset = Next.js, `NEXT_OUTPUT=default`.
+- **Vercel**: Framework Preset = Next.js, env `NEXT_OUTPUT=default`. Build → `npm run build`.
+- **Netlify**: `netlify.toml` уже в репозитории (build `npm run build`, publish `.next`,
+  заголовки и редиректы). Env: `NEXT_OUTPUT=default`.
 - **Docker / VPS**: `NEXT_OUTPUT=standalone npm run build`, затем
   `node .next/standalone/server.js` (не забудьте скопировать `.next/static` и `public`).
-- **GitHub Pages**: `NEXT_OUTPUT=export NEXT_BASE_PATH=/<repo> NEXT_ASSET_PREFIX=/<repo> npm run build`,
-  публиковать содержимое `out/`.
+- **GitHub Pages / Cloudflare Pages** (статика):
+  `NEXT_OUTPUT=export NEXT_BASE_PATH=/<repo> NEXT_ASSET_PREFIX=/<repo> npm run build`,
+  публиковать содержимое `out/`. Заголовки безопасности — из `public/_headers`,
+  корень `/` редиректит `scripts/postbuild.mjs`.
+
+Проверка перед деплоем:
+
+```bash
+npm run lint && npm run typecheck && npm test && npm run build
+npm run test:e2e          # Playwright: собирает и поднимает приложение сама
+```
 
 ## Лицензия и контент
 
