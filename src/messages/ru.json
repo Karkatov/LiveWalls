@@ -55,7 +55,10 @@
     "themeDark": "Тёмная",
     "themeLight": "Светлая",
     "themeSystem": "Системная",
-    "language": "Язык"
+    "language": "Язык",
+    "home": "На главную",
+    "frame": "Кадр",
+    "catalogIndex": "Индекс каталога"
   },
   "home": {
     "hero": {

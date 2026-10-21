@@ -55,7 +55,10 @@
     "themeDark": "Dark",
     "themeLight": "Light",
     "themeSystem": "System",
-    "language": "Language"
+    "language": "Language",
+    "home": "Back to home",
+    "frame": "Frame",
+    "catalogIndex": "Catalog index"
   },
   "home": {
     "hero": {
