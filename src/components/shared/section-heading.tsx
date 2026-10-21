@@ -14,6 +14,7 @@ export function SectionHeading({
   title,
   description,
   align = 'left',
+  level = 2,
   className,
   action,
 }: {
@@ -23,9 +24,12 @@ export function SectionHeading({
   title: string;
   description?: string;
   align?: 'left' | 'center';
+  /** Уровень заголовка: `h1` на страницах, `h2` внутри секций. */
+  level?: 1 | 2;
   className?: string;
   action?: React.ReactNode;
 }) {
+  const Heading = level === 1 ? 'h1' : 'h2';
   const centered = align === 'center';
 
   return (
@@ -44,11 +48,11 @@ export function SectionHeading({
         {eyebrow ? <span className="eyebrow">{eyebrow}</span> : null}
       </div>
 
-      <h2 className="text-display-md max-w-3xl">
+      <Heading className="text-display-md max-w-3xl">
         <span className="block overflow-hidden pb-1">
           <MaskReveal>{title}</MaskReveal>
         </span>
-      </h2>
+      </Heading>
 
       {description ? (
         <p className="text-lead text-muted-foreground max-w-2xl">{description}</p>
