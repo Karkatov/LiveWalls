@@ -1,49 +1,60 @@
 import { cn } from '@/lib/utils/cn';
-import { Reveal } from './motion';
+import { MaskReveal, Reveal } from './motion';
 
 /**
- * Заголовок секции: надзаголовок, заголовок, описание.
+ * Заголовок секции.
+ *
+ * Редакционная разметка: номер секции и моно-eyebrow в левой колонке,
+ * крупный заголовок дисплейным шрифтом в правой. Так заголовки читаются
+ * как колонтитулы, а не как центрированные «шаблонные» блоки.
  */
 export function SectionHeading({
   eyebrow,
+  index,
   title,
   description,
-  align = 'center',
+  align = 'left',
   className,
   action,
 }: {
   eyebrow?: string;
+  /** Номер секции — выводится как `01`, `02`, … */
+  index?: number;
   title: string;
   description?: string;
-  align?: 'center' | 'left';
+  align?: 'left' | 'center';
   className?: string;
   action?: React.ReactNode;
 }) {
+  const centered = align === 'center';
+
   return (
     <Reveal
       className={cn(
-        'flex flex-col gap-4',
-        align === 'center' ? 'items-center text-center' : 'items-start text-left',
+        'flex flex-col gap-5',
+        centered ? 'items-center text-center' : 'items-start text-left',
         className,
       )}
     >
-      {eyebrow ? (
-        <span className="border-signal/25 bg-signal/10 text-signal-foreground inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium tracking-[0.14em] uppercase">
-          {eyebrow}
-        </span>
-      ) : null}
+      <div className={cn('flex items-center gap-3', centered && 'justify-center')}>
+        {typeof index === 'number' ? (
+          <span className="timecode">{String(index).padStart(2, '0')}</span>
+        ) : null}
+        <span className="bg-signal-line h-px w-8" aria-hidden="true" />
+        {eyebrow ? <span className="eyebrow">{eyebrow}</span> : null}
+      </div>
 
-      <h2 className="text-foreground max-w-3xl text-3xl font-bold tracking-tight text-balance sm:text-4xl">
-        {title}
+      <h2 className="text-display-md max-w-3xl">
+        <span className="block overflow-hidden pb-1">
+          <MaskReveal>{title}</MaskReveal>
+        </span>
       </h2>
 
       {description ? (
-        <p className="text-muted-foreground max-w-2xl text-base leading-relaxed text-pretty sm:text-lg">
-          {description}
-        </p>
+        <p className="text-lead text-muted-foreground max-w-2xl">{description}</p>
       ) : null}
 
-      {action ? <div className="mt-2">{action}</div> : null}
+      {action ? <div className="mt-1">{action}</div> : null}
     </Reveal>
   );
 }

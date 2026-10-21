@@ -32,9 +32,7 @@ export default function LocaleError({
         <AlertTriangle className="size-7" aria-hidden="true" />
       </span>
 
-      <h1 className="text-foreground mt-6 text-3xl font-bold tracking-tight text-balance sm:text-4xl">
-        {t('errorTitle')}
-      </h1>
+      <h1 className="text-display-md mt-6">{t('errorTitle')}</h1>
 
       <p className="text-muted-foreground mt-3 max-w-lg text-base leading-relaxed text-pretty">
         {t('errorBody')}

@@ -35,9 +35,7 @@ export async function LegalDocumentView({ document }: { document: LegalDocument 
       {/* Текст */}
       <article className="min-w-0">
         <header>
-          <h1 className="text-foreground text-3xl font-bold tracking-tight text-balance sm:text-4xl">
-            {document.title}
-          </h1>
+          <h1 className="text-display-md">{document.title}</h1>
           <p className="text-muted-foreground mt-3 text-sm">
             {t('lastUpdated', { date: document.updatedAt })}
           </p>

@@ -65,7 +65,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
 
       <Reviews reviews={mockReviews} />
 
-      <section className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:py-24">
+      <section className="mx-auto max-w-3xl px-4 py-20 sm:px-8 lg:py-28">
         <SectionHeading eyebrow={t('eyebrow')} title={t('title')} description={t('description')} />
 
         <Reveal>

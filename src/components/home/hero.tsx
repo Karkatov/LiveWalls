@@ -36,7 +36,7 @@ export async function Hero() {
         style={{ background: 'radial-gradient(closest-side, var(--signal-soft), transparent)' }}
       />
 
-      <div className="mx-auto grid max-w-[1280px] items-center gap-14 px-4 py-16 sm:px-8 lg:grid-cols-[1.02fr_1fr] lg:py-28">
+      <div className="mx-auto grid max-w-[1280px] items-center gap-14 px-4 py-20 sm:px-8 lg:grid-cols-[1.02fr_1fr] lg:py-28">
         <div>
           <Enter>
             <span className="eyebrow flex items-center gap-2.5">

@@ -74,9 +74,7 @@ export function OnboardingModal() {
                     <span className="bg-gradient-signal flex size-14 items-center justify-center rounded-xl text-white shadow-[0_14px_40px_-14px_var(--signal-glow)]">
                       <Sparkles className="size-6" aria-hidden="true" />
                     </span>
-                    <h2 className="text-foreground text-2xl font-bold tracking-tight">
-                      {t('step1Title')}
-                    </h2>
+                    <h2 className="font-display text-section">{t('step1Title')}</h2>
                     <p className="text-muted-foreground text-sm leading-relaxed">
                       {t('step1Body')}
                     </p>
@@ -85,9 +83,7 @@ export function OnboardingModal() {
 
                 {step === 1 && (
                   <div className="space-y-4">
-                    <h2 className="text-foreground text-2xl font-bold tracking-tight">
-                      {t('step2Title')}
-                    </h2>
+                    <h2 className="font-display text-section">{t('step2Title')}</h2>
                     <p className="text-muted-foreground text-sm leading-relaxed">
                       {t('step2Body')}
                     </p>
@@ -120,9 +116,7 @@ export function OnboardingModal() {
                     <span className="bg-gradient-signal flex size-14 items-center justify-center rounded-xl text-white shadow-[0_14px_40px_-14px_var(--signal-glow)]">
                       <Download className="size-6" aria-hidden="true" />
                     </span>
-                    <h2 className="text-foreground text-2xl font-bold tracking-tight">
-                      {t('step3Title')}
-                    </h2>
+                    <h2 className="font-display text-section">{t('step3Title')}</h2>
                     <p className="text-muted-foreground text-sm leading-relaxed">
                       {t('step3Body')}
                     </p>

@@ -33,10 +33,8 @@ export function Footer() {
   ];
 
   return (
-    <footer className="border-border bg-background/60 relative mt-24 border-t">
-      <div className="bg-aurora pointer-events-none absolute inset-x-0 -top-40 h-40 opacity-40 blur-3xl" />
-
-      <div className="relative mx-auto max-w-[1200px] px-4 py-14 sm:px-6">
+    <footer className="border-border relative mt-24 border-t">
+      <div className="relative mx-auto max-w-[1280px] px-4 py-16 sm:px-8">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
             <Link href="/" className="inline-block rounded-lg">
@@ -46,7 +44,7 @@ export function Footer() {
               {t('description')}
             </p>
 
-            <div className="mt-6 flex items-center gap-2">
+            <div className="border-border mt-6 flex items-center gap-2 border-t pt-6">
               <SocialLink
                 href={siteConfig.SOCIAL.telegram}
                 label="Telegram"
@@ -106,7 +104,7 @@ function FooterColumn({
 }) {
   return (
     <div>
-      <h2 className="text-foreground text-sm font-semibold">{title}</h2>
+      <h2 className="eyebrow">{title}</h2>
       <ul className="mt-4 space-y-2.5">
         {links.map((link) => (
           <li key={link.href}>

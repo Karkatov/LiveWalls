@@ -63,9 +63,7 @@ export default async function DownloadPage({ params }: { params: Promise<{ local
   return (
     <div className="mx-auto max-w-[1000px] px-4 py-12 sm:px-6 lg:py-16">
       <header className="mx-auto max-w-2xl text-center">
-        <h1 className="text-foreground text-3xl font-bold tracking-tight text-balance sm:text-4xl">
-          {t('title')}
-        </h1>
+        <h1 className="text-display-md">{t('title')}</h1>
         <p className="text-muted-foreground mt-3 text-base leading-relaxed text-pretty">
           {t('subtitle')}
         </p>

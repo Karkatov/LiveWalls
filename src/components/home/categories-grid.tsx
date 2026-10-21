@@ -37,8 +37,9 @@ export async function CategoriesGrid({ categories }: { categories: Category[] })
   const t = await getTranslations('home.categories');
 
   return (
-    <section className="relative mx-auto max-w-[1200px] px-4 py-16 sm:px-6 lg:py-24">
+    <section className="relative mx-auto max-w-[1280px] px-4 py-20 sm:px-8 lg:py-28">
       <SectionHeading
+        index={3}
         eyebrow={t('eyebrow')}
         title={t('title')}
         description={t('description')}
@@ -52,7 +53,7 @@ export async function CategoriesGrid({ categories }: { categories: Category[] })
         }
       />
 
-      <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {categories.map((category, index) => {
           const Icon = ICONS[category.icon] ?? LayoutGrid;
 
@@ -62,16 +63,15 @@ export async function CategoriesGrid({ categories }: { categories: Category[] })
                 href={{ pathname: '/wallpapers', query: { category: category.id } }}
                 className={cn(
                   'group border-border bg-card flex items-center gap-4 rounded-xl border p-5',
-                  'backdrop-blur-xl transition-all duration-300',
-                  'hover:border-signal/35 hover:bg-card hover:-translate-y-0.5',
+                  'transition-colors duration-300 hover:border-[color:var(--hairline-strong)]',
                   'focus-visible:outline-ring focus-visible:outline-2 focus-visible:outline-offset-4',
                 )}
               >
                 <span
                   className={cn(
-                    'flex size-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br',
+                    'flex size-12 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br',
                     category.accent,
-                    'text-white shadow-lg',
+                    'text-white',
                   )}
                 >
                   <Icon className="size-5" aria-hidden="true" />

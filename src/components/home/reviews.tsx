@@ -12,10 +12,16 @@ export async function Reviews({ reviews }: { reviews: Review[] }) {
   const t = await getTranslations('home.reviews');
 
   return (
-    <section className="relative mx-auto max-w-[1200px] px-4 py-16 sm:px-6 lg:py-24">
-      <SectionHeading eyebrow={t('eyebrow')} title={t('title')} description={t('description')} />
+    <section className="relative mx-auto max-w-[1280px] px-4 py-20 sm:px-8 lg:py-28">
+      <SectionHeading
+        index={5}
+        eyebrow={t('eyebrow')}
+        title={t('title')}
+        description={t('description')}
+        align="center"
+      />
 
-      <StaggerGroup className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <StaggerGroup className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {reviews.map((review) => (
           <StaggerItem key={review.id} className="h-full">
             <figure className="border-border bg-card flex h-full flex-col rounded-xl border p-6">
@@ -28,8 +34,8 @@ export async function Reviews({ reviews }: { reviews: Review[] }) {
                     key={index}
                     className={
                       index < review.rating
-                        ? 'size-4 fill-amber-400 text-amber-400'
-                        : 'text-muted-foreground/40 size-4'
+                        ? 'text-signal size-4 fill-current'
+                        : 'text-paper-ghost size-4'
                     }
                     aria-hidden="true"
                   />

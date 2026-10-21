@@ -25,12 +25,12 @@ export function EmptyState({
       )}
     >
       {Icon ? (
-        <span className="bg-gradient-signal/12 text-signal-foreground flex size-14 items-center justify-center rounded-xl">
+        <span className="border-signal-line bg-signal-soft text-signal-foreground flex size-14 items-center justify-center rounded-lg border border-dashed">
           <Icon className="size-6" aria-hidden="true" />
         </span>
       ) : null}
       <div className="space-y-1.5">
-        <p className="text-foreground text-lg font-semibold">{title}</p>
+        <p className="font-display text-foreground text-xl">{title}</p>
         {description ? (
           <p className="text-muted-foreground mx-auto max-w-md text-sm leading-relaxed">
             {description}

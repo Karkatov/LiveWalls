@@ -59,7 +59,7 @@ export default async function PackPage({
   const tNav = await getTranslations('nav');
 
   return (
-    <article className="mx-auto max-w-[1200px] px-4 py-10 sm:px-6 lg:py-14">
+    <article className="mx-auto max-w-[1280px] px-4 py-10 sm:px-6 lg:py-14">
       <Breadcrumbs
         className="mb-6"
         items={[{ label: tNav('packs'), href: '/packs' }, { label: pack.title }]}
@@ -67,7 +67,7 @@ export default async function PackPage({
 
       <div className="grid gap-10 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
         <Reveal>
-          <div className="border-border bg-card relative overflow-hidden rounded-2xl border">
+          <div className="frame grain border-border shadow-frame relative overflow-hidden border">
             <div className="relative aspect-[3/2]">
               <Image
                 src={pack.poster}
@@ -93,17 +93,13 @@ export default async function PackPage({
               {pack.badge && <Badge variant="outline">{pack.badge}</Badge>}
             </div>
 
-            <h1 className="text-foreground mt-4 text-3xl font-bold tracking-tight text-balance sm:text-4xl">
-              {pack.title}
-            </h1>
+            <h1 className="text-display-md mt-4">{pack.title}</h1>
 
-            <p className="text-muted-foreground mt-4 text-sm leading-relaxed text-pretty">
-              {pack.description}
-            </p>
+            <p className="text-muted-foreground mt-4 leading-relaxed">{pack.description}</p>
 
             <div className="border-border bg-card mt-7 rounded-xl border p-5">
-              <p className="text-foreground text-3xl font-bold tracking-tight">{pack.priceText}</p>
-              <p className="text-muted-foreground mt-1 text-xs">{t('subtitle')}</p>
+              <p className="text-foreground font-mono text-3xl tabular-nums">{pack.priceText}</p>
+              <p className="text-paper-faint mt-1 text-xs">{t('subtitle')}</p>
 
               <BuyButton
                 kind="pack"

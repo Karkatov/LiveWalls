@@ -53,9 +53,7 @@ export async function PackCard({ pack, index = 0 }: { pack: Pack; index?: number
           </p>
 
           <div className="mt-5 flex items-center justify-between gap-3">
-            <span className="text-foreground text-xl font-bold tracking-tight">
-              {pack.priceText}
-            </span>
+            <span className="text-foreground font-mono text-xl tabular-nums">{pack.priceText}</span>
 
             <Button asChild variant="outline" size="sm">
               <Link href={`/packs/${pack.slug}`}>

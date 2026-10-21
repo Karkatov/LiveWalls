@@ -106,7 +106,7 @@ export default async function PricingPage({ params }: { params: Promise<{ locale
   ];
 
   return (
-    <div className="mx-auto max-w-[1200px] px-4 py-12 sm:px-6 lg:py-16">
+    <div className="mx-auto max-w-[1280px] px-4 py-12 sm:px-6 lg:py-16">
       <SectionHeading eyebrow={tNav('pricing')} title={t('title')} description={t('subtitle')} />
 
       {/* Тарифы */}
@@ -132,7 +132,7 @@ export default async function PricingPage({ params }: { params: Promise<{ locale
               <h2 className="text-foreground text-lg font-semibold tracking-tight">{plan.name}</h2>
 
               <p className="mt-4 flex items-baseline gap-2">
-                <span className="text-foreground text-4xl font-bold tracking-tight">
+                <span className="text-foreground font-mono text-4xl tabular-nums">
                   {plan.price}
                 </span>
                 {plan.period && (
@@ -196,7 +196,7 @@ export default async function PricingPage({ params }: { params: Promise<{ locale
             <div className="border-border bg-card flex h-full flex-col rounded-xl border p-6">
               <div className="flex items-start justify-between gap-4">
                 <h2 className="text-foreground text-base font-semibold">{extra.name}</h2>
-                <span className="text-foreground text-xl font-bold tracking-tight">
+                <span className="text-foreground font-mono text-xl tabular-nums">
                   {extra.price}
                 </span>
               </div>
@@ -218,9 +218,7 @@ export default async function PricingPage({ params }: { params: Promise<{ locale
       <section className="mt-16">
         <div className="grid gap-10 lg:grid-cols-2">
           <div>
-            <h2 className="text-foreground text-2xl font-bold tracking-tight">
-              {t('featuresTitle')}
-            </h2>
+            <h2 className="font-display text-section">{t('featuresTitle')}</h2>
 
             <ul className="mt-6 space-y-3">
               {featureKeys.map((key) => (
@@ -235,7 +233,7 @@ export default async function PricingPage({ params }: { params: Promise<{ locale
           </div>
 
           <div>
-            <h2 className="text-foreground text-2xl font-bold tracking-tight">{t('faqTitle')}</h2>
+            <h2 className="font-display text-section">{t('faqTitle')}</h2>
 
             <dl className="mt-6 space-y-4">
               <div>
@@ -263,7 +261,7 @@ export default async function PricingPage({ params }: { params: Promise<{ locale
 
       {/* Сравнение */}
       <section className="mt-16">
-        <h2 className="text-foreground text-2xl font-bold tracking-tight">{t('compareTitle')}</h2>
+        <h2 className="font-display text-section">{t('compareTitle')}</h2>
 
         <div className="border-border mt-6 overflow-x-auto rounded-xl border">
           <table className="w-full min-w-[560px] border-collapse text-sm">

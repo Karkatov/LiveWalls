@@ -49,7 +49,7 @@ export function Logo({
         <span className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-white/25 ring-inset" />
       </span>
       {!isCompact && (
-        <span className="text-foreground text-[17px] font-bold tracking-tight">LiveWalls</span>
+        <span className="font-display text-foreground text-lg tracking-tight">LiveWalls</span>
       )}
     </span>
   );

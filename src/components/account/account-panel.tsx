@@ -98,7 +98,7 @@ export function AccountPanel() {
       <div className="border-border bg-card flex flex-col gap-4 rounded-2xl border p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
         <div>
           <p className="text-muted-foreground text-sm">{t('signedInAs', { email: user.email })}</p>
-          <p className="text-foreground mt-1 text-2xl font-bold tracking-tight">{user.name}</p>
+          <p className="font-display text-foreground mt-1 text-2xl">{user.name}</p>
 
           <div className="mt-3 flex flex-wrap gap-2">
             <Badge variant="signal">{user.plan}</Badge>

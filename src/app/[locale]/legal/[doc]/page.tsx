@@ -64,7 +64,7 @@ export default async function LegalPage({
   const t = await getTranslations('legal');
 
   return (
-    <div id="top" className="mx-auto max-w-[1200px] px-4 py-12 sm:px-6 lg:py-16">
+    <div id="top" className="mx-auto max-w-[1280px] px-4 py-12 sm:px-6 lg:py-16">
       <LegalDocumentView document={document} />
 
       <p className="text-muted-foreground/70 mt-12 text-xs">

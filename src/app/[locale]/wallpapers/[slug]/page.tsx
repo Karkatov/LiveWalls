@@ -71,13 +71,13 @@ export default async function WallpaperPage({
     { label: t('size'), value: formatFileSize(wallpaper.fileSize) },
     { label: t('author'), value: wallpaper.author ?? '—' },
     { label: t('location'), value: wallpaper.location ?? '—' },
-    { label: t('published'), value: formatDate(wallpaper.createdAt) },
+    { label: t('published'), value: formatDate(wallpaper.createdAt, locale) },
     { label: t('likes'), value: formatNumber(wallpaper.likeCount) },
     { label: t('views'), value: formatNumber(wallpaper.views) },
   ];
 
   return (
-    <article className="mx-auto max-w-[1200px] px-4 py-10 sm:px-6 lg:py-14">
+    <article className="mx-auto max-w-[1280px] px-4 py-10 sm:px-6 lg:py-14">
       <Breadcrumbs
         className="mb-6"
         items={[{ label: tNav('wallpapers'), href: '/wallpapers' }, { label: wallpaper.title }]}
@@ -86,7 +86,7 @@ export default async function WallpaperPage({
       <div className="grid gap-10 lg:grid-cols-[minmax(0,1.55fr)_minmax(0,1fr)]">
         {/* Превью */}
         <Reveal>
-          <div className="border-border bg-card relative overflow-hidden rounded-2xl border shadow-[0_40px_120px_-40px_rgba(0,0,0,0.9)]">
+          <div className="frame grain border-border shadow-frame relative overflow-hidden border">
             <div className="relative aspect-video">
               <WallpaperMedia
                 wallpaper={wallpaper}
@@ -96,8 +96,8 @@ export default async function WallpaperPage({
               />
 
               {wallpaper.mediaType === 'video' && (
-                <span className="pointer-events-none absolute top-4 left-4 flex items-center gap-1.5 rounded-full bg-black/55 px-3 py-1.5 text-xs font-medium text-white">
-                  <Play className="size-3.5 fill-current" aria-hidden="true" />
+                <span className="timecode pointer-events-none absolute top-4 left-4 flex items-center gap-1.5 rounded bg-black/55 px-2 py-1 text-white">
+                  <Play className="size-3 fill-current" aria-hidden="true" />
                   {t('videoBadge')}
                 </span>
               )}
@@ -114,9 +114,7 @@ export default async function WallpaperPage({
               {wallpaper.isCuratedPick && <Badge variant="success">Curated</Badge>}
             </div>
 
-            <h1 className="text-foreground mt-4 text-3xl font-bold tracking-tight text-balance sm:text-4xl">
-              {wallpaper.title}
-            </h1>
+            <h1 className="text-display-md mt-4">{wallpaper.title}</h1>
 
             <div className="text-muted-foreground mt-3 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
               {wallpaper.author && (
@@ -137,18 +135,16 @@ export default async function WallpaperPage({
               </span>
             </div>
 
-            <p className="text-muted-foreground mt-5 text-sm leading-relaxed text-pretty">
-              {wallpaper.description}
-            </p>
+            <p className="text-muted-foreground mt-5 leading-relaxed">{wallpaper.description}</p>
 
             {/* Покупка */}
             <div className="border-border bg-card mt-7 rounded-xl border p-5">
               <div className="flex items-end justify-between gap-4">
                 <div>
-                  <p className="text-muted-foreground text-xs tracking-[0.14em] uppercase">
+                  <p className="eyebrow">
                     {wallpaper.isPaid ? t('premiumBadge') : tCommon('free')}
                   </p>
-                  <p className="text-foreground mt-1 text-3xl font-bold tracking-tight">
+                  <p className="text-foreground mt-1 font-mono text-3xl tabular-nums">
                     {wallpaper.priceText ?? tCommon('free')}
                   </p>
                 </div>
