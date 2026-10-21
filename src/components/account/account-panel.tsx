@@ -53,7 +53,7 @@ export function AccountPanel() {
   if (!user) {
     return (
       <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">
-        <div className="border-border bg-card rounded-2xl border p-6 sm:p-8">
+        <div className="border-border/70 bg-card/50 rounded-3xl border p-6 backdrop-blur-xl sm:p-8">
           <h2 className="text-foreground text-lg font-semibold tracking-tight">
             {t('loginTitle')}
           </h2>
@@ -73,18 +73,18 @@ export function AccountPanel() {
               />
             </div>
 
-            <Button type="submit" variant="signal" disabled={loading} className="w-full">
+            <Button type="submit" variant="gradient" disabled={loading} className="w-full">
               <LogIn className="size-4" aria-hidden="true" />
               {t('signIn')}
             </Button>
           </form>
 
-          <p className="border-border bg-background/40 text-muted-foreground mt-4 rounded-xl border px-4 py-3 text-xs leading-relaxed">
+          <p className="border-border/60 bg-background/40 text-muted-foreground mt-4 rounded-xl border px-4 py-3 text-xs leading-relaxed">
             {t('demoHint')}
           </p>
         </div>
 
-        <div className="border-signal/25 bg-signal/6 rounded-2xl border p-6 sm:p-8">
+        <div className="border-brand/25 bg-brand/6 rounded-3xl border p-6 backdrop-blur-xl sm:p-8">
           <h2 className="text-foreground text-base font-semibold">{t('mockNotice')}</h2>
           <p className="text-muted-foreground mt-3 text-sm leading-relaxed">{t('mockNotice')}</p>
         </div>
@@ -95,13 +95,13 @@ export function AccountPanel() {
   return (
     <div className="space-y-8">
       {/* Профиль */}
-      <div className="border-border bg-card flex flex-col gap-4 rounded-2xl border p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+      <div className="border-border/70 bg-card/50 flex flex-col gap-4 rounded-3xl border p-6 backdrop-blur-xl sm:flex-row sm:items-center sm:justify-between sm:p-8">
         <div>
           <p className="text-muted-foreground text-sm">{t('signedInAs', { email: user.email })}</p>
-          <p className="font-display text-foreground mt-1 text-2xl">{user.name}</p>
+          <p className="text-foreground mt-1 text-2xl font-bold tracking-tight">{user.name}</p>
 
           <div className="mt-3 flex flex-wrap gap-2">
-            <Badge variant="signal">{user.plan}</Badge>
+            <Badge variant="brand">{user.plan}</Badge>
             <Badge variant="outline">{user.subscriptionStatus}</Badge>
           </div>
         </div>
@@ -118,10 +118,10 @@ export function AccountPanel() {
         <p className="text-muted-foreground mt-1 text-sm">{t('purchasesSubtitle')}</p>
 
         {purchases.length > 0 ? (
-          <div className="border-border mt-5 overflow-x-auto rounded-xl border">
+          <div className="border-border/70 mt-5 overflow-x-auto rounded-2xl border">
             <table className="w-full min-w-[620px] border-collapse text-sm">
               <thead>
-                <tr className="bg-card text-left">
+                <tr className="bg-card/60 text-left">
                   <th scope="col" className="text-muted-foreground px-4 py-3 font-medium">
                     {tCommon('all')}
                   </th>
@@ -141,7 +141,7 @@ export function AccountPanel() {
               </thead>
               <tbody>
                 {purchases.map((purchase) => (
-                  <tr key={purchase.id} className="border-border border-t">
+                  <tr key={purchase.id} className="border-border/60 border-t">
                     <td className="text-foreground px-4 py-3 font-medium">{purchase.itemTitle}</td>
                     <td className="text-muted-foreground px-4 py-3">
                       {formatPrice(purchase.amount)}
@@ -180,7 +180,7 @@ export function AccountPanel() {
             {purchases.map((purchase) => (
               <li
                 key={purchase.id}
-                className="border-border bg-card flex items-center justify-between gap-3 rounded-xl border px-4 py-3"
+                className="border-border/60 bg-card/40 flex items-center justify-between gap-3 rounded-2xl border px-4 py-3 backdrop-blur-xl"
               >
                 <span className="min-w-0">
                   <span className="text-foreground block truncate text-sm font-medium">

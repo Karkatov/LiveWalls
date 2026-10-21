@@ -36,20 +36,6 @@ test.describe('LiveWalls', () => {
     await expect(page.locator('h1').first()).toBeVisible();
   });
 
-  test('быстрый просмотр открывается из каталога', async ({ page }) => {
-    await page.goto('/ru/wallpapers');
-
-    const card = page.locator('article').first();
-    await card.hover();
-    await card.getByRole('button', { name: /быстрый просмотр/i }).click();
-
-    await expect(page.getByRole('dialog')).toBeVisible();
-    await expect(page.getByRole('dialog').getByRole('heading').first()).toBeVisible();
-
-    await page.keyboard.press('Escape');
-    await expect(page.getByRole('dialog')).toBeHidden();
-  });
-
   test('страница скачивания доступна', async ({ page }) => {
     await page.goto('/ru/download');
 

@@ -17,8 +17,8 @@ export const SelectTrigger = React.forwardRef<
   <SelectPrimitive.Trigger
     ref={ref}
     className={cn(
-      'border-border bg-ink-800 text-foreground flex h-10 w-full items-center justify-between gap-2 rounded-md border px-3 py-2 text-sm',
-      'focus-visible:outline-ring transition-colors hover:border-[color:var(--hairline-strong)] focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2',
+      'border-input/70 bg-background/60 text-foreground flex h-10 w-full items-center justify-between gap-2 rounded-xl border px-3 py-2 text-sm',
+      'hover:border-brand/40 focus:ring-brand/30 transition-colors focus:ring-2 focus:outline-none',
       'data-[placeholder]:text-muted-foreground',
       '[&>span]:line-clamp-1',
       className,
@@ -42,7 +42,9 @@ export const SelectContent = React.forwardRef<
       ref={ref}
       position={position}
       className={cn(
-        'lw-menu bg-popover text-popover-foreground shadow-float relative z-50 max-h-96 min-w-[10rem] overflow-hidden rounded-lg border',
+        'border-border/80 bg-popover text-popover-foreground relative z-50 max-h-96 min-w-[10rem] overflow-hidden rounded-xl border shadow-2xl',
+        'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
+        'data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
         position === 'popper' && 'data-[side=bottom]:translate-y-1 data-[side=top]:-translate-y-1',
         className,
       )}
@@ -68,7 +70,7 @@ export const SelectItem = React.forwardRef<
   <SelectPrimitive.Item
     ref={ref}
     className={cn(
-      'relative flex w-full cursor-pointer items-center rounded-md py-2 pr-2 pl-8 text-sm outline-none select-none',
+      'relative flex w-full cursor-pointer items-center rounded-lg py-2 pr-2 pl-8 text-sm outline-none select-none',
       'focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
       className,
     )}
@@ -76,7 +78,7 @@ export const SelectItem = React.forwardRef<
   >
     <span className="absolute left-2 flex size-3.5 items-center justify-center">
       <SelectPrimitive.ItemIndicator>
-        <Check className="text-signal-foreground size-4" />
+        <Check className="text-brand-foreground size-4" />
       </SelectPrimitive.ItemIndicator>
     </span>
     <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>

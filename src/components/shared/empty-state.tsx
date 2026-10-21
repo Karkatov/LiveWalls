@@ -20,17 +20,17 @@ export function EmptyState({
   return (
     <div
       className={cn(
-        'border-border bg-card flex flex-col items-center justify-center gap-4 rounded-xl border border-dashed px-6 py-16 text-center',
+        'border-border/80 bg-card/40 flex flex-col items-center justify-center gap-4 rounded-2xl border border-dashed px-6 py-16 text-center',
         className,
       )}
     >
       {Icon ? (
-        <span className="border-signal-line bg-signal-soft text-signal-foreground flex size-14 items-center justify-center rounded-lg border border-dashed">
+        <span className="bg-gradient-brand/12 text-brand-foreground flex size-14 items-center justify-center rounded-2xl">
           <Icon className="size-6" aria-hidden="true" />
         </span>
       ) : null}
       <div className="space-y-1.5">
-        <p className="font-display text-foreground text-xl">{title}</p>
+        <p className="text-foreground text-lg font-semibold">{title}</p>
         {description ? (
           <p className="text-muted-foreground mx-auto max-w-md text-sm leading-relaxed">
             {description}

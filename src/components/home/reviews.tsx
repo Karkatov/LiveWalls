@@ -12,19 +12,13 @@ export async function Reviews({ reviews }: { reviews: Review[] }) {
   const t = await getTranslations('home.reviews');
 
   return (
-    <section className="relative mx-auto max-w-[1280px] px-4 py-20 sm:px-8 lg:py-28">
-      <SectionHeading
-        index={5}
-        eyebrow={t('eyebrow')}
-        title={t('title')}
-        description={t('description')}
-        align="center"
-      />
+    <section className="relative mx-auto max-w-[1200px] px-4 py-16 sm:px-6 lg:py-24">
+      <SectionHeading eyebrow={t('eyebrow')} title={t('title')} description={t('description')} />
 
-      <StaggerGroup className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <StaggerGroup className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {reviews.map((review) => (
           <StaggerItem key={review.id} className="h-full">
-            <figure className="border-border bg-card flex h-full flex-col rounded-xl border p-6">
+            <figure className="border-border/60 bg-card/40 flex h-full flex-col rounded-2xl border p-6 backdrop-blur-xl">
               <div
                 className="flex items-center gap-1"
                 aria-label={t('rating', { rating: review.rating })}
@@ -34,8 +28,8 @@ export async function Reviews({ reviews }: { reviews: Review[] }) {
                     key={index}
                     className={
                       index < review.rating
-                        ? 'text-signal size-4 fill-current'
-                        : 'text-paper-ghost size-4'
+                        ? 'size-4 fill-amber-400 text-amber-400'
+                        : 'text-muted-foreground/40 size-4'
                     }
                     aria-hidden="true"
                   />
@@ -46,7 +40,7 @@ export async function Reviews({ reviews }: { reviews: Review[] }) {
                 {review.text}
               </blockquote>
 
-              <figcaption className="border-border mt-6 flex items-center gap-3 border-t pt-4">
+              <figcaption className="border-border/60 mt-6 flex items-center gap-3 border-t pt-4">
                 <Image
                   src={review.avatar}
                   alt=""

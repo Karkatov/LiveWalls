@@ -33,8 +33,10 @@ export function Footer() {
   ];
 
   return (
-    <footer className="border-border relative mt-24 border-t">
-      <div className="relative mx-auto max-w-[1280px] px-4 py-16 sm:px-8">
+    <footer className="border-border/60 bg-background/60 relative mt-24 border-t">
+      <div className="bg-aurora pointer-events-none absolute inset-x-0 -top-40 h-40 opacity-40 blur-3xl" />
+
+      <div className="relative mx-auto max-w-[1200px] px-4 py-14 sm:px-6">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
             <Link href="/" className="inline-block rounded-lg">
@@ -44,7 +46,7 @@ export function Footer() {
               {t('description')}
             </p>
 
-            <div className="border-border mt-6 flex items-center gap-2 border-t pt-6">
+            <div className="mt-6 flex items-center gap-2">
               <SocialLink
                 href={siteConfig.SOCIAL.telegram}
                 label="Telegram"
@@ -73,7 +75,7 @@ export function Footer() {
           <FooterColumn title={t('legalColumn')} links={legal} />
         </div>
 
-        <div className="border-border text-muted-foreground mt-12 flex flex-col gap-4 border-t pt-6 text-xs sm:flex-row sm:items-center sm:justify-between">
+        <div className="border-border/60 text-muted-foreground mt-12 flex flex-col gap-4 border-t pt-6 text-xs sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {year} {siteConfig.name}. {t('rights')}
           </p>
@@ -104,7 +106,7 @@ function FooterColumn({
 }) {
   return (
     <div>
-      <h2 className="eyebrow">{title}</h2>
+      <h2 className="text-foreground text-sm font-semibold">{title}</h2>
       <ul className="mt-4 space-y-2.5">
         {links.map((link) => (
           <li key={link.href}>
@@ -127,7 +129,7 @@ function SocialLink({ href, label, icon }: { href: string; label: string; icon: 
       href={href}
       aria-label={label}
       title={label}
-      className="border-border bg-secondary/40 text-muted-foreground hover:border-signal/40 hover:text-foreground focus-visible:outline-ring flex size-9 items-center justify-center rounded-full border transition-all focus-visible:outline-2 focus-visible:outline-offset-2"
+      className="border-border/70 bg-secondary/40 text-muted-foreground hover:border-brand/40 hover:text-foreground focus-visible:outline-ring flex size-9 items-center justify-center rounded-full border transition-all focus-visible:outline-2 focus-visible:outline-offset-2"
     >
       {icon}
     </a>

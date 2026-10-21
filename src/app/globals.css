@@ -6,82 +6,56 @@
 @custom-variant dark (&:is(.dark *));
 
 /* ═══════════════════════════════════════════════════════════════
-   KINETIC CINEMA — дизайн-система LiveWalls
-
-   Идея: тёмный нейтральный «зал», в котором единственный источник
-   цвета — сами обои. Интерфейс — это свет проектора: тонкие
-   линии, кадры 16:9, таймкод моно-шрифтом и один янтарный акцент.
+   Токены темы
+   Тёмная — основная (по умолчанию), светлая — вторичная.
    ═══════════════════════════════════════════════════════════════ */
 
 :root {
-  /* ── Нейтральная шкала (тёмная) ── */
-  --ink-900: #07080a;
-  --ink-850: #090a0d;
-  --ink-800: #0c0d10;
-  --ink-700: #14161a;
-  --ink-600: #1e2126;
-
-  /* ── Бумага (текст) ── */
-  --paper: #f4f2ed;
-  --paper-dim: rgba(244, 242, 237, 0.64);
-  --paper-faint: rgba(244, 242, 237, 0.38);
-  --paper-ghost: rgba(244, 242, 237, 0.16);
-
-  /* ── Линии ── */
-  --hairline: rgba(244, 242, 237, 0.1);
-  --hairline-strong: rgba(244, 242, 237, 0.2);
-
-  /* ── Акцент: свет проектора ── */
-  --signal: #e7b24b;
-  --signal-foreground: #f0c674;
-  --signal-soft: rgba(231, 178, 75, 0.14);
-  --signal-line: rgba(231, 178, 75, 0.4);
-  --signal-glow: rgba(231, 178, 75, 0.32);
-  --signal-glow-strong: rgba(231, 178, 75, 0.5);
-
-  /* ── Редкий второй акцент: живое видео ── */
-  --live: #e0523f;
-  --live-soft: rgba(224, 82, 63, 0.14);
-
-  /* ── Радиусы ── */
-  --radius-sm: 0.25rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 0.75rem;
-  --radius-xl: 1rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
   --radius-2xl: 1.5rem;
   --radius-3xl: 2rem;
 
-  /* ── Поверхности ── */
-  --background: var(--ink-900);
-  --background-elevated: var(--ink-800);
-  --foreground: var(--paper);
-  --card: rgba(244, 242, 237, 0.035);
-  --card-foreground: var(--paper);
-  --popover: var(--ink-700);
-  --popover-foreground: var(--paper);
+  /* Бренд */
+  --brand-from: #7c5cff;
+  --brand-via: #6366f1;
+  --brand-to: #22d3ee;
+  --brand-glow: rgba(124, 92, 255, 0.35);
+  --brand-glow-strong: rgba(124, 92, 255, 0.55);
 
-  --primary: var(--paper);
-  --primary-foreground: var(--ink-900);
+  /* Поверхности */
+  --background: #0a0a0c;
+  --background-elevated: #101014;
+  --foreground: #f5f5f7;
+  --card: rgba(255, 255, 255, 0.04);
+  --card-foreground: #f5f5f7;
+  --popover: #121216;
+  --popover-foreground: #f5f5f7;
 
-  --secondary: rgba(244, 242, 237, 0.06);
-  --secondary-foreground: var(--paper);
+  --primary: #f5f5f7;
+  --primary-foreground: #0a0a0c;
 
-  --muted: rgba(244, 242, 237, 0.05);
-  --muted-foreground: var(--paper-dim);
+  --secondary: rgba(255, 255, 255, 0.07);
+  --secondary-foreground: #f5f5f7;
 
-  --accent: var(--signal-soft);
-  --accent-foreground: var(--signal-foreground);
+  --muted: rgba(255, 255, 255, 0.05);
+  --muted-foreground: rgba(245, 245, 247, 0.62);
 
-  --destructive: var(--live);
-  --destructive-foreground: #fff;
+  --accent: rgba(124, 92, 255, 0.16);
+  --accent-foreground: #c9bcff;
 
-  --border: var(--hairline);
-  --input: rgba(244, 242, 237, 0.16);
-  --ring: var(--signal);
+  --destructive: #f87171;
+  --destructive-foreground: #1a0a0a;
 
-  --glass-bg: rgba(12, 13, 16, 0.72);
-  --glass-border: var(--hairline);
-  --glass-blur: 20px;
+  --border: rgba(255, 255, 255, 0.09);
+  --input: rgba(255, 255, 255, 0.12);
+  --ring: #7c5cff;
+
+  --glass-bg: rgba(255, 255, 255, 0.055);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-blur: 24px;
 }
 
 .dark {
@@ -89,60 +63,37 @@
 }
 
 :root:not(.dark) {
-  /* ── Светлая тема: тёплая бумага, а не инверсия ── */
-  --ink-900: #f2efe8;
-  --ink-850: #f7f5f0;
-  --ink-800: #fbf9f5;
-  --ink-700: #ffffff;
-  --ink-600: #f0ede5;
+  /* Светлая тема */
+  --background: #f7f7f9;
+  --background-elevated: #ffffff;
+  --foreground: #101014;
+  --card: rgba(255, 255, 255, 0.72);
+  --card-foreground: #101014;
+  --popover: #ffffff;
+  --popover-foreground: #101014;
 
-  --paper: #14161a;
-  --paper-dim: rgba(20, 22, 26, 0.68);
-  --paper-faint: rgba(20, 22, 26, 0.44);
-  --paper-ghost: rgba(20, 22, 26, 0.12);
+  --primary: #101014;
+  --primary-foreground: #ffffff;
 
-  --hairline: rgba(20, 22, 26, 0.12);
-  --hairline-strong: rgba(20, 22, 26, 0.22);
+  --secondary: rgba(16, 16, 20, 0.06);
+  --secondary-foreground: #101014;
 
-  --signal: #a9741a;
-  --signal-foreground: #8a5e12;
-  --signal-soft: rgba(169, 116, 26, 0.12);
-  --signal-line: rgba(169, 116, 26, 0.4);
-  --signal-glow: rgba(169, 116, 26, 0.28);
-  --signal-glow-strong: rgba(169, 116, 26, 0.44);
+  --muted: rgba(16, 16, 20, 0.05);
+  --muted-foreground: rgba(16, 16, 20, 0.6);
 
-  --live: #c0392b;
+  --accent: rgba(124, 92, 255, 0.12);
+  --accent-foreground: #4c1d95;
 
-  --background: var(--ink-900);
-  --background-elevated: var(--ink-800);
-  --foreground: var(--paper);
-  --card: rgba(20, 22, 26, 0.035);
-  --card-foreground: var(--paper);
-  --popover: var(--ink-700);
-  --popover-foreground: var(--paper);
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
 
-  --primary: var(--paper);
-  --primary-foreground: #f7f5f0;
+  --border: rgba(16, 16, 20, 0.1);
+  --input: rgba(16, 16, 20, 0.16);
+  --ring: #7c5cff;
 
-  --secondary: rgba(20, 22, 26, 0.06);
-  --secondary-foreground: var(--paper);
-
-  --muted: rgba(20, 22, 26, 0.05);
-  --muted-foreground: var(--paper-dim);
-
-  --accent: var(--signal-soft);
-  --accent-foreground: var(--signal-foreground);
-
-  --destructive: var(--live);
-  --destructive-foreground: #fff;
-
-  --border: var(--hairline);
-  --input: rgba(20, 22, 26, 0.16);
-  --ring: var(--signal);
-
-  --glass-bg: rgba(247, 245, 240, 0.78);
-  --glass-border: var(--hairline);
-  --glass-blur: 16px;
+  --glass-bg: rgba(255, 255, 255, 0.62);
+  --glass-border: rgba(16, 16, 20, 0.1);
+  --glass-blur: 20px;
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -171,24 +122,10 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  /* Нейтрали */
-  --color-ink-900: var(--ink-900);
-  --color-ink-850: var(--ink-850);
-  --color-ink-800: var(--ink-800);
-  --color-ink-700: var(--ink-700);
-  --color-ink-600: var(--ink-600);
-
-  /* Бумага */
-  --color-paper: var(--paper);
-  --color-paper-dim: var(--paper-dim);
-  --color-paper-faint: var(--paper-faint);
-
-  /* Акцент */
-  --color-signal: var(--signal);
-  --color-signal-foreground: var(--signal-foreground);
-  --color-signal-soft: var(--signal-soft);
-  --color-live: var(--live);
-  --color-live-soft: var(--live-soft);
+  --color-brand: var(--brand-from);
+  --color-brand-from: var(--brand-from);
+  --color-brand-via: var(--brand-via);
+  --color-brand-to: var(--brand-to);
 
   --radius-sm: var(--radius-sm);
   --radius-md: var(--radius-md);
@@ -197,215 +134,33 @@
   --radius-2xl: var(--radius-2xl);
   --radius-3xl: var(--radius-3xl);
 
-  /* Шрифты: латиница + кириллица в одном стеке */
   --font-sans:
-    var(--font-sans-latin), var(--font-sans-cyr), ui-sans-serif, system-ui, 'Segoe UI', sans-serif;
-  --font-display:
-    var(--font-display-latin), var(--font-display-cyr), Georgia, 'Times New Roman', serif;
-  --font-mono:
-    var(--font-mono-latin), var(--font-mono-cyr), ui-monospace, SFMono-Regular, Menlo, monospace;
+    ui-sans-serif, -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Segoe UI',
+    system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', 'JetBrains Mono', 'Menlo', monospace;
 
-  /* Типографическая шкала: роли, а не размеры */
-  --text-display-xl: clamp(2.75rem, 6.4vw, 5.5rem);
-  --text-display-xl--line-height: 0.98;
-  --text-display-xl--letter-spacing: -0.032em;
-
-  --text-display-lg: clamp(2.25rem, 4.4vw, 3.75rem);
-  --text-display-lg--line-height: 1.02;
-  --text-display-lg--letter-spacing: -0.026em;
-
-  --text-display-md: clamp(1.75rem, 2.9vw, 2.625rem);
-  --text-display-md--line-height: 1.08;
-  --text-display-md--letter-spacing: -0.02em;
-
-  --text-section: clamp(1.5rem, 2.1vw, 2.125rem);
-  --text-section--line-height: 1.14;
-  --text-section--letter-spacing: -0.018em;
-
-  --text-lead: clamp(1.0625rem, 1.3vw, 1.3125rem);
-  --text-lead--line-height: 1.6;
-
-  --text-meta: 0.8125rem;
-  --text-meta--line-height: 1.4;
-  --text-meta--letter-spacing: 0.09em;
-
-  --text-mono: 0.75rem;
-  --text-mono--line-height: 1.25;
-  --text-mono--letter-spacing: 0.02em;
-
-  /* Тени */
-  --shadow-frame: 0 1px 0 0 rgba(244, 242, 237, 0.05) inset, 0 24px 60px -30px rgba(0, 0, 0, 0.9);
-  --shadow-float: 0 1px 0 0 rgba(244, 242, 237, 0.07) inset, 0 32px 80px -34px rgba(0, 0, 0, 0.95);
-  --shadow-signal: 0 0 0 1px var(--signal-line), 0 18px 50px -22px rgba(231, 178, 75, 0.4);
-
-  /* Кривые */
-  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-soft: cubic-bezier(0.32, 0.72, 0, 1);
-  --ease-strict: cubic-bezier(0.4, 0, 0.2, 1);
-
-  /* Контейнеры */
-  --container-content: 1280px;
-  --container-wide: 1440px;
-
-  /* Длительности */
-  --animate-drift: drift 22s ease-in-out infinite;
-  --animate-sweep: sweep 9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-  --animate-breathe: breathe 24s ease-in-out infinite;
+  --animate-marquee: marquee 32s linear infinite;
+  --animate-float: float 9s ease-in-out infinite;
+  --animate-shimmer: shimmer 2.4s linear infinite;
+  --animate-pulse-glow: pulse-glow 4s ease-in-out infinite;
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   Ключевые кадры
-   ═══════════════════════════════════════════════════════════════ */
-
-/* Оверлеи Radix: собственные анимации вместо отсутствующего tailwindcss-animate */
-@keyframes lw-fade-in {
+@keyframes marquee {
   from {
-    opacity: 0;
+    transform: translateX(0);
   }
   to {
-    opacity: 1;
+    transform: translateX(-50%);
   }
 }
 
-@keyframes lw-fade-out {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes lw-dialog-in {
-  from {
-    opacity: 0;
-    scale: 0.96;
-  }
-  to {
-    opacity: 1;
-    scale: 1;
-  }
-}
-
-@keyframes lw-dialog-out {
-  from {
-    opacity: 1;
-    scale: 1;
-  }
-  to {
-    opacity: 0;
-    scale: 0.97;
-  }
-}
-
-@keyframes lw-menu-in {
-  from {
-    opacity: 0;
-    scale: 0.97;
-    translate: 0 -4px;
-  }
-  to {
-    opacity: 1;
-    scale: 1;
-    translate: 0 0;
-  }
-}
-
-@keyframes lw-menu-out {
-  from {
-    opacity: 1;
-    scale: 1;
-  }
-  to {
-    opacity: 0;
-    scale: 0.98;
-  }
-}
-
-@keyframes lw-accordion-down {
-  from {
-    height: 0;
-    opacity: 0;
-  }
-  to {
-    height: var(--radix-accordion-content-height);
-    opacity: 1;
-  }
-}
-
-@keyframes lw-accordion-up {
-  from {
-    height: var(--radix-accordion-content-height);
-    opacity: 1;
-  }
-  to {
-    height: 0;
-    opacity: 0;
-  }
-}
-
-@keyframes lw-sheet-in-right {
-  from {
-    translate: 100% 0;
-  }
-  to {
-    translate: 0 0;
-  }
-}
-
-@keyframes lw-sheet-out-right {
-  from {
-    translate: 0 0;
-  }
-  to {
-    translate: 100% 0;
-  }
-}
-
-@keyframes lw-tooltip-in {
-  from {
-    opacity: 0;
-    scale: 0.96;
-  }
-  to {
-    opacity: 1;
-    scale: 1;
-  }
-}
-
-/* Атмосфера */
-@keyframes drift {
+@keyframes float {
   0%,
   100% {
-    transform: translate3d(0, 0, 0) scale(1);
+    transform: translateY(0);
   }
   50% {
-    transform: translate3d(2%, -3%, 0) scale(1.08);
-  }
-}
-
-@keyframes sweep {
-  0% {
-    transform: translateX(-120%) skewX(-12deg);
-    opacity: 0;
-  }
-  22% {
-    opacity: 0.55;
-  }
-  60%,
-  100% {
-    transform: translateX(220%) skewX(-12deg);
-    opacity: 0;
-  }
-}
-
-@keyframes breathe {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.02);
+    transform: translateY(-14px);
   }
 }
 
@@ -415,6 +170,16 @@
   }
   to {
     background-position: -200% 0;
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 0.9;
   }
 }
 
@@ -436,38 +201,24 @@
     background-color: var(--background);
     color: var(--foreground);
     font-family: var(--font-sans);
-    font-feature-settings:
-      'ss01' 1,
-      'cv11' 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
   }
 
-  h1,
-  h2,
-  h3 {
-    font-family: var(--font-display);
-    font-weight: 500;
-    text-wrap: balance;
-  }
-
-  p {
-    text-wrap: pretty;
-  }
-
   ::selection {
-    background: var(--signal-soft);
-    color: var(--foreground);
+    background: var(--brand-glow);
+    color: #ffffff;
   }
 
   :focus-visible {
     outline: 2px solid var(--ring);
-    outline-offset: 3px;
+    outline-offset: 2px;
     border-radius: 4px;
   }
 
+  /* Аккуратный скроллбар */
   ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
@@ -478,14 +229,14 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: color-mix(in srgb, var(--foreground) 16%, transparent);
+    background: color-mix(in srgb, var(--foreground) 18%, transparent);
     border-radius: 999px;
     border: 2px solid transparent;
     background-clip: content-box;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: color-mix(in srgb, var(--foreground) 28%, transparent);
+    background: color-mix(in srgb, var(--foreground) 32%, transparent);
     background-clip: content-box;
   }
 }
@@ -495,136 +246,79 @@
    ═══════════════════════════════════════════════════════════════ */
 
 @layer utilities {
-  /* ── Поверхности ── */
-
-  /* Панель: матовая, без blur — blur оставлен только для шапки и оверлеев */
-  .panel {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-xl);
-  }
-
-  /* Плёнка: размытие фона для плавающих слоёв (шапка, оверлеи) */
+  /* Liquid Glass: полупрозрачная поверхность + blur + тонкая рамка */
   .glass {
     background: var(--glass-bg);
-    backdrop-filter: blur(var(--glass-blur)) saturate(140%);
-    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+    backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
     border: 1px solid var(--glass-border);
   }
 
   .glass-strong {
-    background: color-mix(in srgb, var(--background) 88%, transparent);
-    backdrop-filter: blur(28px) saturate(150%);
-    -webkit-backdrop-filter: blur(28px) saturate(150%);
+    background: color-mix(in srgb, var(--background) 72%, transparent);
+    backdrop-filter: blur(32px) saturate(200%);
+    -webkit-backdrop-filter: blur(32px) saturate(200%);
     border: 1px solid var(--glass-border);
   }
 
-  /* ── Кадр ── */
-
-  .frame {
-    position: relative;
-    overflow: hidden;
-    border-radius: var(--radius-lg);
-    background: var(--ink-700);
-    box-shadow: var(--shadow-frame);
-  }
-
-  .frame-media {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition:
-      transform 900ms var(--ease-expo),
-      scale 900ms var(--ease-expo);
-  }
-
-  /* Зерно плёнки — лёгкая фактура поверх кадра */
-  .grain::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0.16;
-    mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
-  }
-
-  /* Луч проектора, проходящий по кадру */
-  .projector-sweep::before {
-    content: '';
-    position: absolute;
-    top: -20%;
-    bottom: -20%;
-    width: 34%;
-    pointer-events: none;
-    z-index: 1;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      color-mix(in srgb, var(--signal) 22%, transparent),
-      transparent
-    );
-    animation: var(--animate-sweep);
-  }
-
-  /* ── Акцент ── */
-
-  .bg-gradient-signal {
-    background-image: linear-gradient(135deg, #f2cd80 0%, var(--signal) 55%, #cf922c 100%);
-  }
-
+  /* Градиентный текст */
   .text-gradient {
-    background-image: linear-gradient(135deg, #f2cd80 0%, var(--signal) 60%, #cf922c 100%);
+    background-image: linear-gradient(
+      135deg,
+      var(--brand-from) 0%,
+      var(--brand-via) 50%,
+      var(--brand-to) 100%
+    );
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
 
-  /* ── Текст и метки ── */
-
-  .eyebrow {
-    font-family: var(--font-mono);
-    font-size: 0.6875rem;
-    font-weight: 500;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--signal-foreground);
+  /* Фирменный градиент */
+  .bg-gradient-brand {
+    background-image: linear-gradient(
+      135deg,
+      var(--brand-from) 0%,
+      var(--brand-via) 50%,
+      var(--brand-to) 100%
+    );
   }
 
-  .timecode {
-    font-family: var(--font-mono);
-    font-size: 0.6875rem;
-    letter-spacing: 0.14em;
-    font-variant-numeric: tabular-nums;
-    color: var(--paper-faint);
+  /* Свечение */
+  .glow-brand {
+    box-shadow:
+      0 0 0 1px rgba(124, 92, 255, 0.2),
+      0 18px 60px -18px var(--brand-glow);
   }
 
-  .rule {
-    height: 1px;
-    background: var(--hairline);
+  .glow-brand-strong {
+    box-shadow:
+      0 0 0 1px rgba(124, 92, 255, 0.38),
+      0 26px 80px -20px var(--brand-glow-strong);
   }
 
-  .rule-strong {
-    height: 1px;
-    background: var(--hairline-strong);
+  /* Мягкая радиальная подсветка фона */
+  .bg-aurora {
+    background-image:
+      radial-gradient(60% 55% at 15% 10%, rgba(124, 92, 255, 0.22), transparent 60%),
+      radial-gradient(50% 45% at 85% 5%, rgba(34, 211, 238, 0.16), transparent 60%),
+      radial-gradient(70% 60% at 50% 100%, rgba(99, 102, 241, 0.14), transparent 65%);
   }
 
-  /* Тонкая сетка-фон, как в кадре монтажной склейки */
+  /* Тонкая сетка-фон */
   .bg-grid {
     background-image:
-      linear-gradient(to right, var(--hairline) 1px, transparent 1px),
-      linear-gradient(to bottom, var(--hairline) 1px, transparent 1px);
-    background-size: 72px 72px;
+      linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 56px 56px;
   }
 
   .mask-fade-b {
-    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
   }
 
   .mask-fade-x {
-    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
   }
 
   .no-scrollbar::-webkit-scrollbar {
@@ -636,62 +330,16 @@
     scrollbar-width: none;
   }
 
-  /* ── Скелетон ── */
+  /* Скелетон */
   .skeleton {
     background: linear-gradient(
       90deg,
-      color-mix(in srgb, var(--foreground) 5%, transparent) 25%,
-      color-mix(in srgb, var(--foreground) 11%, transparent) 37%,
-      color-mix(in srgb, var(--foreground) 5%, transparent) 63%
+      color-mix(in srgb, var(--foreground) 6%, transparent) 25%,
+      color-mix(in srgb, var(--foreground) 12%, transparent) 37%,
+      color-mix(in srgb, var(--foreground) 6%, transparent) 63%
     );
     background-size: 400% 100%;
-    animation: shimmer 2.4s linear infinite;
-  }
-
-  /* ── Анимации оверлеев Radix (собственные keyframes) ── */
-
-  .lw-overlay[data-state='open'] {
-    animation: lw-fade-in 220ms var(--ease-soft) both;
-  }
-
-  .lw-overlay[data-state='closed'] {
-    animation: lw-fade-out 160ms var(--ease-strict) both;
-  }
-
-  .lw-dialog[data-state='open'] {
-    animation: lw-dialog-in 280ms var(--ease-expo) both;
-  }
-
-  .lw-dialog[data-state='closed'] {
-    animation: lw-dialog-out 180ms var(--ease-strict) both;
-  }
-
-  .lw-menu[data-state='open'] {
-    animation: lw-menu-in 200ms var(--ease-expo) both;
-  }
-
-  .lw-menu[data-state='closed'] {
-    animation: lw-menu-out 140ms var(--ease-strict) both;
-  }
-
-  .lw-accordion[data-state='open'] {
-    animation: lw-accordion-down 320ms var(--ease-soft) both;
-  }
-
-  .lw-accordion[data-state='closed'] {
-    animation: lw-accordion-up 220ms var(--ease-strict) both;
-  }
-
-  .lw-sheet[data-state='open'] {
-    animation: lw-sheet-in-right 340ms var(--ease-expo) both;
-  }
-
-  .lw-sheet[data-state='closed'] {
-    animation: lw-sheet-out-right 240ms var(--ease-strict) both;
-  }
-
-  .lw-tooltip {
-    animation: lw-tooltip-in 160ms var(--ease-expo) both;
+    animation: var(--animate-shimmer);
   }
 }
 

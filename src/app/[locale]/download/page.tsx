@@ -61,9 +61,11 @@ export default async function DownloadPage({ params }: { params: Promise<{ local
   const steps = [t('step1'), t('step2'), t('step3')];
 
   return (
-    <div className="mx-auto max-w-[1000px] px-4 py-16 sm:px-8 lg:py-24">
+    <div className="mx-auto max-w-[1000px] px-4 py-12 sm:px-6 lg:py-16">
       <header className="mx-auto max-w-2xl text-center">
-        <h1 className="text-display-md">{t('title')}</h1>
+        <h1 className="text-foreground text-3xl font-bold tracking-tight text-balance sm:text-4xl">
+          {t('title')}
+        </h1>
         <p className="text-muted-foreground mt-3 text-base leading-relaxed text-pretty">
           {t('subtitle')}
         </p>
@@ -74,8 +76,8 @@ export default async function DownloadPage({ params }: { params: Promise<{ local
       <StaggerGroup className="mt-12 grid gap-5 sm:grid-cols-2">
         {builds.map((build) => (
           <StaggerItem key={build.id} className="h-full">
-            <div className="border-border bg-card flex h-full flex-col rounded-2xl border p-6">
-              <span className="bg-signal/10 text-signal-foreground ring-signal/20 flex size-11 items-center justify-center rounded-xl ring-1">
+            <div className="border-border/70 bg-card/50 flex h-full flex-col rounded-3xl border p-6 backdrop-blur-xl">
+              <span className="bg-brand/10 text-brand-foreground ring-brand/20 flex size-11 items-center justify-center rounded-xl ring-1">
                 <build.icon className="size-5" aria-hidden="true" />
               </span>
 
@@ -88,7 +90,7 @@ export default async function DownloadPage({ params }: { params: Promise<{ local
                 {t('version')}: {siteConfig.APP.version} · {t('size')}: {build.size}
               </p>
 
-              <Button asChild variant="signal" size="lg" className="mt-4">
+              <Button asChild variant="gradient" size="lg" className="mt-4">
                 <a href={build.url} download>
                   <Download className="size-4" aria-hidden="true" />
                   {t('button')}
@@ -110,7 +112,7 @@ export default async function DownloadPage({ params }: { params: Promise<{ local
             {requirements.map((item) => (
               <li
                 key={item.label + item.value}
-                className="border-border bg-card flex items-center gap-3 rounded-xl border px-4 py-3"
+                className="border-border/60 bg-card/40 flex items-center gap-3 rounded-2xl border px-4 py-3 backdrop-blur-xl"
               >
                 <span className="bg-secondary/60 text-foreground flex size-9 shrink-0 items-center justify-center rounded-lg">
                   <item.icon className="size-4" aria-hidden="true" />
@@ -138,9 +140,9 @@ export default async function DownloadPage({ params }: { params: Promise<{ local
             {steps.map((step, index) => (
               <li
                 key={step}
-                className="border-border bg-card flex items-start gap-3 rounded-xl border px-5 py-4"
+                className="border-border/60 bg-card/40 flex items-start gap-3 rounded-2xl border px-5 py-4 backdrop-blur-xl"
               >
-                <span className="border-signal/30 bg-signal/12 text-signal-foreground flex size-7 shrink-0 items-center justify-center rounded-full border font-mono text-xs tabular-nums">
+                <span className="bg-gradient-brand flex size-7 shrink-0 items-center justify-center rounded-full text-xs font-semibold text-white">
                   {index + 1}
                 </span>
                 <span className="text-muted-foreground text-sm">{step}</span>
@@ -152,8 +154,8 @@ export default async function DownloadPage({ params }: { params: Promise<{ local
 
       {/* Что дальше */}
       <Reveal>
-        <div className="border-signal/25 bg-signal/6 mt-12 rounded-2xl border p-6 text-center sm:p-8">
-          <CheckCircle2 className="text-signal-foreground mx-auto size-8" aria-hidden="true" />
+        <div className="border-brand/25 bg-brand/6 mt-12 rounded-3xl border p-6 text-center backdrop-blur-xl sm:p-8">
+          <CheckCircle2 className="text-brand-foreground mx-auto size-8" aria-hidden="true" />
           <h2 className="text-foreground mt-4 text-lg font-semibold">{t('faqTitle')}</h2>
           <p className="text-muted-foreground mx-auto mt-2 max-w-xl text-sm leading-relaxed">
             {t('faqBody')}

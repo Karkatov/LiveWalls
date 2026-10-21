@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
 import { ShoppingCart, Sparkles } from 'lucide-react';
+import type { PaymentProvider } from '@/config/site';
 import { createPayment } from '@/lib/api/payments';
 import { cn } from '@/lib/utils/cn';
 import { Button } from '@/components/ui/button';
@@ -26,7 +27,7 @@ export function BuyButton({
   price,
   priceLabel,
   className,
-  variant = 'signal',
+  variant = 'gradient',
   size = 'default',
   email,
 }: {
@@ -36,7 +37,7 @@ export function BuyButton({
   price: number;
   priceLabel?: string;
   className?: string;
-  variant?: 'signal' | 'solid' | 'outline';
+  variant?: 'gradient' | 'outline' | 'default';
   size?: 'sm' | 'default' | 'lg';
   email?: string;
 }) {
@@ -81,4 +82,9 @@ export function BuyButton({
       {priceLabel ?? t('buy')}
     </Button>
   );
+}
+
+/** Провайдер, который будет использоваться (для бейджей в интерфейсе). */
+export function usePaymentProvider(): PaymentProvider {
+  return 'none';
 }

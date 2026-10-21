@@ -14,7 +14,6 @@
     "retry": "Попробовать снова",
     "close": "Закрыть",
     "back": "Назад",
-    "previous": "Назад",
     "next": "Далее",
     "search": "Поиск",
     "cancel": "Отмена",
@@ -55,10 +54,7 @@
     "themeDark": "Тёмная",
     "themeLight": "Светлая",
     "themeSystem": "Системная",
-    "language": "Язык",
-    "home": "На главную",
-    "frame": "Кадр",
-    "catalogIndex": "Индекс каталога"
+    "language": "Язык"
   },
   "home": {
     "hero": {

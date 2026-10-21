@@ -19,7 +19,7 @@ export function Toaster(props: ToasterProps) {
       closeButton
       toastOptions={{
         classNames: {
-          toast: 'glass-strong !rounded-xl !border-border !shadow-2xl',
+          toast: 'glass-strong !rounded-xl !border-border/80 !shadow-2xl',
           title: '!text-foreground',
           description: '!text-muted-foreground',
         },

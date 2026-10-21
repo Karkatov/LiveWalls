@@ -32,9 +32,11 @@ export default async function AccountPage({ params }: { params: Promise<{ locale
   const t = await getTranslations('account');
 
   return (
-    <div className="mx-auto max-w-[1280px] px-4 py-16 sm:px-8 lg:py-24">
+    <div className="mx-auto max-w-[1200px] px-4 py-12 sm:px-6 lg:py-16">
       <header className="max-w-2xl">
-        <h1 className="text-display-md">{t('title')}</h1>
+        <h1 className="text-foreground text-3xl font-bold tracking-tight text-balance sm:text-4xl">
+          {t('title')}
+        </h1>
         <p className="text-muted-foreground mt-3 text-base leading-relaxed text-pretty">
           {t('subtitle')}
         </p>

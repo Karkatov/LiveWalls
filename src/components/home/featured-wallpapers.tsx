@@ -14,9 +14,8 @@ export async function FeaturedWallpapers({ wallpapers }: { wallpapers: Wallpaper
   const t = await getTranslations('home.featured');
 
   return (
-    <section className="mx-auto max-w-[1280px] px-4 py-20 sm:px-8 lg:py-28">
+    <section className="mx-auto max-w-[1200px] px-4 py-16 sm:px-6 lg:py-24">
       <SectionHeading
-        index={2}
         eyebrow={t('eyebrow')}
         title={t('title')}
         description={t('description')}
@@ -30,10 +29,10 @@ export async function FeaturedWallpapers({ wallpapers }: { wallpapers: Wallpaper
         }
       />
 
-      <div className="mt-14 grid gap-x-4 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {wallpapers.map((wallpaper, index) => (
           <Reveal key={wallpaper.id} delay={index * 0.05}>
-            <WallpaperCard wallpaper={wallpaper} index={index} priority={index < 3} />
+            <WallpaperCard wallpaper={wallpaper} priority={index < 4} />
           </Reveal>
         ))}
       </div>

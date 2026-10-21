@@ -13,25 +13,6 @@ export function svgToDataUri(svg: string): string {
   return `data:image/svg+xml;utf8,${encodeURIComponent(svg.replace(/\s+/g, ' ').trim())}`;
 }
 
-/** Дрейф и зерно внутри кадра; глушатся при prefers-reduced-motion. */
-function motionStyles(id: string, duration = 26): string {
-  return `<style>
-    @keyframes drift-${id} {
-      0%, 100% { transform: translate3d(0, 0, 0) scale(1.06); }
-      50% { transform: translate3d(-2%, 2.5%, 0) scale(1.14); }
-    }
-    @keyframes grain-${id} {
-      0%, 100% { transform: translate(0, 0); opacity: 0.14; }
-      50% { transform: translate(1%, -1.5%); opacity: 0.2; }
-    }
-    .drift { animation: drift-${id} ${duration}s ease-in-out infinite; transform-origin: center; }
-    .grain { animation: grain-${id} 7s steps(4, end) infinite; }
-    @media (prefers-reduced-motion: reduce) {
-      .drift, .grain { animation: none; }
-    }
-  </style>`;
-}
-
 function gradientDefs(id: string, from: string, via: string, to: string): string {
   return `
     <defs>
@@ -40,18 +21,10 @@ function gradientDefs(id: string, from: string, via: string, to: string): string
         <stop offset="55%" stop-color="${via}"/>
         <stop offset="100%" stop-color="${to}"/>
       </linearGradient>
-      <radialGradient id="r${id}" cx="0.72" cy="0.14" r="0.95">
-        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.3"/>
+      <radialGradient id="r${id}" cx="0.75" cy="0.15" r="0.9">
+        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.28"/>
         <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
       </radialGradient>
-      <radialGradient id="v${id}" cx="0.5" cy="0.55" r="0.75">
-        <stop offset="0%" stop-color="#000000" stop-opacity="0"/>
-        <stop offset="100%" stop-color="#000000" stop-opacity="0.42"/>
-      </radialGradient>
-      <filter id="n${id}" x="-10%" y="-10%" width="120%" height="120%">
-        <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" stitchTiles="stitch"/>
-        <feColorMatrix type="saturate" values="0"/>
-      </filter>
     </defs>`;
 }
 
@@ -70,37 +43,22 @@ export function wallpaperPlaceholderSvg(key: string, options: PlaceholderOptions
   const id = Math.abs(hashString(key)).toString(36);
   const playIcon = play
     ? `<g transform="translate(${width / 2 - 34} ${height / 2 - 34})" opacity="0.92">
-         <circle cx="34" cy="34" r="34" fill="rgba(7,8,10,0.42)" stroke="rgba(244,242,237,0.42)" stroke-width="1.5"/>
-         <path d="M26 20 L50 34 L26 48 Z" fill="#F4F2ED"/>
+         <circle cx="34" cy="34" r="34" fill="rgba(10,10,12,0.42)" stroke="rgba(255,255,255,0.42)" stroke-width="1.5"/>
+         <path d="M26 20 L50 34 L26 48 Z" fill="#ffffff"/>
        </g>`
     : '';
   const caption = label
     ? `<text x="40" y="${height - 40}" font-family="-apple-system, system-ui, sans-serif" font-size="26" fill="rgba(255,255,255,0.82)">${escapeXml(label)}</text>`
     : '';
 
-  const layers = [
-    { y: 0.62, opacity: 0.26, amp: 0.09 },
-    { y: 0.74, opacity: 0.22, amp: 0.07 },
-    { y: 0.86, opacity: 0.32, amp: 0.05 },
-  ]
-    .map(
-      (layer, index) => `<path d="M0 ${height * layer.y}
-        Q ${width * 0.25} ${height * (layer.y - layer.amp)} ${width * 0.5} ${height * (layer.y + layer.amp * 0.4)}
-        T ${width} ${height * (layer.y - layer.amp * 0.3)}
-        V ${height} H 0 Z" fill="#000000" opacity="${(layer.opacity + index * 0.03).toFixed(2)}"/>`,
-    )
-    .join('');
-
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
-    ${motionStyles(id, 26)}
     ${gradientDefs(id, from, via, to)}
     <rect width="${width}" height="${height}" fill="url(#g${id})"/>
-    <g class="drift">
-      <rect width="${width}" height="${height}" fill="url(#r${id})"/>
-      ${layers}
+    <rect width="${width}" height="${height}" fill="url(#r${id})"/>
+    <g opacity="0.18" stroke="#ffffff" stroke-width="1" fill="none">
+      <path d="M0 ${height * 0.72} Q ${width * 0.3} ${height * 0.55} ${width * 0.6} ${height * 0.75} T ${width} ${height * 0.68}"/>
+      <path d="M0 ${height * 0.82} Q ${width * 0.35} ${height * 0.66} ${width * 0.7} ${height * 0.86} T ${width} ${height * 0.78}"/>
     </g>
-    <rect width="${width}" height="${height}" fill="url(#v${id})"/>
-    <rect class="grain" width="${width}" height="${height}" filter="url(#n${id})" opacity="0.16"/>
     ${playIcon}
     ${caption}
   </svg>`;
@@ -198,9 +156,9 @@ export function appWindowPlaceholderSvg(width = 1400, height = 880): string {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
     <defs>
       <linearGradient id="aw${id}" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stop-color="${palette.signal}"/>
-        <stop offset="50%" stop-color="#F2CD80"/>
-        <stop offset="100%" stop-color="#CF922C"/>
+        <stop offset="0%" stop-color="${palette.brandFrom}"/>
+        <stop offset="50%" stop-color="${palette.brandVia}"/>
+        <stop offset="100%" stop-color="${palette.brandTo}"/>
       </linearGradient>
       <radialGradient id="awr${id}" cx="0.5" cy="0" r="1">
         <stop offset="0%" stop-color="#ffffff" stop-opacity="0.25"/>

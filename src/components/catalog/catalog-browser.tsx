@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { PackageSearch, Search, SlidersHorizontal, X } from 'lucide-react';
 import { useRouter } from '@/i18n/navigation';
 import type { Category, Wallpaper, WallpaperFilters } from '@/types';
@@ -26,7 +26,6 @@ import {
 } from '@/components/ui/select';
 import { EmptyState } from '@/components/shared/empty-state';
 import { WallpaperCard } from './wallpaper-card';
-import { QuickView } from './quick-view';
 
 /**
  * Каталог обоев: фильтры, сортировка и пагинация.
@@ -45,14 +44,11 @@ export function CatalogBrowser({
   initialFilters: WallpaperFilters;
 }) {
   const t = useTranslations('catalog');
-  const tCommon = useTranslations('common');
-  const locale = useLocale();
   const router = useRouter();
   const { favorites } = useFavorites();
 
   const [filters, setFilters] = useState<WallpaperFilters>(initialFilters);
   const [search, setSearch] = useState(initialFilters.q ?? '');
-  const [quickView, setQuickView] = useState<Wallpaper | null>(null);
   const mounted = useRef(false);
 
   // В статическом экспорте сервер не знает query-параметры, поэтому
@@ -93,11 +89,11 @@ export function CatalogBrowser({
       favoritesOnly: undefined,
     };
     const result = filterWallpapers(wallpapers, withFavorites);
-    const sorted = sortWallpapers(result, filters.sort ?? 'newest', locale);
+    const sorted = sortWallpapers(result, filters.sort ?? 'newest');
 
     if (!filters.favoritesOnly) return sorted;
     return sorted.filter((wallpaper) => favorites.includes(wallpaper.id));
-  }, [wallpapers, filters, favorites, locale]);
+  }, [wallpapers, filters, favorites]);
 
   const page = paginate(filtered, filters.page ?? 1, PAGE_SIZE);
   const totalPages = Math.max(1, Math.ceil(page.total / PAGE_SIZE));
@@ -121,7 +117,7 @@ export function CatalogBrowser({
   return (
     <div className="space-y-8">
       {/* Панель фильтров */}
-      <div className="border-border bg-card rounded-xl border p-4 sm:p-5">
+      <div className="border-border/60 bg-card/40 rounded-2xl border p-4 backdrop-blur-xl sm:p-5">
         <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_auto_auto_auto_auto]">
           <div className="relative">
             <Search
@@ -200,7 +196,7 @@ export function CatalogBrowser({
           </Select>
         </div>
 
-        <div className="border-border mt-4 flex flex-wrap items-center justify-between gap-3 border-t pt-4">
+        <div className="border-border/60 mt-4 flex flex-wrap items-center justify-between gap-3 border-t pt-4">
           <label className="text-muted-foreground flex cursor-pointer items-center gap-2.5 text-sm">
             <Switch
               checked={Boolean(filters.favoritesOnly)}
@@ -227,15 +223,9 @@ export function CatalogBrowser({
       {/* Сетка */}
       {page.items.length > 0 ? (
         <>
-          <div className="grid gap-x-4 gap-y-7 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {page.items.map((wallpaper, index) => (
-              <WallpaperCard
-                key={wallpaper.id}
-                wallpaper={wallpaper}
-                index={(page.page - 1) * PAGE_SIZE + index}
-                priority={index < 3}
-                onQuickView={setQuickView}
-              />
+              <WallpaperCard key={wallpaper.id} wallpaper={wallpaper} priority={index < 4} />
             ))}
           </div>
 
@@ -246,7 +236,6 @@ export function CatalogBrowser({
                 size="sm"
                 disabled={page.page <= 1}
                 onClick={() => update({ page: page.page - 1 })}
-                aria-label={tCommon('previous')}
               >
                 ←
               </Button>
@@ -260,7 +249,6 @@ export function CatalogBrowser({
                 size="sm"
                 disabled={page.page >= totalPages}
                 onClick={() => update({ page: page.page + 1 })}
-                aria-label={tCommon('next')}
               >
                 →
               </Button>
@@ -284,12 +272,6 @@ export function CatalogBrowser({
       <p className="sr-only" aria-live="polite">
         {t('resultsCount', { count: page.total })}
       </p>
-
-      <QuickView
-        wallpaper={quickView}
-        open={quickView !== null}
-        onOpenChange={(next) => !next && setQuickView(null)}
-      />
     </div>
   );
 }

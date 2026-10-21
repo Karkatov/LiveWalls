@@ -65,9 +65,9 @@ export function AdminPanel({
 
   if (!unlocked) {
     return (
-      <div className="border-border bg-card mx-auto max-w-md rounded-2xl border p-6 sm:p-8">
+      <div className="border-border/70 bg-card/50 mx-auto max-w-md rounded-3xl border p-6 backdrop-blur-xl sm:p-8">
         <div className="flex items-center gap-3">
-          <span className="bg-signal/10 text-signal-foreground ring-signal/20 flex size-11 items-center justify-center rounded-xl ring-1">
+          <span className="bg-brand/10 text-brand-foreground ring-brand/20 flex size-11 items-center justify-center rounded-xl ring-1">
             <Lock className="size-5" aria-hidden="true" />
           </span>
           <h2 className="text-foreground text-lg font-semibold tracking-tight">{t('enter')}</h2>
@@ -94,7 +94,7 @@ export function AdminPanel({
             </p>
           )}
 
-          <Button type="submit" variant="signal" className="w-full">
+          <Button type="submit" variant="gradient" className="w-full">
             <KeyRound className="size-4" aria-hidden="true" />
             {t('enter')}
           </Button>
@@ -105,7 +105,7 @@ export function AdminPanel({
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-3 rounded-xl border border-emerald-400/25 bg-emerald-400/8 px-4 py-3">
+      <div className="flex items-center gap-3 rounded-2xl border border-emerald-400/25 bg-emerald-400/8 px-4 py-3">
         <ShieldCheck className="size-5 text-emerald-300" aria-hidden="true" />
         <p className="text-muted-foreground text-sm">{t('mockNotice')}</p>
       </div>
@@ -162,10 +162,10 @@ export function AdminPanel({
 
 function Table({ headers, rows }: { headers: string[]; rows: string[][] }) {
   return (
-    <div className="border-border overflow-x-auto rounded-xl border">
+    <div className="border-border/70 overflow-x-auto rounded-2xl border">
       <table className="w-full min-w-[520px] border-collapse text-sm">
         <thead>
-          <tr className="bg-card text-left">
+          <tr className="bg-card/60 text-left">
             {headers.map((header) => (
               <th key={header} scope="col" className="text-muted-foreground px-4 py-3 font-medium">
                 {header}
@@ -175,7 +175,7 @@ function Table({ headers, rows }: { headers: string[]; rows: string[][] }) {
         </thead>
         <tbody>
           {rows.map((row, index) => (
-            <tr key={index} className="border-border border-t">
+            <tr key={index} className="border-border/60 border-t">
               {row.map((cell, cellIndex) => (
                 <td
                   key={cellIndex}

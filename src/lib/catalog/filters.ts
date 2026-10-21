@@ -57,11 +57,7 @@ export function filterWallpapers(items: Wallpaper[], filters: WallpaperFilters):
 }
 
 /** Сортировка — в том же порядке, что ожидает API. */
-export function sortWallpapers(
-  items: Wallpaper[],
-  sort: WallpaperSort,
-  locale = 'ru',
-): Wallpaper[] {
+export function sortWallpapers(items: Wallpaper[], sort: WallpaperSort): Wallpaper[] {
   const copy = [...items];
   switch (sort) {
     case 'popular':
@@ -71,7 +67,7 @@ export function sortWallpapers(
     case 'price-desc':
       return copy.sort((a, b) => (b.price ?? 0) - (a.price ?? 0));
     case 'name':
-      return copy.sort((a, b) => a.title.localeCompare(b.title, locale));
+      return copy.sort((a, b) => a.title.localeCompare(b.title, 'ru'));
     case 'newest':
     default:
       return copy.sort((a, b) => +new Date(b.createdAt) - +new Date(a.createdAt));

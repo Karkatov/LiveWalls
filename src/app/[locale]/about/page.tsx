@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import { wallpaperBlurDataURL } from '@/lib/utils/placeholders';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Apple, Cpu, Download, Layers3, MonitorSmartphone, Sparkles } from 'lucide-react';
 import { routing, type Locale } from '@/i18n/routing';
@@ -58,23 +57,20 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
   ];
 
   return (
-    <div className="mx-auto max-w-[1280px] px-4 py-16 sm:px-8 lg:py-24">
-      <SectionHeading
-        level={1}
-        eyebrow={t('title')}
-        title={t('subtitle')}
-        description={t('whatBody')}
-      />
+    <div className="mx-auto max-w-[1200px] px-4 py-12 sm:px-6 lg:py-16">
+      <SectionHeading eyebrow={t('title')} title={t('subtitle')} description={t('whatBody')} />
 
       {/* Скриншоты */}
       <section className="mt-16">
-        <h2 className="font-display text-section">{t('screenshotsTitle')}</h2>
+        <h2 className="text-foreground text-2xl font-bold tracking-tight">
+          {t('screenshotsTitle')}
+        </h2>
         <p className="text-muted-foreground mt-2 text-sm">{t('screenshotsBody')}</p>
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
           {screenshots.map((shot, index) => (
             <Reveal key={shot.src} delay={index * 0.05}>
-              <figure className="border-border bg-card overflow-hidden rounded-xl border">
+              <figure className="border-border/70 bg-card/50 overflow-hidden rounded-2xl border">
                 <Image
                   src={shot.src}
                   alt={shot.label}
@@ -82,7 +78,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                   height={750}
                   className="w-full"
                   placeholder="blur"
-                  blurDataURL={wallpaperBlurDataURL('app-about')}
+                  blurDataURL={`/placeholders/screenshots/app-main.svg`}
                 />
                 <figcaption className="text-muted-foreground px-4 py-3 text-sm">
                   {shot.label}
@@ -95,13 +91,13 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
 
       {/* Ключевые особенности */}
       <section className="mt-16">
-        <h2 className="font-display text-section">{t('featuresTitle')}</h2>
+        <h2 className="text-foreground text-2xl font-bold tracking-tight">{t('featuresTitle')}</h2>
 
         <StaggerGroup className="mt-8 grid gap-4 md:grid-cols-3">
           {highlights.map((item) => (
             <StaggerItem key={item.text} className="h-full">
-              <div className="border-border bg-card flex h-full flex-col rounded-xl border p-6">
-                <span className="bg-signal/10 text-signal-foreground ring-signal/20 flex size-11 items-center justify-center rounded-xl ring-1">
+              <div className="border-border/60 bg-card/40 flex h-full flex-col rounded-2xl border p-6 backdrop-blur-xl">
+                <span className="bg-brand/10 text-brand-foreground ring-brand/20 flex size-11 items-center justify-center rounded-xl ring-1">
                   <item.icon className="size-5" aria-hidden="true" />
                 </span>
                 <p className="text-muted-foreground mt-4 text-sm leading-relaxed">{item.text}</p>
@@ -113,14 +109,16 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
 
       {/* Требования */}
       <section className="mt-16">
-        <h2 className="font-display text-section">{t('requirementsTitle')}</h2>
+        <h2 className="text-foreground text-2xl font-bold tracking-tight">
+          {t('requirementsTitle')}
+        </h2>
         <p className="text-muted-foreground mt-2 text-sm">{t('requirementsBody')}</p>
 
         <dl className="mt-8 grid gap-3 sm:grid-cols-2">
           {requirements.map((item) => (
             <div
               key={item.label}
-              className="border-border bg-card flex items-start gap-3 rounded-xl border px-5 py-4"
+              className="border-border/60 bg-card/40 flex items-start gap-3 rounded-2xl border px-5 py-4 backdrop-blur-xl"
             >
               <span className="bg-secondary/60 text-foreground flex size-9 shrink-0 items-center justify-center rounded-lg">
                 <item.icon className="size-4" aria-hidden="true" />
@@ -138,12 +136,12 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
 
       {/* CTA */}
       <Reveal>
-        <div className="panel projector-sweep relative mt-16 flex flex-col items-center gap-4 overflow-hidden px-6 py-14 text-center">
-          <h2 className="font-display text-section text-foreground text-balance">
+        <div className="border-brand/25 bg-gradient-brand mt-16 flex flex-col items-center gap-4 rounded-3xl border px-6 py-12 text-center shadow-[0_30px_90px_-40px_var(--brand-glow-strong)]">
+          <h2 className="text-2xl font-bold tracking-tight text-balance text-white sm:text-3xl">
             {t('download')}
           </h2>
 
-          <Button asChild variant="signal" size="lg" className="relative">
+          <Button asChild size="lg" className="bg-white text-[#0A0A0C] hover:bg-white/90">
             <Link href="/download">
               <Download className="size-4" />
               {t('download')}

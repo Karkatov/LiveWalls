@@ -117,7 +117,7 @@ export function SupportForm() {
 
       <Button
         type="submit"
-        variant="signal"
+        variant="gradient"
         size="lg"
         disabled={sending}
         className="w-full sm:w-auto"

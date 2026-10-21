@@ -10,16 +10,6 @@ import { palette } from '@/styles/theme';
 export const PRICE_LOCALE = 'ru-RU';
 export const DATE_LOCALE = 'ru-RU';
 
-/**
- * Тег Intl для локали сайта.
- *
- * Раньше даты и цены всегда форматировались как `ru-RU`, поэтому на
- * английских страницах показывалось «21 октября 2026 г.» и «890 ₽».
- */
-export function localeTag(locale: string): string {
-  return locale === 'en' ? 'en-US' : 'ru-RU';
-}
-
 /** «890 ₽» */
 export function formatPrice(amount: number, locale: string = PRICE_LOCALE): string {
   return new Intl.NumberFormat(locale, {

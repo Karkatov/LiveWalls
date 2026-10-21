@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import { wallpaperBlurDataURL } from '@/lib/utils/placeholders';
 import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Layers } from 'lucide-react';
@@ -59,7 +58,7 @@ export default async function PackPage({
   const tNav = await getTranslations('nav');
 
   return (
-    <article className="mx-auto max-w-[1280px] px-4 py-16 sm:px-8 lg:py-20">
+    <article className="mx-auto max-w-[1200px] px-4 py-10 sm:px-6 lg:py-14">
       <Breadcrumbs
         className="mb-6"
         items={[{ label: tNav('packs'), href: '/packs' }, { label: pack.title }]}
@@ -67,7 +66,7 @@ export default async function PackPage({
 
       <div className="grid gap-10 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
         <Reveal>
-          <div className="frame grain border-border shadow-frame relative overflow-hidden border">
+          <div className="border-border/70 bg-card/50 relative overflow-hidden rounded-3xl border">
             <div className="relative aspect-[3/2]">
               <Image
                 src={pack.poster}
@@ -77,7 +76,7 @@ export default async function PackPage({
                 sizes="(max-width: 1024px) 100vw, 60vw"
                 className="object-cover"
                 placeholder="blur"
-                blurDataURL={wallpaperBlurDataURL(pack.id)}
+                blurDataURL={`/placeholders/packs/pack-01.svg`}
               />
             </div>
           </div>
@@ -86,20 +85,24 @@ export default async function PackPage({
         <Reveal delay={0.08}>
           <div className="flex h-full flex-col">
             <div className="flex flex-wrap items-center gap-2">
-              <Badge variant="signal">
+              <Badge variant="brand">
                 <Layers className="size-3" aria-hidden="true" />
                 {t('count', { count: pack.wallpaperCount })}
               </Badge>
               {pack.badge && <Badge variant="outline">{pack.badge}</Badge>}
             </div>
 
-            <h1 className="text-display-md mt-4">{pack.title}</h1>
+            <h1 className="text-foreground mt-4 text-3xl font-bold tracking-tight text-balance sm:text-4xl">
+              {pack.title}
+            </h1>
 
-            <p className="text-muted-foreground mt-4 leading-relaxed">{pack.description}</p>
+            <p className="text-muted-foreground mt-4 text-sm leading-relaxed text-pretty">
+              {pack.description}
+            </p>
 
-            <div className="border-border bg-card mt-7 rounded-xl border p-5">
-              <p className="text-foreground font-mono text-3xl tabular-nums">{pack.priceText}</p>
-              <p className="text-paper-faint mt-1 text-xs">{t('subtitle')}</p>
+            <div className="border-border/70 bg-card/50 mt-7 rounded-2xl border p-5 backdrop-blur-xl">
+              <p className="text-foreground text-3xl font-bold tracking-tight">{pack.priceText}</p>
+              <p className="text-muted-foreground mt-1 text-xs">{t('subtitle')}</p>
 
               <BuyButton
                 kind="pack"

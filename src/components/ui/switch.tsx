@@ -14,14 +14,14 @@ export const Switch = React.forwardRef<
     className={cn(
       'peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors',
       'focus-visible:outline-ring focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
-      'data-[state=checked]:bg-signal data-[state=unchecked]:bg-secondary',
+      'data-[state=checked]:bg-gradient-brand data-[state=unchecked]:bg-secondary',
       className,
     )}
     {...props}
   >
     <SwitchPrimitive.Thumb
       className={cn(
-        'pointer-events-none block size-5 rounded-full bg-white shadow-sm ring-0 transition-transform',
+        'pointer-events-none block size-5 rounded-full bg-white shadow-lg ring-0 transition-transform',
         'data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0',
       )}
     />

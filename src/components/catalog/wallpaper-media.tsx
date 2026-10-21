@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useReducedMotion } from 'framer-motion';
+import { Play } from 'lucide-react';
 import type { Wallpaper } from '@/types';
 import { cn } from '@/lib/utils/cn';
 import { wallpaperBlurDataURL } from '@/lib/utils/placeholders';
@@ -18,7 +18,7 @@ export function WallpaperMedia({
   sizes = '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw',
   priority = false,
   className,
-  rounded = 'rounded-xl',
+  rounded = 'rounded-2xl',
 }: {
   wallpaper: Wallpaper;
   sizes?: string;
@@ -26,7 +26,6 @@ export function WallpaperMedia({
   className?: string;
   rounded?: string;
 }) {
-  const reduceMotion = useReducedMotion();
   const isVideo = wallpaper.mediaType === 'video' && Boolean(wallpaper.preview);
 
   if (isVideo) {
@@ -38,9 +37,7 @@ export function WallpaperMedia({
         muted
         loop
         playsInline
-        // При prefers-reduced-motion видео не запускается автоматически.
-        autoPlay={!reduceMotion}
-        preload={priority ? 'auto' : 'none'}
+        preload="none"
         aria-label={wallpaper.title}
       />
     );
@@ -57,5 +54,19 @@ export function WallpaperMedia({
       placeholder="blur"
       blurDataURL={wallpaperBlurDataURL(wallpaper.id)}
     />
+  );
+}
+
+/** Значок видео на карточке. */
+export function VideoBadge({ className }: { className?: string }) {
+  return (
+    <span
+      className={cn(
+        'pointer-events-none absolute top-3 left-3 flex items-center gap-1 rounded-full bg-black/55 px-2.5 py-1 text-[11px] font-medium text-white backdrop-blur-md',
+        className,
+      )}
+    >
+      <Play className="size-3 fill-current" aria-hidden="true" />
+    </span>
   );
 }

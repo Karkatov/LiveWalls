@@ -14,7 +14,6 @@
     "retry": "Try again",
     "close": "Close",
     "back": "Back",
-    "previous": "Previous",
     "next": "Next",
     "search": "Search",
     "cancel": "Cancel",
@@ -55,10 +54,7 @@
     "themeDark": "Dark",
     "themeLight": "Light",
     "themeSystem": "System",
-    "language": "Language",
-    "home": "Back to home",
-    "frame": "Frame",
-    "catalogIndex": "Catalog index"
+    "language": "Language"
   },
   "home": {
     "hero": {

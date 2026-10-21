@@ -37,23 +37,22 @@ export async function CategoriesGrid({ categories }: { categories: Category[] })
   const t = await getTranslations('home.categories');
 
   return (
-    <section className="relative mx-auto max-w-[1280px] px-4 py-20 sm:px-8 lg:py-28">
+    <section className="relative mx-auto max-w-[1200px] px-4 py-16 sm:px-6 lg:py-24">
       <SectionHeading
-        index={3}
         eyebrow={t('eyebrow')}
         title={t('title')}
         description={t('description')}
         action={
           <Link
             href="/wallpapers"
-            className="text-signal-foreground text-sm font-medium underline-offset-4 hover:underline"
+            className="text-brand-foreground text-sm font-medium underline-offset-4 hover:underline"
           >
             {t('cta')}
           </Link>
         }
       />
 
-      <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {categories.map((category, index) => {
           const Icon = ICONS[category.icon] ?? LayoutGrid;
 
@@ -62,16 +61,17 @@ export async function CategoriesGrid({ categories }: { categories: Category[] })
               <Link
                 href={{ pathname: '/wallpapers', query: { category: category.id } }}
                 className={cn(
-                  'group border-border bg-card flex items-center gap-4 rounded-xl border p-5',
-                  'transition-colors duration-300 hover:border-[color:var(--hairline-strong)]',
+                  'group border-border/60 bg-card/40 flex items-center gap-4 rounded-2xl border p-5',
+                  'backdrop-blur-xl transition-all duration-300',
+                  'hover:border-brand/35 hover:bg-card/70 hover:-translate-y-0.5',
                   'focus-visible:outline-ring focus-visible:outline-2 focus-visible:outline-offset-4',
                 )}
               >
                 <span
                   className={cn(
-                    'flex size-12 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br',
+                    'flex size-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br',
                     category.accent,
-                    'text-white',
+                    'text-white shadow-lg',
                   )}
                 >
                   <Icon className="size-5" aria-hidden="true" />

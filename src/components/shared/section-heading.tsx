@@ -1,64 +1,49 @@
 import { cn } from '@/lib/utils/cn';
-import { MaskReveal, Reveal } from './motion';
+import { Reveal } from './motion';
 
 /**
- * Заголовок секции.
- *
- * Редакционная разметка: номер секции и моно-eyebrow в левой колонке,
- * крупный заголовок дисплейным шрифтом в правой. Так заголовки читаются
- * как колонтитулы, а не как центрированные «шаблонные» блоки.
+ * Заголовок секции: надзаголовок, заголовок, описание.
  */
 export function SectionHeading({
   eyebrow,
-  index,
   title,
   description,
-  align = 'left',
-  level = 2,
+  align = 'center',
   className,
   action,
 }: {
   eyebrow?: string;
-  /** Номер секции — выводится как `01`, `02`, … */
-  index?: number;
   title: string;
   description?: string;
-  align?: 'left' | 'center';
-  /** Уровень заголовка: `h1` на страницах, `h2` внутри секций. */
-  level?: 1 | 2;
+  align?: 'center' | 'left';
   className?: string;
   action?: React.ReactNode;
 }) {
-  const Heading = level === 1 ? 'h1' : 'h2';
-  const centered = align === 'center';
-
   return (
     <Reveal
       className={cn(
-        'flex flex-col gap-5',
-        centered ? 'items-center text-center' : 'items-start text-left',
+        'flex flex-col gap-4',
+        align === 'center' ? 'items-center text-center' : 'items-start text-left',
         className,
       )}
     >
-      <div className={cn('flex items-center gap-3', centered && 'justify-center')}>
-        {typeof index === 'number' ? (
-          <span className="timecode">{String(index).padStart(2, '0')}</span>
-        ) : null}
-        <span className="bg-signal-line h-px w-8" aria-hidden="true" />
-        {eyebrow ? <span className="eyebrow">{eyebrow}</span> : null}
-      </div>
-
-      <Heading className="text-display-md max-w-3xl">
-        <span className="block overflow-hidden pb-1">
-          <MaskReveal>{title}</MaskReveal>
+      {eyebrow ? (
+        <span className="border-brand/25 bg-brand/10 text-brand-foreground inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium tracking-[0.14em] uppercase">
+          {eyebrow}
         </span>
-      </Heading>
-
-      {description ? (
-        <p className="text-lead text-muted-foreground max-w-2xl">{description}</p>
       ) : null}
 
-      {action ? <div className="mt-1">{action}</div> : null}
+      <h2 className="text-foreground max-w-3xl text-3xl font-bold tracking-tight text-balance sm:text-4xl">
+        {title}
+      </h2>
+
+      {description ? (
+        <p className="text-muted-foreground max-w-2xl text-base leading-relaxed text-pretty sm:text-lg">
+          {description}
+        </p>
+      ) : null}
+
+      {action ? <div className="mt-2">{action}</div> : null}
     </Reveal>
   );
 }

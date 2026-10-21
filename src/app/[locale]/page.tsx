@@ -65,16 +65,11 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
 
       <Reviews reviews={mockReviews} />
 
-      <section className="mx-auto max-w-3xl px-4 py-20 sm:px-8 lg:py-28">
-        <SectionHeading
-          level={2}
-          eyebrow={t('eyebrow')}
-          title={t('title')}
-          description={t('description')}
-        />
+      <section className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:py-24">
+        <SectionHeading eyebrow={t('eyebrow')} title={t('title')} description={t('description')} />
 
         <Reveal>
-          <div className="border-border bg-card mt-10 rounded-xl border px-2 py-2">
+          <div className="border-border/60 bg-card/40 mt-10 rounded-2xl border px-2 py-2 backdrop-blur-xl">
             <FaqAccordion items={faqItems} />
           </div>
         </Reveal>

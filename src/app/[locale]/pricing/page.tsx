@@ -106,13 +106,8 @@ export default async function PricingPage({ params }: { params: Promise<{ locale
   ];
 
   return (
-    <div className="mx-auto max-w-[1280px] px-4 py-16 sm:px-8 lg:py-24">
-      <SectionHeading
-        level={1}
-        eyebrow={tNav('pricing')}
-        title={t('title')}
-        description={t('subtitle')}
-      />
+    <div className="mx-auto max-w-[1200px] px-4 py-12 sm:px-6 lg:py-16">
+      <SectionHeading eyebrow={tNav('pricing')} title={t('title')} description={t('subtitle')} />
 
       {/* Тарифы */}
       <StaggerGroup className="mt-12 grid gap-5 lg:grid-cols-3">
@@ -121,13 +116,13 @@ export default async function PricingPage({ params }: { params: Promise<{ locale
             <div
               className={
                 plan.featured
-                  ? 'border-signal/40 from-signal/12 to-card/60 relative flex h-full flex-col rounded-2xl border bg-gradient-to-b p-7 shadow-[0_30px_90px_-40px_var(--signal-glow-strong)]'
-                  : 'border-border bg-card relative flex h-full flex-col rounded-2xl border p-7'
+                  ? 'border-brand/40 from-brand/12 to-card/60 relative flex h-full flex-col rounded-3xl border bg-gradient-to-b p-7 shadow-[0_30px_90px_-40px_var(--brand-glow-strong)] backdrop-blur-xl'
+                  : 'border-border/70 bg-card/50 relative flex h-full flex-col rounded-3xl border p-7 backdrop-blur-xl'
               }
             >
               {plan.badge && (
                 <span className="absolute -top-3 left-7">
-                  <Badge variant="signal">
+                  <Badge variant="brand">
                     {plan.featured && <Flame className="size-3" aria-hidden="true" />}
                     {plan.badge}
                   </Badge>
@@ -137,7 +132,7 @@ export default async function PricingPage({ params }: { params: Promise<{ locale
               <h2 className="text-foreground text-lg font-semibold tracking-tight">{plan.name}</h2>
 
               <p className="mt-4 flex items-baseline gap-2">
-                <span className="text-foreground font-mono text-4xl tabular-nums">
+                <span className="text-foreground text-4xl font-bold tracking-tight">
                   {plan.price}
                 </span>
                 {plan.period && (
@@ -157,7 +152,7 @@ export default async function PricingPage({ params }: { params: Promise<{ locale
                     title={plan.name}
                     price={plan.id === 'lifetime' ? pricing.lifetime : pricing.yearly}
                     priceLabel={plan.cta}
-                    variant={plan.featured ? 'signal' : 'outline'}
+                    variant={plan.featured ? 'gradient' : 'outline'}
                     size="lg"
                     className="w-full"
                   />
@@ -174,7 +169,7 @@ export default async function PricingPage({ params }: { params: Promise<{ locale
 
       {/* Скидка на триал */}
       <Reveal>
-        <div className="mt-6 flex flex-col items-start gap-3 rounded-xl border border-amber-400/25 bg-amber-400/8 p-5 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-6 flex flex-col items-start gap-3 rounded-2xl border border-amber-400/25 bg-amber-400/8 p-5 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-start gap-3">
             <Sparkles className="mt-0.5 size-5 shrink-0 text-amber-300" aria-hidden="true" />
             <div>
@@ -198,10 +193,10 @@ export default async function PricingPage({ params }: { params: Promise<{ locale
       <div className="mt-6 grid gap-5 sm:grid-cols-2">
         {extras.map((extra, index) => (
           <Reveal key={extra.id} delay={index * 0.06}>
-            <div className="border-border bg-card flex h-full flex-col rounded-xl border p-6">
+            <div className="border-border/70 bg-card/50 flex h-full flex-col rounded-2xl border p-6 backdrop-blur-xl">
               <div className="flex items-start justify-between gap-4">
                 <h2 className="text-foreground text-base font-semibold">{extra.name}</h2>
-                <span className="text-foreground font-mono text-xl tabular-nums">
+                <span className="text-foreground text-xl font-bold tracking-tight">
                   {extra.price}
                 </span>
               </div>
@@ -223,12 +218,14 @@ export default async function PricingPage({ params }: { params: Promise<{ locale
       <section className="mt-16">
         <div className="grid gap-10 lg:grid-cols-2">
           <div>
-            <h2 className="font-display text-section">{t('featuresTitle')}</h2>
+            <h2 className="text-foreground text-2xl font-bold tracking-tight">
+              {t('featuresTitle')}
+            </h2>
 
             <ul className="mt-6 space-y-3">
               {featureKeys.map((key) => (
                 <li key={key} className="flex items-start gap-3">
-                  <span className="bg-signal/15 text-signal-foreground mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full">
+                  <span className="bg-brand/15 text-brand-foreground mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full">
                     <Check className="size-3.5" aria-hidden="true" />
                   </span>
                   <span className="text-muted-foreground text-sm">{t(`features.${key}`)}</span>
@@ -238,7 +235,7 @@ export default async function PricingPage({ params }: { params: Promise<{ locale
           </div>
 
           <div>
-            <h2 className="font-display text-section">{t('faqTitle')}</h2>
+            <h2 className="text-foreground text-2xl font-bold tracking-tight">{t('faqTitle')}</h2>
 
             <dl className="mt-6 space-y-4">
               <div>
@@ -266,12 +263,12 @@ export default async function PricingPage({ params }: { params: Promise<{ locale
 
       {/* Сравнение */}
       <section className="mt-16">
-        <h2 className="font-display text-section">{t('compareTitle')}</h2>
+        <h2 className="text-foreground text-2xl font-bold tracking-tight">{t('compareTitle')}</h2>
 
-        <div className="border-border mt-6 overflow-x-auto rounded-xl border">
+        <div className="border-border/70 mt-6 overflow-x-auto rounded-2xl border">
           <table className="w-full min-w-[560px] border-collapse text-sm">
             <thead>
-              <tr className="bg-card text-left">
+              <tr className="bg-card/60 text-left">
                 <th scope="col" className="text-muted-foreground px-4 py-3 font-medium">
                   {tCommon('all')}
                 </th>
@@ -288,18 +285,18 @@ export default async function PricingPage({ params }: { params: Promise<{ locale
             </thead>
             <tbody>
               {featureKeys.map((key) => (
-                <tr key={key} className="border-border border-t">
+                <tr key={key} className="border-border/60 border-t">
                   <th scope="row" className="text-muted-foreground px-4 py-3 text-left font-normal">
                     {t(`features.${key}`)}
                   </th>
                   <td className="px-4 py-3">
-                    <Check className="text-signal-foreground size-4" aria-hidden="true" />
+                    <Check className="text-brand-foreground size-4" aria-hidden="true" />
                   </td>
                   <td className="px-4 py-3">
-                    <Check className="text-signal-foreground size-4" aria-hidden="true" />
+                    <Check className="text-brand-foreground size-4" aria-hidden="true" />
                   </td>
                   <td className="px-4 py-3">
-                    <Check className="text-signal-foreground size-4" aria-hidden="true" />
+                    <Check className="text-brand-foreground size-4" aria-hidden="true" />
                   </td>
                 </tr>
               ))}

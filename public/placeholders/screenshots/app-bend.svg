@@ -1,49 +1,26 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750">
-    <style>
-    @keyframes drift-sbend {
-      0%, 100% { transform: translate3d(0, 0, 0) scale(1.06); }
-      50% { transform: translate3d(-2%, 2.5%, 0) scale(1.14); }
-    }
-    @keyframes grain-sbend {
-      0%, 100% { transform: translate(0, 0); opacity: 0.14; }
-      25% { transform: translate(-1.5%, 1%); opacity: 0.2; }
-      50% { transform: translate(1%, -1.5%); opacity: 0.12; }
-      75% { transform: translate(1.5%, 1.5%); opacity: 0.18; }
-    }
-    .drift { animation: drift-sbend 32s ease-in-out infinite; transform-origin: center; }
-    .grain { animation: grain-sbend 7s steps(4, end) infinite; }
-    @media (prefers-reduced-motion: reduce) {
-      .drift, .grain { animation: none; }
-    }
-  </style>
     
     <defs>
       <linearGradient id="gsbend" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stop-color="#2A0F14"></stop>
-        <stop offset="55%" stop-color="#7A2430"></stop>
-        <stop offset="100%" stop-color="#E0523F"></stop>
+        <stop offset="0%" stop-color="#FB7185"/>
+        <stop offset="55%" stop-color="#7C5CFF"/>
+        <stop offset="100%" stop-color="#0A0A0C"/>
       </linearGradient>
-      <radialGradient id="rsbend" cx="0.72" cy="0.14" r="0.95">
-        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.3"/>
+      <radialGradient id="rsbend" cx="0.75" cy="0.15" r="0.9">
+        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.28"/>
         <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
       </radialGradient>
-      <radialGradient id="vsbend" cx="0.5" cy="0.55" r="0.75">
-        <stop offset="0%" stop-color="#000000" stop-opacity="0"/>
-        <stop offset="100%" stop-color="#000000" stop-opacity="0.42"/>
-      </radialGradient>
-      <filter id="nsbend" x="-10%" y="-10%" width="120%" height="120%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" stitchTiles="stitch"/>
-      <feColorMatrix type="saturate" values="0"/>
-    </filter>
     </defs>
-    <rect width="1200" height="750" fill="#07080A"/>
-    <rect width="1200" height="750" fill="url(#gsbend)" opacity="0.28"/>
-    <rect class="drift" width="1200" height="750" fill="url(#rsbend)" opacity="0.6"/>
-    <rect x="120" y="150" width="470" height="450" rx="16" fill="url(#gsbend)" opacity="0.65"/>
-           <rect x="610" y="150" width="470" height="450" rx="16" fill="url(#gsbend)" opacity="0.4" transform="scale(-1 1) translate(-1200 0)"/>
-           <path d="M600 150 L600 600" stroke="#E7B24B" stroke-width="2" stroke-dasharray="12 10"/>
-           <circle cx="600" cy="375" r="42" fill="#07080A" opacity="0.75"/>
-           <path d="M586 359 L616 375 L586 391 Z" fill="#F4F2ED"/>
-    <rect class="grain" width="1200" height="750" filter="url(#nsbend)" opacity="0.1"/>
-    <text x="600" y="724" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" letter-spacing="3" fill="#F4F2ED" opacity="0.55">BEND</text>
+    <rect width="1200" height="750" fill="#0A0A0C"/>
+    <g transform="translate(0 0)">
+      <rect width="1200" height="750" fill="url(#gsbend)"/>
+      <rect width="1200" height="750" fill="url(#rsbend)"/>
+    </g>
+    <g transform="translate(40 40)">
+      <rect width="1120" height="670" rx="24" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="2"/>
+    </g>
+    <rect x="120" y="180" width="960" height="390" rx="28" fill="rgba(10,10,12,0.35)"/>
+           <path d="M600 200 L600 550" stroke="rgba(255,255,255,0.5)" stroke-width="3" stroke-dasharray="14 12"/>
+           <circle cx="600" cy="375" r="46" fill="rgba(255,255,255,0.18)"/>
+    <text x="600" y="704" text-anchor="middle" font-family="-apple-system, system-ui, sans-serif" font-size="26" fill="rgba(255,255,255,0.72)">Эффект Bend</text>
   </svg>
