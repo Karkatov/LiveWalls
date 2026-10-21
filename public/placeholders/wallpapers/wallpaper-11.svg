@@ -1,24 +1,59 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+    <style>
+    @keyframes drift-10 {
+      0%, 100% { transform: translate3d(0, 0, 0) scale(1.06); }
+      50% { transform: translate3d(-2%, 2.5%, 0) scale(1.14); }
+    }
+    @keyframes grain-10 {
+      0%, 100% { transform: translate(0, 0); opacity: 0.14; }
+      25% { transform: translate(-1.5%, 1%); opacity: 0.2; }
+      50% { transform: translate(1%, -1.5%); opacity: 0.12; }
+      75% { transform: translate(1.5%, 1.5%); opacity: 0.18; }
+    }
+    .drift { animation: drift-10 44s ease-in-out infinite; transform-origin: center; }
+    .grain { animation: grain-10 7s steps(4, end) infinite; }
+    @media (prefers-reduced-motion: reduce) {
+      .drift, .grain { animation: none; }
+    }
+  </style>
     
     <defs>
       <linearGradient id="g10" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stop-color="#34D399"/>
-        <stop offset="55%" stop-color="#22D3EE"/>
-        <stop offset="100%" stop-color="#064E3B"/>
+        <stop offset="0%" stop-color="#22122E"><animate attributeName="stop-color" values="#22122E;#5B2A66;#22122E" dur="22s" repeatCount="indefinite"/></stop>
+        <stop offset="55%" stop-color="#5B2A66"><animate attributeName="stop-color" values="#5B2A66;#D48AB8;#5B2A66" dur="26s" repeatCount="indefinite"/></stop>
+        <stop offset="100%" stop-color="#D48AB8"><animate attributeName="stop-color" values="#D48AB8;#22122E;#D48AB8" dur="30s" repeatCount="indefinite"/></stop>
       </linearGradient>
-      <radialGradient id="r10" cx="0.75" cy="0.15" r="0.9">
-        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.28"/>
+      <radialGradient id="r10" cx="0.72" cy="0.14" r="0.95">
+        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.3"/>
         <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
       </radialGradient>
+      <radialGradient id="v10" cx="0.5" cy="0.55" r="0.75">
+        <stop offset="0%" stop-color="#000000" stop-opacity="0"/>
+        <stop offset="100%" stop-color="#000000" stop-opacity="0.42"/>
+      </radialGradient>
+      <filter id="n10" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
     </defs>
     <rect width="1600" height="900" fill="url(#g10)"/>
-    <rect width="1600" height="900" fill="url(#r10)"/>
-    <g opacity="0.18" stroke="#ffffff" stroke-width="1" fill="none">
-      <path d="M0 648 Q 480 495.00000000000006 960 675 T 1600 612"/>
-      <path d="M0 738 Q 560 594 1120 774 T 1600 702"/>
+    <g class="drift">
+      <rect width="1600" height="900" fill="url(#r10)"/>
+      <path d="M0 558
+          Q 400 477 800 590.4
+          T 1600 533.6999999999999
+          V 900 H 0 Z"
+          fill="#000000" opacity="0.28"/><path d="M0 666
+          Q 400 602.9999999999999 800 691.2
+          T 1600 647.1
+          V 900 H 0 Z"
+          fill="#000000" opacity="0.26"/><path d="M0 774
+          Q 400 729 800 792
+          T 1600 760.5
+          V 900 H 0 Z"
+          fill="#000000" opacity="0.42"/>
     </g>
-    <g transform="translate(766 416)" opacity="0.92">
-      <circle cx="34" cy="34" r="34" fill="rgba(10,10,12,0.42)" stroke="rgba(255,255,255,0.42)" stroke-width="1.5"/>
-      <path d="M26 20 L50 34 L26 48 Z" fill="#ffffff"/>
-    </g>
+    <rect width="1600" height="900" fill="url(#v10)"/>
+    <rect class="grain" width="1600" height="900" filter="url(#n10)" opacity="0.16"/>
+    <circle cx="1152" cy="198" r="54" fill="#ffffff" opacity="0.14"/>
   </svg>

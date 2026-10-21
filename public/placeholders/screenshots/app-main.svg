@@ -1,25 +1,80 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750">
+    <style>
+    @keyframes drift-smain {
+      0%, 100% { transform: translate3d(0, 0, 0) scale(1.06); }
+      50% { transform: translate3d(-2%, 2.5%, 0) scale(1.14); }
+    }
+    @keyframes grain-smain {
+      0%, 100% { transform: translate(0, 0); opacity: 0.14; }
+      25% { transform: translate(-1.5%, 1%); opacity: 0.2; }
+      50% { transform: translate(1%, -1.5%); opacity: 0.12; }
+      75% { transform: translate(1.5%, 1.5%); opacity: 0.18; }
+    }
+    .drift { animation: drift-smain 32s ease-in-out infinite; transform-origin: center; }
+    .grain { animation: grain-smain 7s steps(4, end) infinite; }
+    @media (prefers-reduced-motion: reduce) {
+      .drift, .grain { animation: none; }
+    }
+  </style>
     
     <defs>
       <linearGradient id="gsmain" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stop-color="#22D3EE"/>
-        <stop offset="55%" stop-color="#0F766E"/>
-        <stop offset="100%" stop-color="#7C5CFF"/>
+        <stop offset="0%" stop-color="#0B2B26"></stop>
+        <stop offset="55%" stop-color="#1E6B5A"></stop>
+        <stop offset="100%" stop-color="#9FD3B0"></stop>
       </linearGradient>
-      <radialGradient id="rsmain" cx="0.75" cy="0.15" r="0.9">
-        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.28"/>
+      <radialGradient id="rsmain" cx="0.72" cy="0.14" r="0.95">
+        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.3"/>
         <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
       </radialGradient>
+      <radialGradient id="vsmain" cx="0.5" cy="0.55" r="0.75">
+        <stop offset="0%" stop-color="#000000" stop-opacity="0"/>
+        <stop offset="100%" stop-color="#000000" stop-opacity="0.42"/>
+      </radialGradient>
+      <filter id="nsmain" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
     </defs>
-    <rect width="1200" height="750" fill="#0A0A0C"/>
-    <g transform="translate(0 0)">
-      <rect width="1200" height="750" fill="url(#gsmain)"/>
-      <rect width="1200" height="750" fill="url(#rsmain)"/>
-    </g>
-    <g transform="translate(40 40)">
-      <rect width="1120" height="670" rx="24" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="2"/>
-    </g>
-    <rect x="60" y="60" width="300" height="630" rx="20" fill="rgba(10,10,12,0.45)"/>
-           <rect x="390" y="60" width="750" height="630" rx="20" fill="rgba(10,10,12,0.28)"/>
-    <text x="600" y="704" text-anchor="middle" font-family="-apple-system, system-ui, sans-serif" font-size="26" fill="rgba(255,255,255,0.72)">LiveWalls — главное окно</text>
+    <rect width="1200" height="750" fill="#07080A"/>
+    <rect width="1200" height="750" fill="url(#gsmain)" opacity="0.28"/>
+    <rect class="drift" width="1200" height="750" fill="url(#rsmain)" opacity="0.6"/>
+    <rect x="48" y="48" width="240" height="654" rx="14" fill="#07080A" opacity="0.55"/>
+           <rect x="70" y="76" width="120" height="10" rx="5" fill="#F4F2ED" opacity="0.5"/>
+           <rect x="70" y="112" width="140" height="8" rx="4" fill="#F4F2ED" opacity="0.75"/><rect x="70" y="146" width="118" height="8" rx="4" fill="#F4F2ED" opacity="0.22"/><rect x="70" y="180" width="96" height="8" rx="4" fill="#F4F2ED" opacity="0.22"/><rect x="70" y="214" width="140" height="8" rx="4" fill="#F4F2ED" opacity="0.22"/><rect x="70" y="248" width="118" height="8" rx="4" fill="#F4F2ED" opacity="0.22"/><rect x="70" y="282" width="96" height="8" rx="4" fill="#F4F2ED" opacity="0.22"/><rect x="70" y="316" width="140" height="8" rx="4" fill="#F4F2ED" opacity="0.22"/>
+           <rect x="312" y="48" width="840" height="56" rx="12" fill="#07080A" opacity="0.4"/>
+           <rect x="336" y="68" width="180" height="12" rx="6" fill="#F4F2ED" opacity="0.35"/>
+           <g>
+                 <rect x="312" y="124" width="264" height="222" rx="12" fill="#FFFFFF" opacity="0.07"/>
+                 <rect x="322" y="134" width="244" height="138" rx="8" fill="#FFFFFF" opacity="0.10"/>
+                 <rect x="322" y="284" width="120" height="9" rx="4" fill="#F4F2ED" opacity="0.35"/>
+                 <rect x="322" y="302" width="70" height="8" rx="4" fill="#F4F2ED" opacity="0.18"/>
+               </g><g>
+                 <rect x="600" y="124" width="264" height="222" rx="12" fill="#FFFFFF" opacity="0.07"/>
+                 <rect x="610" y="134" width="244" height="138" rx="8" fill="#FFFFFF" opacity="0.17"/>
+                 <rect x="610" y="284" width="120" height="9" rx="4" fill="#F4F2ED" opacity="0.35"/>
+                 <rect x="610" y="302" width="70" height="8" rx="4" fill="#F4F2ED" opacity="0.18"/>
+               </g><g>
+                 <rect x="888" y="124" width="264" height="222" rx="12" fill="#FFFFFF" opacity="0.07"/>
+                 <rect x="898" y="134" width="244" height="138" rx="8" fill="#FFFFFF" opacity="0.24"/>
+                 <rect x="898" y="284" width="120" height="9" rx="4" fill="#F4F2ED" opacity="0.35"/>
+                 <rect x="898" y="302" width="70" height="8" rx="4" fill="#F4F2ED" opacity="0.18"/>
+               </g><g>
+                 <rect x="312" y="370" width="264" height="222" rx="12" fill="#FFFFFF" opacity="0.07"/>
+                 <rect x="322" y="380" width="244" height="138" rx="8" fill="#FFFFFF" opacity="0.10"/>
+                 <rect x="322" y="530" width="120" height="9" rx="4" fill="#F4F2ED" opacity="0.35"/>
+                 <rect x="322" y="548" width="70" height="8" rx="4" fill="#F4F2ED" opacity="0.18"/>
+               </g><g>
+                 <rect x="600" y="370" width="264" height="222" rx="12" fill="#FFFFFF" opacity="0.07"/>
+                 <rect x="610" y="380" width="244" height="138" rx="8" fill="#FFFFFF" opacity="0.17"/>
+                 <rect x="610" y="530" width="120" height="9" rx="4" fill="#F4F2ED" opacity="0.35"/>
+                 <rect x="610" y="548" width="70" height="8" rx="4" fill="#F4F2ED" opacity="0.18"/>
+               </g><g>
+                 <rect x="888" y="370" width="264" height="222" rx="12" fill="#FFFFFF" opacity="0.07"/>
+                 <rect x="898" y="380" width="244" height="138" rx="8" fill="#FFFFFF" opacity="0.24"/>
+                 <rect x="898" y="530" width="120" height="9" rx="4" fill="#F4F2ED" opacity="0.35"/>
+                 <rect x="898" y="548" width="70" height="8" rx="4" fill="#F4F2ED" opacity="0.18"/>
+               </g>
+    <rect class="grain" width="1200" height="750" filter="url(#nsmain)" opacity="0.1"/>
+    <text x="600" y="724" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" letter-spacing="3" fill="#F4F2ED" opacity="0.55">КАТАЛОГ</text>
   </svg>
