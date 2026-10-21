@@ -12,10 +12,7 @@ export async function LegalDocumentView({ document }: { document: LegalDocument 
     <div className="grid gap-10 lg:grid-cols-[minmax(0,240px)_minmax(0,1fr)]">
       {/* Оглавление */}
       <aside className="lg:sticky lg:top-24 lg:self-start">
-        <nav
-          aria-label={t('tocTitle')}
-          className="border-border/60 bg-card/40 rounded-2xl border p-5 backdrop-blur-xl"
-        >
+        <nav aria-label={t('tocTitle')} className="border-border bg-card rounded-xl border p-5">
           <p className="text-muted-foreground text-xs font-semibold tracking-[0.14em] uppercase">
             {t('tocTitle')}
           </p>
@@ -48,7 +45,7 @@ export async function LegalDocumentView({ document }: { document: LegalDocument 
         </header>
 
         {document.intro && (
-          <p className="border-border/60 bg-card/40 text-muted-foreground mt-8 rounded-2xl border p-5 text-sm leading-relaxed backdrop-blur-xl">
+          <p className="border-border bg-card text-muted-foreground mt-8 rounded-xl border p-5 text-sm leading-relaxed">
             {document.intro}
           </p>
         )}
@@ -78,7 +75,7 @@ export async function LegalDocumentView({ document }: { document: LegalDocument 
                     >
                       <span
                         aria-hidden="true"
-                        className="bg-brand mt-2 size-1 shrink-0 rounded-full"
+                        className="bg-signal mt-2 size-1 shrink-0 rounded-full"
                       />
                       {item}
                     </li>
@@ -92,7 +89,7 @@ export async function LegalDocumentView({ document }: { document: LegalDocument 
         <a
           href="#top"
           className={cn(
-            'border-border/70 bg-secondary/50 mt-12 inline-flex items-center gap-2 rounded-full border px-4 py-2',
+            'border-border bg-secondary/50 mt-12 inline-flex items-center gap-2 rounded-full border px-4 py-2',
             'text-muted-foreground hover:text-foreground text-sm transition-colors',
           )}
         >

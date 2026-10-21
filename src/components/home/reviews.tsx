@@ -18,7 +18,7 @@ export async function Reviews({ reviews }: { reviews: Review[] }) {
       <StaggerGroup className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {reviews.map((review) => (
           <StaggerItem key={review.id} className="h-full">
-            <figure className="border-border/60 bg-card/40 flex h-full flex-col rounded-2xl border p-6 backdrop-blur-xl">
+            <figure className="border-border bg-card flex h-full flex-col rounded-xl border p-6">
               <div
                 className="flex items-center gap-1"
                 aria-label={t('rating', { rating: review.rating })}
@@ -40,7 +40,7 @@ export async function Reviews({ reviews }: { reviews: Review[] }) {
                 {review.text}
               </blockquote>
 
-              <figcaption className="border-border/60 mt-6 flex items-center gap-3 border-t pt-4">
+              <figcaption className="border-border mt-6 flex items-center gap-3 border-t pt-4">
                 <Image
                   src={review.avatar}
                   alt=""

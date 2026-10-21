@@ -28,7 +28,7 @@ export default function LocaleError({
 
   return (
     <div className="mx-auto flex max-w-[900px] flex-col items-center px-4 py-20 text-center sm:px-6 lg:py-28">
-      <span className="bg-destructive/12 text-destructive ring-destructive/25 flex size-16 items-center justify-center rounded-2xl ring-1">
+      <span className="bg-destructive/12 text-destructive ring-destructive/25 flex size-16 items-center justify-center rounded-xl ring-1">
         <AlertTriangle className="size-7" aria-hidden="true" />
       </span>
 
@@ -47,7 +47,7 @@ export default function LocaleError({
       )}
 
       <div className="mt-8 flex flex-col gap-2 sm:flex-row">
-        <Button variant="gradient" onClick={reset}>
+        <Button variant="signal" onClick={reset}>
           <RotateCcw className="size-4" />
           {t('errorCta')}
         </Button>

@@ -45,7 +45,7 @@ export async function CategoriesGrid({ categories }: { categories: Category[] })
         action={
           <Link
             href="/wallpapers"
-            className="text-brand-foreground text-sm font-medium underline-offset-4 hover:underline"
+            className="text-signal-foreground text-sm font-medium underline-offset-4 hover:underline"
           >
             {t('cta')}
           </Link>
@@ -61,9 +61,9 @@ export async function CategoriesGrid({ categories }: { categories: Category[] })
               <Link
                 href={{ pathname: '/wallpapers', query: { category: category.id } }}
                 className={cn(
-                  'group border-border/60 bg-card/40 flex items-center gap-4 rounded-2xl border p-5',
+                  'group border-border bg-card flex items-center gap-4 rounded-xl border p-5',
                   'backdrop-blur-xl transition-all duration-300',
-                  'hover:border-brand/35 hover:bg-card/70 hover:-translate-y-0.5',
+                  'hover:border-signal/35 hover:bg-card hover:-translate-y-0.5',
                   'focus-visible:outline-ring focus-visible:outline-2 focus-visible:outline-offset-4',
                 )}
               >

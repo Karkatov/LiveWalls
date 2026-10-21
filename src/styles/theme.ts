@@ -7,38 +7,41 @@
  * Тёмная тема — основная. Светлая — аккуратная вторичная.
  */
 export const palette = {
-  /* ── Базовые поверхности ── */
-  background: '#0A0A0C',
-  backgroundElevated: '#101014',
-  surface: 'rgba(255,255,255,0.04)',
-  surfaceStrong: 'rgba(255,255,255,0.08)',
-  surfaceGlass: 'rgba(255,255,255,0.06)',
+  /* ── Нейтральная шкала (тёмная) ── */
+  background: '#07080A',
+  backgroundElevated: '#0C0D10',
+  surface: 'rgba(244,242,237,0.035)',
+  surfaceStrong: 'rgba(244,242,237,0.06)',
+  surfaceGlass: 'rgba(12,13,16,0.72)',
 
   /* ── Границы и разделители ── */
-  border: 'rgba(255,255,255,0.08)',
-  borderStrong: 'rgba(255,255,255,0.16)',
+  border: 'rgba(244,242,237,0.10)',
+  borderStrong: 'rgba(244,242,237,0.20)',
 
-  /* ── Текст ── */
-  foreground: '#F5F5F7',
-  foregroundSecondary: 'rgba(245,245,247,0.68)',
-  foregroundMuted: 'rgba(245,245,247,0.42)',
+  /* ── Бумага (текст) ── */
+  foreground: '#F4F2ED',
+  foregroundSecondary: 'rgba(244,242,237,0.64)',
+  foregroundMuted: 'rgba(244,242,237,0.38)',
 
-  /* ── Бренд ── */
-  brandFrom: '#7C5CFF',
-  brandVia: '#6366F1',
-  brandTo: '#22D3EE',
-  brandGlow: 'rgba(124,92,255,0.35)',
-  brandGlowStrong: 'rgba(124,92,255,0.55)',
-  cyanGlow: 'rgba(34,211,238,0.28)',
+  /* ── Акцент: свет проектора ── */
+  signal: '#E7B24B',
+  signalSoft: 'rgba(231,178,75,0.14)',
+  signalGlow: 'rgba(231,178,75,0.32)',
+  signalGlowStrong: 'rgba(231,178,75,0.5)',
+
+  /* ── Редкий второй акцент ── */
+  live: '#E0523F',
 
   /* ── Состояния ── */
   success: '#34D399',
   warning: '#FBBF24',
-  destructive: '#F87171',
+  destructive: '#E0523F',
 } as const;
 
-/** Градиент бренда — CSS-строка для inline-стилей и SVG. */
-export const brandGradient = `linear-gradient(135deg, ${palette.brandFrom} 0%, ${palette.brandVia} 50%, ${palette.brandTo} 100%)`;
+/** Акцентный градиент — для inline-стилей и SVG. */
+export const signalGradient = `linear-gradient(135deg, #F2CD80 0%, ${palette.signal} 55%, #CF922C 100%)`;
+/** @deprecated Старое имя — замена {@link signalGradient}. */
+export const brandGradient = signalGradient;
 
 /** Скругления (px). */
 export const radius = {
@@ -53,10 +56,10 @@ export const radius = {
 
 /** Тени и свечения. */
 export const shadows = {
-  card: '0 1px 0 0 rgba(255,255,255,0.04) inset, 0 12px 40px -12px rgba(0,0,0,0.6)',
-  cardHover: '0 1px 0 0 rgba(255,255,255,0.08) inset, 0 24px 60px -20px rgba(0,0,0,0.8)',
-  glow: `0 0 0 1px rgba(124,92,255,0.18), 0 18px 60px -18px ${palette.brandGlow}`,
-  glowStrong: `0 0 0 1px rgba(124,92,255,0.35), 0 26px 80px -20px ${palette.brandGlowStrong}`,
+  card: '0 1px 0 0 rgba(244,242,237,0.05) inset, 0 24px 60px -30px rgba(0,0,0,0.9)',
+  cardHover: '0 1px 0 0 rgba(244,242,237,0.07) inset, 0 32px 80px -34px rgba(0,0,0,0.95)',
+  glow: `0 0 0 1px ${palette.signalSoft}, 0 18px 50px -22px ${palette.signalGlow}`,
+  glowStrong: `0 0 0 1px rgba(231,178,75,0.4), 0 26px 70px -24px ${palette.signalGlowStrong}`,
 } as const;
 
 /** Breakpoint’ы (px) — синхронизированы с Tailwind. */
@@ -103,18 +106,18 @@ export const typography = {
 
 /** Фиксированный набор градиентных подложек для плейсхолдеров. */
 export const placeholderGradients: ReadonlyArray<readonly [string, string, string]> = [
-  ['#7C5CFF', '#22D3EE', '#0EA5E9'],
-  ['#6366F1', '#8B5CF6', '#EC4899'],
-  ['#22D3EE', '#0F766E', '#7C5CFF'],
-  ['#F472B6', '#8B5CF6', '#312E81'],
-  ['#38BDF8', '#1E3A8A', '#7C5CFF'],
-  ['#FB7185', '#7C5CFF', '#0A0A0C'],
-  ['#2DD4BF', '#3B82F6', '#1E1B4B'],
-  ['#A78BFA', '#F0ABFC', '#4C1D95'],
-  ['#0EA5E9', '#22D3EE', '#164E63'],
-  ['#F59E0B', '#EF4444', '#7C2D12'],
-  ['#34D399', '#22D3EE', '#064E3B'],
-  ['#818CF8', '#22D3EE', '#1E1B4B'],
+  ['#0F2E4C', '#1C6E8C', '#E7B24B'],
+  ['#2B1B3D', '#6B3F6E', '#E0523F'],
+  ['#0B2B26', '#1E6B5A', '#9FD3B0'],
+  ['#3A2410', '#8C5A22', '#F0C674'],
+  ['#101826', '#25405E', '#7FA8C9'],
+  ['#2A0F14', '#7A2430', '#E0523F'],
+  ['#16161C', '#3A3A46', '#8C8C9E'],
+  ['#1A2A1E', '#3E6B4A', '#B9D9A3'],
+  ['#241C0E', '#6B4E1E', '#D9B26A'],
+  ['#0D1B2A', '#3A506B', '#C9D6E3'],
+  ['#22122E', '#5B2A66', '#D48AB8'],
+  ['#0C1A14', '#26513C', '#8FCFA8'],
 ];
 
 /**

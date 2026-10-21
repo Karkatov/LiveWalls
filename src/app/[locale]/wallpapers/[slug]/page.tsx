@@ -86,7 +86,7 @@ export default async function WallpaperPage({
       <div className="grid gap-10 lg:grid-cols-[minmax(0,1.55fr)_minmax(0,1fr)]">
         {/* Превью */}
         <Reveal>
-          <div className="border-border/70 bg-card/50 relative overflow-hidden rounded-3xl border shadow-[0_40px_120px_-40px_rgba(0,0,0,0.9)]">
+          <div className="border-border bg-card relative overflow-hidden rounded-2xl border shadow-[0_40px_120px_-40px_rgba(0,0,0,0.9)]">
             <div className="relative aspect-video">
               <WallpaperMedia
                 wallpaper={wallpaper}
@@ -96,7 +96,7 @@ export default async function WallpaperPage({
               />
 
               {wallpaper.mediaType === 'video' && (
-                <span className="pointer-events-none absolute top-4 left-4 flex items-center gap-1.5 rounded-full bg-black/55 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-md">
+                <span className="pointer-events-none absolute top-4 left-4 flex items-center gap-1.5 rounded-full bg-black/55 px-3 py-1.5 text-xs font-medium text-white">
                   <Play className="size-3.5 fill-current" aria-hidden="true" />
                   {t('videoBadge')}
                 </span>
@@ -109,7 +109,7 @@ export default async function WallpaperPage({
         <Reveal delay={0.08}>
           <div className="flex h-full flex-col">
             <div className="flex flex-wrap items-center gap-2">
-              <Badge variant="brand">{t('premiumBadge')}</Badge>
+              <Badge variant="signal">{t('premiumBadge')}</Badge>
               <Badge variant="outline">{wallpaper.category}</Badge>
               {wallpaper.isCuratedPick && <Badge variant="success">Curated</Badge>}
             </div>
@@ -142,7 +142,7 @@ export default async function WallpaperPage({
             </p>
 
             {/* Покупка */}
-            <div className="border-border/70 bg-card/50 mt-7 rounded-2xl border p-5 backdrop-blur-xl">
+            <div className="border-border bg-card mt-7 rounded-xl border p-5">
               <div className="flex items-end justify-between gap-4">
                 <div>
                   <p className="text-muted-foreground text-xs tracking-[0.14em] uppercase">
@@ -168,7 +168,7 @@ export default async function WallpaperPage({
                     className="flex-1"
                   />
                 ) : (
-                  <Button asChild variant="gradient" size="lg" className="flex-1">
+                  <Button asChild variant="signal" size="lg" className="flex-1">
                     <Link href="/download">
                       <Download className="size-4" />
                       {t('download')}
@@ -187,7 +187,7 @@ export default async function WallpaperPage({
                 <ul className="mt-2.5 flex flex-wrap gap-2">
                   {wallpaper.tags.map((tag) => (
                     <li key={tag}>
-                      <span className="border-border/70 bg-secondary/50 text-muted-foreground inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-xs">
+                      <span className="border-border bg-secondary/50 text-muted-foreground inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-xs">
                         <Heart className="size-3" aria-hidden="true" />
                         {tag}
                       </span>
@@ -207,10 +207,7 @@ export default async function WallpaperPage({
 
           <dl className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {specs.map((spec) => (
-              <div
-                key={spec.label}
-                className="border-border/60 bg-card/40 rounded-2xl border px-4 py-3 backdrop-blur-xl"
-              >
+              <div key={spec.label} className="border-border bg-card rounded-xl border px-4 py-3">
                 <dt className="text-muted-foreground text-xs tracking-[0.12em] uppercase">
                   {spec.label}
                 </dt>

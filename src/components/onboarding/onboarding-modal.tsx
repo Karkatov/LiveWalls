@@ -55,7 +55,7 @@ export function OnboardingModal() {
                   key={index}
                   className={cn(
                     'h-1 flex-1 rounded-full transition-colors duration-300',
-                    index <= step ? 'bg-gradient-brand' : 'bg-secondary',
+                    index <= step ? 'bg-gradient-signal' : 'bg-secondary',
                   )}
                 />
               ))}
@@ -71,7 +71,7 @@ export function OnboardingModal() {
               >
                 {step === 0 && (
                   <div className="space-y-4">
-                    <span className="bg-gradient-brand flex size-14 items-center justify-center rounded-2xl text-white shadow-[0_14px_40px_-14px_var(--brand-glow)]">
+                    <span className="bg-gradient-signal flex size-14 items-center justify-center rounded-xl text-white shadow-[0_14px_40px_-14px_var(--signal-glow)]">
                       <Sparkles className="size-6" aria-hidden="true" />
                     </span>
                     <h2 className="text-foreground text-2xl font-bold tracking-tight">
@@ -117,7 +117,7 @@ export function OnboardingModal() {
 
                 {step === 2 && (
                   <div className="space-y-4">
-                    <span className="bg-gradient-brand flex size-14 items-center justify-center rounded-2xl text-white shadow-[0_14px_40px_-14px_var(--brand-glow)]">
+                    <span className="bg-gradient-signal flex size-14 items-center justify-center rounded-xl text-white shadow-[0_14px_40px_-14px_var(--signal-glow)]">
                       <Download className="size-6" aria-hidden="true" />
                     </span>
                     <h2 className="text-foreground text-2xl font-bold tracking-tight">
@@ -133,7 +133,7 @@ export function OnboardingModal() {
                           className="text-foreground/90 flex items-start gap-2 text-sm"
                         >
                           <Check
-                            className="text-brand-foreground mt-0.5 size-4 shrink-0"
+                            className="text-signal-foreground mt-0.5 size-4 shrink-0"
                             aria-hidden="true"
                           />
                           {feature}
@@ -147,7 +147,7 @@ export function OnboardingModal() {
           </div>
 
           {/* Действия */}
-          <div className="border-border/60 bg-background/40 relative flex items-center justify-between gap-3 border-t px-6 py-4 sm:px-8">
+          <div className="border-border bg-background/40 relative flex items-center justify-between gap-3 border-t px-6 py-4 sm:px-8">
             <Button variant="ghost" size="sm" onClick={handleFinish}>
               {t('skip')}
             </Button>
@@ -159,12 +159,12 @@ export function OnboardingModal() {
                 </Button>
               )}
               {isLast ? (
-                <Button variant="gradient" size="sm" onClick={handleFinish}>
+                <Button variant="signal" size="sm" onClick={handleFinish}>
                   {t('finish')}
                   <ArrowRight className="size-4" />
                 </Button>
               ) : (
-                <Button variant="gradient" size="sm" onClick={() => setStep((value) => value + 1)}>
+                <Button variant="signal" size="sm" onClick={() => setStep((value) => value + 1)}>
                   {t('next')}
                   <ArrowRight className="size-4" />
                 </Button>
@@ -197,8 +197,8 @@ function ThemeOption({
         'flex flex-col items-center gap-2 rounded-xl border px-3 py-4 text-xs transition-all',
         'focus-visible:outline-ring focus-visible:outline-2 focus-visible:outline-offset-2',
         active
-          ? 'border-brand/60 bg-brand/12 text-foreground shadow-[0_0_0_1px_rgba(124,92,255,0.25)]'
-          : 'border-border/70 bg-secondary/40 text-muted-foreground hover:border-brand/30 hover:text-foreground',
+          ? 'border-signal/60 bg-signal/12 text-foreground shadow-[0_0_0_1px_rgba(124,92,255,0.25)]'
+          : 'border-border bg-secondary/40 text-muted-foreground hover:border-signal/30 hover:text-foreground',
       )}
     >
       {icon}

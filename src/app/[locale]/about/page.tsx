@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import { wallpaperBlurDataURL } from '@/lib/utils/placeholders';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Apple, Cpu, Download, Layers3, MonitorSmartphone, Sparkles } from 'lucide-react';
 import { routing, type Locale } from '@/i18n/routing';
@@ -70,7 +71,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
           {screenshots.map((shot, index) => (
             <Reveal key={shot.src} delay={index * 0.05}>
-              <figure className="border-border/70 bg-card/50 overflow-hidden rounded-2xl border">
+              <figure className="border-border bg-card overflow-hidden rounded-xl border">
                 <Image
                   src={shot.src}
                   alt={shot.label}
@@ -78,7 +79,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                   height={750}
                   className="w-full"
                   placeholder="blur"
-                  blurDataURL={`/placeholders/screenshots/app-main.svg`}
+                  blurDataURL={wallpaperBlurDataURL('app-about')}
                 />
                 <figcaption className="text-muted-foreground px-4 py-3 text-sm">
                   {shot.label}
@@ -96,8 +97,8 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         <StaggerGroup className="mt-8 grid gap-4 md:grid-cols-3">
           {highlights.map((item) => (
             <StaggerItem key={item.text} className="h-full">
-              <div className="border-border/60 bg-card/40 flex h-full flex-col rounded-2xl border p-6 backdrop-blur-xl">
-                <span className="bg-brand/10 text-brand-foreground ring-brand/20 flex size-11 items-center justify-center rounded-xl ring-1">
+              <div className="border-border bg-card flex h-full flex-col rounded-xl border p-6">
+                <span className="bg-signal/10 text-signal-foreground ring-signal/20 flex size-11 items-center justify-center rounded-xl ring-1">
                   <item.icon className="size-5" aria-hidden="true" />
                 </span>
                 <p className="text-muted-foreground mt-4 text-sm leading-relaxed">{item.text}</p>
@@ -118,7 +119,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
           {requirements.map((item) => (
             <div
               key={item.label}
-              className="border-border/60 bg-card/40 flex items-start gap-3 rounded-2xl border px-5 py-4 backdrop-blur-xl"
+              className="border-border bg-card flex items-start gap-3 rounded-xl border px-5 py-4"
             >
               <span className="bg-secondary/60 text-foreground flex size-9 shrink-0 items-center justify-center rounded-lg">
                 <item.icon className="size-4" aria-hidden="true" />
@@ -136,7 +137,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
 
       {/* CTA */}
       <Reveal>
-        <div className="border-brand/25 bg-gradient-brand mt-16 flex flex-col items-center gap-4 rounded-3xl border px-6 py-12 text-center shadow-[0_30px_90px_-40px_var(--brand-glow-strong)]">
+        <div className="border-signal/25 bg-gradient-signal mt-16 flex flex-col items-center gap-4 rounded-2xl border px-6 py-12 text-center shadow-[0_30px_90px_-40px_var(--signal-glow-strong)]">
           <h2 className="text-2xl font-bold tracking-tight text-balance text-white sm:text-3xl">
             {t('download')}
           </h2>

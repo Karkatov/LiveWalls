@@ -6,37 +6,48 @@ import { cn } from '@/lib/utils/cn';
 /**
  * Кнопка.
  *
- * Варианты: gradient (главная CTA), default, secondary, outline, ghost, destructive, link.
- * Тактильность обеспечивает active:scale + transition — без JS-анимаций,
- * чтобы не тянуть Framer Motion в каждую кнопку.
+ * Варианты:
+ *  - `signal` — янтарный акцент (главный призыв);
+ *  - `solid`  — бумажный (второй по важности);
+ *  - `outline`— контур;
+ *  - `ghost`  — без фона;
+ *  - `link`   — текстовая ссылка.
+ *
+ * Тактильность: блик при наведении, сжатие при нажатии, кольцо фокуса.
+ * Всё на CSS — без Framer Motion в каждой кнопке.
  */
 const buttonVariants = cva(
-  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-sm font-medium transition-all duration-200 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring',
+  [
+    'relative inline-flex items-center justify-center gap-2 whitespace-nowrap overflow-hidden',
+    'font-medium transition-[color,background-color,border-color,transform,box-shadow] duration-200',
+    'disabled:pointer-events-none disabled:opacity-50',
+    '[&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
+    'active:scale-[0.985]',
+    'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring',
+  ],
   {
     variants: {
       variant: {
-        gradient:
-          'bg-gradient-brand text-white shadow-[0_10px_30px_-12px_var(--brand-glow)] hover:shadow-[0_16px_44px_-12px_var(--brand-glow-strong)] hover:brightness-110',
-        default:
-          'bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_8px_24px_-14px_rgba(0,0,0,0.8)]',
-        secondary:
-          'bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border/60',
+        signal:
+          'bg-signal text-ink-900 font-semibold rounded-md hover:bg-signal/90 shadow-[0_10px_30px_-16px_var(--signal)]',
+        solid:
+          'bg-paper text-ink-900 rounded-md hover:bg-paper/90 shadow-[0_10px_30px_-18px_rgba(0,0,0,0.9)]',
         outline:
-          'border border-border bg-transparent text-foreground hover:bg-secondary/60 hover:border-border',
-        ghost: 'text-foreground hover:bg-secondary/70',
-        destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
-        link: 'text-foreground underline-offset-4 hover:underline',
+          'border border-border text-foreground rounded-md hover:border-[color:var(--hairline-strong)] hover:bg-secondary/60',
+        ghost: 'text-foreground rounded-md hover:bg-secondary/70',
+        danger: 'bg-destructive text-destructive-foreground rounded-md hover:bg-destructive/90',
+        link: 'text-foreground underline-offset-4 hover:text-signal-foreground hover:underline',
       },
       size: {
-        sm: 'h-9 px-4 text-[13px]',
-        default: 'h-11 px-6',
-        lg: 'h-13 px-8 text-base',
+        sm: 'h-9 px-3.5 text-[13px]',
+        default: 'h-11 px-5',
+        lg: 'h-12 px-7 text-base',
         icon: 'size-10',
         'icon-sm': 'size-8',
       },
     },
     defaultVariants: {
-      variant: 'default',
+      variant: 'solid',
       size: 'default',
     },
   },

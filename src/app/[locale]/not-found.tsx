@@ -21,7 +21,7 @@ export default function LocaleNotFound() {
         className="border-solid"
         action={
           <div className="flex flex-col gap-2 sm:flex-row">
-            <Button asChild variant="gradient">
+            <Button asChild variant="signal">
               <Link href="/wallpapers">
                 {t('notFoundCta')}
                 <ArrowRight className="size-4" />

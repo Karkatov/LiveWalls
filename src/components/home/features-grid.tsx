@@ -9,7 +9,7 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 import { SectionHeading } from '@/components/shared/section-heading';
-import { Reveal, StaggerGroup, StaggerItem } from '@/components/shared/motion';
+import { StaggerGroup, StaggerItem } from '@/components/shared/motion';
 
 /** Иконки для блока преимуществ. */
 const ICONS: LucideIcon[] = [
@@ -38,8 +38,8 @@ export async function FeaturesGrid() {
 
           return (
             <StaggerItem key={key} className="h-full">
-              <article className="group border-border/60 bg-card/40 hover:border-brand/30 hover:bg-card/70 h-full rounded-2xl border p-6 backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5">
-                <span className="bg-brand/10 text-brand-foreground ring-brand/20 group-hover:bg-brand/20 flex size-11 items-center justify-center rounded-xl ring-1 transition-colors">
+              <article className="group border-border bg-card hover:border-signal/30 hover:bg-card h-full rounded-xl border p-6 transition-all duration-300 hover:-translate-y-0.5">
+                <span className="bg-signal/10 text-signal-foreground ring-signal/20 group-hover:bg-signal/20 flex size-11 items-center justify-center rounded-xl ring-1 transition-colors">
                   <Icon className="size-5" aria-hidden="true" />
                 </span>
 
@@ -54,12 +54,6 @@ export async function FeaturesGrid() {
           );
         })}
       </StaggerGroup>
-
-      <Reveal>
-        <div className="border-border/60 bg-card/30 text-muted-foreground mt-8 rounded-2xl border px-5 py-4 text-center text-sm backdrop-blur-xl">
-          {t('description')}
-        </div>
-      </Reveal>
     </section>
   );
 }

@@ -43,7 +43,7 @@ export function Header() {
       className={cn(
         'fixed inset-x-0 top-0 z-40 transition-all duration-300',
         scrolled
-          ? 'border-border/60 bg-background/70 supports-[backdrop-filter]:bg-background/55 border-b backdrop-blur-xl'
+          ? 'border-border bg-background/70 supports-[backdrop-filter]:bg-background/55 border-b backdrop-blur-xl'
           : 'border-b border-transparent bg-transparent',
       )}
     >
@@ -85,7 +85,7 @@ export function Header() {
           <LangToggle />
           <ThemeToggle />
 
-          <Button asChild variant="gradient" size="sm" className="ml-1 hidden sm:inline-flex">
+          <Button asChild variant="signal" size="sm" className="ml-1 hidden sm:inline-flex">
             <Link href="/download">
               <Download className="size-4" />
               {t('install')}
@@ -126,7 +126,7 @@ export function Header() {
             animate={reduce ? { opacity: 1 } : { opacity: 1, height: 'auto' }}
             exit={reduce ? { opacity: 0 } : { opacity: 0, height: 0 }}
             transition={{ duration: reduce ? 0.01 : 0.32, ease: [0.22, 1, 0.36, 1] }}
-            className="border-border/60 bg-background/90 overflow-hidden border-t backdrop-blur-xl lg:hidden"
+            className="border-border bg-background/90 overflow-hidden border-t backdrop-blur-xl lg:hidden"
           >
             <nav aria-label={t('mainNav')} className="mx-auto max-w-[1200px] px-4 py-4 sm:px-6">
               <ul className="flex flex-col gap-1">
@@ -152,8 +152,8 @@ export function Header() {
                 ))}
               </ul>
 
-              <div className="border-border/60 mt-4 flex flex-col gap-2 border-t pt-4">
-                <Button asChild variant="gradient" className="w-full">
+              <div className="border-border mt-4 flex flex-col gap-2 border-t pt-4">
+                <Button asChild variant="signal" className="w-full">
                   <Link href="/download">
                     <Download className="size-4" />
                     {t('install')}

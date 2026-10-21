@@ -1,37 +1,41 @@
 import type { Transition, Variants } from 'framer-motion';
 
 /**
- * Общие варианты анимаций Framer Motion.
+ * Motion-язык LiveWalls (Kinetic Cinema).
  *
- * Все анимации построены на двух кривых:
- *  - smooth — плавное появление, скролл-эффекты;
- *  - snappy — тактильные микровзаимодействия (кнопки, карточки).
- *
- * Уважение prefers-reduced-motion: компоненты берут `useReducedMotion()`
- * и переключаются на `reducedVariants` (см. src/lib/hooks/use-reduced-motion.ts).
+ * Единственный источник кривых, длительностей и вариантов для всего сайта.
+ * Значения совпадают с CSS-токенами в `src/app/globals.css`
+ * (`--ease-expo`, `--ease-soft`, `--ease-strict`), поэтому CSS-анимации
+ * и Framer Motion ведут себя одинаково.
  */
 
-/** Плавная кривая — для появления и скролла. */
-export const easeSmooth: Transition['ease'] = [0.22, 1, 0.36, 1];
+/** Появление: резкий старт, длинное затухание. */
+export const easeExpo: Transition['ease'] = [0.16, 1, 0.3, 1];
 
-/** Пружинистая кривая — для нажатий и смены состояний. */
-export const easeSnappy: Transition['ease'] = [0.34, 1.56, 0.64, 1];
+/** Смена состояния: мягкий разгон и торможение. */
+export const easeSoft: Transition['ease'] = [0.32, 0.72, 0, 1];
 
-/** Строгая кривая — для мелких сдвигов. */
+/** Строгая кривая для мелких сдвигов. */
 export const easeStrict: Transition['ease'] = [0.4, 0, 0.2, 1];
 
 export const transitions = {
-  fast: { duration: 0.2, ease: easeSnappy } satisfies Transition,
-  base: { duration: 0.4, ease: easeSmooth } satisfies Transition,
-  slow: { duration: 0.7, ease: easeSmooth } satisfies Transition,
-  spring: { type: 'spring', stiffness: 380, damping: 32, mass: 0.8 } satisfies Transition,
-  springSoft: { type: 'spring', stiffness: 180, damping: 26, mass: 1 } satisfies Transition,
+  /** 160 мс — hover, фокус, мелкие состояния */
+  fast: { duration: 0.16, ease: easeExpo },
+  /** 280 мс — появление панелей, смена вкладок */
+  base: { duration: 0.28, ease: easeSoft },
+  /** 720 мс — появление при скролле */
+  reveal: { duration: 0.72, ease: easeExpo },
+  /** 900 мс — кадр обоев на hover */
+  frame: { duration: 0.9, ease: easeExpo },
+  /** Пружина для тактильных элементов */
+  spring: { type: 'spring', stiffness: 140, damping: 22, mass: 0.9 },
+  springSoft: { type: 'spring', stiffness: 90, damping: 20, mass: 1 },
 } as const;
 
 /** Появление снизу вверх. */
 export const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: transitions.base },
+  visible: { opacity: 1, y: 0, transition: transitions.reveal },
 };
 
 /** Появление с лёгким масштабированием. */
@@ -40,70 +44,35 @@ export const fadeIn: Variants = {
   visible: { opacity: 1, transition: transitions.base },
 };
 
-export const scaleIn: Variants = {
-  hidden: { opacity: 0, scale: 0.94 },
-  visible: { opacity: 1, scale: 1, transition: transitions.spring },
+/**
+ * Появление из-под маски: элемент «выезжает» из-под обрезки,
+ * как кадр, поднимающийся в монтажной склейке.
+ */
+export const maskReveal: Variants = {
+  hidden: { y: '110%' },
+  visible: { y: '0%', transition: transitions.reveal },
 };
 
-/** Появление слева. */
-export const slideInLeft: Variants = {
-  hidden: { opacity: 0, x: -28 },
-  visible: { opacity: 1, x: 0, transition: transitions.base },
+/** Кадр: лёгкое увеличение изображения при наведении. */
+export const frameHover: Variants = {
+  rest: { scale: 1 },
+  hover: { scale: 1.045, transition: transitions.frame },
 };
 
-/** Появление справа. */
-export const slideInRight: Variants = {
-  hidden: { opacity: 0, x: 28 },
-  visible: { opacity: 1, x: 0, transition: transitions.base },
-};
-
-/** Контейнер, дети которого появляются по очереди (stagger). */
-export const staggerContainer = (stagger = 0.07, delayChildren = 0.05): Variants => ({
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: stagger, delayChildren },
-  },
-});
-
-/** Ребёнок staggered-контейнера. */
-export const staggerItem: Variants = {
-  hidden: { opacity: 0, y: 22 },
-  visible: { opacity: 1, y: 0, transition: transitions.base },
-};
-
-/** Параллакс для hero-блока. */
-export const parallax = (distance = 60): Variants => ({
-  hidden: { opacity: 0, y: distance, scale: 0.98 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { ...transitions.slow },
-  },
-});
-
-/** Переход между страницами. */
-export const pageTransition: Variants = {
-  hidden: { opacity: 0, y: 12 },
-  visible: { opacity: 1, y: 0, transition: transitions.base },
-  exit: { opacity: 0, y: -8, transition: { duration: 0.25, ease: easeStrict } },
-};
-
-/** Наведение на карточку: подъём + свечение. */
-export const cardHover = {
-  rest: { y: 0, scale: 1 },
-  hover: { y: -6, scale: 1.015, transition: transitions.spring },
-  tap: { scale: 0.985, transition: transitions.fast },
-} satisfies Record<string, unknown>;
-
-/** Варианты для режима «уменьшенная анимация». */
+/** Варианты для режима «уменьшить движение». */
 export const reducedVariants: Variants = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.01 } },
-  exit: { opacity: 0, transition: { duration: 0.01 } },
+  visible: { opacity: 1, transition: { duration: 0.2 } },
 };
 
-export const reducedStaggerItem: Variants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.01 } },
-};
+/** Каскад появления дочерних элементов. */
+export const staggerContainer = (stagger = 0.07, delayChildren = 0): Variants => ({
+  hidden: {},
+  visible: { transition: { staggerChildren: stagger, delayChildren } },
+});
+
+/** Появление ребёнка каскада. */
+export const staggerChild = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: transitions.reveal },
+} satisfies Variants;

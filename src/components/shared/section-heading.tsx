@@ -28,7 +28,7 @@ export function SectionHeading({
       )}
     >
       {eyebrow ? (
-        <span className="border-brand/25 bg-brand/10 text-brand-foreground inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium tracking-[0.14em] uppercase">
+        <span className="border-signal/25 bg-signal/10 text-signal-foreground inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium tracking-[0.14em] uppercase">
           {eyebrow}
         </span>
       ) : null}

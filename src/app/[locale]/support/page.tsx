@@ -67,7 +67,7 @@ export default async function SupportPage({ params }: { params: Promise<{ locale
 
       <div className="mt-12 grid gap-8 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)]">
         <Reveal>
-          <div className="border-border/70 bg-card/50 rounded-3xl border p-6 backdrop-blur-xl sm:p-8">
+          <div className="border-border bg-card rounded-2xl border p-6 sm:p-8">
             <h2 className="text-foreground text-lg font-semibold tracking-tight">
               {t('formTitle')}
             </h2>
@@ -79,7 +79,7 @@ export default async function SupportPage({ params }: { params: Promise<{ locale
         </Reveal>
 
         <Reveal delay={0.08}>
-          <div className="border-border/70 bg-card/40 rounded-3xl border p-6 backdrop-blur-xl sm:p-8">
+          <div className="border-border bg-card rounded-2xl border p-6 sm:p-8">
             <h2 className="text-foreground text-lg font-semibold tracking-tight">
               {t('contactsTitle')}
             </h2>
@@ -88,9 +88,9 @@ export default async function SupportPage({ params }: { params: Promise<{ locale
               {contacts.map((contact) => (
                 <li
                   key={contact.label}
-                  className="border-border/60 bg-background/40 flex items-start gap-3 rounded-2xl border px-4 py-3"
+                  className="border-border bg-background/40 flex items-start gap-3 rounded-xl border px-4 py-3"
                 >
-                  <span className="bg-brand/10 text-brand-foreground flex size-9 shrink-0 items-center justify-center rounded-lg">
+                  <span className="bg-signal/10 text-signal-foreground flex size-9 shrink-0 items-center justify-center rounded-lg">
                     <contact.icon className="size-4" aria-hidden="true" />
                   </span>
 
@@ -115,7 +115,7 @@ export default async function SupportPage({ params }: { params: Promise<{ locale
               ))}
             </ul>
 
-            <p className="border-border/60 bg-background/40 text-muted-foreground mt-6 rounded-2xl border px-4 py-3 text-sm leading-relaxed">
+            <p className="border-border bg-background/40 text-muted-foreground mt-6 rounded-xl border px-4 py-3 text-sm leading-relaxed">
               {t('faqLink')}
             </p>
           </div>

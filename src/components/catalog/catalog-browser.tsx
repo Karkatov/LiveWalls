@@ -44,6 +44,7 @@ export function CatalogBrowser({
   initialFilters: WallpaperFilters;
 }) {
   const t = useTranslations('catalog');
+  const tCommon = useTranslations('common');
   const router = useRouter();
   const { favorites } = useFavorites();
 
@@ -117,7 +118,7 @@ export function CatalogBrowser({
   return (
     <div className="space-y-8">
       {/* Панель фильтров */}
-      <div className="border-border/60 bg-card/40 rounded-2xl border p-4 backdrop-blur-xl sm:p-5">
+      <div className="border-border bg-card rounded-xl border p-4 sm:p-5">
         <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_auto_auto_auto_auto]">
           <div className="relative">
             <Search
@@ -196,7 +197,7 @@ export function CatalogBrowser({
           </Select>
         </div>
 
-        <div className="border-border/60 mt-4 flex flex-wrap items-center justify-between gap-3 border-t pt-4">
+        <div className="border-border mt-4 flex flex-wrap items-center justify-between gap-3 border-t pt-4">
           <label className="text-muted-foreground flex cursor-pointer items-center gap-2.5 text-sm">
             <Switch
               checked={Boolean(filters.favoritesOnly)}
@@ -236,6 +237,7 @@ export function CatalogBrowser({
                 size="sm"
                 disabled={page.page <= 1}
                 onClick={() => update({ page: page.page - 1 })}
+                aria-label={tCommon('previous')}
               >
                 ←
               </Button>
@@ -249,6 +251,7 @@ export function CatalogBrowser({
                 size="sm"
                 disabled={page.page >= totalPages}
                 onClick={() => update({ page: page.page + 1 })}
+                aria-label={tCommon('next')}
               >
                 →
               </Button>

@@ -11,6 +11,7 @@ import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { OnboardingModal } from '@/components/onboarding/onboarding-modal';
 import { PageTransition } from '@/components/shared/page-transition';
+import { fontVariables } from '@/styles/fonts';
 import '../globals.css';
 
 /**
@@ -26,8 +27,8 @@ export function generateStaticParams() {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: dark)', color: '#0A0A0C' },
-    { media: '(prefers-color-scheme: light)', color: '#F7F7F9' },
+    { media: '(prefers-color-scheme: dark)', color: '#07080A' },
+    { media: '(prefers-color-scheme: light)', color: '#F2EFE8' },
   ],
   width: 'device-width',
   initialScale: 1,
@@ -70,7 +71,7 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning className={fontVariables}>
       <body className="bg-background text-foreground min-h-dvh font-sans antialiased">
         <NextIntlClientProvider locale={locale} messages={messages} timeZone="Europe/Moscow">
           <ThemeProvider

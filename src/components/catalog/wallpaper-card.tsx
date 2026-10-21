@@ -31,9 +31,9 @@ export function WallpaperCard({
   return (
     <article
       className={cn(
-        'group border-border/70 bg-card/60 relative overflow-hidden rounded-2xl border backdrop-blur-xl',
-        'hover:border-brand/35 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_-24px_var(--brand-glow)]',
-        'focus-within:border-brand/40',
+        'group border-border bg-card relative overflow-hidden rounded-xl border',
+        'hover:border-signal/35 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_-24px_var(--signal-glow)]',
+        'focus-within:border-signal/40',
         className,
       )}
     >
@@ -49,18 +49,18 @@ export function WallpaperCard({
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent opacity-70 transition-opacity duration-300 group-hover:opacity-90" />
 
           {wallpaper.mediaType === 'video' && (
-            <span className="pointer-events-none absolute top-3 left-3 flex items-center gap-1 rounded-full bg-black/55 px-2.5 py-1 text-[11px] font-medium text-white backdrop-blur-md">
+            <span className="pointer-events-none absolute top-3 left-3 flex items-center gap-1 rounded-full bg-black/55 px-2.5 py-1 text-[11px] font-medium text-white">
               <Play className="size-3 fill-current" aria-hidden="true" />
               {wallpaper.duration ? formatDuration(wallpaper.duration) : t('videoBadge')}
             </span>
           )}
 
           {wallpaper.isPaid ? (
-            <span className="bg-gradient-brand pointer-events-none absolute top-3 right-3 rounded-full px-2.5 py-1 text-[11px] font-semibold text-white shadow-[0_6px_18px_-8px_var(--brand-glow)]">
+            <span className="bg-gradient-signal pointer-events-none absolute top-3 right-3 rounded-full px-2.5 py-1 text-[11px] font-semibold text-white shadow-[0_6px_18px_-8px_var(--signal-glow)]">
               {wallpaper.priceText}
             </span>
           ) : (
-            <span className="pointer-events-none absolute top-3 right-3 rounded-full bg-black/55 px-2.5 py-1 text-[11px] font-medium text-white backdrop-blur-md">
+            <span className="pointer-events-none absolute top-3 right-3 rounded-full bg-black/55 px-2.5 py-1 text-[11px] font-medium text-white">
               {t('freeBadge')}
             </span>
           )}
@@ -82,7 +82,7 @@ export function WallpaperCard({
         </div>
       </Link>
 
-      <div className="border-border/60 flex items-center justify-between gap-2 border-t px-3 py-2">
+      <div className="border-border flex items-center justify-between gap-2 border-t px-3 py-2">
         <span className="text-muted-foreground truncate text-xs">
           {wallpaper.author ?? t('premiumBadge')}
         </span>

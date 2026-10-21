@@ -156,9 +156,9 @@ export function appWindowPlaceholderSvg(width = 1400, height = 880): string {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
     <defs>
       <linearGradient id="aw${id}" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stop-color="${palette.brandFrom}"/>
-        <stop offset="50%" stop-color="${palette.brandVia}"/>
-        <stop offset="100%" stop-color="${palette.brandTo}"/>
+        <stop offset="0%" stop-color="${palette.signal}"/>
+        <stop offset="50%" stop-color="#F2CD80"/>
+        <stop offset="100%" stop-color="#CF922C"/>
       </linearGradient>
       <radialGradient id="awr${id}" cx="0.5" cy="0" r="1">
         <stop offset="0%" stop-color="#ffffff" stop-opacity="0.25"/>

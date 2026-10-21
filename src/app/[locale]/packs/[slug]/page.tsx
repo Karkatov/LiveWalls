@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import { wallpaperBlurDataURL } from '@/lib/utils/placeholders';
 import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Layers } from 'lucide-react';
@@ -66,7 +67,7 @@ export default async function PackPage({
 
       <div className="grid gap-10 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
         <Reveal>
-          <div className="border-border/70 bg-card/50 relative overflow-hidden rounded-3xl border">
+          <div className="border-border bg-card relative overflow-hidden rounded-2xl border">
             <div className="relative aspect-[3/2]">
               <Image
                 src={pack.poster}
@@ -76,7 +77,7 @@ export default async function PackPage({
                 sizes="(max-width: 1024px) 100vw, 60vw"
                 className="object-cover"
                 placeholder="blur"
-                blurDataURL={`/placeholders/packs/pack-01.svg`}
+                blurDataURL={wallpaperBlurDataURL(pack.id)}
               />
             </div>
           </div>
@@ -85,7 +86,7 @@ export default async function PackPage({
         <Reveal delay={0.08}>
           <div className="flex h-full flex-col">
             <div className="flex flex-wrap items-center gap-2">
-              <Badge variant="brand">
+              <Badge variant="signal">
                 <Layers className="size-3" aria-hidden="true" />
                 {t('count', { count: pack.wallpaperCount })}
               </Badge>
@@ -100,7 +101,7 @@ export default async function PackPage({
               {pack.description}
             </p>
 
-            <div className="border-border/70 bg-card/50 mt-7 rounded-2xl border p-5 backdrop-blur-xl">
+            <div className="border-border bg-card mt-7 rounded-xl border p-5">
               <p className="text-foreground text-3xl font-bold tracking-tight">{pack.priceText}</p>
               <p className="text-muted-foreground mt-1 text-xs">{t('subtitle')}</p>
 
