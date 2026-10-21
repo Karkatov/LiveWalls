@@ -51,7 +51,7 @@ export function Header() {
         <Link
           href="/"
           aria-label="LiveWalls"
-          className="border-border/70 bg-background/40 hover:border-amber/40 focus-visible:outline-ring flex size-11 items-center justify-center rounded-[10px] border backdrop-blur-md transition-colors duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] focus-visible:outline-2 focus-visible:outline-offset-4"
+          className="border-border/70 bg-background/40 hover:border-brand/40 focus-visible:outline-ring flex size-11 items-center justify-center rounded-[10px] border backdrop-blur-md transition-colors duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] focus-visible:outline-2 focus-visible:outline-offset-4"
         >
           <Logo variant="compact" />
         </Link>
@@ -90,7 +90,7 @@ export function Header() {
           <Button
             variant="ghost"
             size="icon"
-            className="border-border/70 bg-background/40 hover:border-amber/40 rounded-[10px] border backdrop-blur-md transition-colors duration-300 lg:hidden"
+            className="border-border/70 bg-background/40 hover:border-brand/40 rounded-[10px] border backdrop-blur-md transition-colors duration-300 lg:hidden"
             aria-label={menuOpen ? t('closeMenu') : t('openMenu')}
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((value) => !value)}

@@ -17,15 +17,15 @@ const buttonVariants = cva(
     variants: {
       variant: {
         gradient:
-          'bg-gradient-brand text-night shadow-[0_0_0_0_var(--brand-glow)] hover:shadow-[0_0_24px_0_var(--brand-glow-strong)] hover:brightness-105',
+          'bg-gradient-brand text-white shadow-[0_0_0_0_var(--brand-glow)] hover:shadow-[0_0_24px_0_var(--brand-glow-strong)] hover:brightness-110',
         primary:
-          'bg-amber text-night shadow-[0_0_0_0_var(--brand-glow)] hover:shadow-[0_0_24px_0_var(--brand-glow-strong)]',
+          'bg-gradient-brand text-white shadow-[0_0_0_0_var(--brand-glow)] hover:shadow-[0_0_24px_0_var(--brand-glow-strong)]',
         default:
           'bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_0_0_0_var(--brand-glow)] hover:shadow-[0_0_20px_0_var(--brand-glow)]',
         secondary:
           'bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border/60 hover:shadow-[0_0_18px_-2px_var(--brand-glow)]',
         outline:
-          'border border-border bg-transparent text-foreground hover:bg-secondary/60 hover:border-amber/50',
+          'border border-border bg-transparent text-foreground hover:bg-secondary/60 hover:border-brand/50',
         ghost: 'text-foreground hover:bg-secondary/70',
         destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
         link: 'text-foreground underline-offset-4 hover:underline',

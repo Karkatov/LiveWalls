@@ -1,7 +1,8 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { Heart, Play } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Download, Heart, Play } from 'lucide-react';
 import type { Wallpaper } from '@/types';
 import { Link } from '@/i18n/navigation';
 import { useFavorites } from '@/lib/hooks/use-favorites';
@@ -82,11 +83,24 @@ export function WallpaperCard({
         </div>
       </Link>
 
-      <div className="border-border/60 flex items-center justify-between gap-2 border-t px-3 py-2">
-        <span className="text-muted-foreground truncate text-xs">
-          {wallpaper.author ?? t('premiumBadge')}
-        </span>
-        <FavoriteButton id={wallpaper.id} compact />
+      <div className="flex flex-col gap-3 p-5">
+        <div className="flex items-start justify-between gap-3">
+          <div className="min-w-0">
+            <span className="text-foreground text-3xl font-semibold tracking-tight sm:text-4xl">
+              {wallpaper.isPaid ? wallpaper.priceText : t('freeBadge')}
+            </span>
+            <p className="text-muted-foreground mt-1 truncate text-xs">
+              {wallpaper.author ?? t('premiumBadge')}
+            </p>
+          </div>
+          <FavoriteButton id={wallpaper.id} compact className="mt-1" />
+        </div>
+        <Button asChild variant="gradient" className="w-full justify-center">
+          <Link href={`/wallpapers/${wallpaper.slug}`}>
+            <Download className="size-4" />
+            {t('download')}
+          </Link>
+        </Button>
       </div>
     </article>
   );

@@ -51,7 +51,7 @@ export function FavoriteButton({
         aria-label={accessibleLabel}
         onClick={handleClick}
         className={cn(
-          'text-muted-foreground hover:text-rose-400',
+          'text-muted-foreground h-8 w-8 hover:text-rose-400',
           isFavorite && 'text-rose-500',
           className,
         )}

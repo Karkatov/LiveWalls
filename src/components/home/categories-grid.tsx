@@ -63,7 +63,7 @@ export async function CategoriesGrid({ categories }: { categories: Category[] })
                 className={cn(
                   'group border-border/60 bg-card/40 flex h-full items-center gap-4 rounded-2xl border p-5',
                   'backdrop-blur-xl transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)]',
-                  'hover:border-amber/40 hover:bg-card/70 hover:-translate-y-1 hover:shadow-[0_24px_60px_-28px_var(--brand-glow)]',
+                  'hover:border-brand/40 hover:bg-card/70 hover:-translate-y-1 hover:shadow-[0_24px_60px_-28px_var(--brand-glow)]',
                   'focus-visible:outline-ring focus-visible:outline-2 focus-visible:outline-offset-4',
                 )}
               >

@@ -15,8 +15,6 @@ export interface FaqEntry {
 
 /**
  * Список вопросов-ответов (аккордеон).
- *
- * Используется и на главной странице (сокращённый список), и на странице FAQ.
  */
 export function FaqAccordion({ items }: { items: FaqEntry[] }) {
   return (
