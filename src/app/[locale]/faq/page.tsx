@@ -73,7 +73,7 @@ export default async function FaqPage({ params }: { params: Promise<{ locale: Lo
 
       <Reveal>
         <div className="border-border bg-card mt-10 flex flex-col items-center gap-3 rounded-xl border px-6 py-8 text-center">
-          <span className="bg-gradient-signal/12 text-signal-foreground flex size-12 items-center justify-center rounded-xl">
+          <span className="border-signal/25 bg-signal/10 text-signal-foreground flex size-12 items-center justify-center rounded-xl border">
             <LifeBuoy className="size-6" aria-hidden="true" />
           </span>
           <p className="text-foreground text-base font-semibold">{t('contactCta')}</p>

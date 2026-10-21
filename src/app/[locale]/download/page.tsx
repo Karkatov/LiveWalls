@@ -140,7 +140,7 @@ export default async function DownloadPage({ params }: { params: Promise<{ local
                 key={step}
                 className="border-border bg-card flex items-start gap-3 rounded-xl border px-5 py-4"
               >
-                <span className="bg-gradient-signal flex size-7 shrink-0 items-center justify-center rounded-full text-xs font-semibold text-white">
+                <span className="border-signal/30 bg-signal/12 text-signal-foreground flex size-7 shrink-0 items-center justify-center rounded-full border font-mono text-xs tabular-nums">
                   {index + 1}
                 </span>
                 <span className="text-muted-foreground text-sm">{step}</span>

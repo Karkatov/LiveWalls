@@ -133,10 +133,12 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
 
       {/* CTA */}
       <Reveal>
-        <div className="border-signal/25 bg-gradient-signal mt-16 flex flex-col items-center gap-4 rounded-2xl border px-6 py-12 text-center shadow-[0_30px_90px_-40px_var(--signal-glow-strong)]">
-          <h2 className="font-display text-section text-ink-900 text-balance">{t('download')}</h2>
+        <div className="panel projector-sweep relative mt-16 flex flex-col items-center gap-4 overflow-hidden px-6 py-14 text-center">
+          <h2 className="font-display text-section text-foreground text-balance">
+            {t('download')}
+          </h2>
 
-          <Button asChild size="lg" className="bg-white text-[#0A0A0C] hover:bg-white/90">
+          <Button asChild variant="signal" size="lg" className="relative">
             <Link href="/download">
               <Download className="size-4" />
               {t('download')}

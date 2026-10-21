@@ -45,7 +45,8 @@ export function OnboardingModal() {
         onOpenAutoFocus={(event) => event.preventDefault()}
       >
         <div className="relative overflow-hidden">
-          <div className="bg-aurora pointer-events-none absolute inset-0 opacity-70" />
+          <div className="mask-fade-b from-signal/12 pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b to-transparent" />
+          <div className="bg-grid pointer-events-none absolute inset-0 opacity-[0.35]" />
 
           <div className="relative px-6 pt-8 pb-6 sm:px-8">
             {/* Индикатор шагов */}
@@ -54,8 +55,8 @@ export function OnboardingModal() {
                 <span
                   key={index}
                   className={cn(
-                    'h-1 flex-1 rounded-full transition-colors duration-300',
-                    index <= step ? 'bg-gradient-signal' : 'bg-secondary',
+                    'h-px flex-1 transition-colors duration-300',
+                    index <= step ? 'bg-signal' : 'bg-border-strong',
                   )}
                 />
               ))}
@@ -71,7 +72,7 @@ export function OnboardingModal() {
               >
                 {step === 0 && (
                   <div className="space-y-4">
-                    <span className="bg-gradient-signal flex size-14 items-center justify-center rounded-xl text-white shadow-[0_14px_40px_-14px_var(--signal-glow)]">
+                    <span className="border-signal/30 bg-signal/10 text-signal-foreground flex size-14 items-center justify-center rounded-xl border">
                       <Sparkles className="size-6" aria-hidden="true" />
                     </span>
                     <h2 className="font-display text-section">{t('step1Title')}</h2>
@@ -113,7 +114,7 @@ export function OnboardingModal() {
 
                 {step === 2 && (
                   <div className="space-y-4">
-                    <span className="bg-gradient-signal flex size-14 items-center justify-center rounded-xl text-white shadow-[0_14px_40px_-14px_var(--signal-glow)]">
+                    <span className="border-signal/30 bg-signal/10 text-signal-foreground flex size-14 items-center justify-center rounded-xl border">
                       <Download className="size-6" aria-hidden="true" />
                     </span>
                     <h2 className="font-display text-section">{t('step3Title')}</h2>
@@ -191,7 +192,7 @@ function ThemeOption({
         'flex flex-col items-center gap-2 rounded-xl border px-3 py-4 text-xs transition-all',
         'focus-visible:outline-ring focus-visible:outline-2 focus-visible:outline-offset-2',
         active
-          ? 'border-signal/60 bg-signal/12 text-foreground shadow-[0_0_0_1px_rgba(124,92,255,0.25)]'
+          ? 'border-signal/60 bg-signal/10 text-foreground'
           : 'border-border bg-secondary/40 text-muted-foreground hover:border-signal/30 hover:text-foreground',
       )}
     >
