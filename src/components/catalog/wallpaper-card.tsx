@@ -2,10 +2,9 @@
 
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
-import { Download, Heart, Play } from 'lucide-react';
+import { Play } from 'lucide-react';
 import type { Wallpaper } from '@/types';
 import { Link } from '@/i18n/navigation';
-import { useFavorites } from '@/lib/hooks/use-favorites';
 import { cn } from '@/lib/utils/cn';
 import { formatDuration } from '@/lib/utils/format';
 import { WallpaperMedia } from './wallpaper-media';
@@ -13,6 +12,10 @@ import { FavoriteButton } from '@/components/wallpaper/favorite-button';
 
 /**
  * Карточка обоев для каталога и подборок.
+ *
+ * Компактная: цена показана один раз — бейджем на превью, а в нижней
+ * панели остаются только название (одна строка с троеточием), сердечко
+ * со счётчиком лайков и кнопка действия.
  *
  * Наведение: лёгкий подъём, масштаб превью и появление свечения.
  */
@@ -26,8 +29,6 @@ export function WallpaperCard({
   className?: string;
 }) {
   const t = useTranslations('wallpaper');
-  const { has } = useFavorites();
-  const isFavorite = has(wallpaper.id);
 
   return (
     <article
@@ -65,34 +66,23 @@ export function WallpaperCard({
               {t('freeBadge')}
             </span>
           )}
-
-          {isFavorite && (
-            <span className="pointer-events-none absolute bottom-3 left-3 flex items-center gap-1 rounded-full bg-rose-500/90 px-2.5 py-1 text-[11px] font-medium text-white">
-              <Heart className="size-3 fill-current" aria-hidden="true" />
-            </span>
-          )}
         </div>
       </Link>
 
-      <div className="flex flex-col gap-3 p-5">
-        <div className="flex items-start justify-between gap-3">
-          <div className="min-w-0">
-            <Link
-              href={`/wallpapers/${wallpaper.slug}`}
-              className="text-foreground hover:text-brand-foreground focus-visible:outline-ring block truncate text-base font-semibold tracking-tight transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
-            >
-              {wallpaper.title}
-            </Link>
-            <p className="text-muted-foreground mt-0.5 truncate text-sm font-medium">
-              {wallpaper.isPaid ? wallpaper.priceText : t('freeBadge')}
-            </p>
-          </div>
-          <FavoriteButton id={wallpaper.id} compact className="mt-0.5 shrink-0" />
-        </div>
-        <Button asChild variant="gradient" size="sm" className="w-full justify-center">
+      <div className="flex items-center gap-1.5 px-2.5 py-2">
+        <Link
+          href={`/wallpapers/${wallpaper.slug}`}
+          title={wallpaper.title}
+          className="text-foreground hover:text-brand-foreground focus-visible:outline-ring min-w-0 flex-1 truncate text-[13px] font-semibold tracking-tight transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
+        >
+          {wallpaper.title}
+        </Link>
+
+        <FavoriteButton id={wallpaper.id} compact count={wallpaper.likeCount} />
+
+        <Button asChild variant="gradient" size="sm" className="h-7 shrink-0 px-2 text-[12px]">
           <Link href={`/wallpapers/${wallpaper.slug}`}>
-            <Download className="size-4" />
-            {t('download')}
+            {wallpaper.isPaid ? t('buy') : t('download')}
           </Link>
         </Button>
       </div>
