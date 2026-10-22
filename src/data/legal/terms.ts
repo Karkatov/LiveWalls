@@ -41,16 +41,8 @@ export const termsOfUse: Record<Locale, LegalDocument> = {
         ],
       },
       {
-        id: 'refund',
-        title: '5. Возврат',
-        paragraphs: [
-          'Пользователь вправе отказаться от услуги и получить полный возврат в течение 7 календарных дней с момента оплаты, если Программа не подошла. Возврат осуществляется тем же способом, которым была произведена оплата.',
-          'После 7 дней возврат возможен только при наличии существенных недостатков Программы.',
-        ],
-      },
-      {
         id: 'obligations',
-        title: '6. Обязанности пользователя',
+        title: '5. Обязанности пользователя',
         list: [
           'не использовать Программу в нарушение законодательства Российской Федерации;',
           'не распространять Программу и материалы каталога в виде исходных файлов (кроме личного некоммерческого использования);',
@@ -59,7 +51,7 @@ export const termsOfUse: Record<Locale, LegalDocument> = {
       },
       {
         id: 'ip',
-        title: '7. Интеллектуальная собственность',
+        title: '6. Интеллектуальная собственность',
         paragraphs: [
           'Исключительные права на Программу принадлежат Исполнителю. Права на материалы каталога принадлежат их правообладателям; лицензия действует только в рамках Программы.',
           'Товарные знаки и логотипы принадлежат их владельцам.',
@@ -67,7 +59,7 @@ export const termsOfUse: Record<Locale, LegalDocument> = {
       },
       {
         id: 'liability',
-        title: '8. Ответственность',
+        title: '7. Ответственность',
         paragraphs: [
           'Программа предоставляется «как есть» (as is). Исполнитель не гарантирует, что её использование не приведёт к потере данных или повреждению оборудования.',
           'Ответственность Исполнителя ограничена стоимостью приобретённой лицензии.',
@@ -75,7 +67,7 @@ export const termsOfUse: Record<Locale, LegalDocument> = {
       },
       {
         id: 'contacts',
-        title: '9. Контакты',
+        title: '8. Контакты',
         paragraphs: ['Вопросы по настоящим Условиям: hello@livewalls.app.'],
       },
     ],
@@ -119,16 +111,8 @@ export const termsOfUse: Record<Locale, LegalDocument> = {
         ],
       },
       {
-        id: 'refund',
-        title: '5. Refunds',
-        paragraphs: [
-          'The user may cancel and receive a full refund within 7 calendar days from the payment if the Application did not work out. Refunds are issued to the original payment method.',
-          'After 7 days a refund is only possible in case of significant defects in the Application.',
-        ],
-      },
-      {
         id: 'obligations',
-        title: '6. User obligations',
+        title: '5. User obligations',
         list: [
           'do not use the Application in violation of applicable law;',
           'do not redistribute the Application or catalog files (except for personal non-commercial use);',
@@ -137,7 +121,7 @@ export const termsOfUse: Record<Locale, LegalDocument> = {
       },
       {
         id: 'ip',
-        title: '7. Intellectual property',
+        title: '6. Intellectual property',
         paragraphs: [
           'Exclusive rights to the Application belong to the Service Provider. Rights to catalog materials belong to their respective owners; the license applies only within the Application.',
           'Trademarks and logos belong to their owners.',
@@ -145,7 +129,7 @@ export const termsOfUse: Record<Locale, LegalDocument> = {
       },
       {
         id: 'liability',
-        title: '8. Disclaimer',
+        title: '7. Disclaimer',
         paragraphs: [
           'The Application is provided "as is". The Service Provider does not guarantee that its use will not cause data loss or hardware damage.',
           'The Service Provider liability is limited to the price of the purchased license.',
@@ -153,7 +137,7 @@ export const termsOfUse: Record<Locale, LegalDocument> = {
       },
       {
         id: 'contacts',
-        title: '9. Contacts',
+        title: '8. Contacts',
         paragraphs: ['Questions about these terms: hello@livewalls.app.'],
       },
     ],

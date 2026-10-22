@@ -5,7 +5,6 @@
  * Создаёт:
  *   public/placeholders/wallpapers/wallpaper-01..12.svg
  *   public/placeholders/categories/category-01..09.svg
- *   public/placeholders/packs/pack-01..05.svg
  *   public/placeholders/avatars/avatar-01..06.svg
  *   public/placeholders/screenshots/app-*.svg
  *   public/logo.svg, public/logo-compact.svg, public/favicon.svg
@@ -109,35 +108,6 @@ function categorySvg(index) {
     <g opacity="0.22" fill="none" stroke="#ffffff" stroke-width="2">
       <circle cx="${width / 2}" cy="${height / 2}" r="150"/>
       <circle cx="${width / 2}" cy="${height / 2}" r="220"/>
-    </g>
-  </svg>`;
-}
-
-function packSvg(index) {
-  const [from, via, to] = GRADIENTS[(index + 5) % GRADIENTS.length];
-  const id = `p${index}`;
-  const width = 1200;
-  const height = 800;
-
-  const tiles = Array.from({ length: 6 })
-    .map((_, i) => {
-      const col = i % 3;
-      const row = Math.floor(i / 3);
-      const x = 60 + col * 120;
-      const y = 60 + row * 120;
-      const opacity = 0.16 + i * 0.06;
-      return `<rect x="${x}" y="${y}" width="100" height="100" rx="18" fill="#ffffff" opacity="${opacity.toFixed(2)}"/>`;
-    })
-    .join('');
-
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
-    ${gradientDefs(id, from, via, to)}
-    <rect width="${width}" height="${height}" fill="url(#g${id})"/>
-    <rect width="${width}" height="${height}" fill="url(#r${id})"/>
-    ${tiles}
-    <g transform="translate(${width - 210} ${height - 150})">
-      <rect width="150" height="70" rx="35" fill="rgba(10,10,12,0.55)" stroke="rgba(255,255,255,0.28)"/>
-      <text x="75" y="45" text-anchor="middle" font-family="-apple-system, system-ui, sans-serif" font-size="30" font-weight="700" fill="#ffffff">10</text>
     </g>
   </svg>`;
 }
@@ -387,10 +357,6 @@ for (let i = 1; i <= 9; i += 1) {
   written.push(
     write(`placeholders/categories/category-${String(i).padStart(2, '0')}.svg`, categorySvg(i - 1)),
   );
-}
-
-for (let i = 1; i <= 5; i += 1) {
-  written.push(write(`placeholders/packs/pack-${String(i).padStart(2, '0')}.svg`, packSvg(i - 1)));
 }
 
 for (let i = 1; i <= 6; i += 1) {

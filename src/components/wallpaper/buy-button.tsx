@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
-import { ShoppingCart, Sparkles } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 import type { PaymentProvider } from '@/config/site';
 import { createPayment } from '@/lib/api/payments';
 import { cn } from '@/lib/utils/cn';
@@ -31,7 +31,7 @@ export function BuyButton({
   size = 'default',
   email,
 }: {
-  kind: 'subscription' | 'pack' | 'wallpaper';
+  kind: 'subscription';
   itemId: string;
   title: string;
   price: number;
@@ -74,11 +74,7 @@ export function BuyButton({
       disabled={pending}
       className={cn('gap-2', className)}
     >
-      {kind === 'subscription' ? (
-        <Sparkles className="size-4" />
-      ) : (
-        <ShoppingCart className="size-4" />
-      )}
+      <Sparkles className="size-4" />
       {priceLabel ?? t('buy')}
     </Button>
   );

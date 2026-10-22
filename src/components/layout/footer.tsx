@@ -14,7 +14,6 @@ export function Footer() {
 
   const product = [
     { href: '/wallpapers', label: nav('wallpapers') },
-    { href: '/packs', label: nav('packs') },
     { href: '/pricing', label: nav('pricing') },
     { href: '/download', label: t('download') },
   ];
@@ -90,8 +89,6 @@ export function Footer() {
             <span>{siteConfig.APP.version}</span>
           </div>
         </div>
-
-        <p className="text-muted-foreground/70 mt-4 text-xs leading-relaxed">{t('disclaimer')}</p>
       </div>
     </footer>
   );

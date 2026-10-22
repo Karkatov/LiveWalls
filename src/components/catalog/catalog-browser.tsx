@@ -111,14 +111,13 @@ export function CatalogBrowser({
     Boolean(filters.q) ||
     (filters.category ?? 'all') !== 'all' ||
     (filters.mediaType ?? 'all') !== 'all' ||
-    (filters.price ?? 'all') !== 'all' ||
     Boolean(filters.favoritesOnly);
 
   return (
     <div className="space-y-8">
       {/* Панель фильтров */}
       <div className="border-border/60 bg-card/40 rounded-2xl border p-4 backdrop-blur-xl sm:p-5">
-        <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_auto_auto_auto_auto]">
+        <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_auto_auto_auto]">
           <div className="relative">
             <Search
               className="text-muted-foreground pointer-events-none absolute top-1/2 left-3.5 size-4 -translate-y-1/2"
@@ -166,20 +165,6 @@ export function CatalogBrowser({
           </Select>
 
           <Select
-            value={filters.price ?? 'all'}
-            onValueChange={(value) => update({ price: value as WallpaperFilters['price'] })}
-          >
-            <SelectTrigger className="lg:w-[140px]" aria-label={t('filterPrice')}>
-              <SelectValue placeholder={t('filterPrice')} />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">{t('priceAll')}</SelectItem>
-              <SelectItem value="free">{t('priceFree')}</SelectItem>
-              <SelectItem value="paid">{t('pricePaid')}</SelectItem>
-            </SelectContent>
-          </Select>
-
-          <Select
             value={filters.sort ?? 'newest'}
             onValueChange={(value) => update({ sort: value as WallpaperFilters['sort'] })}
           >
@@ -189,8 +174,6 @@ export function CatalogBrowser({
             <SelectContent>
               <SelectItem value="newest">{t('sortNewest')}</SelectItem>
               <SelectItem value="popular">{t('sortPopular')}</SelectItem>
-              <SelectItem value="price-asc">{t('sortPriceAsc')}</SelectItem>
-              <SelectItem value="price-desc">{t('sortPriceDesc')}</SelectItem>
               <SelectItem value="name">{t('sortName')}</SelectItem>
             </SelectContent>
           </Select>

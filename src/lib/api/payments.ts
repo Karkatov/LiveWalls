@@ -15,8 +15,8 @@ import { fetchData } from './fetcher';
 
 export interface PaymentRequest {
   /** Тип покупки. */
-  kind: 'subscription' | 'pack' | 'wallpaper';
-  /** id тарифа / пака / обоев. */
+  kind: 'subscription';
+  /** id тарифа. */
   itemId: string;
   /** Название для чека. */
   title: string;

@@ -13,9 +13,8 @@ import { FavoriteButton } from '@/components/wallpaper/favorite-button';
 /**
  * Карточка обоев для каталога и подборок.
  *
- * Компактная: цены на карточке нет — только бейдж «Бесплатно» на превью,
- * а в нижней панели остаются название (до двух строк), сердечко со
- * счётчиком лайков и кнопка действия.
+ * Компактная: на превью — тип и длительность, а в нижней панели остаются
+ * название (до двух строк), сердечко со счётчиком лайков и кнопка действия.
  *
  * Наведение: лёгкий подъём, масштаб превью и появление свечения.
  */
@@ -56,12 +55,6 @@ export function WallpaperCard({
               {wallpaper.duration ? formatDuration(wallpaper.duration) : t('videoBadge')}
             </span>
           )}
-
-          {!wallpaper.isPaid && (
-            <span className="pointer-events-none absolute top-3 right-3 rounded-full bg-black/75 px-2.5 py-1 text-[11px] font-medium text-white backdrop-blur-md">
-              {t('freeBadge')}
-            </span>
-          )}
         </div>
       </Link>
 
@@ -77,9 +70,7 @@ export function WallpaperCard({
         <FavoriteButton id={wallpaper.id} compact count={wallpaper.likeCount} />
 
         <Button asChild variant="gradient" size="sm" className="h-7 shrink-0 px-2 text-[12px]">
-          <Link href={`/wallpapers/${wallpaper.slug}`}>
-            {wallpaper.isPaid ? t('buy') : t('download')}
-          </Link>
+          <Link href={`/wallpapers/${wallpaper.slug}`}>{t('download')}</Link>
         </Button>
       </div>
     </article>

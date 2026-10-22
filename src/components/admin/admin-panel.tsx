@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
 import { KeyRound, Lock, ShieldCheck } from 'lucide-react';
-import type { Pack, User, Wallpaper } from '@/types';
-import { formatDateShort, formatPrice } from '@/lib/utils/format';
+import type { User, Wallpaper } from '@/types';
+import { formatDateShort } from '@/lib/utils/format';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -27,22 +27,19 @@ async function sha256(value: string): Promise<string> {
  * и работает даже при полностью статическом экспорте (GitHub Pages).
  * Реальная авторизация появится вместе с бэкендом.
  *
- * TODO(бэкенд): серверная авторизация, CRUD обоев/категорий/паков,
+ * TODO(бэкенд): серверная авторизация, CRUD обоев и категорий,
  * загрузка файлов и генерация превью, роли и логирование действий.
  */
 export function AdminPanel({
   passwordHash,
   wallpapers,
-  packs,
   users,
 }: {
   passwordHash: string;
   wallpapers: Wallpaper[];
-  packs: Pack[];
   users: User[];
 }) {
   const t = useTranslations('admin');
-  const tCommon = useTranslations('common');
 
   const [password, setPassword] = useState('');
   const [unlocked, setUnlocked] = useState(false);
@@ -113,34 +110,16 @@ export function AdminPanel({
       <Tabs defaultValue="wallpapers">
         <TabsList>
           <TabsTrigger value="wallpapers">{t('tabs.wallpapers')}</TabsTrigger>
-          <TabsTrigger value="packs">{t('tabs.packs')}</TabsTrigger>
           <TabsTrigger value="users">{t('tabs.users')}</TabsTrigger>
         </TabsList>
 
         <TabsContent value="wallpapers">
           <Table
-            headers={[
-              t('columns.title'),
-              t('columns.category'),
-              t('columns.type'),
-              t('columns.price'),
-            ]}
+            headers={[t('columns.title'), t('columns.category'), t('columns.type')]}
             rows={wallpapers.map((wallpaper) => [
               wallpaper.title,
               wallpaper.category,
               wallpaper.mediaType,
-              wallpaper.priceText ?? tCommon('free'),
-            ])}
-          />
-        </TabsContent>
-
-        <TabsContent value="packs">
-          <Table
-            headers={[t('columns.title'), t('columns.count'), t('columns.price')]}
-            rows={packs.map((pack) => [
-              pack.title,
-              String(pack.wallpaperCount),
-              formatPrice(pack.price),
             ])}
           />
         </TabsContent>

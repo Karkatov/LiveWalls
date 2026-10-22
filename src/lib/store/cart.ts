@@ -5,7 +5,7 @@ import { persist } from 'zustand/middleware';
 
 export interface CartItem {
   id: string;
-  kind: 'wallpaper' | 'pack' | 'subscription';
+  kind: 'subscription';
   title: string;
   price: number;
   slug: string;

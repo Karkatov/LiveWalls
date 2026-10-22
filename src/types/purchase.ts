@@ -1,5 +1,5 @@
 /** Покупка. Повторяет структуру таблицы `purchases` в server/schema.sql. */
-export type PurchaseItemType = 'wallpaper' | 'pack' | 'subscription';
+export type PurchaseItemType = 'subscription';
 export type PurchaseStatus = 'paid' | 'pending' | 'refunded';
 
 export interface Purchase {

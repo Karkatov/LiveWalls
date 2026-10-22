@@ -30,12 +30,6 @@ test.describe('LiveWalls', () => {
     expect(await page.locator('article').count()).toBeGreaterThan(0);
   });
 
-  test('страница пака доступна', async ({ page }) => {
-    await page.goto('/ru/packs/atlas-prirody');
-
-    await expect(page.locator('h1').first()).toBeVisible();
-  });
-
   test('страница скачивания доступна', async ({ page }) => {
     await page.goto('/ru/download');
 

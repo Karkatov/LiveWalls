@@ -100,7 +100,6 @@ const nextConfig: NextConfig = {
           return [
             { source: '/', destination: '/ru', permanent: false },
             { source: '/wallpapers', destination: '/ru/wallpapers', permanent: false },
-            { source: '/packs', destination: '/ru/packs', permanent: false },
             { source: '/pricing', destination: '/ru/pricing', permanent: false },
           ];
         },

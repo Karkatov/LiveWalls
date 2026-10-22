@@ -21,7 +21,6 @@ const FAQ_KEYS = [
   'license',
   'devices',
   'payment',
-  'refund',
   'import',
   'catalog',
 ] as const;

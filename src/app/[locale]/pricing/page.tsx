@@ -8,8 +8,7 @@ import { pricing } from '@/config/site';
 import { formatPrice } from '@/lib/utils/format';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { SectionHeading } from '@/components/shared/section-heading';
-import { Reveal, StaggerGroup, StaggerItem } from '@/components/shared/motion';
+import { MaskReveal, Reveal, StaggerGroup, StaggerItem } from '@/components/shared/motion';
 import { BuyButton } from '@/components/wallpaper/buy-button';
 
 export function generateStaticParams() {
@@ -39,7 +38,6 @@ export default async function PricingPage({ params }: { params: Promise<{ locale
 
   const t = await getTranslations('pricing');
   const tCommon = await getTranslations('common');
-  const tNav = await getTranslations('nav');
 
   const featureKeys = [
     'catalog',
@@ -86,28 +84,17 @@ export default async function PricingPage({ params }: { params: Promise<{ locale
     },
   ];
 
-  const extras = [
-    {
-      id: 'pack',
-      name: t('pack'),
-      price: formatPrice(pricing.pack),
-      description: t('packDescription'),
-      cta: t('packTitle'),
-      body: t('packBody'),
-    },
-    {
-      id: 'single',
-      name: t('single'),
-      price: formatPrice(pricing.single),
-      description: t('singleDescription'),
-      cta: t('singleTitle'),
-      body: t('singleBody'),
-    },
-  ];
-
   return (
     <div className="mx-auto max-w-[1200px] px-4 py-12 sm:px-6 lg:py-16">
-      <SectionHeading eyebrow={tNav('pricing')} title={t('title')} description={t('subtitle')} />
+      <Reveal className="flex flex-col items-center text-center">
+        <h1 className="text-foreground">
+          <span className="border-brand/30 bg-brand/10 text-display-md inline-flex rounded-full border px-8 py-3 font-semibold tracking-tight shadow-[0_20px_60px_-30px_var(--brand-glow-strong)] sm:px-10">
+            <MaskReveal>{t('title')}</MaskReveal>
+          </span>
+        </h1>
+
+        <p className="text-muted-foreground text-lead mt-6 max-w-2xl">{t('subtitle')}</p>
+      </Reveal>
 
       {/* Тарифы */}
       <StaggerGroup className="mt-12 grid gap-5 lg:grid-cols-3">
@@ -121,7 +108,7 @@ export default async function PricingPage({ params }: { params: Promise<{ locale
               }
             >
               {plan.badge && (
-                <span className="absolute -top-3 left-7">
+                <span className="absolute top-5 right-5">
                   <Badge variant="brand">
                     {plan.featured && <Flame className="size-3" aria-hidden="true" />}
                     {plan.badge}
@@ -129,7 +116,9 @@ export default async function PricingPage({ params }: { params: Promise<{ locale
                 </span>
               )}
 
-              <h2 className="text-foreground text-lg font-semibold tracking-tight">{plan.name}</h2>
+              <h2 className="text-foreground pr-24 text-lg font-semibold tracking-tight">
+                {plan.name}
+              </h2>
 
               <p className="mt-4 flex items-baseline gap-2">
                 <span className="text-foreground text-4xl font-bold tracking-tight">
@@ -189,74 +178,20 @@ export default async function PricingPage({ params }: { params: Promise<{ locale
         </div>
       </Reveal>
 
-      {/* Дополнительные покупки */}
-      <div className="mt-6 grid gap-5 sm:grid-cols-2">
-        {extras.map((extra, index) => (
-          <Reveal key={extra.id} delay={index * 0.06}>
-            <div className="border-border/70 bg-card/50 flex h-full flex-col rounded-2xl border p-6 backdrop-blur-xl">
-              <div className="flex items-start justify-between gap-4">
-                <h2 className="text-foreground text-base font-semibold">{extra.name}</h2>
-                <span className="text-foreground text-xl font-bold tracking-tight">
-                  {extra.price}
-                </span>
-              </div>
-
-              <p className="text-muted-foreground mt-2 text-sm">{extra.description}</p>
-              <p className="text-muted-foreground mt-3 flex-1 text-sm leading-relaxed">
-                {extra.body}
-              </p>
-
-              <Button asChild variant="outline" className="mt-5">
-                <Link href="/wallpapers">{extra.cta}</Link>
-              </Button>
-            </div>
-          </Reveal>
-        ))}
-      </div>
-
       {/* Что входит в Premium */}
       <section className="mt-16">
-        <div className="grid gap-10 lg:grid-cols-2">
-          <div>
-            <h2 className="text-foreground text-display-sm">{t('featuresTitle')}</h2>
+        <h2 className="text-foreground text-display-sm">{t('featuresTitle')}</h2>
 
-            <ul className="mt-6 space-y-3">
-              {featureKeys.map((key) => (
-                <li key={key} className="flex items-start gap-3">
-                  <span className="bg-brand/15 text-brand-foreground mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full">
-                    <Check className="size-3.5" aria-hidden="true" />
-                  </span>
-                  <span className="text-muted-foreground text-sm">{t(`features.${key}`)}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h2 className="text-foreground text-display-sm">{t('faqTitle')}</h2>
-
-            <dl className="mt-6 space-y-4">
-              <div>
-                <dt className="text-foreground text-sm font-semibold">{t('refundTitle')}</dt>
-                <dd className="text-muted-foreground mt-1 text-sm leading-relaxed">
-                  {t('refundBody')}
-                </dd>
-              </div>
-              <div>
-                <dt className="text-foreground text-sm font-semibold">{t('packTitle')}</dt>
-                <dd className="text-muted-foreground mt-1 text-sm leading-relaxed">
-                  {t('packBody')}
-                </dd>
-              </div>
-              <div>
-                <dt className="text-foreground text-sm font-semibold">{t('singleTitle')}</dt>
-                <dd className="text-muted-foreground mt-1 text-sm leading-relaxed">
-                  {t('singleBody')}
-                </dd>
-              </div>
-            </dl>
-          </div>
-        </div>
+        <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+          {featureKeys.map((key) => (
+            <li key={key} className="flex items-start gap-3">
+              <span className="bg-brand/15 text-brand-foreground mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full">
+                <Check className="size-3.5" aria-hidden="true" />
+              </span>
+              <span className="text-muted-foreground text-sm">{t(`features.${key}`)}</span>
+            </li>
+          ))}
+        </ul>
       </section>
 
       {/* Сравнение */}

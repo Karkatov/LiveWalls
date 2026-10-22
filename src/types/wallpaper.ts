@@ -95,7 +95,7 @@ export interface WallpaperFilters {
 
 export type WallpaperSort = 'newest' | 'popular' | 'price-asc' | 'price-desc' | 'name';
 
-/** Универсальная пагинированная обёртка (совпадает с ответом API MacWall). */
+/** Универсальная пагинированная обёртка (совпадает с ответом API LiveWalls). */
 export interface Paginated<T> {
   items: T[];
   total: number;

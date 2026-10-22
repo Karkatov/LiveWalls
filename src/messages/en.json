@@ -38,7 +38,6 @@
   },
   "nav": {
     "wallpapers": "Catalog",
-    "packs": "Packs",
     "pricing": "Pricing",
     "about": "About",
     "faq": "FAQ",
@@ -74,9 +73,9 @@
       }
     },
     "featured": {
-      "eyebrow": "Featured",
-      "title": "The wallpapers people pick most",
-      "description": "Curated by our team: loops that look great on a Retina display and never get in the way.",
+      "eyebrow": "Popular",
+      "title": "The wallpapers that get the most likes",
+      "description": "This selection updates automatically: the more likes a wallpaper gets, the higher it rises in the catalog and the app.",
       "cta": "Full catalog"
     },
     "categories": {
@@ -120,7 +119,7 @@
     "reviews": {
       "eyebrow": "Reviews",
       "title": "What users say",
-      "description": "First impressions of the stable 1.0 release.",
+      "description": "Impressions from people who use LiveWalls every day.",
       "rating": "Rated {rating} out of 5"
     },
     "cta": {
@@ -132,7 +131,7 @@
     "faq": {
       "eyebrow": "FAQ",
       "title": "Frequent questions",
-      "description": "Short answers about compatibility, payment and refunds.",
+      "description": "Short answers about compatibility, payment and setup.",
       "cta": "All questions"
     }
   },
@@ -144,13 +143,10 @@
     "filters": "Filters",
     "filterCategory": "Category",
     "filterType": "Type",
-    "filterPrice": "Price",
     "filterFavorites": "Favorites only",
     "sort": "Sort",
     "sortNewest": "Newest first",
     "sortPopular": "Most popular",
-    "sortPriceAsc": "Cheapest first",
-    "sortPriceDesc": "Most expensive",
     "sortName": "By title",
     "results": "Found",
     "resultsCount": "{count} wallpapers",
@@ -164,9 +160,6 @@
     "quickViewLabel": "Open quick view for “{title}”",
     "allCategories": "All categories",
     "allTypes": "All types",
-    "priceAll": "Any price",
-    "priceFree": "Free",
-    "pricePaid": "Paid",
     "typeAll": "Any",
     "typeVideo": "Video",
     "typeImage": "Images",
@@ -189,7 +182,8 @@
     "views": "Views",
     "category": "Category",
     "buy": "Buy",
-    "buyWithPrice": "Buy for {price}",
+    "accessTitle": "Available in the app",
+    "accessBody": "Included in the Premium catalog — download the app to set this wallpaper.",
     "addToFavorites": "Add to favorites",
     "removeFromFavorites": "Remove from favorites",
     "download": "Download",
@@ -200,28 +194,12 @@
     "notFoundTitle": "Wallpaper not found",
     "notFoundBody": "The link may be outdated or the item may no longer be available.",
     "videoUnavailable": "Preview unavailable",
-    "premiumBadge": "Premium",
-    "freeBadge": "Free",
     "videoBadge": "Video",
     "imageBadge": "Image"
   },
-  "packs": {
-    "title": "Wallpaper packs",
-    "subtitle": "Bundles of 10 wallpapers — cheaper than buying one by one.",
-    "includes": "What's inside",
-    "wallpapers": "wallpapers in the pack",
-    "count": "{count} wallpapers",
-    "buyPack": "Buy pack",
-    "packNotFound": "Pack not found",
-    "packNotFoundBody": "This pack is not in the catalog. Have a look at the full list.",
-    "backToPacks": "All packs",
-    "featuredPacks": "Featured packs",
-    "viewPack": "Open pack",
-    "inPack": "Included in the pack"
-  },
   "pricing": {
     "title": "Pricing",
-    "subtitle": "One-time purchase, no subscription. All prices in roubles.",
+    "subtitle": "24 hours free, then Premium for a year or forever. All prices in roubles.",
     "trial": "Free trial",
     "trialBadge": "24 hours free",
     "trialPrice": "0 ₽",
@@ -229,11 +207,7 @@
     "lifetime": "Premium forever",
     "lifetimeDescription": "One payment, all updates — forever. Activated on up to three personal Macs.",
     "yearly": "Premium for a year",
-    "yearlyDescription": "The same features for 12 months. Cheaper than buying packs separately.",
-    "pack": "Wallpaper pack",
-    "packDescription": "10 wallpapers from one theme. Forever, no subscription.",
-    "single": "Single wallpaper",
-    "singleDescription": "A single loop or image from the catalog.",
+    "yearlyDescription": "The same features for 12 months. Full catalog and every update.",
     "mostPopular": "Most popular",
     "perYear": "per year",
     "oneTime": "one-time",
@@ -248,14 +222,7 @@
       "support": "Priority support",
       "import": "Import of your own videos"
     },
-    "faqTitle": "Payment questions",
     "cta": "Download and try it",
-    "packTitle": "Packs",
-    "packBody": "10 wallpapers for 199 ₽ — twice as cheap as buying them separately.",
-    "singleTitle": "Single wallpapers",
-    "singleBody": "Any loop from the catalog can be bought separately for 99 ₽.",
-    "refundTitle": "Refunds",
-    "refundBody": "Full refund within 7 days if the app does not work for you. No reason needed.",
     "compareTitle": "Plan comparison"
   },
   "about": {
@@ -317,17 +284,13 @@
         "q": "How does payment work?",
         "a": "Payments go through Russian providers (LAVA or Robokassa): bank card, SBP and other available methods. Card details never reach the website — the provider handles the payment. Demo mode: purchase buttons show a placeholder."
       },
-      "refund": {
-        "q": "Can I get a refund?",
-        "a": "Yes. Within 7 days of purchase we refund the full amount if the app does not work for you — no reason needed. Write to support with the email address used for the purchase."
-      },
       "import": {
         "q": "Can I use my own videos?",
         "a": "Yes. Drag an MP4, MOV or M4V file into the app window and it is added to your library. Your files stay on your Mac and are never uploaded."
       },
       "catalog": {
         "q": "How often do new wallpapers arrive?",
-        "a": "The catalog is updated several times a month. Premium users get new loops automatically, and single wallpapers or packs can be bought at any time."
+        "a": "The catalog is updated several times a month. Premium users get new loops automatically — there is nothing extra to buy."
       }
     }
   },
@@ -378,7 +341,7 @@
     "emptyPurchases": "No purchases yet",
     "emptyPurchasesHint": "Buy something in the catalog and it will show up here.",
     "emptyDownloads": "No downloads yet",
-    "emptyDownloadsHint": "Buy wallpapers or a pack to download the files.",
+    "emptyDownloadsHint": "Get Premium to download wallpapers from the catalog.",
     "amount": "Amount",
     "date": "Date",
     "status": "Status",
@@ -392,7 +355,7 @@
   },
   "admin": {
     "title": "Admin",
-    "subtitle": "Manage the catalog, packs and users.",
+    "subtitle": "Manage the catalog and users.",
     "password": "Password",
     "passwordPlaceholder": "Enter the ADMIN_PASSWORD value",
     "enter": "Sign in",
@@ -400,7 +363,6 @@
     "unauthorizedBody": "Wrong password. Check the ADMIN_PASSWORD environment variable.",
     "tabs": {
       "wallpapers": "Wallpapers",
-      "packs": "Packs",
       "users": "Users"
     },
     "add": "Add",
@@ -410,8 +372,6 @@
       "title": "Title",
       "category": "Category",
       "type": "Type",
-      "price": "Price",
-      "count": "Count",
       "email": "Email",
       "status": "Status",
       "created": "Created"
@@ -491,8 +451,7 @@
     "download": "Download",
     "rights": "All rights reserved.",
     "inn": "INN",
-    "ogrnip": "OGRNIP",
-    "disclaimer": "Demo content — placeholders. Commercial use requires licensed content (Pexels, Coverr, your own footage). MacWall content cannot be sold — personal testing only."
+    "ogrnip": "OGRNIP"
   },
   "toast": {
     "paymentSoon": "Payments are coming soon",

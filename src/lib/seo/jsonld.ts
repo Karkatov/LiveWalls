@@ -1,59 +1,31 @@
-import type { Pack, Wallpaper } from '@/types';
+import type { Wallpaper } from '@/types';
 import { siteConfig } from '@/config/site';
 import { absoluteLocalizedUrl } from './metadata';
 
 /**
- * Structured data (JSON-LD) для обоев и паков.
+ * Structured data (JSON-LD) для обоев.
  *
- * Формат соответствует schema.org: Product + ImageObject + Offer.
- * Цены — в рублях, по стандарту schema.org валюта указывается кодом RUB.
+ * Обои входят в каталог приложения и не продаются поштучно, поэтому
+ * разметка описывает медиаматериал, а не товар с ценой.
  */
 
 /** JSON-LD для карточки обоев. */
 export function wallpaperJsonLd(wallpaper: Wallpaper, locale: 'ru' | 'en' = 'ru'): string {
   const data = {
     '@context': 'https://schema.org',
-    '@type': 'Product',
+    '@type': 'CreativeWork',
     name: wallpaper.title,
     description: wallpaper.description,
-    sku: wallpaper.id,
-    category: wallpaper.category,
+    identifier: wallpaper.id,
+    genre: wallpaper.category,
     keywords: wallpaper.tags.join(', '),
     image: [`https://${siteConfig.domain}${wallpaper.poster}`],
-    brand: { '@type': 'Brand', name: siteConfig.name },
+    creator: wallpaper.author
+      ? { '@type': 'Person', name: wallpaper.author }
+      : { '@type': 'Organization', name: siteConfig.name },
     width: { '@type': 'QuantitativeValue', value: wallpaper.width, unitCode: 'E37' },
     height: { '@type': 'QuantitativeValue', value: wallpaper.height, unitCode: 'E37' },
-    ...(wallpaper.author ? { creator: { '@type': 'Person', name: wallpaper.author } } : {}),
-    offers: {
-      '@type': 'Offer',
-      price: wallpaper.price ?? 0,
-      priceCurrency: 'RUB',
-      availability: 'https://schema.org/InStock',
-      url: absoluteLocalizedUrl(`/wallpapers/${wallpaper.slug}`, locale),
-      priceValidUntil: new Date(Date.now() + 365 * 24 * 3600 * 1000).toISOString().slice(0, 10),
-    },
-  };
-
-  return JSON.stringify(data);
-}
-
-/** JSON-LD для пака. */
-export function packJsonLd(pack: Pack, locale: 'ru' | 'en' = 'ru'): string {
-  const data = {
-    '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: pack.title,
-    description: pack.description,
-    sku: pack.id,
-    image: [`https://${siteConfig.domain}${pack.poster}`],
-    brand: { '@type': 'Brand', name: siteConfig.name },
-    offers: {
-      '@type': 'Offer',
-      price: pack.price,
-      priceCurrency: 'RUB',
-      availability: 'https://schema.org/InStock',
-      url: absoluteLocalizedUrl(`/packs/${pack.slug}`, locale),
-    },
+    url: absoluteLocalizedUrl(`/wallpapers/${wallpaper.slug}`, locale),
   };
 
   return JSON.stringify(data);

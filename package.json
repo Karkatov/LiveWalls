@@ -2,7 +2,7 @@
   "name": "livewalls-site",
   "version": "0.1.0",
   "private": true,
-  "description": "Сайт-визитка LiveWalls — живые обои для macOS. Каталог, паки, цены, личный кабинет.",
+  "description": "Сайт-визитка LiveWalls — живые обои для macOS. Каталог, цены, личный кабинет.",
   "author": "LiveWalls",
   "license": "UNLICENSED",
   "type": "module",

@@ -97,39 +97,6 @@ export function screenshotPlaceholderSvg(label: string, options: PlaceholderOpti
   </svg>`;
 }
 
-/** Плейсхолдер обложки пака. */
-export function packPlaceholderSvg(
-  key: string,
-  options: PlaceholderOptions & { count?: number } = {},
-): string {
-  const { width = 1200, height = 800, count } = options;
-  const [from, via, to] = gradientForKey(key);
-  const id = Math.abs(hashString(key)).toString(36);
-  const tiles = Array.from({ length: 6 })
-    .map((_, index) => {
-      const col = index % 3;
-      const row = Math.floor(index / 3);
-      const x = 60 + col * 120;
-      const y = 60 + row * 120;
-      const opacity = 0.16 + index * 0.06;
-      return `<rect x="${x}" y="${y}" width="100" height="100" rx="18" fill="#ffffff" opacity="${opacity.toFixed(2)}"/>`;
-    })
-    .join('');
-  const badge = count
-    ? `<g transform="translate(${width - 210} ${height - 150})">
-         <rect width="150" height="70" rx="35" fill="rgba(10,10,12,0.55)" stroke="rgba(255,255,255,0.28)"/>
-         <text x="75" y="45" text-anchor="middle" font-family="-apple-system, system-ui, sans-serif" font-size="30" font-weight="700" fill="#ffffff">${count}</text>
-       </g>`
-    : '';
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
-    ${gradientDefs(id, from, via, to)}
-    <rect width="${width}" height="${height}" fill="url(#g${id})"/>
-    <rect width="${width}" height="${height}" fill="url(#r${id})"/>
-    ${tiles}
-    ${badge}
-  </svg>`;
-}
-
 /** Аватар-заглушка: градиентный круг с инициалами. */
 export function avatarPlaceholderSvg(name: string, key: string, size = 96): string {
   const [from, , to] = gradientForKey(key || name);

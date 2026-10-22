@@ -4,7 +4,6 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { routing, type Locale } from '@/i18n/routing';
 import { buildMetadata } from '@/lib/seo/metadata';
 import { mockWallpapers } from '@/data/mock/wallpapers';
-import { mockPacks } from '@/data/mock/packs';
 import { mockUsers } from '@/data/mock/users';
 import { AdminPanel } from '@/components/admin/admin-panel';
 
@@ -58,7 +57,6 @@ export default async function AdminPage({ params }: { params: Promise<{ locale: 
         <AdminPanel
           passwordHash={hashPassword(password)}
           wallpapers={mockWallpapers}
-          packs={mockPacks}
           users={mockUsers}
         />
       </div>

@@ -17,7 +17,6 @@ import { Reveal } from '@/components/shared/motion';
 import { WallpaperMedia } from '@/components/catalog/wallpaper-media';
 import { WallpaperCard } from '@/components/catalog/wallpaper-card';
 import { FavoriteButton } from '@/components/wallpaper/favorite-button';
-import { BuyButton } from '@/components/wallpaper/buy-button';
 
 export function generateStaticParams() {
   return routing.locales.flatMap((locale) =>
@@ -63,7 +62,6 @@ export default async function WallpaperPage({
   const similar = await getSimilarWallpapers(wallpaper, 4);
   const t = await getTranslations('wallpaper');
   const tNav = await getTranslations('nav');
-  const tCommon = await getTranslations('common');
 
   const specs = [
     { label: t('resolution'), value: `${wallpaper.width} × ${wallpaper.height}` },
@@ -109,7 +107,6 @@ export default async function WallpaperPage({
         <Reveal delay={0.08}>
           <div className="flex h-full flex-col">
             <div className="flex flex-wrap items-center gap-2">
-              <Badge variant="brand">{t('premiumBadge')}</Badge>
               <Badge variant="outline">{wallpaper.category}</Badge>
               {wallpaper.isCuratedPick && <Badge variant="success">Curated</Badge>}
             </div>
@@ -139,41 +136,27 @@ export default async function WallpaperPage({
               {wallpaper.description}
             </p>
 
-            {/* Покупка */}
+            {/* Доступ */}
             <div className="border-border/70 bg-card/50 mt-7 rounded-2xl border p-5 backdrop-blur-xl">
-              <div className="flex items-end justify-between gap-4">
+              <div className="flex items-start justify-between gap-4">
                 <div>
                   <p className="text-muted-foreground text-xs tracking-[0.14em] uppercase">
-                    {wallpaper.isPaid ? t('premiumBadge') : tCommon('free')}
+                    {t('accessTitle')}
                   </p>
-                  <p className="text-foreground mt-1 text-3xl font-bold tracking-tight">
-                    {wallpaper.priceText ?? tCommon('free')}
+                  <p className="text-muted-foreground mt-1 text-sm leading-relaxed">
+                    {t('accessBody')}
                   </p>
                 </div>
 
                 <FavoriteButton id={wallpaper.id} title={wallpaper.title} />
               </div>
 
-              <div className="mt-5 flex flex-col gap-2 sm:flex-row">
-                {wallpaper.isPaid ? (
-                  <BuyButton
-                    kind="wallpaper"
-                    itemId={wallpaper.id}
-                    title={wallpaper.title}
-                    price={wallpaper.price ?? 0}
-                    priceLabel={t('buyWithPrice', { price: wallpaper.priceText ?? '' })}
-                    size="lg"
-                    className="flex-1"
-                  />
-                ) : (
-                  <Button asChild variant="gradient" size="lg" className="flex-1">
-                    <Link href="/download">
-                      <Download className="size-4" />
-                      {t('download')}
-                    </Link>
-                  </Button>
-                )}
-              </div>
+              <Button asChild variant="gradient" size="lg" className="mt-5 w-full">
+                <Link href="/download">
+                  <Download className="size-4" />
+                  {t('download')}
+                </Link>
+              </Button>
             </div>
 
             {/* Теги */}

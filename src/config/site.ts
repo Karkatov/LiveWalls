@@ -97,7 +97,6 @@ export function mediaUrl(
 /** Навигация в шапке сайта. */
 export const navLinks = [
   { href: '/wallpapers', labelKey: 'wallpapers' },
-  { href: '/packs', labelKey: 'packs' },
   { href: '/pricing', labelKey: 'pricing' },
   { href: '/about', labelKey: 'about' },
   { href: '/faq', labelKey: 'faq' },
@@ -110,9 +109,6 @@ export const pricing = {
   trialHours: 24,
   lifetime: 890,
   yearly: 490,
-  pack: 199,
-  packItems: 10,
-  single: 99,
   /** Скидочная цена Premium внутри пробного периода. */
   trialDiscount: 690,
   /** Максимальный размер скидки в процентах (690 ₽ вместо 890 ₽ = −22%). */
