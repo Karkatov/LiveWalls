@@ -13,9 +13,9 @@ import { FavoriteButton } from '@/components/wallpaper/favorite-button';
 /**
  * Карточка обоев для каталога и подборок.
  *
- * Компактная: цена показана один раз — бейджем на превью, а в нижней
- * панели остаются только название (одна строка с троеточием), сердечко
- * со счётчиком лайков и кнопка действия.
+ * Компактная: цены на карточке нет — только бейдж «Бесплатно» на превью,
+ * а в нижней панели остаются название (до двух строк), сердечко со
+ * счётчиком лайков и кнопка действия.
  *
  * Наведение: лёгкий подъём, масштаб превью и появление свечения.
  */
@@ -57,11 +57,7 @@ export function WallpaperCard({
             </span>
           )}
 
-          {wallpaper.isPaid ? (
-            <span className="bg-gradient-brand-strong pointer-events-none absolute top-3 right-3 rounded-full px-2.5 py-1 text-[11px] font-semibold text-white shadow-[0_6px_18px_-8px_var(--brand-glow)]">
-              {wallpaper.priceText}
-            </span>
-          ) : (
+          {!wallpaper.isPaid && (
             <span className="pointer-events-none absolute top-3 right-3 rounded-full bg-black/75 px-2.5 py-1 text-[11px] font-medium text-white backdrop-blur-md">
               {t('freeBadge')}
             </span>
@@ -73,7 +69,7 @@ export function WallpaperCard({
         <Link
           href={`/wallpapers/${wallpaper.slug}`}
           title={wallpaper.title}
-          className="text-foreground hover:text-brand-foreground focus-visible:outline-ring min-w-0 flex-1 truncate text-[13px] font-semibold tracking-tight transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
+          className="text-foreground hover:text-brand-foreground focus-visible:outline-ring line-clamp-2 min-w-0 flex-1 text-[13px] font-semibold tracking-tight transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
         >
           {wallpaper.title}
         </Link>

@@ -47,11 +47,16 @@ export function Header() {
           : 'border-b border-transparent bg-transparent',
       )}
     >
-      <div className="mx-auto flex h-16 max-w-[1200px] items-center justify-between gap-4 px-4 sm:px-6">
+      <div
+        className={cn(
+          'mx-auto flex max-w-[1200px] items-center justify-between gap-4 px-4 transition-[height] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] sm:px-6',
+          scrolled ? 'h-16' : 'h-14',
+        )}
+      >
         <Link
           href="/"
           aria-label="LiveWalls"
-          className="border-border/70 bg-background/40 hover:border-brand/40 focus-visible:outline-ring flex size-11 items-center justify-center rounded-[10px] border backdrop-blur-md transition-colors duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] focus-visible:outline-2 focus-visible:outline-offset-4"
+          className="border-border/70 bg-background/40 hover:border-brand/40 focus-visible:outline-ring flex size-10 items-center justify-center rounded-[10px] border backdrop-blur-md transition-colors duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] focus-visible:outline-2 focus-visible:outline-offset-4"
         >
           <Logo variant="compact" />
         </Link>

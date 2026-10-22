@@ -45,7 +45,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
   const t = await getTranslations('home.faq');
   const tFaq = await getTranslations('faq.items');
 
-  const [featured, categories] = await Promise.all([getFeaturedWallpapers(8), getCategories()]);
+  const [featured, categories] = await Promise.all([getFeaturedWallpapers(6), getCategories()]);
 
   const faqItems = (['trial', 'system', 'battery', 'license', 'payment'] as const).map((key) => ({
     id: key,

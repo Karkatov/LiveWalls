@@ -31,6 +31,13 @@ export async function Hero() {
     { value: '24', label: tStats('trial') },
   ];
 
+  // Заголовок и акцент живут в одном потоке: «в 4K» встаёт в конец строки
+  // к слову «Mac», а градиент применяется только к словам акцента.
+  const title = t('title');
+  const accent = t('titleAccent');
+  const accentStart = title.split(' ').length;
+  const heading = `${title} ${accent}`;
+
   return (
     <section className="relative overflow-hidden">
       {/* Фоновые слои */}
@@ -39,15 +46,14 @@ export async function Hero() {
         <div className="bg-grid absolute inset-x-0 top-0 h-[520px] opacity-[0.18]" />
       </ParallaxLayer>
 
-      <div className="mx-auto grid max-w-[1200px] items-start gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.05fr_1fr] lg:py-24">
+      <div className="mx-auto grid max-w-[1200px] items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.05fr_1fr] lg:py-24">
         <div>
-          <h1 className="text-foreground text-display-xl tracking-[-0.03em]">
-            <LetterReveal text={t('title')} delay={0.05} />
+          <h1 className="text-foreground text-5xl leading-[1.05] font-bold tracking-[-0.03em] sm:text-6xl">
             <LetterReveal
-              text={t('titleAccent')}
-              delay={0.2}
-              className="-mt-2 block"
+              text={heading}
+              delay={0.05}
               wordClassName="text-gradient"
+              accentFromIndex={accentStart}
             />
           </h1>
 
