@@ -39,19 +39,24 @@ export async function Hero() {
         <div className="bg-grid absolute inset-x-0 top-0 h-[520px] opacity-[0.18]" />
       </ParallaxLayer>
 
-      <div className="mx-auto grid max-w-[1200px] items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.05fr_1fr] lg:py-24">
+      <div className="mx-auto grid max-w-[1200px] items-start gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.05fr_1fr] lg:py-24">
         <div>
-          <Reveal>
+          <h1 className="text-foreground text-display-xl tracking-[-0.03em]">
+            <LetterReveal text={t('title')} delay={0.05} />
+            <LetterReveal
+              text={t('titleAccent')}
+              delay={0.2}
+              className="-mt-2 block"
+              wordClassName="text-gradient"
+            />
+          </h1>
+
+          <Reveal delay={0.08} className="mt-6">
             <span className="border-brand/25 bg-brand/10 text-brand-foreground inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-xs font-medium backdrop-blur-md">
               <Sparkles className="size-3.5" aria-hidden="true" />
               {t('badge')}
             </span>
           </Reveal>
-
-          <h1 className="text-foreground text-display-xl mt-6 tracking-[-0.03em]">
-            <LetterReveal text={t('title')} delay={0.05} />
-            <LetterReveal text={t('titleAccent')} delay={0.2} wordClassName="text-gradient" />
-          </h1>
 
           <Reveal delay={0.12}>
             <p className="text-muted-foreground text-lead mt-5 max-w-xl">{t('subtitle')}</p>

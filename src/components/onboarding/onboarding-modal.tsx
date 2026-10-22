@@ -2,26 +2,25 @@
 
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import { ArrowRight, Check, Download, Monitor, Moon, Sparkles, Sun } from 'lucide-react';
+import { ArrowRight, Check, Download, Sparkles } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { useTheme } from 'next-themes';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { useOnboarding } from '@/lib/hooks/use-onboarding';
 import { cn } from '@/lib/utils/cn';
 
-const STEPS = 3;
+const STEPS = 2;
 
 /**
  * Онбординг-модалка при первом заходе на сайт.
  *
- * Шаги: приветствие → выбор темы → приглашение скачать приложение.
+ * Шаги: приветствие → приглашение скачать приложение.
+ * Тема следует системным настройкам, поэтому отдельный шаг не нужен.
  * Показывается один раз (флаг в localStorage), есть кнопка «Пропустить».
  */
 export function OnboardingModal() {
   const t = useTranslations('onboarding');
   const { open, setOpen, dismiss, ready } = useOnboarding();
-  const { theme, setTheme } = useTheme();
   const [step, setStep] = useState(0);
   const reduce = useReducedMotion();
 
@@ -85,38 +84,6 @@ export function OnboardingModal() {
 
                 {step === 1 && (
                   <div className="space-y-4">
-                    <h2 className="text-foreground text-2xl font-bold tracking-tight">
-                      {t('step2Title')}
-                    </h2>
-                    <p className="text-muted-foreground text-sm leading-relaxed">
-                      {t('step2Body')}
-                    </p>
-
-                    <div className="grid grid-cols-3 gap-2 pt-1">
-                      <ThemeOption
-                        active={theme === 'dark'}
-                        onClick={() => setTheme('dark')}
-                        icon={<Moon className="size-4" />}
-                        label={t('themeDark')}
-                      />
-                      <ThemeOption
-                        active={theme === 'light'}
-                        onClick={() => setTheme('light')}
-                        icon={<Sun className="size-4" />}
-                        label={t('themeLight')}
-                      />
-                      <ThemeOption
-                        active={theme === 'system'}
-                        onClick={() => setTheme('system')}
-                        icon={<Monitor className="size-4" />}
-                        label={t('themeSystem')}
-                      />
-                    </div>
-                  </div>
-                )}
-
-                {step === 2 && (
-                  <div className="space-y-4">
                     <span className="bg-gradient-brand-strong flex size-14 items-center justify-center rounded-2xl text-white shadow-[0_14px_40px_-14px_var(--brand-glow)]">
                       <Download className="size-6" aria-hidden="true" />
                     </span>
@@ -174,35 +141,5 @@ export function OnboardingModal() {
         </div>
       </DialogContent>
     </Dialog>
-  );
-}
-
-function ThemeOption({
-  active,
-  onClick,
-  icon,
-  label,
-}: {
-  active: boolean;
-  onClick: () => void;
-  icon: React.ReactNode;
-  label: string;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      aria-pressed={active}
-      className={cn(
-        'flex flex-col items-center gap-2 rounded-xl border px-3 py-4 text-xs transition-all',
-        'focus-visible:outline-ring focus-visible:outline-2 focus-visible:outline-offset-2',
-        active
-          ? 'border-brand/60 bg-brand/12 text-foreground shadow-[0_0_0_1px_color-mix(in_srgb,var(--brand-via)_28%,transparent)]'
-          : 'border-border/70 bg-secondary/40 text-muted-foreground hover:border-brand/30 hover:text-foreground',
-      )}
-    >
-      {icon}
-      <span className="font-medium">{label}</span>
-    </button>
   );
 }

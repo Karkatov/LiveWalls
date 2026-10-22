@@ -92,7 +92,7 @@ export default async function LocaleLayout({
 
                 <Header />
 
-                <main id="main" className="flex-1 pt-[72px]">
+                <main id="main" className="flex-1 pt-16">
                   <PageTransition>{children}</PageTransition>
                 </main>
 

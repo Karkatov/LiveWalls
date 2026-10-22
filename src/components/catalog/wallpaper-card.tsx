@@ -7,7 +7,7 @@ import type { Wallpaper } from '@/types';
 import { Link } from '@/i18n/navigation';
 import { useFavorites } from '@/lib/hooks/use-favorites';
 import { cn } from '@/lib/utils/cn';
-import { formatDuration, formatFileSize } from '@/lib/utils/format';
+import { formatDuration } from '@/lib/utils/format';
 import { WallpaperMedia } from './wallpaper-media';
 import { FavoriteButton } from '@/components/wallpaper/favorite-button';
 
@@ -71,31 +71,25 @@ export function WallpaperCard({
               <Heart className="size-3 fill-current" aria-hidden="true" />
             </span>
           )}
-
-          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/55 to-transparent p-4 pt-10">
-            <h3 className="truncate text-[15px] font-semibold text-white drop-shadow-sm">
-              {wallpaper.title}
-            </h3>
-            <p className="mt-0.5 truncate text-xs text-white/90">
-              {wallpaper.width} × {wallpaper.height} · {formatFileSize(wallpaper.fileSize)}
-            </p>
-          </div>
         </div>
       </Link>
 
       <div className="flex flex-col gap-3 p-5">
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
-            <span className="text-foreground text-3xl font-semibold tracking-tight sm:text-4xl">
+            <Link
+              href={`/wallpapers/${wallpaper.slug}`}
+              className="text-foreground hover:text-brand-foreground focus-visible:outline-ring block truncate text-base font-semibold tracking-tight transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
+            >
+              {wallpaper.title}
+            </Link>
+            <p className="text-muted-foreground mt-0.5 truncate text-sm font-medium">
               {wallpaper.isPaid ? wallpaper.priceText : t('freeBadge')}
-            </span>
-            <p className="text-muted-foreground mt-1 truncate text-xs">
-              {wallpaper.author ?? t('premiumBadge')}
             </p>
           </div>
-          <FavoriteButton id={wallpaper.id} compact className="mt-1" />
+          <FavoriteButton id={wallpaper.id} compact className="mt-0.5 shrink-0" />
         </div>
-        <Button asChild variant="gradient" className="w-full justify-center">
+        <Button asChild variant="gradient" size="sm" className="w-full justify-center">
           <Link href={`/wallpapers/${wallpaper.slug}`}>
             <Download className="size-4" />
             {t('download')}
