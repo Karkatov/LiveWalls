@@ -31,15 +31,15 @@ export async function PackCard({ pack, index = 0 }: { pack: Pack; index?: number
             blurDataURL={`/placeholders/packs/pack-01.svg`}
           />
 
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent" />
 
           {pack.badge && (
             <span className="absolute top-3 left-3">
-              <Badge variant="brand">{pack.badge}</Badge>
+              <Badge variant="onMedia">{pack.badge}</Badge>
             </span>
           )}
 
-          <span className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-black/55 px-2.5 py-1 text-[11px] font-medium text-white backdrop-blur-md">
+          <span className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-black/75 px-2.5 py-1 text-[11px] font-medium text-white backdrop-blur-md">
             <Layers className="size-3" aria-hidden="true" />
             {t('count', { count: pack.wallpaperCount })}
           </span>

@@ -90,7 +90,7 @@ export function screenshotPlaceholderSvg(label: string, options: PlaceholderOpti
       <rect x="0" y="0" width="${width - 120}" height="56" rx="24" fill="rgba(10,10,12,0.35)"/>
       <rect x="0" y="40" width="${width - 120}" height="16" fill="rgba(10,10,12,0.35)"/>
       <circle cx="28" cy="28" r="7" fill="#ff5f57"/>
-      <circle cx="52" cy="28" r="7" fill="#febc2e"/>
+      <circle cx="52" cy="28" r="7" fill="#7c5cff"/>
       <circle cx="76" cy="28" r="7" fill="#28c840"/>
       <text x="${(width - 120) / 2}" y="${(height - 120) / 2 + 12}" text-anchor="middle" font-family="-apple-system, system-ui, sans-serif" font-size="40" font-weight="600" fill="rgba(255,255,255,0.92)">${escapeXml(label)}</text>
     </g>

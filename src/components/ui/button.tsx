@@ -17,9 +17,9 @@ const buttonVariants = cva(
     variants: {
       variant: {
         gradient:
-          'bg-gradient-brand text-white shadow-[0_0_0_0_var(--brand-glow)] hover:shadow-[0_0_24px_0_var(--brand-glow-strong)] hover:brightness-110',
+          'bg-[linear-gradient(135deg,#6366F1,#8B5CF6)] text-white shadow-[0_10px_40px_-10px_rgba(99,102,241,0.6)] hover:shadow-[0_12px_50px_-10px_rgba(99,102,241,0.7)] hover:brightness-110',
         primary:
-          'bg-gradient-brand text-white shadow-[0_0_0_0_var(--brand-glow)] hover:shadow-[0_0_24px_0_var(--brand-glow-strong)]',
+          'bg-[linear-gradient(135deg,#6366F1,#8B5CF6)] text-white shadow-[0_10px_40px_-10px_rgba(99,102,241,0.6)] hover:shadow-[0_12px_50px_-10px_rgba(99,102,241,0.7)]',
         default:
           'bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_0_0_0_var(--brand-glow)] hover:shadow-[0_0_20px_0_var(--brand-glow)]',
         secondary:

@@ -25,7 +25,7 @@ export function EmptyState({
       )}
     >
       {Icon ? (
-        <span className="bg-gradient-brand/12 text-brand-foreground flex size-14 items-center justify-center rounded-2xl">
+        <span className="bg-brand/12 text-brand-foreground flex size-14 items-center justify-center rounded-2xl">
           <Icon className="size-6" aria-hidden="true" />
         </span>
       ) : null}

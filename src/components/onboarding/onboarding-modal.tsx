@@ -71,7 +71,7 @@ export function OnboardingModal() {
               >
                 {step === 0 && (
                   <div className="space-y-4">
-                    <span className="bg-gradient-brand flex size-14 items-center justify-center rounded-2xl text-white shadow-[0_14px_40px_-14px_var(--brand-glow)]">
+                    <span className="bg-gradient-brand-strong flex size-14 items-center justify-center rounded-2xl text-white shadow-[0_14px_40px_-14px_var(--brand-glow)]">
                       <Sparkles className="size-6" aria-hidden="true" />
                     </span>
                     <h2 className="text-foreground text-2xl font-bold tracking-tight">
@@ -117,7 +117,7 @@ export function OnboardingModal() {
 
                 {step === 2 && (
                   <div className="space-y-4">
-                    <span className="bg-gradient-brand flex size-14 items-center justify-center rounded-2xl text-white shadow-[0_14px_40px_-14px_var(--brand-glow)]">
+                    <span className="bg-gradient-brand-strong flex size-14 items-center justify-center rounded-2xl text-white shadow-[0_14px_40px_-14px_var(--brand-glow)]">
                       <Download className="size-6" aria-hidden="true" />
                     </span>
                     <h2 className="text-foreground text-2xl font-bold tracking-tight">

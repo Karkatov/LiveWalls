@@ -47,36 +47,36 @@ export function WallpaperCard({
             <WallpaperMedia wallpaper={wallpaper} priority={priority} rounded="rounded-none" />
           </div>
 
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent opacity-70 transition-opacity duration-300 group-hover:opacity-90" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent transition-opacity duration-300 group-hover:opacity-90" />
 
           {wallpaper.mediaType === 'video' && (
-            <span className="pointer-events-none absolute top-3 left-3 flex items-center gap-1 rounded-full bg-black/55 px-2.5 py-1 text-[11px] font-medium text-white backdrop-blur-md">
+            <span className="pointer-events-none absolute top-3 left-3 flex items-center gap-1 rounded-full bg-black/75 px-2.5 py-1 text-[11px] font-medium text-white backdrop-blur-md">
               <Play className="size-3 fill-current" aria-hidden="true" />
               {wallpaper.duration ? formatDuration(wallpaper.duration) : t('videoBadge')}
             </span>
           )}
 
           {wallpaper.isPaid ? (
-            <span className="bg-gradient-brand pointer-events-none absolute top-3 right-3 rounded-full px-2.5 py-1 text-[11px] font-semibold text-white shadow-[0_6px_18px_-8px_var(--brand-glow)]">
+            <span className="bg-gradient-brand-strong pointer-events-none absolute top-3 right-3 rounded-full px-2.5 py-1 text-[11px] font-semibold text-white shadow-[0_6px_18px_-8px_var(--brand-glow)]">
               {wallpaper.priceText}
             </span>
           ) : (
-            <span className="pointer-events-none absolute top-3 right-3 rounded-full bg-black/55 px-2.5 py-1 text-[11px] font-medium text-white backdrop-blur-md">
+            <span className="pointer-events-none absolute top-3 right-3 rounded-full bg-black/75 px-2.5 py-1 text-[11px] font-medium text-white backdrop-blur-md">
               {t('freeBadge')}
             </span>
           )}
 
           {isFavorite && (
-            <span className="pointer-events-none absolute bottom-3 left-3 flex items-center gap-1 rounded-full bg-rose-500/85 px-2.5 py-1 text-[11px] font-medium text-white">
+            <span className="pointer-events-none absolute bottom-3 left-3 flex items-center gap-1 rounded-full bg-rose-500/90 px-2.5 py-1 text-[11px] font-medium text-white">
               <Heart className="size-3 fill-current" aria-hidden="true" />
             </span>
           )}
 
-          <div className="absolute inset-x-0 bottom-0 p-4">
+          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/55 to-transparent p-4 pt-10">
             <h3 className="truncate text-[15px] font-semibold text-white drop-shadow-sm">
               {wallpaper.title}
             </h3>
-            <p className="mt-0.5 truncate text-xs text-white/70">
+            <p className="mt-0.5 truncate text-xs text-white/90">
               {wallpaper.width} × {wallpaper.height} · {formatFileSize(wallpaper.fileSize)}
             </p>
           </div>

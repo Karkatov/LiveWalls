@@ -28,7 +28,7 @@ export function generateStaticParams() {
 export const viewport: Viewport = {
   themeColor: [
     { media: '(prefers-color-scheme: dark)', color: '#0A0A0C' },
-    { media: '(prefers-color-scheme: light)', color: '#F7F7F9' },
+    { media: '(prefers-color-scheme: light)', color: '#F8FAFC' },
   ],
   width: 'device-width',
   initialScale: 1,
@@ -76,7 +76,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider locale={locale} messages={messages} timeZone="Europe/Moscow">
           <ThemeProvider
             attribute="class"
-            defaultTheme="dark"
+            defaultTheme="light"
             enableSystem
             disableTransitionOnChange
             storageKey="livewalls:theme"

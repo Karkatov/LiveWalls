@@ -63,9 +63,7 @@ export default async function DownloadPage({ params }: { params: Promise<{ local
   return (
     <div className="mx-auto max-w-[1000px] px-4 py-12 sm:px-6 lg:py-16">
       <header className="mx-auto max-w-2xl text-center">
-        <h1 className="text-foreground text-3xl font-bold tracking-tight text-balance sm:text-4xl">
-          {t('title')}
-        </h1>
+        <h1 className="text-foreground text-display-md">{t('title')}</h1>
         <p className="text-muted-foreground mt-3 text-base leading-relaxed text-pretty">
           {t('subtitle')}
         </p>
@@ -142,7 +140,7 @@ export default async function DownloadPage({ params }: { params: Promise<{ local
                 key={step}
                 className="border-border/60 bg-card/40 flex items-start gap-3 rounded-2xl border px-5 py-4 backdrop-blur-xl"
               >
-                <span className="bg-gradient-brand flex size-7 shrink-0 items-center justify-center rounded-full text-xs font-semibold text-white">
+                <span className="bg-gradient-brand-strong flex size-7 shrink-0 items-center justify-center rounded-full text-xs font-semibold text-white">
                   {index + 1}
                 </span>
                 <span className="text-muted-foreground text-sm">{step}</span>

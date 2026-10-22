@@ -19,7 +19,7 @@ export function Logo({
 
   return (
     <span className={cn('inline-flex items-center gap-2.5', className)}>
-      <span className="bg-gradient-brand relative inline-flex size-9 items-center justify-center overflow-hidden rounded-xl shadow-[0_8px_24px_-10px_var(--brand-glow)]">
+      <span className="bg-gradient-brand-strong relative inline-flex size-9 items-center justify-center overflow-hidden rounded-xl shadow-[0_8px_24px_-10px_var(--brand-glow)]">
         <svg viewBox="0 0 32 32" className="size-6" aria-hidden="true">
           <defs>
             <linearGradient id="lw-grad" x1="0" y1="0" x2="1" y2="1">

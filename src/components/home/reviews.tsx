@@ -24,7 +24,7 @@ export async function Reviews({ reviews }: { reviews: Review[] }) {
               key={review.id}
               className="border-border/60 bg-card/40 text-muted-foreground flex items-center gap-2 rounded-full border px-4 py-2 text-sm whitespace-nowrap backdrop-blur-xl"
             >
-              <span className="bg-amber size-1.5 rounded-full" aria-hidden="true" />
+              <span className="bg-brand size-1.5 rounded-full" aria-hidden="true" />
               {review.name}
               <span className="text-muted-foreground/60">· {review.role}</span>
             </span>
@@ -45,7 +45,7 @@ export async function Reviews({ reviews }: { reviews: Review[] }) {
                     key={index}
                     className={
                       index < review.rating
-                        ? 'size-4 fill-amber-400 text-amber-400'
+                        ? 'text-brand size-4 fill-current'
                         : 'text-muted-foreground/40 size-4'
                     }
                     aria-hidden="true"

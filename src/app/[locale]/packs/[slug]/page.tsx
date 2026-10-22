@@ -92,9 +92,7 @@ export default async function PackPage({
               {pack.badge && <Badge variant="outline">{pack.badge}</Badge>}
             </div>
 
-            <h1 className="text-foreground mt-4 text-3xl font-bold tracking-tight text-balance sm:text-4xl">
-              {pack.title}
-            </h1>
+            <h1 className="text-foreground text-display-md mt-4">{pack.title}</h1>
 
             <p className="text-muted-foreground mt-4 text-sm leading-relaxed text-pretty">
               {pack.description}

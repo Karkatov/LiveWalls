@@ -188,12 +188,19 @@ export function MaskReveal({
 export function LetterReveal({
   text,
   className,
+  wordClassName,
   as: Tag = 'span',
   delay = 0,
   stagger = 0.045,
 }: {
   text: string;
   className?: string;
+  /**
+   * Классы для каждого слова. Нужны для градиентного текста:
+   * `background-clip: text` не заливает потомков с прозрачным цветом,
+   * поэтому градиент применяется к самому элементу со словами.
+   */
+  wordClassName?: string;
   as?: 'h1' | 'h2' | 'h3' | 'span';
   delay?: number;
   stagger?: number;
@@ -205,7 +212,7 @@ export function LetterReveal({
   const MotionTag = motion[Tag] as typeof motion.span;
 
   if (reduce) {
-    return <Tag className={className}>{text}</Tag>;
+    return <Tag className={cn(className, wordClassName)}>{text}</Tag>;
   }
 
   return (
@@ -228,7 +235,7 @@ export function LetterReveal({
             return (
               <motion.span
                 key={`${word}-${i}`}
-                className="inline-block will-change-transform"
+                className={cn('inline-block will-change-transform', wordClassName)}
                 style={{ transformStyle: 'preserve-3d' }}
                 variants={{
                   hidden: { opacity: 0, y: '0.4em', rotateX: -55 },

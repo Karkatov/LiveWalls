@@ -48,11 +48,9 @@ export async function Hero() {
             </span>
           </Reveal>
 
-          <h1 className="text-foreground text-display-xl mt-6">
+          <h1 className="text-foreground text-display-xl mt-6 tracking-[-0.03em]">
             <LetterReveal text={t('title')} delay={0.05} />
-            <span className="text-gradient bg-gradient-brand bg-clip-text text-transparent">
-              <LetterReveal text={t('titleAccent')} delay={0.2} />
-            </span>
+            <LetterReveal text={t('titleAccent')} delay={0.2} wordClassName="text-gradient" />
           </h1>
 
           <Reveal delay={0.12}>
@@ -105,14 +103,17 @@ export async function Hero() {
                 <span className="text-muted-foreground ml-3 text-xs">LiveWalls</span>
               </div>
 
-              <Image
-                src="/placeholders/screenshots/app-main.svg"
-                alt={t('appPreviewLabel')}
-                width={1400}
-                height={880}
-                priority
-                className="w-full"
-              />
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#1E293B] to-[#0F172A]" />
+                <Image
+                  src="/placeholders/screenshots/app-main.svg"
+                  alt={t('appPreviewLabel')}
+                  width={1400}
+                  height={880}
+                  priority
+                  className="relative w-full"
+                />
+              </div>
             </div>
 
             <div className="border-border/70 bg-card/80 pointer-events-none absolute -bottom-6 -left-4 hidden rounded-2xl border px-4 py-3 shadow-xl backdrop-blur-xl sm:block">

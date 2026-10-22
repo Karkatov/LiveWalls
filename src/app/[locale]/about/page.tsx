@@ -62,9 +62,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
 
       {/* Скриншоты */}
       <section className="mt-16">
-        <h2 className="text-foreground text-2xl font-bold tracking-tight">
-          {t('screenshotsTitle')}
-        </h2>
+        <h2 className="text-foreground text-display-sm">{t('screenshotsTitle')}</h2>
         <p className="text-muted-foreground mt-2 text-sm">{t('screenshotsBody')}</p>
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -91,7 +89,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
 
       {/* Ключевые особенности */}
       <section className="mt-16">
-        <h2 className="text-foreground text-2xl font-bold tracking-tight">{t('featuresTitle')}</h2>
+        <h2 className="text-foreground text-display-sm">{t('featuresTitle')}</h2>
 
         <StaggerGroup className="mt-8 grid gap-4 md:grid-cols-3">
           {highlights.map((item) => (
@@ -109,9 +107,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
 
       {/* Требования */}
       <section className="mt-16">
-        <h2 className="text-foreground text-2xl font-bold tracking-tight">
-          {t('requirementsTitle')}
-        </h2>
+        <h2 className="text-foreground text-display-sm">{t('requirementsTitle')}</h2>
         <p className="text-muted-foreground mt-2 text-sm">{t('requirementsBody')}</p>
 
         <dl className="mt-8 grid gap-3 sm:grid-cols-2">
@@ -136,10 +132,10 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
 
       {/* CTA */}
       <Reveal>
-        <div className="border-brand/25 bg-gradient-brand mt-16 flex flex-col items-center gap-4 rounded-3xl border px-6 py-12 text-center shadow-[0_30px_90px_-40px_var(--brand-glow-strong)]">
-          <h2 className="text-display-sm text-night">{t('download')}</h2>
+        <div className="border-brand/25 bg-gradient-brand-strong mt-16 flex flex-col items-center gap-4 rounded-3xl border px-6 py-12 text-center shadow-[0_30px_90px_-40px_var(--brand-glow-strong)]">
+          <h2 className="text-display-sm text-white">{t('download')}</h2>
 
-          <Button asChild size="lg" className="bg-night text-cream hover:bg-night/90">
+          <Button asChild size="lg" className="bg-white text-[#0A0A0C] hover:bg-white/90">
             <Link href="/download">
               <Download className="size-4" />
               {t('download')}

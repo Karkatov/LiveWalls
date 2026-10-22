@@ -69,7 +69,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
         <SectionHeading eyebrow={t('eyebrow')} title={t('title')} description={t('description')} />
 
         <Reveal>
-          <div className="border-border/60 bg-card/40 mt-10 rounded-2xl border px-2 py-2 backdrop-blur-xl">
+          <div className="border-border/50 bg-card/30 mt-10 rounded-2xl border px-5 py-2 backdrop-blur-xl sm:px-7">
             <FaqAccordion items={faqItems} />
           </div>
         </Reveal>

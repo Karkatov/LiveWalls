@@ -169,9 +169,9 @@ export default async function PricingPage({ params }: { params: Promise<{ locale
 
       {/* Скидка на триал */}
       <Reveal>
-        <div className="mt-6 flex flex-col items-start gap-3 rounded-2xl border border-amber-400/25 bg-amber-400/8 p-5 sm:flex-row sm:items-center sm:justify-between">
+        <div className="border-brand/25 bg-brand/8 mt-6 flex flex-col items-start gap-3 rounded-2xl border p-5 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-start gap-3">
-            <Sparkles className="mt-0.5 size-5 shrink-0 text-amber-300" aria-hidden="true" />
+            <Sparkles className="text-brand-foreground mt-0.5 size-5 shrink-0" aria-hidden="true" />
             <div>
               <p className="text-foreground text-sm font-semibold">{t('trialDiscountTitle')}</p>
               <p className="text-muted-foreground mt-1 text-sm">{t('trialDiscountBody')}</p>
@@ -218,9 +218,7 @@ export default async function PricingPage({ params }: { params: Promise<{ locale
       <section className="mt-16">
         <div className="grid gap-10 lg:grid-cols-2">
           <div>
-            <h2 className="text-foreground text-2xl font-bold tracking-tight">
-              {t('featuresTitle')}
-            </h2>
+            <h2 className="text-foreground text-display-sm">{t('featuresTitle')}</h2>
 
             <ul className="mt-6 space-y-3">
               {featureKeys.map((key) => (
@@ -235,7 +233,7 @@ export default async function PricingPage({ params }: { params: Promise<{ locale
           </div>
 
           <div>
-            <h2 className="text-foreground text-2xl font-bold tracking-tight">{t('faqTitle')}</h2>
+            <h2 className="text-foreground text-display-sm">{t('faqTitle')}</h2>
 
             <dl className="mt-6 space-y-4">
               <div>
@@ -263,7 +261,7 @@ export default async function PricingPage({ params }: { params: Promise<{ locale
 
       {/* Сравнение */}
       <section className="mt-16">
-        <h2 className="text-foreground text-2xl font-bold tracking-tight">{t('compareTitle')}</h2>
+        <h2 className="text-foreground text-display-sm">{t('compareTitle')}</h2>
 
         <div className="border-border/70 mt-6 overflow-x-auto rounded-2xl border">
           <table className="w-full min-w-[560px] border-collapse text-sm">

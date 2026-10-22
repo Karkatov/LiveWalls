@@ -114,9 +114,7 @@ export default async function WallpaperPage({
               {wallpaper.isCuratedPick && <Badge variant="success">Curated</Badge>}
             </div>
 
-            <h1 className="text-foreground mt-4 text-3xl font-bold tracking-tight text-balance sm:text-4xl">
-              {wallpaper.title}
-            </h1>
+            <h1 className="text-foreground text-display-md mt-4">{wallpaper.title}</h1>
 
             <div className="text-muted-foreground mt-3 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
               {wallpaper.author && (

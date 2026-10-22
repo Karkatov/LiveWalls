@@ -18,67 +18,76 @@
   --radius-2xl: 1.5rem;
   --radius-3xl: 2rem;
 
-  /* ─── Палитра Daylight: тёплый оливково-чёрный вместо чистого чёрного ─── */
-  --color-cream: #faf5f2;
-  --color-cream-dark: #e8ded8;
-  --color-night: #18190f;
-  --color-night-soft: #21231a;
-  --color-moonlight: #faf4f2;
-  --color-amber: #ff9d00;
+  /* ─── Палитра: чистый премиум macOS стиль LiveWalls ─── */
+  --color-cream: #ffffff;
+  --color-cream-dark: #f8f9fa;
+  --color-night: #0a0a0c;
+  --color-night-soft: #101014;
+  --color-moonlight: #f5f5f7;
 
-  /* Бренд (акцент = янтарь Daylight) */
-  --brand-from: #ffb340;
-  --brand-via: #ff9d00;
-  --brand-to: #d97f00;
-  --brand-glow: rgba(255, 157, 0, 0.35);
-  --brand-glow-strong: rgba(255, 157, 0, 0.55);
+  /* Бренд: сине-фиолетовый градиент */
+  --brand-from: #6366f1;
+  --brand-via: #6366f1;
+  --brand-to: #8b5cf6;
+  --brand-glow: rgba(99, 102, 241, 0.35);
+  --brand-glow-strong: rgba(99, 102, 241, 0.55);
+  /* Текст/иконки акцента */
+  --brand-foreground: #a5b4fc;
+  /* Усиленный градиент для кнопок */
+  --brand-strong-from: #6366f1;
+  --brand-strong-via: #6366f1;
+  --brand-strong-to: #8b5cf6;
+  /* Градиентный текст: на тёмном фоне — яркие стопы, на светлом — тёмные */
+  --brand-text-from: #7c5cff;
+  --brand-text-via: #6366f1;
+  --brand-text-to: #22d3ee;
 
-  /* Поверхности: тёплый night */
-  --background: #18190f;
-  --background-elevated: #21231a;
-  --foreground: #faf4f2;
-  --card: rgba(250, 244, 242, 0.04);
-  --card-foreground: #faf4f2;
-  --popover: #21231a;
-  --popover-foreground: #faf4f2;
+  /* Поверхности: глубокий тёмный фон */
+  --background: #0a0a0c;
+  --background-elevated: #101014;
+  --foreground: #f5f5f7;
+  --card: rgba(255, 255, 255, 0.04);
+  --card-foreground: #f5f5f7;
+  --popover: #121216;
+  --popover-foreground: #f5f5f7;
 
-  --primary: #faf4f2;
-  --primary-foreground: #18190f;
+  --primary: #f5f5f7;
+  --primary-foreground: #0a0a0c;
 
-  --secondary: rgba(250, 244, 242, 0.07);
-  --secondary-foreground: #faf4f2;
+  --secondary: rgba(255, 255, 255, 0.07);
+  --secondary-foreground: #f5f5f7;
 
-  --muted: rgba(250, 244, 242, 0.05);
-  --muted-foreground: rgba(250, 244, 242, 0.64);
+  --muted: rgba(255, 255, 255, 0.05);
+  --muted-foreground: rgba(245, 245, 247, 0.62);
 
-  --accent: rgba(255, 157, 0, 0.16);
-  --accent-foreground: #ffcf7a;
+  --accent: rgba(124, 92, 255, 0.16);
+  --accent-foreground: #c9bcff;
 
   --destructive: #f87171;
   --destructive-foreground: #1a0a0a;
 
-  --border: rgba(250, 244, 242, 0.1);
-  --input: rgba(250, 244, 242, 0.14);
-  --ring: #ff9d00;
+  --border: rgba(255, 255, 255, 0.09);
+  --input: rgba(255, 255, 255, 0.12);
+  --ring: #7c5cff;
 
-  --glass-bg: rgba(250, 244, 242, 0.055);
-  --glass-border: rgba(250, 244, 242, 0.12);
-  --glass-blur: 16px;
+  --glass-bg: rgba(255, 255, 255, 0.055);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-blur: 24px;
 
-  /* Фирменная кривая Daylight */
+  /* Фирменная кривая */
   --ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1);
   --hover-shadow-color: var(--brand-glow);
 
   /* Типографическая шкала (fluid, clamp) */
-  --tracking-display: -0.07em;
-  --tracking-body: -0.05em;
+  --tracking-display: -0.02em;
+  --tracking-body: -0.01em;
 
-  --text-display-xl: clamp(3rem, 8vw, 7.5rem);
-  --text-display-lg: clamp(2.5rem, 6vw, 4.5rem);
-  --text-display-md: clamp(2rem, 4vw, 3.25rem);
-  --text-display-sm: clamp(1.6rem, 2.6vw, 2.25rem);
-  --text-lead: clamp(1.125rem, 1.6vw, 1.5rem);
-  --text-body: clamp(1rem, 1.1vw, 1.125rem);
+  --text-display-xl: clamp(2.8rem, 7vw, 6rem);
+  --text-display-lg: clamp(2.25rem, 5vw, 3.75rem);
+  --text-display-md: clamp(1.9rem, 3.6vw, 2.9rem);
+  --text-display-sm: clamp(1.5rem, 2.4vw, 2rem);
+  --text-lead: clamp(1.125rem, 1.6vw, 1.375rem);
+  --text-body: clamp(1rem, 1.1vw, 1.0625rem);
   --text-caption: 0.8125rem;
 }
 
@@ -87,37 +96,43 @@
 }
 
 :root:not(.dark) {
-  /* Светлая тема — cream Daylight */
-  --background: #faf5f2;
+  /* Светлая тема — холодный чистый стиль */
+  --background: #f8fafc;
   --background-elevated: #ffffff;
-  --foreground: #18190f;
-  --card: rgba(255, 255, 255, 0.72);
-  --card-foreground: #18190f;
+  --foreground: #09090b;
+  --card: #ffffff;
+  --card-foreground: #09090b;
   --popover: #ffffff;
-  --popover-foreground: #18190f;
+  --popover-foreground: #09090b;
 
-  --primary: #18190f;
-  --primary-foreground: #faf5f2;
+  --primary: #09090b;
+  --primary-foreground: #ffffff;
 
-  --secondary: rgba(24, 25, 15, 0.06);
-  --secondary-foreground: #18190f;
+  --secondary: rgba(9, 9, 11, 0.03);
+  --secondary-foreground: #09090b;
 
-  --muted: rgba(24, 25, 15, 0.05);
-  --muted-foreground: rgba(24, 25, 15, 0.62);
+  --muted: rgba(9, 9, 11, 0.02);
+  --muted-foreground: #71717a;
 
-  --accent: rgba(255, 157, 0, 0.14);
-  --accent-foreground: #8a5300;
+  --accent: rgba(99, 102, 241, 0.1);
+  --accent-foreground: #4f46e5;
 
   --destructive: #dc2626;
   --destructive-foreground: #ffffff;
 
-  --border: rgba(24, 25, 15, 0.1);
-  --input: rgba(24, 25, 15, 0.16);
-  --ring: #d97f00;
+  --border: #e4e4e7;
+  --input: #e4e4e7;
+  --ring: #6366f1;
 
-  --glass-bg: rgba(250, 245, 242, 0.62);
-  --glass-border: rgba(24, 25, 15, 0.1);
-  --glass-blur: 16px;
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-border: #e4e4e7;
+  --glass-blur: 20px;
+
+  /* Сине-фиолетовый акцент */
+  --brand-foreground: #4f46e5;
+  --brand-text-from: #6366f1;
+  --brand-text-via: #6366f1;
+  --brand-text-to: #8b5cf6;
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -150,13 +165,13 @@
   --color-brand-from: var(--brand-from);
   --color-brand-via: var(--brand-via);
   --color-brand-to: var(--brand-to);
+  --color-brand-foreground: var(--brand-foreground);
 
   --color-night: var(--color-night);
   --color-night-soft: var(--color-night-soft);
   --color-cream: var(--color-cream);
   --color-cream-dark: var(--color-cream-dark);
   --color-moonlight: var(--color-moonlight);
-  --color-amber: var(--color-amber);
 
   --radius-sm: var(--radius-sm);
   --radius-md: var(--radius-md);
@@ -168,7 +183,9 @@
   --font-sans:
     var(--font-sans-ui), ui-sans-serif, -apple-system, BlinkMacSystemFont, 'SF Pro Display',
     'Inter', 'Segoe UI', system-ui, sans-serif;
-  --font-display: var(--font-display-serif), ui-serif, Georgia, 'Times New Roman', serif;
+  --font-display:
+    var(--font-sans-ui), ui-sans-serif, -apple-system, BlinkMacSystemFont, 'SF Pro Display',
+    'Inter', 'Segoe UI', system-ui, sans-serif;
   --font-mono: ui-monospace, 'SF Mono', 'JetBrains Mono', 'Menlo', monospace;
 
   /* Типографическая шкала */
@@ -285,8 +302,8 @@
   }
 
   ::selection {
-    background: var(--color-amber);
-    color: var(--color-night);
+    background: var(--brand-glow);
+    color: #ffffff;
   }
 
   :focus-visible {
@@ -323,14 +340,14 @@
    ═══════════════════════════════════════════════════════════════ */
 
 @layer utilities {
-  /* ─── Типографические роли Daylight ─── */
+  /* ─── Типографические роли (геометрический гротеск) ─── */
   .text-display-xl,
   .text-display-lg,
   .text-display-md,
   .text-display-sm {
     font-family: var(--font-display);
-    font-weight: 300;
-    line-height: 0.97;
+    font-weight: 700;
+    line-height: 1.05;
     letter-spacing: var(--tracking-display);
     text-wrap: balance;
   }
@@ -432,9 +449,9 @@
   .text-gradient {
     background-image: linear-gradient(
       135deg,
-      var(--brand-from) 0%,
-      var(--brand-via) 50%,
-      var(--brand-to) 100%
+      var(--brand-text-from) 0%,
+      var(--brand-text-via) 50%,
+      var(--brand-text-to) 100%
     );
     -webkit-background-clip: text;
     background-clip: text;
@@ -451,6 +468,16 @@
     );
   }
 
+  /* Фирменный градиент с тёмными стопами — под текст (контраст AA) */
+  .bg-gradient-brand-strong {
+    background-image: linear-gradient(
+      135deg,
+      var(--brand-strong-from) 0%,
+      var(--brand-strong-via) 50%,
+      var(--brand-strong-to) 100%
+    );
+  }
+
   /* Свечение */
   .glow-brand {
     box-shadow:
@@ -464,12 +491,12 @@
       0 26px 80px -20px var(--brand-glow-strong);
   }
 
-  /* Мягкая радиальная подсветка фона — тёплый янтарь */
+  /* Мягкая радиальная подсветка фона — фиолетовый акцент */
   .bg-aurora {
     background-image:
-      radial-gradient(60% 55% at 15% 10%, rgba(255, 157, 0, 0.16), transparent 60%),
-      radial-gradient(50% 45% at 85% 5%, rgba(255, 179, 64, 0.12), transparent 60%),
-      radial-gradient(70% 60% at 50% 100%, rgba(217, 127, 0, 0.1), transparent 65%);
+      radial-gradient(60% 55% at 15% 10%, rgba(124, 92, 255, 0.22), transparent 60%),
+      radial-gradient(50% 45% at 85% 5%, rgba(34, 211, 238, 0.16), transparent 60%),
+      radial-gradient(70% 60% at 50% 100%, rgba(99, 102, 241, 0.14), transparent 65%);
   }
 
   /* Тонкая сетка-фон (адаптируется к теме) */

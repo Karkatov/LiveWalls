@@ -25,7 +25,7 @@ const CATEGORY_DEFS: ReadonlyArray<Omit<Category, 'count' | 'poster'>> = [
     title: 'Авто',
     description: 'Дрифт, суперкары и ночные трассы.',
     icon: 'Car',
-    accent: 'from-rose-400/80 to-orange-500/60',
+    accent: 'from-rose-400/80 to-pink-500/60',
   },
   {
     id: 'abstract',
@@ -53,14 +53,14 @@ const CATEGORY_DEFS: ReadonlyArray<Omit<Category, 'count' | 'poster'>> = [
     title: 'Аниме',
     description: 'Сakura-арт, пиксель-пейзажи и тёплые сцены.',
     icon: 'Sparkles',
-    accent: 'from-pink-300/80 to-amber-300/60',
+    accent: 'from-pink-300/80 to-rose-300/60',
   },
   {
     id: 'heroes',
     title: 'Герои',
     description: 'Силуэты, контраст и драматичный свет.',
     icon: 'Shield',
-    accent: 'from-amber-300/80 to-yellow-500/60',
+    accent: 'from-brand/70 to-brand-to/60',
   },
   {
     id: 'others',
