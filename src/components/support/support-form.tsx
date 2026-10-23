@@ -1,9 +1,10 @@
 'use client';
 
 import { useState } from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
-import { Loader2, Send } from 'lucide-react';
+import { CheckCircle2, Loader2, Send } from 'lucide-react';
 import { z } from 'zod';
 import { Button } from '@/components/ui/button';
 import { Input, Textarea } from '@/components/ui/input';
@@ -23,7 +24,7 @@ type FieldName = keyof SupportValues;
 /**
  * Форма обращения в поддержку.
  *
- * В демо-режиме запрос никуда не уходит — вместо этого показывается тост.
+ * В демо-режиме запрос никуда не уходит — показывается сообщение об успехе.
  * Для подключения реальной отправки достаточно реализовать вызов API
  * в обработчике `handleSubmit`.
  */
@@ -31,6 +32,7 @@ export function SupportForm() {
   const t = useTranslations('support');
   const tErrors = useTranslations('support.errors');
   const tToast = useTranslations('toast');
+  const reduce = useReducedMotion();
 
   const [values, setValues] = useState<SupportValues>({
     name: '',
@@ -40,10 +42,12 @@ export function SupportForm() {
   });
   const [errors, setErrors] = useState<Partial<Record<FieldName, string>>>({});
   const [sending, setSending] = useState(false);
+  const [sent, setSent] = useState(false);
 
   const setField = (field: FieldName, value: string) => {
     setValues((current) => ({ ...current, [field]: value }));
     setErrors((current) => ({ ...current, [field]: undefined }));
+    setSent(false);
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -61,10 +65,11 @@ export function SupportForm() {
     }
 
     setSending(true);
+    setSent(false);
     try {
       // TODO: подключить отправку на бэкенд (см. TODO.md → «Поддержка»).
       await new Promise((resolve) => setTimeout(resolve, 400));
-      toast.success(t('success'), { description: t('successBody') });
+      setSent(true);
       setValues({ name: '', email: '', topic: '', message: '' });
     } catch {
       toast.error(t('error'));
@@ -115,25 +120,50 @@ export function SupportForm() {
         multiline
       />
 
-      <Button
-        type="submit"
-        variant="gradient"
-        size="lg"
-        disabled={sending}
+      <AnimatePresence initial={false}>
+        {sent && (
+          <motion.div
+            key="support-success"
+            initial={reduce ? { opacity: 0 } : { opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={reduce ? { opacity: 0 } : { opacity: 0, y: -6 }}
+            transition={{ duration: reduce ? 0.12 : 0.3, ease: [0.16, 1, 0.3, 1] }}
+            role="status"
+            aria-live="polite"
+            className="border-brand/25 bg-brand/8 flex items-start gap-3 rounded-2xl border p-4"
+          >
+            <CheckCircle2
+              className="text-brand-foreground mt-0.5 size-5 shrink-0"
+              aria-hidden="true"
+            />
+            <div>
+              <p className="text-foreground text-sm font-semibold">{t('success')}</p>
+              <p className="text-muted-foreground mt-0.5 text-sm">{t('successBody')}</p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <motion.div
+        whileHover={reduce ? undefined : { scale: 1.02 }}
+        whileTap={reduce ? undefined : { scale: 0.98 }}
+        transition={{ type: 'spring', stiffness: 420, damping: 28 }}
         className="w-full sm:w-auto"
       >
-        {sending ? (
-          <>
-            <Loader2 className="size-4 animate-spin" aria-hidden="true" />
-            {t('sending')}
-          </>
-        ) : (
-          <>
-            <Send className="size-4" aria-hidden="true" />
-            {t('send')}
-          </>
-        )}
-      </Button>
+        <Button type="submit" variant="gradient" size="lg" disabled={sending} className="w-full">
+          {sending ? (
+            <>
+              <Loader2 className="size-4 animate-spin" aria-hidden="true" />
+              {t('sending')}
+            </>
+          ) : (
+            <>
+              <Send className="size-4" aria-hidden="true" />
+              {t('send')}
+            </>
+          )}
+        </Button>
+      </motion.div>
 
       <p className="text-muted-foreground text-xs">{tToast('sentBody')}</p>
     </form>

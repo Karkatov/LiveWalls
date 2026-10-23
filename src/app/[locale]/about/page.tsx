@@ -72,13 +72,13 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
               delay={index * 0.06}
               direction={index % 2 === 0 ? 'left' : 'right'}
             >
-              <figure className="border-border/70 bg-card/50 overflow-hidden rounded-2xl border">
+              <figure className="group border-border/70 bg-card/50 hover:border-brand/35 overflow-hidden rounded-2xl border transition-[border-color,box-shadow] duration-300 hover:shadow-[0_24px_70px_-36px_var(--brand-glow)]">
                 <Image
                   src={shot.src}
                   alt={shot.label}
                   width={1200}
                   height={750}
-                  className="w-full"
+                  className="w-full transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                   placeholder="blur"
                   blurDataURL={`/placeholders/screenshots/app-main.svg`}
                 />
@@ -102,8 +102,8 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
               className="h-full"
               direction={index % 2 === 0 ? 'scale' : 'up'}
             >
-              <div className="border-border/60 bg-card/40 flex h-full flex-col rounded-2xl border p-6 backdrop-blur-xl">
-                <span className="bg-brand/10 text-brand-foreground ring-brand/20 flex size-11 items-center justify-center rounded-xl ring-1">
+              <div className="group border-border/60 bg-card/40 hover:border-brand/35 flex h-full flex-col rounded-2xl border p-6 backdrop-blur-xl transition-[transform,border-color,box-shadow] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-1 hover:shadow-[0_20px_50px_-30px_var(--brand-glow)]">
+                <span className="bg-brand/10 text-brand-foreground ring-brand/20 flex size-11 items-center justify-center rounded-xl ring-1 transition-transform duration-300 group-hover:scale-105">
                   <item.icon className="size-5" aria-hidden="true" />
                 </span>
                 <p className="text-muted-foreground mt-4 text-sm leading-relaxed">{item.text}</p>

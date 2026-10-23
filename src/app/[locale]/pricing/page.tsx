@@ -104,56 +104,65 @@ export default async function PricingPage({ params }: { params: Promise<{ locale
             className="h-full"
             direction={plan.featured ? 'scale' : plan.id === 'trial' ? 'left' : 'right'}
           >
-            <div
-              className={
-                plan.featured
-                  ? 'border-brand/40 from-brand/12 to-card/60 relative flex h-full flex-col rounded-3xl border bg-gradient-to-b p-7 shadow-[0_30px_90px_-40px_var(--brand-glow-strong)] backdrop-blur-xl'
-                  : 'border-border/70 bg-card/50 relative flex h-full flex-col rounded-3xl border p-7 backdrop-blur-xl'
-              }
-            >
-              {plan.badge && (
-                <span className="absolute top-5 right-5">
-                  <Badge variant="brand">
-                    {plan.featured && <Flame className="size-3" aria-hidden="true" />}
-                    {plan.badge}
-                  </Badge>
-                </span>
+            <div className="relative h-full">
+              {plan.featured && (
+                <span
+                  aria-hidden="true"
+                  className="bg-brand/25 animate-pulse-glow pointer-events-none absolute -inset-2 rounded-[32px] blur-2xl"
+                />
               )}
 
-              <h2 className="text-foreground pr-24 text-lg font-semibold tracking-tight">
-                {plan.name}
-              </h2>
-
-              <p className="mt-4 flex items-baseline gap-2">
-                <span className="text-foreground text-4xl font-bold tracking-tight">
-                  {plan.price}
-                </span>
-                {plan.period && (
-                  <span className="text-muted-foreground text-sm">{plan.period}</span>
+              <div
+                className={
+                  plan.featured
+                    ? 'border-brand/40 from-brand/12 to-card/60 hover:border-brand/60 relative flex h-full flex-col rounded-3xl border bg-gradient-to-b p-7 shadow-[0_30px_90px_-40px_var(--brand-glow-strong)] backdrop-blur-xl transition-[transform,border-color,box-shadow] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-1 hover:shadow-[0_36px_100px_-36px_var(--brand-glow-strong)]'
+                    : 'border-border/70 bg-card/50 hover:border-brand/45 relative flex h-full flex-col rounded-3xl border p-7 backdrop-blur-xl transition-[transform,border-color,box-shadow] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-1 hover:shadow-[0_24px_70px_-32px_var(--brand-glow)]'
+                }
+              >
+                {plan.badge && (
+                  <span className="absolute top-5 right-5">
+                    <Badge variant="brand">
+                      {plan.featured && <Flame className="size-3" aria-hidden="true" />}
+                      {plan.badge}
+                    </Badge>
+                  </span>
                 )}
-              </p>
 
-              <p className="text-muted-foreground mt-3 flex-1 text-sm leading-relaxed">
-                {plan.description}
-              </p>
+                <h2 className="text-foreground pr-24 text-lg font-semibold tracking-tight">
+                  {plan.name}
+                </h2>
 
-              <div className="mt-6">
-                {plan.action.type === 'buy' ? (
-                  <BuyButton
-                    kind={plan.action.kind}
-                    itemId={plan.action.itemId}
-                    title={plan.name}
-                    price={plan.id === 'lifetime' ? pricing.lifetime : pricing.yearly}
-                    priceLabel={plan.cta}
-                    variant={plan.featured ? 'gradient' : 'outline'}
-                    size="lg"
-                    className="w-full"
-                  />
-                ) : (
-                  <Button asChild variant="outline" size="lg" className="w-full">
-                    <Link href="/download">{plan.cta}</Link>
-                  </Button>
-                )}
+                <p className="mt-4 flex items-baseline gap-2">
+                  <span className="text-foreground text-4xl font-bold tracking-tight">
+                    {plan.price}
+                  </span>
+                  {plan.period && (
+                    <span className="text-muted-foreground text-sm">{plan.period}</span>
+                  )}
+                </p>
+
+                <p className="text-muted-foreground mt-3 flex-1 text-sm leading-relaxed">
+                  {plan.description}
+                </p>
+
+                <div className="mt-6">
+                  {plan.action.type === 'buy' ? (
+                    <BuyButton
+                      kind={plan.action.kind}
+                      itemId={plan.action.itemId}
+                      title={plan.name}
+                      price={plan.id === 'lifetime' ? pricing.lifetime : pricing.yearly}
+                      priceLabel={plan.cta}
+                      variant={plan.featured ? 'gradient' : 'outline'}
+                      size="lg"
+                      className="w-full"
+                    />
+                  ) : (
+                    <Button asChild variant="outline" size="lg" className="w-full">
+                      <Link href="/download">{plan.cta}</Link>
+                    </Button>
+                  )}
+                </div>
               </div>
             </div>
           </StaggerItem>

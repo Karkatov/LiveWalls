@@ -398,26 +398,6 @@ export function LetterReveal({
   const resolveWordClass = (index: number) =>
     accentFromIndex !== undefined && index >= accentFromIndex ? wordClassName : undefined;
 
-  if (reduce) {
-    return (
-      <Tag className={cn(className)}>
-        {lines.map((line, li) => (
-          <span key={li} className="block">
-            {line.split(' ').map((word) => {
-              const i = wordIndex++;
-              return (
-                <span key={`${word}-${i}`} className={cn('inline-block', resolveWordClass(i))}>
-                  {word}
-                  {'\u00A0'}
-                </span>
-              );
-            })}
-          </span>
-        ))}
-      </Tag>
-    );
-  }
-
   return (
     <MotionTag
       ref={ref}
@@ -429,8 +409,8 @@ export function LetterReveal({
         hidden: {},
         visible: {
           transition: {
-            staggerChildren: instant ? 0 : stagger,
-            delayChildren: instant ? 0 : delay,
+            staggerChildren: reduce || instant ? 0 : stagger,
+            delayChildren: reduce || instant ? 0 : delay,
           },
         },
       }}
@@ -451,7 +431,10 @@ export function LetterReveal({
                     opacity: 1,
                     y: 0,
                     rotateX: 0,
-                    transition: { duration: instant ? 0 : 0.6, ease: [0.23, 1, 0.32, 1] },
+                    transition: {
+                      duration: reduce || instant ? 0 : 0.6,
+                      ease: [0.23, 1, 0.32, 1],
+                    },
                   },
                 }}
               >

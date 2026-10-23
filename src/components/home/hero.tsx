@@ -106,7 +106,7 @@ export async function Hero() {
           </StaggerGroup>
         </div>
 
-        <Reveal delay={0.1} y={34} animateOnMount>
+        <Reveal delay={0.1} y={34}>
           <ParallaxLayer className="relative" distance={40}>
             <div className="bg-brand/15 pointer-events-none absolute -inset-6 -z-10 rounded-[40px] blur-3xl" />
 

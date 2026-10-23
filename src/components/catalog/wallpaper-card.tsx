@@ -1,6 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
+import { motion, useReducedMotion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Play } from 'lucide-react';
 import type { Wallpaper } from '@/types';
@@ -28,12 +29,16 @@ export function WallpaperCard({
   className?: string;
 }) {
   const t = useTranslations('wallpaper');
+  const reduce = useReducedMotion();
 
   return (
-    <article
+    <motion.article
+      whileHover={reduce ? undefined : { y: -3, scale: 1.015 }}
+      whileTap={reduce ? undefined : { scale: 0.985 }}
+      transition={{ type: 'spring', stiffness: 380, damping: 30, mass: 0.8 }}
       className={cn(
         'group border-border/70 bg-card/60 relative overflow-hidden rounded-2xl border backdrop-blur-xl',
-        'hover:border-brand/35 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_-24px_var(--brand-glow)]',
+        'hover:border-brand/35 transition-[border-color,box-shadow] duration-300 hover:shadow-[0_24px_60px_-24px_var(--brand-glow)]',
         'focus-within:border-brand/40',
         className,
       )}
@@ -73,6 +78,6 @@ export function WallpaperCard({
           <Link href={`/wallpapers/${wallpaper.slug}`}>{t('download')}</Link>
         </Button>
       </div>
-    </article>
+    </motion.article>
   );
 }

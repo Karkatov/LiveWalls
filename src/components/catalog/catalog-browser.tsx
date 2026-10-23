@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import { PackageSearch, Search, SlidersHorizontal, X } from 'lucide-react';
 import { useRouter } from '@/i18n/navigation';
@@ -25,6 +26,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { EmptyState } from '@/components/shared/empty-state';
+import { cn } from '@/lib/utils/cn';
 import { Reveal, StaggerGroup, StaggerItem } from '@/components/shared/motion';
 import { WallpaperCard } from './wallpaper-card';
 
@@ -47,6 +49,7 @@ export function CatalogBrowser({
   const t = useTranslations('catalog');
   const router = useRouter();
   const { favorites } = useFavorites();
+  const reduce = useReducedMotion();
 
   const [filters, setFilters] = useState<WallpaperFilters>(initialFilters);
   const [search, setSearch] = useState(initialFilters.q ?? '');
@@ -114,12 +117,21 @@ export function CatalogBrowser({
     (filters.mediaType ?? 'all') !== 'all' ||
     Boolean(filters.favoritesOnly);
 
+  const resultsKey = [
+    filters.q ?? '',
+    filters.category ?? 'all',
+    filters.mediaType ?? 'all',
+    filters.sort ?? 'newest',
+    filters.favoritesOnly ? 'favorites' : '',
+    filters.page ?? 1,
+  ].join('|');
+
   return (
     <div className="space-y-8">
       {/* Панель фильтров */}
       <Reveal direction="down">
         <div className="border-border/60 bg-card/40 rounded-2xl border p-4 backdrop-blur-xl sm:p-5">
-          <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_auto_auto_auto]">
+          <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_auto_auto]">
             <div className="relative">
               <Search
                 className="text-muted-foreground pointer-events-none absolute top-1/2 left-3.5 size-4 -translate-y-1/2"
@@ -134,23 +146,6 @@ export function CatalogBrowser({
                 className="pl-10"
               />
             </div>
-
-            <Select
-              value={filters.category ?? 'all'}
-              onValueChange={(value) => update({ category: value as WallpaperFilters['category'] })}
-            >
-              <SelectTrigger className="lg:w-[190px]" aria-label={t('filterCategory')}>
-                <SelectValue placeholder={t('filterCategory')} />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">{t('allCategories')}</SelectItem>
-                {categories.map((category) => (
-                  <SelectItem key={category.id} value={category.id}>
-                    {category.title}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
 
             <Select
               value={filters.mediaType ?? 'all'}
@@ -183,6 +178,39 @@ export function CatalogBrowser({
             </Select>
           </div>
 
+          <div className="mt-4 flex flex-wrap gap-1.5">
+            {[{ id: 'all', title: t('allCategories') }, ...categories].map((category) => {
+              const active = (filters.category ?? 'all') === category.id;
+
+              return (
+                <button
+                  key={category.id}
+                  type="button"
+                  onClick={() => update({ category: category.id as WallpaperFilters['category'] })}
+                  aria-pressed={active}
+                  className={cn(
+                    'relative rounded-full px-3.5 py-1.5 text-sm transition-colors duration-200',
+                    active
+                      ? 'text-brand-foreground'
+                      : 'text-muted-foreground hover:text-foreground',
+                  )}
+                >
+                  {active && (
+                    <motion.span
+                      layoutId="catalog-category-pill"
+                      className="bg-brand/15 ring-brand/25 absolute inset-0 rounded-full ring-1"
+                      transition={
+                        reduce ? { duration: 0 } : { type: 'spring', stiffness: 420, damping: 34 }
+                      }
+                      aria-hidden="true"
+                    />
+                  )}
+                  <span className="relative">{category.title}</span>
+                </button>
+              );
+            })}
+          </div>
+
           <div className="border-border/60 mt-4 flex flex-wrap items-center justify-between gap-3 border-t pt-4">
             <label className="text-muted-foreground flex cursor-pointer items-center gap-2.5 text-sm">
               <Switch
@@ -209,63 +237,76 @@ export function CatalogBrowser({
       </Reveal>
 
       {/* Сетка */}
-      {page.items.length > 0 ? (
-        <>
-          <StaggerGroup className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {page.items.map((wallpaper, index) => (
-              <StaggerItem
-                key={wallpaper.id}
-                className="h-full"
-                direction={index % 4 === 0 ? 'left' : index % 4 === 3 ? 'right' : 'up'}
-              >
-                <WallpaperCard wallpaper={wallpaper} priority={index < 4} />
-              </StaggerItem>
-            ))}
-          </StaggerGroup>
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.div
+          key={resultsKey}
+          initial={reduce ? { opacity: 0 } : { opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={reduce ? { opacity: 0 } : { opacity: 0, y: -6 }}
+          transition={{ duration: reduce ? 0.12 : 0.22, ease: [0.16, 1, 0.3, 1] }}
+        >
+          {page.items.length > 0 ? (
+            <>
+              <StaggerGroup className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {page.items.map((wallpaper, index) => (
+                  <StaggerItem
+                    key={wallpaper.id}
+                    className="h-full"
+                    direction={index % 4 === 0 ? 'left' : index % 4 === 3 ? 'right' : 'up'}
+                  >
+                    <WallpaperCard wallpaper={wallpaper} priority={index < 4} />
+                  </StaggerItem>
+                ))}
+              </StaggerGroup>
 
-          {totalPages > 1 && (
-            <Reveal>
-              <nav className="flex items-center justify-center gap-2" aria-label={t('page')}>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  disabled={page.page <= 1}
-                  onClick={() => update({ page: page.page - 1 })}
-                >
-                  ←
-                </Button>
+              {totalPages > 1 && (
+                <Reveal>
+                  <nav
+                    className="mt-8 flex items-center justify-center gap-2"
+                    aria-label={t('page')}
+                  >
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      disabled={page.page <= 1}
+                      onClick={() => update({ page: page.page - 1 })}
+                    >
+                      ←
+                    </Button>
 
-                <span className="text-muted-foreground px-3 text-sm">
-                  {t('page')} {page.page} {t('of')} {totalPages}
-                </span>
+                    <span className="text-muted-foreground px-3 text-sm">
+                      {t('page')} {page.page} {t('of')} {totalPages}
+                    </span>
 
-                <Button
-                  variant="outline"
-                  size="sm"
-                  disabled={page.page >= totalPages}
-                  onClick={() => update({ page: page.page + 1 })}
-                >
-                  →
-                </Button>
-              </nav>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      disabled={page.page >= totalPages}
+                      onClick={() => update({ page: page.page + 1 })}
+                    >
+                      →
+                    </Button>
+                  </nav>
+                </Reveal>
+              )}
+            </>
+          ) : (
+            <Reveal direction="scale">
+              <EmptyState
+                icon={PackageSearch}
+                title={t('noResults')}
+                description={t('noResultsHint')}
+                action={
+                  <Button variant="outline" onClick={reset}>
+                    <SlidersHorizontal className="size-4" />
+                    {t('clearFilters')}
+                  </Button>
+                }
+              />
             </Reveal>
           )}
-        </>
-      ) : (
-        <Reveal direction="scale">
-          <EmptyState
-            icon={PackageSearch}
-            title={t('noResults')}
-            description={t('noResultsHint')}
-            action={
-              <Button variant="outline" onClick={reset}>
-                <SlidersHorizontal className="size-4" />
-                {t('clearFilters')}
-              </Button>
-            }
-          />
-        </Reveal>
-      )}
+        </motion.div>
+      </AnimatePresence>
 
       <p className="sr-only" aria-live="polite">
         {t('resultsCount', { count: page.total })}
