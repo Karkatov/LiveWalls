@@ -1,5 +1,6 @@
 import type { Wallpaper } from '@/types';
 import { formatPrice } from '@/lib/utils/format';
+import { mediaUrl } from '@/config/site';
 
 /**
  * Моковые обои.
@@ -13,10 +14,20 @@ import { formatPrice } from '@/lib/utils/format';
 
 const PLACEHOLDER_TOTAL = 12;
 
-/** Циклический подбор локального SVG-плейсхолдера. */
-export function posterFor(index: number): string {
+/** Постер: CDN, если он настроен, иначе циклический локальный SVG-плейсхолдер. */
+export function posterFor(index: number, id?: string): string {
+  if (id) {
+    const remote = mediaUrl('posters', id, 'webp');
+    if (remote) return remote;
+  }
+
   const n = ((index % PLACEHOLDER_TOTAL) + 1).toString().padStart(2, '0');
   return `/placeholders/wallpapers/wallpaper-${n}.svg`;
+}
+
+/** Видео-превью: только с CDN (локальных mp4 в репозитории нет). */
+function previewFor(id: string): string | null {
+  return mediaUrl('previews', id, 'mp4') || null;
 }
 
 type WallpaperInput = Omit<
@@ -38,13 +49,15 @@ type WallpaperInput = Omit<
 
 function make(input: WallpaperInput, index: number): Wallpaper {
   const slug = input.slug;
+  const id = input.id ?? `w-${slug}`;
+
   return {
     ...input,
-    id: input.id ?? `w-${slug}`,
+    id,
     isVideo: input.mediaType === 'video',
     priceText: input.price !== null ? formatPrice(input.price) : null,
-    poster: input.poster ?? posterFor(index),
-    preview: input.preview ?? null,
+    poster: input.poster ?? posterFor(index, id),
+    preview: input.preview !== undefined ? input.preview : previewFor(id),
     fileKey: null, // TODO: подключить S3 — wallpapers/{id}.mp4
     isDownloaded: false,
     isFavorite: false,

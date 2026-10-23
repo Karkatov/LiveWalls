@@ -85,7 +85,7 @@ export default async function PricingPage({ params }: { params: Promise<{ locale
   ];
 
   return (
-    <div className="mx-auto max-w-[1200px] px-4 py-12 sm:px-6 lg:py-16">
+    <div className="mx-auto max-w-[1200px] px-4 pt-6 pb-12 sm:px-6 lg:pt-8 lg:pb-16">
       <Reveal className="flex flex-col items-center text-center">
         <h1 className="text-foreground">
           <span className="border-brand/30 bg-brand/10 text-display-md inline-flex rounded-full border px-8 py-3 font-semibold tracking-tight shadow-[0_20px_60px_-30px_var(--brand-glow-strong)] sm:px-10">

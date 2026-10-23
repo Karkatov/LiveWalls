@@ -1,4 +1,5 @@
 import type { Review } from '@/types';
+import { cdnUrl } from '@/config/site';
 
 /** Моковые отзывы для главной страницы. */
 export const mockReviews: Review[] = [
@@ -9,7 +10,7 @@ export const mockReviews: Review[] = [
     city: 'Екатеринбург',
     rating: 5,
     text: 'Поставил LiveWalls на MacBook и забыл про стоковые обои. Самое важное — при закрытии крышки эффект Bend выглядит именно так, как обещали: экран физически складывается. На M2 Pro кулеры молчат.',
-    avatar: '/placeholders/avatars/avatar-01.svg',
+    avatar: cdnUrl('/placeholders/avatars/avatar-01.svg'),
     createdAt: '2026-09-30T12:00:00.000Z',
   },
   {
@@ -19,7 +20,7 @@ export const mockReviews: Review[] = [
     city: 'Санкт-Петербург',
     rating: 5,
     text: 'Ценю, что каталог небольшой, но каждый ролик действительно качественный. Превью не врут: то, что видно на сайте, выглядит так же на рабочем столе. Оформила Premium — не пожалела.',
-    avatar: '/placeholders/avatars/avatar-02.svg',
+    avatar: cdnUrl('/placeholders/avatars/avatar-02.svg'),
     createdAt: '2026-09-24T12:00:00.000Z',
   },
   {
@@ -29,7 +30,7 @@ export const mockReviews: Review[] = [
     city: 'Казань',
     rating: 5,
     text: 'Поставил вместо рабочего стола залипательный «Дождь за окном». Ноутбук стал работать тише — похоже, декодирование идёт через VideoToolbox, а не через CPU. Спасибо, что триал 24 часа: хватило, чтобы понять, нужно ли мне это.',
-    avatar: '/placeholders/avatars/avatar-03.svg',
+    avatar: cdnUrl('/placeholders/avatars/avatar-03.svg'),
     createdAt: '2026-09-18T12:00:00.000Z',
   },
   {
@@ -39,7 +40,7 @@ export const mockReviews: Review[] = [
     city: 'Москва',
     rating: 5,
     text: 'Отличная подборка и понятный интерфейс. Единственное — хотелось бы больше управления плейлистами с сайта, но для этого есть приложение, а оно удобнее. Оплата в рублях — отдельное спасибо.',
-    avatar: '/placeholders/avatars/avatar-04.svg',
+    avatar: cdnUrl('/placeholders/avatars/avatar-04.svg'),
     createdAt: '2026-09-10T12:00:00.000Z',
   },
   {
@@ -49,7 +50,7 @@ export const mockReviews: Review[] = [
     city: 'Новосибирск',
     rating: 5,
     text: 'Живые обои на экране блокировки — то, чего не умеет ни одна штатная утилита macOS. Приложение на macOS 15 работает стабильно, анимация закрытия крышки выглядит шикарно.',
-    avatar: '/placeholders/avatars/avatar-05.svg',
+    avatar: cdnUrl('/placeholders/avatars/avatar-05.svg'),
     createdAt: '2026-09-02T12:00:00.000Z',
   },
   {
@@ -59,7 +60,7 @@ export const mockReviews: Review[] = [
     city: 'Сочи',
     rating: 5,
     text: 'Свои ролики тоже можно импортировать — это важно. В плейлист собираю наборы под настроение: «дождь», «закат», «город». Отдельное спасибо за аккуратную работу с батареей.',
-    avatar: '/placeholders/avatars/avatar-06.svg',
+    avatar: cdnUrl('/placeholders/avatars/avatar-06.svg'),
     createdAt: '2026-08-26T12:00:00.000Z',
   },
 ];

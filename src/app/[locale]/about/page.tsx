@@ -5,7 +5,7 @@ import { Apple, Cpu, Download, Layers3, MonitorSmartphone, Sparkles } from 'luci
 import { routing, type Locale } from '@/i18n/routing';
 import { Link } from '@/i18n/navigation';
 import { buildMetadata } from '@/lib/seo/metadata';
-import { siteConfig } from '@/config/site';
+import { cdnUrl, siteConfig } from '@/config/site';
 import { Button } from '@/components/ui/button';
 import { SectionHeading } from '@/components/shared/section-heading';
 import { Reveal, StaggerGroup, StaggerItem } from '@/components/shared/motion';
@@ -37,10 +37,10 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
   const t = await getTranslations('about');
 
   const screenshots = [
-    { src: '/placeholders/screenshots/app-main.svg', label: 'Основное окно' },
-    { src: '/placeholders/screenshots/app-player.svg', label: 'Плеер' },
-    { src: '/placeholders/screenshots/app-catalog.svg', label: 'Каталог' },
-    { src: '/placeholders/screenshots/app-bend.svg', label: 'Эффект Bend' },
+    { src: cdnUrl('/placeholders/screenshots/app-main.svg'), label: 'Основное окно' },
+    { src: cdnUrl('/placeholders/screenshots/app-player.svg'), label: 'Плеер' },
+    { src: cdnUrl('/placeholders/screenshots/app-catalog.svg'), label: 'Каталог' },
+    { src: cdnUrl('/placeholders/screenshots/app-bend.svg'), label: 'Эффект Bend' },
   ];
 
   const requirements = [

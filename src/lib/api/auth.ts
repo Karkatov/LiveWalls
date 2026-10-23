@@ -33,7 +33,8 @@ export async function signIn(email: string): Promise<AuthResult> {
 /** Текущий пользователь (мок: всегда демо-пользователь). */
 export async function getCurrentUser(): Promise<User | null> {
   return fetchData<User | null>('/api/auth/me', () => mockUsers[0] ?? null, {
-    revalidate: 60,
+    // Пользовательские данные не кэшируем.
+    revalidate: 0,
   });
 }
 

@@ -34,7 +34,7 @@ npm run dev                  # http://localhost:3000 → редирект на /
 | `npm run dev`                      | Dev-сервер с HMR                                  |
 | `npm run build`                    | Статический экспорт → `out/` (режим по умолчанию) |
 | `NEXT_OUTPUT=server npm run build` | Серверная сборка → `.next`                        |
-| `npm run start`                    | Запуск собранного серверного приложения           |
+| `NEXT_OUTPUT=server npm run start` | Запуск собранного серверного приложения           |
 | `npm run typecheck`                | `tsc --noEmit`                                    |
 | `npm run lint` / `lint:fix`        | ESLint                                            |
 | `npm run format` / `format:check`  | Prettier                                          |
@@ -44,10 +44,10 @@ npm run dev                  # http://localhost:3000 → редирект на /
 
 ## Режимы сборки
 
-**По умолчанию всегда статический экспорт** — он включается в `next.config.ts`
-принудительно и не зависит от `NEXT_OUTPUT`: часть хостингов (Cloudflare Pages)
-не передаёт переменные окружения в процесс сборки, а каталог `out/` там обязателен.
-Серверные режимы включаются явно:
+**По умолчанию — статический экспорт.** Если `NEXT_OUTPUT` не задан или равен
+`export`, `next.config.ts` включает `output: 'export'`: каталог `out/` обязателен
+для Cloudflare Pages, GitHub Pages и любого статического хостинга. Серверные
+режимы включаются явно:
 
 | `NEXT_OUTPUT`           | Результат                              | Куда деплоить                                             |
 | ----------------------- | -------------------------------------- | --------------------------------------------------------- |
@@ -72,6 +72,34 @@ NEXT_OUTPUT=export NEXT_BASE_PATH=/LiveWallsSite NEXT_ASSET_PREFIX=/LiveWallsSit
   используйте `public/_headers` (Netlify / Cloudflare Pages);
 - `next-intl` и `searchParams` работают: на странице каталога `searchParams`
   читается только в серверном режиме, в экспорте — уже в браузере.
+
+## API и кэширование
+
+Route Handlers лежат в `src/app/api/**/route.server.ts`. Расширение `.server.ts`
+включено в `pageExtensions` только для серверных сборок, поэтому в статический
+экспорт каталог `/api/**` не попадает (в браузере данные берутся из моков).
+
+| Endpoint                            | Кэш                                           |
+| ----------------------------------- | --------------------------------------------- |
+| `GET /api/wallpapers`               | `s-maxage=60, stale-while-revalidate=300`     |
+| `GET /api/wallpapers/featured`      | `s-maxage=60, stale-while-revalidate=300`     |
+| `GET /api/wallpapers/:slug`         | `s-maxage=60, stale-while-revalidate=300`     |
+| `GET /api/wallpapers/:slug/similar` | `s-maxage=60, stale-while-revalidate=300`     |
+| `GET /api/categories`               | `s-maxage=3600, stale-while-revalidate=86400` |
+| `GET /api/auth/me`                  | `private, no-store`                           |
+| `POST /api/auth/sign-in`            | `private, no-store`                           |
+| `POST /api/payments/create`         | `private, no-store`                           |
+
+- Каталог и категории кэшируются через `unstable_cache` с тегами
+  `wallpapers`, `wallpapers:list`, `wallpapers:featured`, `categories`
+  и in-memory L1-слоем (`src/lib/cache`).
+- Rate Limiting — in-memory, 60 запросов/мин на IP и endpoint; для входа и
+  создания платежа — 10/мин. При превышении возвращается `429` с `Retry-After`.
+  Для нескольких инстансов нужен общий счётчик (Redis) или `limit_req` в nginx.
+- Медиа отдаётся с CDN/S3, если задан `NEXT_PUBLIC_CDN_BASE_URL` или
+  `NEXT_PUBLIC_S3_BASE_URL`; иначе используются локальные плейсхолдеры.
+- Создание платежей сериализовано очередью (`src/lib/queue`), при переполнении
+  возвращается `503` с `Retry-After: 5`.
 
 ## Структура
 

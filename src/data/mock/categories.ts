@@ -1,4 +1,5 @@
 import type { Category, WallpaperCategoryId } from '@/types';
+import { mediaUrl } from '@/config/site';
 import { mockWallpapers } from './wallpapers';
 
 /**
@@ -73,6 +74,9 @@ const CATEGORY_DEFS: ReadonlyArray<Omit<Category, 'count' | 'poster'>> = [
 
 /** Иконка категории → файл постера. */
 function posterForCategory(id: WallpaperCategoryId): string {
+  const remote = mediaUrl('posters', `category-${id}`, 'webp');
+  if (remote) return remote;
+
   const index = CATEGORY_DEFS.findIndex((item) => item.id === id);
   const n = ((index < 0 ? 0 : index) % 12).toString().padStart(2, '0');
   return `/placeholders/categories/category-${n}.svg`;

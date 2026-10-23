@@ -2,13 +2,47 @@ import type { NextConfig } from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
 import { resolveBuildMode } from './src/config/build';
 
+type RemotePattern = { protocol: 'http' | 'https'; hostname: string };
+
+/**
+ * Домены изображений: базовые + CDN/S3 из переменных окружения.
+ * Нужно, чтобы `next/image` в серверном режиме мог оптимизировать медиа с CDN.
+ */
+function imageRemotePatterns(): RemotePattern[] {
+  const patterns: RemotePattern[] = [
+    { protocol: 'https', hostname: '**.livewalls.app' },
+    { protocol: 'https', hostname: '**.timeweb.cloud' },
+  ];
+
+  for (const value of [process.env.NEXT_PUBLIC_CDN_BASE_URL, process.env.NEXT_PUBLIC_S3_BASE_URL]) {
+    if (!value) continue;
+
+    try {
+      const url = new URL(value);
+      if (url.protocol !== 'http:' && url.protocol !== 'https:') continue;
+
+      const pattern: RemotePattern = {
+        protocol: url.protocol === 'http:' ? 'http' : 'https',
+        hostname: url.hostname,
+      };
+
+      if (!patterns.some((item) => item.hostname === pattern.hostname)) {
+        patterns.push(pattern);
+      }
+    } catch {
+      // Некорректный URL в env — просто игнорируем, сборка не должна падать.
+    }
+  }
+
+  return patterns;
+}
+
 /**
  * Режим сборки.
  *
- * Статический экспорт включён ПРИНУДИТЕЛЬНО и не зависит от NEXT_OUTPUT:
- * часть хостингов (Cloudflare Pages) не передаёт переменные окружения
- * в процесс сборки, а каталог `out/` там обязателен — из-за этого сборка
- * падала с «Output directory "out" not found».
+ * По умолчанию используется статический экспорт: часть хостингов
+ * (Cloudflare Pages) не передаёт переменные окружения в процесс сборки,
+ * а каталог `out/` там обязателен. Серверные режимы включаются явно.
  *
  * Значения NEXT_OUTPUT:
  *  - 'export'     (по умолчанию, любое другое значение) — статический экспорт
@@ -67,6 +101,14 @@ const nextConfig: NextConfig = {
   ...(isStandaloneMode ? { output: 'standalone' as const } : {}),
   ...(isStaticExport ? { output: 'export' as const } : {}),
 
+  // API Route Handlers называются `route.server.ts`: в статическом экспорте
+  // такая страница не находится, поэтому /api/** не попадает в `out/`.
+  // В серверном режиме расширение включается первым, чтобы путь `/route`
+  // корректно распознавался как Route Handler.
+  pageExtensions: isStaticExport
+    ? ['tsx', 'ts', 'jsx', 'js']
+    : ['server.ts', 'tsx', 'ts', 'jsx', 'js'],
+
   reactStrictMode: true,
   poweredByHeader: false,
   trailingSlash: false,
@@ -84,11 +126,10 @@ const nextConfig: NextConfig = {
     dangerouslyAllowSVG: true,
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-    // TODO: добавить remotePatterns для CDN (Timeweb S3 / CDN), когда появится реальный контент.
-    remotePatterns: [
-      { protocol: 'https', hostname: '**.livewalls.app' },
-      { protocol: 'https', hostname: '**.timeweb.cloud' },
-    ],
+    // CDN/S3 подхватываются из NEXT_PUBLIC_CDN_BASE_URL / NEXT_PUBLIC_S3_BASE_URL.
+    remotePatterns: imageRemotePatterns(),
+    // Оптимизированные next/image картинки кэшируем 30 дней в серверном режиме.
+    minimumCacheTTL: 2_592_000,
   },
 
   // Короткие редиректы: / → /ru (в статическом экспорте не поддерживаются,
@@ -111,7 +152,45 @@ const nextConfig: NextConfig = {
     ? {}
     : {
         async headers() {
-          return [{ source: '/:path*', headers: securityHeaders }];
+          return [
+            { source: '/:path*', headers: securityHeaders },
+            {
+              source: '/_next/static/:path*',
+              headers: [
+                {
+                  key: 'Cache-Control',
+                  value: 'public, max-age=31536000, immutable',
+                },
+              ],
+            },
+            {
+              source: '/placeholders/:path*',
+              headers: [
+                {
+                  key: 'Cache-Control',
+                  value: 'public, max-age=604800, stale-while-revalidate=86400',
+                },
+              ],
+            },
+            {
+              source: '/og/:path*',
+              headers: [
+                {
+                  key: 'Cache-Control',
+                  value: 'public, max-age=604800, stale-while-revalidate=86400',
+                },
+              ],
+            },
+            {
+              source: '/download/:path*',
+              headers: [
+                {
+                  key: 'Cache-Control',
+                  value: 'public, max-age=3600, stale-while-revalidate=86400',
+                },
+              ],
+            },
+          ];
         },
       }),
 

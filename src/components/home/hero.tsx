@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import { ArrowRight, Download, Sparkles } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
+import { cdnUrl } from '@/config/site';
 import { Button } from '@/components/ui/button';
 import {
   LetterReveal,
@@ -46,7 +47,7 @@ export async function Hero() {
         <div className="bg-grid absolute inset-x-0 top-0 h-[520px] opacity-[0.18]" />
       </ParallaxLayer>
 
-      <div className="mx-auto grid max-w-[1200px] items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.05fr_1fr] lg:py-24">
+      <div className="mx-auto grid max-w-[1200px] items-center gap-12 px-4 pt-8 pb-16 sm:px-6 lg:grid-cols-[1.05fr_1fr] lg:pt-12 lg:pb-24">
         <div>
           <h1 className="text-foreground text-5xl leading-[1.05] font-bold tracking-[-0.03em] sm:text-6xl">
             <LetterReveal
@@ -117,7 +118,7 @@ export async function Hero() {
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-[#1E293B] to-[#0F172A]" />
                 <Image
-                  src="/placeholders/screenshots/app-main.svg"
+                  src={cdnUrl('/placeholders/screenshots/app-main.svg')}
                   alt={t('appPreviewLabel')}
                   width={1400}
                   height={880}

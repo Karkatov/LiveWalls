@@ -1,4 +1,5 @@
 import type { User } from '@/types';
+import { cdnUrl } from '@/config/site';
 
 /** Моковые пользователи для личного кабинета и админки. */
 export const mockUsers: User[] = [
@@ -6,7 +7,7 @@ export const mockUsers: User[] = [
     id: 'u-1',
     email: 'demo@livewalls.app',
     name: 'Демо Пользователь',
-    avatar: '/placeholders/avatars/avatar-01.svg',
+    avatar: cdnUrl('/placeholders/avatars/avatar-01.svg'),
     createdAt: '2026-06-01T09:00:00.000Z',
     subscriptionStatus: 'subscribed',
     plan: 'lifetime',
@@ -16,7 +17,7 @@ export const mockUsers: User[] = [
     id: 'u-2',
     email: 'trial@livewalls.app',
     name: 'Пробный пользователь',
-    avatar: '/placeholders/avatars/avatar-03.svg',
+    avatar: cdnUrl('/placeholders/avatars/avatar-03.svg'),
     createdAt: '2026-10-15T09:00:00.000Z',
     subscriptionStatus: 'trial',
     plan: 'none',
@@ -26,7 +27,7 @@ export const mockUsers: User[] = [
     id: 'u-3',
     email: 'expired@livewalls.app',
     name: 'Истёкший триал',
-    avatar: '/placeholders/avatars/avatar-05.svg',
+    avatar: cdnUrl('/placeholders/avatars/avatar-05.svg'),
     createdAt: '2026-05-12T09:00:00.000Z',
     subscriptionStatus: 'expired',
     plan: 'none',

@@ -94,6 +94,22 @@ export function mediaUrl(
   return `${base.replace(/\/$/, '')}/${kind}/${id}.${extension}`;
 }
 
+/**
+ * URL любого медиа-ассета: CDN, если он настроен, иначе локальный путь.
+ *
+ * Абсолютные URL и data-URI возвращаются без изменений. Используется для
+ * постеров, аватарок и скриншотов, чтобы VPS не раздавал медиафайлы сам.
+ */
+export function cdnUrl(path: string): string {
+  if (!path) return path;
+  if (/^(?:[a-z][a-z0-9+.-]*:)?\/\//i.test(path) || path.startsWith('data:')) return path;
+
+  const base = siteConfig.CDN_BASE_URL || siteConfig.S3_BASE_URL;
+  if (!base) return path.startsWith('/') ? path : `/${path}`;
+
+  return `${base.replace(/\/$/, '')}/${path.replace(/^\/+/, '')}`;
+}
+
 /** Навигация в шапке сайта. */
 export const navLinks = [
   { href: '/wallpapers', labelKey: 'wallpapers' },

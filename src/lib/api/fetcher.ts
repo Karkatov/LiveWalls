@@ -34,6 +34,8 @@ export interface ApiFetchOptions {
   timeoutMs?: number;
   /** ISR: время кэширования в секундах. */
   revalidate?: number;
+  /** Теги Next.js Data Cache для точечной инвалидации. */
+  tags?: string[];
   signal?: AbortSignal;
 }
 
@@ -63,8 +65,8 @@ export function buildUrl(
 /**
  * Реальный HTTP-запрос к API.
  *
- * TODO: подключить rate limiting (например, через Upstash Redis или nginx
- * `limit_req`) — сейчас защита полностью ложится на инфраструктуру.
+ * Rate limiting входящих запросов живёт в Route Handlers и middleware-слое:
+ * см. `src/lib/rate-limit.ts`. Здесь — только исходящие запросы к API.
  */
 export async function apiFetch<T>(path: string, options: ApiFetchOptions = {}): Promise<T> {
   const {
@@ -73,6 +75,7 @@ export async function apiFetch<T>(path: string, options: ApiFetchOptions = {}): 
     headers = {},
     timeoutMs = DEFAULT_TIMEOUT,
     revalidate,
+    tags,
     signal,
   } = options;
 
@@ -90,7 +93,7 @@ export async function apiFetch<T>(path: string, options: ApiFetchOptions = {}): 
       },
       body: body === undefined ? undefined : JSON.stringify(body),
       signal: controller.signal,
-      ...(revalidate !== undefined ? { next: { revalidate } } : {}),
+      ...(revalidate !== undefined ? { next: { revalidate, ...(tags ? { tags } : {}) } } : {}),
     });
 
     if (!response.ok) {

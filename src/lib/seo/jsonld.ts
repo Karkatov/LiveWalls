@@ -9,6 +9,12 @@ import { absoluteLocalizedUrl } from './metadata';
  * разметка описывает медиаматериал, а не товар с ценой.
  */
 
+/** Абсолютный URL медиа: CDN-ссылки не дублируем доменом сайта. */
+function absoluteMediaUrl(value: string): string {
+  if (/^https?:\/\//i.test(value)) return value;
+  return `https://${siteConfig.domain}${value.startsWith('/') ? value : `/${value}`}`;
+}
+
 /** JSON-LD для карточки обоев. */
 export function wallpaperJsonLd(wallpaper: Wallpaper, locale: 'ru' | 'en' = 'ru'): string {
   const data = {
@@ -19,7 +25,7 @@ export function wallpaperJsonLd(wallpaper: Wallpaper, locale: 'ru' | 'en' = 'ru'
     identifier: wallpaper.id,
     genre: wallpaper.category,
     keywords: wallpaper.tags.join(', '),
-    image: [`https://${siteConfig.domain}${wallpaper.poster}`],
+    image: [absoluteMediaUrl(wallpaper.poster)],
     creator: wallpaper.author
       ? { '@type': 'Person', name: wallpaper.author }
       : { '@type': 'Organization', name: siteConfig.name },
