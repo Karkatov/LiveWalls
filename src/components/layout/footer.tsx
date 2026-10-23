@@ -29,6 +29,7 @@ export function Footer() {
     { href: '/legal/privacy', label: t('privacy') },
     { href: '/legal/terms', label: t('terms') },
     { href: '/legal/offer', label: t('offer') },
+    { href: '/legal/consent', label: t('consent') },
   ];
 
   return (

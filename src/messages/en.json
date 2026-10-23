@@ -451,7 +451,8 @@
     "download": "Download",
     "rights": "All rights reserved.",
     "inn": "INN",
-    "ogrnip": "OGRNIP"
+    "ogrnip": "OGRNIP",
+    "consent": "Consent to PD processing"
   },
   "toast": {
     "paymentSoon": "Payments are coming soon",

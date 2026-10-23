@@ -6,15 +6,17 @@ import { buildMetadata } from '@/lib/seo/metadata';
 import { privacyPolicy } from '@/data/legal/privacy';
 import { termsOfUse } from '@/data/legal/terms';
 import { publicOffer } from '@/data/legal/offer';
+import { personalDataConsent } from '@/data/legal/consent';
 import type { LegalDocument } from '@/data/legal/types';
 import { LegalDocumentView } from '@/components/legal/legal-document';
 import { Reveal } from '@/components/shared/motion';
 
-/** Три юридических документа сайта. */
+/** Юридические документы сайта. */
 const DOCUMENTS = {
   privacy: privacyPolicy,
   terms: termsOfUse,
   offer: publicOffer,
+  consent: personalDataConsent,
 } as const;
 
 type DocumentSlug = keyof typeof DOCUMENTS;

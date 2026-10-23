@@ -1,129 +1,132 @@
 import type { LegalDocument, Locale } from './types';
 
-/** Публичная оферта (шаблон). */
+/** Публичная оферта. */
 export const publicOffer: Record<Locale, LegalDocument> = {
   ru: {
     title: 'Публичная оферта',
-    updatedAt: '2026-10-01',
+    updatedAt: '2026-10-23',
     intro:
-      'Настоящий документ является официальным предложением Исполнителя заключить договор на предоставление доступа к материалам каталога LiveWalls.',
+      'Настоящий документ является предложением заключить лицензионный договор на изложенных ниже условиях.',
     sections: [
       {
-        id: 'parties',
-        title: '1. Стороны',
-        paragraphs: [
-          'Исполнитель: ИП Иванов Иван Иванович, ИНН 000000000000, ОГРНИП 000000000000000, адрес: г. Москва, ул. Примерная, д. 1, e-mail: hello@livewalls.app.',
-          'Заказчик: физическое лицо, оформившее заказ и оплатившее его.',
+        id: 'terms',
+        title: '1. Термины',
+        list: [
+          'Программа — программа для ЭВМ «LiveWall» для macOS, включая собственный код, интерфейс и компоненты, права на которые принадлежат Лицензиару либо используются им на законном основании.',
+          'Контент — видео, изображения, заставки и иные материалы, поставляемые вместе с Программой. Права на материалы определяются правами соответствующих правообладателей.',
+          'Лицензиат — физическое лицо, приобретающее право использовать Программу для личных целей.',
+          'Лицензия — простая (неисключительная) лицензия в пределах, прямо указанных в оферте и выбранном тарифе.',
+          'Сайт — сайт, указанный в реквизитах Лицензиара.',
         ],
       },
       {
         id: 'subject',
-        title: '2. Предмет оферты',
+        title: '2. Предмет договора',
         paragraphs: [
-          'Исполнитель предоставляет Заказчику право использования каталога LiveWalls и входящих в него файлов обоев на условиях, указанных на сайте.',
-          'Полный перечень приобретаемых прав указывается в заказе и подтверждается чеком.',
+          '2.1. Лицензиар предоставляет Лицензиату за вознаграждение простую (неисключительную) лицензию на установку и использование Программы на условиях выбранного тарифа. Исключительные права не отчуждаются.',
+          '2.2. Разрешается устанавливать, запускать и использовать Программу на устройстве, соответствующем опубликованным системным требованиям, для личных некоммерческих целей.',
+          '2.3. Пользователь вправе добавлять собственные файлы в качестве обоев, если обладает необходимыми правами на эти файлы.',
+          '2.4. Лицензия не предоставляет прав на копирование, распространение или публичный показ стороннего Контента вне предусмотренного функционала Программы.',
         ],
       },
       {
-        id: 'price',
-        title: '3. Цена и порядок оплаты',
+        id: 'tariffs',
+        title: '3. Тарифы, срок и обновления',
         paragraphs: [
-          'Цены указаны в рублях на странице «Цены» и включают все применимые налоги. Оплата производится в рублях через платёжного провайдера.',
-          'Стоимость не облагается НДС (ИП применяет упрощённую систему налогообложения).',
+          '3.1. Цена, срок лицензии, включённые функции и условия обновлений отображаются на Сайте до оплаты и фиксируются в подтверждении заказа.',
+          '3.2. Если тариф прямо обозначен как бессрочный (Lifetime), право использовать приобретённую версию Программы предоставляется бессрочно. Бессрочность не означает обязательство выпускать обновления бессрочно.',
+          '3.3. Новая редакция оферты применяется к новым заказам. Она не изменяет задним числом уже предоставленную лицензию.',
         ],
       },
       {
-        id: 'delivery',
-        title: '4. Предоставление доступа',
+        id: 'acceptance',
+        title: '4. Заключение договора и акцепт',
         paragraphs: [
-          'Доступ к приобретённым материалам предоставляется в личном кабинете сразу после успешной оплаты и сохраняется бессрочно для лицензии «Premium навсегда».',
-          'Для лицензии «Premium на год» доступ действует 12 месяцев с даты покупки.',
+          '4.1. Акцепт осуществляется оплатой выбранного тарифа после предоставления доступа к оферте и явного подтверждения согласия с ней.',
+          '4.2. Договор считается заключённым в момент, определяемый применимым законодательством и фактическим порядком оформления заказа.',
         ],
       },
       {
-        id: 'responsibility',
-        title: '5. Ответственность сторон',
+        id: 'payment',
+        title: '5. Оплата и предоставление доступа',
         paragraphs: [
-          'Исполнитель не несёт ответственности за невозможность использования Материалов по причинам, связанным с оборудованием, программным обеспечением или операционной системой Заказчика.',
-          'Стороны несут ответственность в пределах, установленных законодательством Российской Федерации.',
+          '5.1. Оплата производится в рублях через платёжный сервис, указанный на Сайте.',
+          '5.2. Доступ предоставляется после подтверждения успешной оплаты способом, указанным на Сайте.',
         ],
       },
       {
-        id: 'personal-data',
-        title: '6. Персональные данные',
+        id: 'restrictions',
+        title: '6. Ограничения использования',
         paragraphs: [
-          'Обработка персональных данных Заказчика осуществляется в соответствии с Политикой обработки персональных данных и Федеральным законом № 152-ФЗ.',
+          '6.1. Без разрешения правообладателя Лицензиат не вправе распространять Программу, передавать ключи третьим лицам, сдавать её в аренду, перепродавать доступ, удалять уведомления об авторских правах или использовать Программу для нарушения закона и прав третьих лиц.',
+          '6.2. Ограничения не применяются в той мере, в какой действие прямо разрешено императивными нормами законодательства РФ.',
+        ],
+      },
+      {
+        id: 'returns',
+        title: '7. Возвраты и претензии',
+        paragraphs: [
+          '7.1. Права потребителя, которые нельзя ограничить договором, сохраняются в полной мере.',
+          '7.2. При проблемах с оплатой, активацией или работой Программы пользователь обращается по контактам Сайта.',
+        ],
+      },
+      {
+        id: 'liability',
+        title: '8. Ответственность',
+        paragraphs: [
+          '8.1. Ничто в оферте не исключает обязательства или ответственность, которые не могут быть исключены или ограничены законом.',
+          '8.2. Лицензиар не отвечает за файлы, добавленные пользователем, в той мере, в какой это допускается законом.',
+        ],
+      },
+      {
+        id: 'personal',
+        title: '9. Персональные данные',
+        paragraphs: [
+          '9.1. Обработка персональных данных осуществляется по опубликованной Политике обработки персональных данных и законодательству РФ.',
+        ],
+      },
+      {
+        id: 'ip',
+        title: '10. Интеллектуальная собственность',
+        paragraphs: [
+          '10.1. Лицензиар предоставляет только те права на Программу и материалы, которыми законно располагает. Права на сторонние компоненты и Контент регулируются соответствующими лицензиями.',
         ],
       },
       {
         id: 'final',
-        title: '7. Заключительные положения',
+        title: '11. Заключительные положения',
         paragraphs: [
-          'Договор считается заключённым с момента оплаты. Все уведомления направляются по адресам электронной почты сторон.',
-          'Оферта действует с момента публикации до её отзыва. Актуальная редакция всегда размещена на этой странице.',
+          '11.1. К договору применяется законодательство РФ с учётом обязательных норм защиты прав потребителей.',
+          '11.2. Претензии направляются по контактам Лицензиара.',
         ],
       },
     ],
   },
   en: {
-    title: 'Public offer',
-    updatedAt: '2026-10-01',
+    title: 'Public Offer Agreement',
+    updatedAt: '2026-10-23',
     intro:
-      'This document is the official offer of the Service Provider to conclude an agreement granting access to the LiveWalls catalog materials.',
+      'This document is an offer to enter into a license agreement on the terms set forth below.',
     sections: [
       {
-        id: 'parties',
-        title: '1. Parties',
-        paragraphs: [
-          'Service Provider: Ivanov Ivan Ivanovich (individual entrepreneur), INN 000000000000, OGRNIP 000000000000000, address: Moscow, 1 Example Street, email: hello@livewalls.app.',
-          'Customer: an individual who placed and paid for the order.',
-        ],
-      },
-      {
         id: 'subject',
-        title: '2. Subject of the offer',
+        title: '1. Subject',
         paragraphs: [
-          'The Service Provider grants the Customer the right to use the LiveWalls catalog and the wallpaper files included in it under the terms stated on the website.',
-          'The full list of acquired rights is specified in the order and confirmed by the receipt.',
+          'The Licensor grants the Licensee a non-exclusive license to use the LiveWall application under the terms of the selected tariff.',
         ],
       },
       {
-        id: 'price',
-        title: '3. Price and payment',
+        id: 'payment',
+        title: '2. Payment and Access',
         paragraphs: [
-          'Prices are shown in roubles on the Pricing page and include all applicable taxes. Payment is made in roubles through a payment provider.',
-          'The price is not subject to VAT (the operator uses the simplified tax system).',
-        ],
-      },
-      {
-        id: 'delivery',
-        title: '4. Access',
-        paragraphs: [
-          'Access to the purchased materials is granted in the personal cabinet right after a successful payment and is kept indefinitely for the "Premium forever" license.',
-          'For the "Premium for a year" license, access lasts 12 months from the purchase date.',
-        ],
-      },
-      {
-        id: 'responsibility',
-        title: '5. Liability',
-        paragraphs: [
-          'The Service Provider is not liable for the impossibility of using the materials due to the Customer hardware, software or operating system.',
-          'The parties are liable within the limits set by the applicable law.',
-        ],
-      },
-      {
-        id: 'personal-data',
-        title: '6. Personal data',
-        paragraphs: [
-          'Customer personal data is processed in accordance with the Personal Data Processing Policy and Federal Law No. 152-FZ.',
+          'Payment is made in rubles via the payment service specified on the site. Access is granted after successful payment confirmation.',
         ],
       },
       {
         id: 'final',
-        title: '7. Final provisions',
+        title: '3. Final Provisions',
         paragraphs: [
-          'The agreement is considered concluded upon payment. All notifications are sent to the email addresses of the parties.',
-          'This offer is valid from the moment of publication until withdrawn. The current version is always published on this page.',
+          'Russian law applies to the agreement, taking into account mandatory consumer protection rules.',
         ],
       },
     ],
