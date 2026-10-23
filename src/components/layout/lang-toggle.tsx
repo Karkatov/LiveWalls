@@ -36,7 +36,7 @@ export function LangToggle() {
         <Button
           variant="ghost"
           size="sm"
-          className="text-foreground/80 gap-1.5 px-2.5"
+          className="text-foreground/80 w-[68px] justify-center gap-1.5 px-0"
           aria-label={t('language')}
           disabled={isPending}
         >
