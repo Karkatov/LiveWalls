@@ -40,13 +40,13 @@ export function OnboardingModal() {
     <Dialog open={open} onOpenChange={(next) => (next ? setOpen(true) : dismiss())}>
       <DialogContent
         hideClose
-        className="max-w-xl overflow-hidden p-0"
+        className="min-h-[420px] w-[calc(100vw-2rem)] max-w-xl overflow-hidden p-0 sm:min-h-[440px]"
         onOpenAutoFocus={(event) => event.preventDefault()}
       >
         <div className="relative overflow-hidden">
           <div className="bg-aurora pointer-events-none absolute inset-0 opacity-70" />
 
-          <div className="relative px-6 pt-8 pb-6 sm:px-8">
+          <div className="relative flex min-h-[340px] flex-col px-6 pt-8 pb-6 sm:min-h-[360px] sm:px-8">
             {/* Индикатор шагов */}
             <div className="mb-6 flex items-center gap-1.5" aria-hidden="true">
               {Array.from({ length: STEPS }).map((_, index) => (
@@ -60,9 +60,10 @@ export function OnboardingModal() {
               ))}
             </div>
 
-            <AnimatePresence mode="wait">
+            <AnimatePresence mode="wait" initial={false}>
               <motion.div
                 key={step}
+                className="flex-1"
                 initial={reduce ? { opacity: 0 } : { opacity: 0, x: 28 }}
                 animate={reduce ? { opacity: 1 } : { opacity: 1, x: 0 }}
                 exit={reduce ? { opacity: 0 } : { opacity: 0, x: -28 }}
