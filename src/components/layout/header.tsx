@@ -80,11 +80,20 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-1">
-          <LangToggle />
-          <ThemeToggle />
+        <div className="flex items-center gap-1 [contain:layout_style]">
+          <div className="shrink-0">
+            <LangToggle />
+          </div>
+          <div className="shrink-0">
+            <ThemeToggle />
+          </div>
 
-          <Button asChild variant="gradient" size="sm" className="ml-1 hidden sm:inline-flex">
+          <Button
+            asChild
+            variant="gradient"
+            size="sm"
+            className="ml-1 hidden shrink-0 sm:inline-flex"
+          >
             <Link href="/download">
               <Download className="size-4" />
               {t('install')}
