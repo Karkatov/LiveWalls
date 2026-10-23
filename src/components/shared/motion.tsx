@@ -2,12 +2,98 @@
 
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import type { ReactNode } from 'react';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/utils/cn';
 
 export type RevealDirection = 'up' | 'down' | 'left' | 'right' | 'scale' | 'blur';
 
 const REVEAL_EASE = [0.22, 1, 0.36, 1] as const;
+
+function useScrollReveal<T extends HTMLElement = HTMLDivElement>(once = true) {
+  const ref = useRef<T | null>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+
+    let observer: IntersectionObserver | null = null;
+    let frame = 0;
+    let done = false;
+
+    const setShown = (next: boolean) => {
+      setVisible((current) => (current === next ? current : next));
+    };
+
+    const cleanup = () => {
+      observer?.disconnect();
+      observer = null;
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      if (frame) cancelAnimationFrame(frame);
+      frame = 0;
+    };
+
+    const show = () => {
+      if (done) return;
+      if (once) done = true;
+      setShown(true);
+      if (once) cleanup();
+    };
+
+    const check = () => {
+      if (!node.isConnected || done) return;
+
+      const rect = node.getBoundingClientRect();
+      const viewport = window.innerHeight || document.documentElement.clientHeight;
+
+      if (rect.bottom <= 0) {
+        show();
+        return;
+      }
+
+      if (rect.top < viewport * 0.92 && rect.bottom > 0) {
+        show();
+        return;
+      }
+
+      if (!once) setShown(false);
+    };
+
+    function onScroll() {
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        frame = 0;
+        check();
+      });
+    }
+
+    check();
+
+    if (!done) {
+      observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              show();
+            } else if (!once) {
+              setShown(false);
+            }
+          }
+        },
+        { threshold: 0.05, rootMargin: '0px 0px -8% 0px' },
+      );
+      observer.observe(node);
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+    }
+
+    return cleanup;
+  }, [once]);
+
+  return { ref, visible };
+}
 
 function revealOffset(direction: RevealDirection, distance: number) {
   switch (direction) {
@@ -88,13 +174,14 @@ export function StaggerGroup({
   delay?: number;
 }) {
   const reduce = useReducedMotion();
+  const { ref, visible } = useScrollReveal<HTMLDivElement>();
 
   return (
     <motion.div
+      ref={ref}
       className={cn(className)}
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: '-60px' }}
+      animate={visible ? 'visible' : 'hidden'}
       variants={{
         hidden: {},
         visible: { transition: { staggerChildren: reduce ? 0 : stagger, delayChildren: delay } },
@@ -194,14 +281,22 @@ export function MaskReveal({
   once?: boolean;
 }) {
   const reduce = useReducedMotion();
+  const { ref, visible } = useScrollReveal<HTMLSpanElement>(once);
 
   return (
-    <span className={cn('inline-block overflow-hidden align-bottom', wrapperClassName)}>
+    <span ref={ref} className={cn('inline-block overflow-hidden align-bottom', wrapperClassName)}>
       <motion.span
         className={cn('inline-block', className)}
         initial={reduce ? { opacity: 0 } : { y: '110%' }}
-        whileInView={reduce ? { opacity: 1 } : { y: '0%' }}
-        viewport={{ once, amount: 0.4 }}
+        animate={
+          visible
+            ? reduce
+              ? { opacity: 1 }
+              : { y: '0%' }
+            : reduce
+              ? { opacity: 0 }
+              : { y: '110%' }
+        }
         transition={{
           duration: reduce ? 0.01 : 0.75,
           delay: reduce ? 0 : delay,
@@ -249,6 +344,7 @@ export function LetterReveal({
   stagger?: number;
 }) {
   const reduce = useReducedMotion();
+  const { ref, visible } = useScrollReveal<HTMLSpanElement>();
 
   const lines = text.split('\n');
   let wordIndex = 0;
@@ -280,11 +376,11 @@ export function LetterReveal({
 
   return (
     <MotionTag
+      ref={ref}
       className={cn(className)}
       style={{ perspective: 900 }}
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.3 }}
+      animate={visible ? 'visible' : 'hidden'}
       variants={{
         hidden: {},
         visible: { transition: { staggerChildren: stagger, delayChildren: delay } },
