@@ -138,15 +138,16 @@ export function Reveal({
 }) {
   const reduce = useReducedMotion();
   const offset = revealOffset(direction, y);
+  const { ref, visible } = useScrollReveal<HTMLDivElement>(once);
+  const hidden = reduce ? { opacity: 0 } : { opacity: 0, ...offset };
+  const shown = reduce ? { opacity: 1 } : { opacity: 1, x: 0, y: 0, scale: 1, filter: 'blur(0px)' };
 
   return (
     <motion.div
+      ref={ref}
       className={cn(className)}
-      initial={reduce ? { opacity: 0 } : { opacity: 0, ...offset }}
-      whileInView={
-        reduce ? { opacity: 1 } : { opacity: 1, x: 0, y: 0, scale: 1, filter: 'blur(0px)' }
-      }
-      viewport={{ once, margin: '-70px 0px -50px 0px' }}
+      initial={hidden}
+      animate={visible ? shown : hidden}
       transition={{
         duration: reduce ? 0.01 : direction === 'blur' ? 0.8 : 0.68,
         delay: reduce ? 0 : delay,
