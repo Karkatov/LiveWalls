@@ -10,7 +10,6 @@ import { Toaster } from '@/components/ui/toaster';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { OnboardingModal } from '@/components/onboarding/onboarding-modal';
-import { PageTransition } from '@/components/shared/page-transition';
 import { fontClasses } from '@/styles/fonts';
 import '../globals.css';
 
@@ -93,7 +92,7 @@ export default async function LocaleLayout({
                 <Header />
 
                 <main id="main" className="flex-1 pt-16">
-                  <PageTransition>{children}</PageTransition>
+                  {children}
                 </main>
 
                 <Footer />

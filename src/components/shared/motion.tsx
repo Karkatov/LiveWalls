@@ -2,18 +2,32 @@
 
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import type { ReactNode } from 'react';
-import { useEffect, useRef, useState } from 'react';
+import { createContext, useContext, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/utils/cn';
 
 export type RevealDirection = 'up' | 'down' | 'left' | 'right' | 'scale' | 'blur';
 
 const REVEAL_EASE = [0.22, 1, 0.36, 1] as const;
 
-function useScrollReveal<T extends HTMLElement = HTMLDivElement>(once = true) {
+const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
+
+/**
+ * Появление при прокрутке.
+ *
+ * `animateOnMount` включается только там, где нужен осознанный intro
+ * (например, hero главной). В остальных случаях контент, который уже
+ * находится в кадре при монтировании, показывается сразу — без «догоняющей»
+ * анимации после того, как пользователь его увидел.
+ */
+function useScrollReveal<T extends HTMLElement = HTMLDivElement>(
+  once = true,
+  animateOnMount = false,
+) {
   const ref = useRef<T | null>(null);
   const [visible, setVisible] = useState(false);
+  const [instant, setInstant] = useState(false);
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const node = ref.current;
     if (!node) return;
 
@@ -34,9 +48,10 @@ function useScrollReveal<T extends HTMLElement = HTMLDivElement>(once = true) {
       frame = 0;
     };
 
-    const show = () => {
+    const show = (skipAnimation = false) => {
       if (done) return;
       if (once) done = true;
+      if (skipAnimation) setInstant(true);
       setShown(true);
       if (once) cleanup();
     };
@@ -68,32 +83,43 @@ function useScrollReveal<T extends HTMLElement = HTMLDivElement>(once = true) {
       });
     }
 
-    check();
+    // Синхронно (до первой отрисовки) решаем, нужно ли анимировать элемент.
+    // Так уже видимый контент не успевает мелькнуть финальным состоянием.
+    const rect = node.getBoundingClientRect();
+    const viewport = window.innerHeight || document.documentElement.clientHeight;
+    const above = rect.bottom <= 0;
+    const inView = rect.top < viewport * 0.92 && rect.bottom > 0;
 
-    if (!done) {
-      observer = new IntersectionObserver(
-        (entries) => {
-          for (const entry of entries) {
-            if (entry.isIntersecting) {
-              show();
-            } else if (!once) {
-              setShown(false);
-            }
-          }
-        },
-        { threshold: 0.05, rootMargin: '0px 0px -8% 0px' },
-      );
-      observer.observe(node);
-
-      window.addEventListener('scroll', onScroll, { passive: true });
-      window.addEventListener('resize', onScroll);
+    if (above || inView) {
+      show(!animateOnMount);
+      if (once) return cleanup;
     }
 
-    return cleanup;
-  }, [once]);
+    observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            show();
+          } else if (!once) {
+            setInstant(false);
+            setShown(false);
+          }
+        }
+      },
+      { threshold: 0.05, rootMargin: '0px 0px -8% 0px' },
+    );
+    observer.observe(node);
 
-  return { ref, visible };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+
+    return cleanup;
+  }, [once, animateOnMount]);
+
+  return { ref, visible, instant };
 }
+
+const StaggerInstantContext = createContext(false);
 
 function revealOffset(direction: RevealDirection, distance: number) {
   switch (direction) {
@@ -127,6 +153,7 @@ export function Reveal({
   direction = 'up',
   className,
   once = true,
+  animateOnMount = false,
 }: {
   children: ReactNode;
   delay?: number;
@@ -135,12 +162,15 @@ export function Reveal({
   direction?: RevealDirection;
   className?: string;
   once?: boolean;
+  /** Анимировать контент, который уже виден при монтировании (intro главной). */
+  animateOnMount?: boolean;
 }) {
   const reduce = useReducedMotion();
   const offset = revealOffset(direction, y);
-  const { ref, visible } = useScrollReveal<HTMLDivElement>(once);
+  const { ref, visible, instant } = useScrollReveal<HTMLDivElement>(once, animateOnMount);
   const hidden = reduce ? { opacity: 0 } : { opacity: 0, ...offset };
   const shown = reduce ? { opacity: 1 } : { opacity: 1, x: 0, y: 0, scale: 1, filter: 'blur(0px)' };
+  const still = reduce || instant;
 
   return (
     <motion.div
@@ -149,10 +179,10 @@ export function Reveal({
       initial={hidden}
       animate={visible ? shown : hidden}
       transition={{
-        duration: reduce ? 0.01 : direction === 'blur' ? 0.8 : 0.68,
-        delay: reduce ? 0 : delay,
+        duration: reduce ? 0.01 : instant ? 0 : direction === 'blur' ? 0.8 : 0.68,
+        delay: still ? 0 : delay,
         ease: REVEAL_EASE,
-        filter: { duration: reduce ? 0.01 : 0.55 },
+        filter: { duration: reduce ? 0.01 : instant ? 0 : 0.55 },
       }}
     >
       {children}
@@ -168,14 +198,18 @@ export function StaggerGroup({
   className,
   stagger = 0.08,
   delay = 0,
+  animateOnMount = false,
 }: {
   children: ReactNode;
   className?: string;
   stagger?: number;
   delay?: number;
+  /** Анимировать контент, который уже виден при монтировании (intro главной). */
+  animateOnMount?: boolean;
 }) {
   const reduce = useReducedMotion();
-  const { ref, visible } = useScrollReveal<HTMLDivElement>();
+  const { ref, visible, instant } = useScrollReveal<HTMLDivElement>(true, animateOnMount);
+  const still = reduce || instant;
 
   return (
     <motion.div
@@ -185,10 +219,12 @@ export function StaggerGroup({
       animate={visible ? 'visible' : 'hidden'}
       variants={{
         hidden: {},
-        visible: { transition: { staggerChildren: reduce ? 0 : stagger, delayChildren: delay } },
+        visible: {
+          transition: { staggerChildren: still ? 0 : stagger, delayChildren: still ? 0 : delay },
+        },
       }}
     >
-      {children}
+      <StaggerInstantContext.Provider value={instant}>{children}</StaggerInstantContext.Provider>
     </motion.div>
   );
 }
@@ -208,6 +244,7 @@ export function StaggerItem({
   direction?: RevealDirection;
 }) {
   const reduce = useReducedMotion();
+  const instant = useContext(StaggerInstantContext);
   const offset = revealOffset(direction, y);
 
   return (
@@ -221,7 +258,7 @@ export function StaggerItem({
           y: 0,
           scale: 1,
           ...(direction === 'blur' ? { filter: 'blur(0px)' } : {}),
-          transition: { duration: reduce ? 0.01 : 0.58, ease: REVEAL_EASE },
+          transition: { duration: reduce ? 0.01 : instant ? 0 : 0.58, ease: REVEAL_EASE },
         },
       }}
     >
@@ -274,15 +311,18 @@ export function MaskReveal({
   wrapperClassName,
   delay = 0,
   once = true,
+  animateOnMount = false,
 }: {
   children: ReactNode;
   className?: string;
   wrapperClassName?: string;
   delay?: number;
   once?: boolean;
+  /** Анимировать контент, который уже виден при монтировании. */
+  animateOnMount?: boolean;
 }) {
   const reduce = useReducedMotion();
-  const { ref, visible } = useScrollReveal<HTMLSpanElement>(once);
+  const { ref, visible, instant } = useScrollReveal<HTMLSpanElement>(once, animateOnMount);
 
   return (
     <span ref={ref} className={cn('inline-block overflow-hidden align-bottom', wrapperClassName)}>
@@ -299,8 +339,8 @@ export function MaskReveal({
               : { y: '110%' }
         }
         transition={{
-          duration: reduce ? 0.01 : 0.75,
-          delay: reduce ? 0 : delay,
+          duration: reduce ? 0.01 : instant ? 0 : 0.75,
+          delay: reduce || instant ? 0 : delay,
           ease: [0.23, 1, 0.32, 1],
         }}
       >
@@ -325,6 +365,7 @@ export function LetterReveal({
   as: Tag = 'span',
   delay = 0,
   stagger = 0.045,
+  animateOnMount = true,
 }: {
   text: string;
   className?: string;
@@ -343,9 +384,11 @@ export function LetterReveal({
   as?: 'h1' | 'h2' | 'h3' | 'span';
   delay?: number;
   stagger?: number;
+  /** Анимировать контент, который уже виден при монтировании (intro главной). */
+  animateOnMount?: boolean;
 }) {
   const reduce = useReducedMotion();
-  const { ref, visible } = useScrollReveal<HTMLSpanElement>();
+  const { ref, visible, instant } = useScrollReveal<HTMLSpanElement>(true, animateOnMount);
 
   const lines = text.split('\n');
   let wordIndex = 0;
@@ -384,7 +427,12 @@ export function LetterReveal({
       animate={visible ? 'visible' : 'hidden'}
       variants={{
         hidden: {},
-        visible: { transition: { staggerChildren: stagger, delayChildren: delay } },
+        visible: {
+          transition: {
+            staggerChildren: instant ? 0 : stagger,
+            delayChildren: instant ? 0 : delay,
+          },
+        },
       }}
       aria-label={text}
     >
@@ -403,7 +451,7 @@ export function LetterReveal({
                     opacity: 1,
                     y: 0,
                     rotateX: 0,
-                    transition: { duration: 0.6, ease: [0.23, 1, 0.32, 1] },
+                    transition: { duration: instant ? 0 : 0.6, ease: [0.23, 1, 0.32, 1] },
                   },
                 }}
               >

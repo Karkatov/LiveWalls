@@ -58,18 +58,18 @@ export async function Hero() {
             />
           </h1>
 
-          <Reveal delay={0.08} className="mt-6">
+          <Reveal delay={0.08} animateOnMount className="mt-6">
             <span className="border-brand/25 bg-brand/10 text-brand-foreground inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-xs font-medium backdrop-blur-md">
               <Sparkles className="size-3.5" aria-hidden="true" />
               {t('badge')}
             </span>
           </Reveal>
 
-          <Reveal delay={0.12}>
+          <Reveal delay={0.12} animateOnMount>
             <p className="text-muted-foreground text-lead mt-5 max-w-xl">{t('subtitle')}</p>
           </Reveal>
 
-          <Reveal delay={0.18}>
+          <Reveal delay={0.18} animateOnMount>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
               <Button asChild variant="gradient" size="lg" className="group">
                 <Link href="/download">
@@ -85,11 +85,14 @@ export async function Hero() {
             </div>
           </Reveal>
 
-          <Reveal delay={0.24}>
+          <Reveal delay={0.24} animateOnMount>
             <p className="text-muted-foreground mt-4 text-sm">{t('trialNote')}</p>
           </Reveal>
 
-          <StaggerGroup className="mt-12 grid max-w-lg grid-cols-2 gap-4 sm:grid-cols-4">
+          <StaggerGroup
+            animateOnMount
+            className="mt-12 grid max-w-lg grid-cols-2 gap-4 sm:grid-cols-4"
+          >
             {stats.map((stat) => (
               <StaggerItem key={stat.label}>
                 <div className="border-border/60 bg-card/40 rounded-2xl border px-4 py-3 backdrop-blur-xl">
@@ -103,7 +106,7 @@ export async function Hero() {
           </StaggerGroup>
         </div>
 
-        <Reveal delay={0.1} y={34}>
+        <Reveal delay={0.1} y={34} animateOnMount>
           <ParallaxLayer className="relative" distance={40}>
             <div className="bg-brand/15 pointer-events-none absolute -inset-6 -z-10 rounded-[40px] blur-3xl" />
 
