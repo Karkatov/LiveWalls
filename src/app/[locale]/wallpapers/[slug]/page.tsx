@@ -161,44 +161,48 @@ export default async function WallpaperPage({
 
             {/* Теги */}
             {wallpaper.tags.length > 0 && (
-              <div className="mt-6">
-                <p className="text-muted-foreground text-xs tracking-[0.14em] uppercase">
-                  {t('tags')}
-                </p>
-                <ul className="mt-2.5 flex flex-wrap gap-2">
-                  {wallpaper.tags.map((tag) => (
-                    <li key={tag}>
-                      <span className="border-border/70 bg-secondary/50 text-muted-foreground inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-xs">
-                        <Heart className="size-3" aria-hidden="true" />
-                        {tag}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <Reveal delay={0.12}>
+                <div className="mt-6">
+                  <p className="text-muted-foreground text-xs tracking-[0.14em] uppercase">
+                    {t('tags')}
+                  </p>
+                  <ul className="mt-2.5 flex flex-wrap gap-2">
+                    {wallpaper.tags.map((tag) => (
+                      <li key={tag}>
+                        <span className="border-border/70 bg-secondary/50 text-muted-foreground hover:border-brand/40 hover:text-foreground inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-xs transition-colors">
+                          <Heart className="size-3" aria-hidden="true" />
+                          {tag}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Reveal>
             )}
           </div>
         </Reveal>
       </div>
 
       {/* Характеристики */}
-      <Reveal direction="scale">
+      <Reveal direction="up">
         <section className="mt-14">
           <h2 className="text-foreground text-xl font-semibold tracking-tight">{t('specs')}</h2>
 
-          <dl className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {specs.map((spec) => (
-              <div
+          <StaggerGroup className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {specs.map((spec, i) => (
+              <StaggerItem
                 key={spec.label}
-                className="border-border/60 bg-card/40 rounded-2xl border px-4 py-3 backdrop-blur-xl"
+                direction={i % 3 === 0 ? 'left' : i % 3 === 2 ? 'right' : 'up'}
               >
-                <dt className="text-muted-foreground text-xs tracking-[0.12em] uppercase">
-                  {spec.label}
-                </dt>
-                <dd className="text-foreground mt-1 text-sm font-medium">{spec.value}</dd>
-              </div>
+                <div className="border-border/60 bg-card/40 hover:border-brand/35 rounded-2xl border px-4 py-3 backdrop-blur-xl transition-[transform,border-color] duration-300 hover:-translate-y-0.5">
+                  <dt className="text-muted-foreground text-xs tracking-[0.12em] uppercase">
+                    {spec.label}
+                  </dt>
+                  <dd className="text-foreground mt-1 text-sm font-medium">{spec.value}</dd>
+                </div>
+              </StaggerItem>
             ))}
-          </dl>
+          </StaggerGroup>
         </section>
       </Reveal>
 

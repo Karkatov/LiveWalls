@@ -112,24 +112,23 @@ export default async function DownloadPage({ params }: { params: Promise<{ local
             {t('requirementsTitle')}
           </h2>
 
-          <ul className="mt-5 grid gap-3 sm:grid-cols-3">
-            {requirements.map((item) => (
-              <li
-                key={item.label + item.value}
-                className="border-border/60 bg-card/40 flex items-center gap-3 rounded-2xl border px-4 py-3 backdrop-blur-xl"
-              >
-                <span className="bg-secondary/60 text-foreground flex size-9 shrink-0 items-center justify-center rounded-lg">
-                  <item.icon className="size-4" aria-hidden="true" />
-                </span>
-                <span className="min-w-0">
-                  <span className="text-muted-foreground block text-xs tracking-[0.12em] uppercase">
-                    {item.label}
+          <StaggerGroup className="mt-5 grid gap-3 sm:grid-cols-3">
+            {requirements.map((item, i) => (
+              <StaggerItem key={item.label + item.value} direction={i % 2 === 0 ? 'left' : 'right'}>
+                <li className="border-border/60 bg-card/40 hover:border-brand/35 flex items-center gap-3 rounded-2xl border px-4 py-3 backdrop-blur-xl transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_40px_-24px_var(--brand-glow)]">
+                  <span className="bg-secondary/60 text-foreground flex size-9 shrink-0 items-center justify-center rounded-lg">
+                    <item.icon className="size-4" aria-hidden="true" />
                   </span>
-                  <span className="text-foreground block truncate text-sm">{item.value}</span>
-                </span>
-              </li>
+                  <span className="min-w-0">
+                    <span className="text-muted-foreground block text-xs tracking-[0.12em] uppercase">
+                      {item.label}
+                    </span>
+                    <span className="text-foreground block truncate text-sm">{item.value}</span>
+                  </span>
+                </li>
+              </StaggerItem>
             ))}
-          </ul>
+          </StaggerGroup>
         </section>
       </Reveal>
 
@@ -140,19 +139,18 @@ export default async function DownloadPage({ params }: { params: Promise<{ local
             {t('stepsTitle')}
           </h2>
 
-          <ol className="mt-5 space-y-3">
+          <StaggerGroup className="mt-5 space-y-3">
             {steps.map((step, index) => (
-              <li
-                key={step}
-                className="border-border/60 bg-card/40 flex items-start gap-3 rounded-2xl border px-5 py-4 backdrop-blur-xl"
-              >
-                <span className="bg-gradient-brand-strong flex size-7 shrink-0 items-center justify-center rounded-full text-xs font-semibold text-white">
-                  {index + 1}
-                </span>
-                <span className="text-muted-foreground text-sm">{step}</span>
-              </li>
+              <StaggerItem key={step} direction={index % 2 === 0 ? 'left' : 'right'}>
+                <li className="border-border/60 bg-card/40 hover:border-brand/35 flex items-start gap-3 rounded-2xl border px-5 py-4 backdrop-blur-xl transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_40px_-24px_var(--brand-glow)]">
+                  <span className="bg-gradient-brand-strong flex size-7 shrink-0 items-center justify-center rounded-full text-xs font-semibold text-white">
+                    {index + 1}
+                  </span>
+                  <span className="text-muted-foreground text-sm">{step}</span>
+                </li>
+              </StaggerItem>
             ))}
-          </ol>
+          </StaggerGroup>
         </section>
       </Reveal>
 

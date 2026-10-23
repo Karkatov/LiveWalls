@@ -8,6 +8,7 @@ import { termsOfUse } from '@/data/legal/terms';
 import { publicOffer } from '@/data/legal/offer';
 import type { LegalDocument } from '@/data/legal/types';
 import { LegalDocumentView } from '@/components/legal/legal-document';
+import { Reveal } from '@/components/shared/motion';
 
 /** Три юридических документа сайта. */
 const DOCUMENTS = {
@@ -65,11 +66,15 @@ export default async function LegalPage({
 
   return (
     <div id="top" className="mx-auto max-w-[1200px] px-4 py-12 sm:px-6 lg:py-16">
-      <LegalDocumentView document={document} />
+      <Reveal direction="up">
+        <LegalDocumentView document={document} />
+      </Reveal>
 
-      <p className="text-muted-foreground/70 mt-12 text-xs">
-        {t('operatorTitle')}: {t('operatorValue')}
-      </p>
+      <Reveal direction="up" delay={0.1}>
+        <p className="text-muted-foreground/70 mt-12 text-xs">
+          {t('operatorTitle')}: {t('operatorValue')}
+        </p>
+      </Reveal>
     </div>
   );
 }
