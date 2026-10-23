@@ -62,18 +62,24 @@ export default async function DownloadPage({ params }: { params: Promise<{ local
 
   return (
     <div className="mx-auto max-w-[1000px] px-4 py-12 sm:px-6 lg:py-16">
-      <header className="mx-auto max-w-2xl text-center">
-        <h1 className="text-foreground text-display-md">{t('title')}</h1>
-        <p className="text-muted-foreground mt-3 text-base leading-relaxed text-pretty">
-          {t('subtitle')}
-        </p>
-        <p className="text-muted-foreground mt-3 text-sm">{t('trust')}</p>
-      </header>
+      <Reveal>
+        <header className="mx-auto max-w-2xl text-center">
+          <h1 className="text-foreground text-display-md">{t('title')}</h1>
+          <p className="text-muted-foreground mt-3 text-base leading-relaxed text-pretty">
+            {t('subtitle')}
+          </p>
+          <p className="text-muted-foreground mt-3 text-sm">{t('trust')}</p>
+        </header>
+      </Reveal>
 
       {/* Сборки */}
       <StaggerGroup className="mt-12 grid gap-5 sm:grid-cols-2">
-        {builds.map((build) => (
-          <StaggerItem key={build.id} className="h-full">
+        {builds.map((build, index) => (
+          <StaggerItem
+            key={build.id}
+            className="h-full"
+            direction={index % 2 === 0 ? 'left' : 'right'}
+          >
             <div className="border-border/70 bg-card/50 flex h-full flex-col rounded-3xl border p-6 backdrop-blur-xl">
               <span className="bg-brand/10 text-brand-foreground ring-brand/20 flex size-11 items-center justify-center rounded-xl ring-1">
                 <build.icon className="size-5" aria-hidden="true" />
@@ -100,7 +106,7 @@ export default async function DownloadPage({ params }: { params: Promise<{ local
       </StaggerGroup>
 
       {/* Требования */}
-      <Reveal>
+      <Reveal direction="left">
         <section className="mt-12">
           <h2 className="text-foreground text-xl font-semibold tracking-tight">
             {t('requirementsTitle')}
@@ -128,7 +134,7 @@ export default async function DownloadPage({ params }: { params: Promise<{ local
       </Reveal>
 
       {/* Шаги установки */}
-      <Reveal>
+      <Reveal direction="right">
         <section className="mt-12">
           <h2 className="text-foreground text-xl font-semibold tracking-tight">
             {t('stepsTitle')}
@@ -151,7 +157,7 @@ export default async function DownloadPage({ params }: { params: Promise<{ local
       </Reveal>
 
       {/* Что дальше */}
-      <Reveal>
+      <Reveal direction="scale">
         <div className="border-brand/25 bg-brand/6 mt-12 rounded-3xl border p-6 text-center backdrop-blur-xl sm:p-8">
           <CheckCircle2 className="text-brand-foreground mx-auto size-8" aria-hidden="true" />
           <h2 className="text-foreground mt-4 text-lg font-semibold">{t('faqTitle')}</h2>

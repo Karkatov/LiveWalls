@@ -3,6 +3,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { routing, type Locale } from '@/i18n/routing';
 import { buildMetadata } from '@/lib/seo/metadata';
 import { AccountPanel } from '@/components/account/account-panel';
+import { Reveal } from '@/components/shared/motion';
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -33,16 +34,20 @@ export default async function AccountPage({ params }: { params: Promise<{ locale
 
   return (
     <div className="mx-auto max-w-[1200px] px-4 py-12 sm:px-6 lg:py-16">
-      <header className="max-w-2xl">
-        <h1 className="text-foreground text-display-md">{t('title')}</h1>
-        <p className="text-muted-foreground mt-3 text-base leading-relaxed text-pretty">
-          {t('subtitle')}
-        </p>
-      </header>
+      <Reveal>
+        <header className="max-w-2xl">
+          <h1 className="text-foreground text-display-md">{t('title')}</h1>
+          <p className="text-muted-foreground mt-3 text-base leading-relaxed text-pretty">
+            {t('subtitle')}
+          </p>
+        </header>
+      </Reveal>
 
-      <div className="mt-10">
-        <AccountPanel />
-      </div>
+      <Reveal delay={0.08} direction="scale">
+        <div className="mt-10">
+          <AccountPanel />
+        </div>
+      </Reveal>
     </div>
   );
 }

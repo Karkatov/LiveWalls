@@ -53,11 +53,15 @@ export async function CategoriesGrid({ categories }: { categories: Category[] })
       />
 
       <StaggerGroup className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {categories.map((category) => {
+        {categories.map((category, index) => {
           const Icon = ICONS[category.icon] ?? LayoutGrid;
 
           return (
-            <StaggerItem key={category.id} className="h-full">
+            <StaggerItem
+              key={category.id}
+              className="h-full"
+              direction={index % 2 === 0 ? 'left' : 'right'}
+            >
               <Link
                 href={{ pathname: '/wallpapers', query: { category: category.id } }}
                 className={cn(

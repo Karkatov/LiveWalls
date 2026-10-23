@@ -67,7 +67,11 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
           {screenshots.map((shot, index) => (
-            <Reveal key={shot.src} delay={index * 0.05}>
+            <Reveal
+              key={shot.src}
+              delay={index * 0.06}
+              direction={index % 2 === 0 ? 'left' : 'right'}
+            >
               <figure className="border-border/70 bg-card/50 overflow-hidden rounded-2xl border">
                 <Image
                   src={shot.src}
@@ -92,8 +96,12 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         <h2 className="text-foreground text-display-sm">{t('featuresTitle')}</h2>
 
         <StaggerGroup className="mt-8 grid gap-4 md:grid-cols-3">
-          {highlights.map((item) => (
-            <StaggerItem key={item.text} className="h-full">
+          {highlights.map((item, index) => (
+            <StaggerItem
+              key={item.text}
+              className="h-full"
+              direction={index % 2 === 0 ? 'scale' : 'up'}
+            >
               <div className="border-border/60 bg-card/40 flex h-full flex-col rounded-2xl border p-6 backdrop-blur-xl">
                 <span className="bg-brand/10 text-brand-foreground ring-brand/20 flex size-11 items-center justify-center rounded-xl ring-1">
                   <item.icon className="size-5" aria-hidden="true" />
@@ -110,28 +118,30 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         <h2 className="text-foreground text-display-sm">{t('requirementsTitle')}</h2>
         <p className="text-muted-foreground mt-2 text-sm">{t('requirementsBody')}</p>
 
-        <dl className="mt-8 grid gap-3 sm:grid-cols-2">
-          {requirements.map((item) => (
-            <div
-              key={item.label}
-              className="border-border/60 bg-card/40 flex items-start gap-3 rounded-2xl border px-5 py-4 backdrop-blur-xl"
-            >
-              <span className="bg-secondary/60 text-foreground flex size-9 shrink-0 items-center justify-center rounded-lg">
-                <item.icon className="size-4" aria-hidden="true" />
-              </span>
-              <span>
-                <dt className="text-muted-foreground text-xs tracking-[0.12em] uppercase">
-                  {item.label}
-                </dt>
-                <dd className="text-foreground mt-0.5 text-sm">{item.value}</dd>
-              </span>
-            </div>
-          ))}
-        </dl>
+        <Reveal direction="right">
+          <dl className="mt-8 grid gap-3 sm:grid-cols-2">
+            {requirements.map((item) => (
+              <div
+                key={item.label}
+                className="border-border/60 bg-card/40 flex items-start gap-3 rounded-2xl border px-5 py-4 backdrop-blur-xl"
+              >
+                <span className="bg-secondary/60 text-foreground flex size-9 shrink-0 items-center justify-center rounded-lg">
+                  <item.icon className="size-4" aria-hidden="true" />
+                </span>
+                <span>
+                  <dt className="text-muted-foreground text-xs tracking-[0.12em] uppercase">
+                    {item.label}
+                  </dt>
+                  <dd className="text-foreground mt-0.5 text-sm">{item.value}</dd>
+                </span>
+              </div>
+            ))}
+          </dl>
+        </Reveal>
       </section>
 
       {/* CTA */}
-      <Reveal>
+      <Reveal direction="scale">
         <div className="border-brand/25 bg-gradient-brand-strong mt-16 flex flex-col items-center gap-4 rounded-3xl border px-6 py-12 text-center shadow-[0_30px_90px_-40px_var(--brand-glow-strong)]">
           <h2 className="text-display-sm text-white">{t('download')}</h2>
 

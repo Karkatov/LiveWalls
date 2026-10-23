@@ -57,20 +57,22 @@ export default async function FaqPage({ params }: { params: Promise<{ locale: Lo
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:py-16">
-      <header className="text-center">
-        <span className="border-brand/25 bg-brand/10 text-brand-foreground inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium tracking-[0.14em] uppercase">
-          {t('title')}
-        </span>
-        <h1 className="text-foreground text-display-md mt-4">{t('subtitle')}</h1>
-      </header>
-
       <Reveal>
+        <header className="text-center">
+          <span className="border-brand/25 bg-brand/10 text-brand-foreground inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium tracking-[0.14em] uppercase">
+            {t('title')}
+          </span>
+          <h1 className="text-foreground text-display-md mt-4">{t('subtitle')}</h1>
+        </header>
+      </Reveal>
+
+      <Reveal direction="scale">
         <div className="border-border/50 bg-card/30 mt-10 rounded-2xl border px-5 py-2 backdrop-blur-xl sm:px-7">
           <FaqAccordion items={items} />
         </div>
       </Reveal>
 
-      <Reveal>
+      <Reveal direction="up">
         <div className="border-border/60 bg-card/30 mt-10 flex flex-col items-center gap-3 rounded-2xl border px-6 py-8 text-center backdrop-blur-xl">
           <span className="bg-brand/12 text-brand-foreground flex size-12 items-center justify-center rounded-2xl">
             <LifeBuoy className="size-6" aria-hidden="true" />

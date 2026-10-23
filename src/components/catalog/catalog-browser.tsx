@@ -25,6 +25,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { EmptyState } from '@/components/shared/empty-state';
+import { Reveal, StaggerGroup, StaggerItem } from '@/components/shared/motion';
 import { WallpaperCard } from './wallpaper-card';
 
 /**
@@ -116,140 +117,154 @@ export function CatalogBrowser({
   return (
     <div className="space-y-8">
       {/* Панель фильтров */}
-      <div className="border-border/60 bg-card/40 rounded-2xl border p-4 backdrop-blur-xl sm:p-5">
-        <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_auto_auto_auto]">
-          <div className="relative">
-            <Search
-              className="text-muted-foreground pointer-events-none absolute top-1/2 left-3.5 size-4 -translate-y-1/2"
-              aria-hidden="true"
-            />
-            <Input
-              type="search"
-              value={search}
-              onChange={(event) => setSearch(event.target.value)}
-              placeholder={t('searchPlaceholder')}
-              aria-label={t('searchLabel')}
-              className="pl-10"
-            />
+      <Reveal direction="down">
+        <div className="border-border/60 bg-card/40 rounded-2xl border p-4 backdrop-blur-xl sm:p-5">
+          <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_auto_auto_auto]">
+            <div className="relative">
+              <Search
+                className="text-muted-foreground pointer-events-none absolute top-1/2 left-3.5 size-4 -translate-y-1/2"
+                aria-hidden="true"
+              />
+              <Input
+                type="search"
+                value={search}
+                onChange={(event) => setSearch(event.target.value)}
+                placeholder={t('searchPlaceholder')}
+                aria-label={t('searchLabel')}
+                className="pl-10"
+              />
+            </div>
+
+            <Select
+              value={filters.category ?? 'all'}
+              onValueChange={(value) => update({ category: value as WallpaperFilters['category'] })}
+            >
+              <SelectTrigger className="lg:w-[190px]" aria-label={t('filterCategory')}>
+                <SelectValue placeholder={t('filterCategory')} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">{t('allCategories')}</SelectItem>
+                {categories.map((category) => (
+                  <SelectItem key={category.id} value={category.id}>
+                    {category.title}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+
+            <Select
+              value={filters.mediaType ?? 'all'}
+              onValueChange={(value) =>
+                update({ mediaType: value as WallpaperFilters['mediaType'] })
+              }
+            >
+              <SelectTrigger className="lg:w-[150px]" aria-label={t('filterType')}>
+                <SelectValue placeholder={t('filterType')} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">{t('allTypes')}</SelectItem>
+                <SelectItem value="video">{t('typeVideo')}</SelectItem>
+                <SelectItem value="image">{t('typeImage')}</SelectItem>
+              </SelectContent>
+            </Select>
+
+            <Select
+              value={filters.sort ?? 'newest'}
+              onValueChange={(value) => update({ sort: value as WallpaperFilters['sort'] })}
+            >
+              <SelectTrigger className="lg:w-[180px]" aria-label={t('sort')}>
+                <SelectValue placeholder={t('sort')} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="newest">{t('sortNewest')}</SelectItem>
+                <SelectItem value="popular">{t('sortPopular')}</SelectItem>
+                <SelectItem value="name">{t('sortName')}</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
 
-          <Select
-            value={filters.category ?? 'all'}
-            onValueChange={(value) => update({ category: value as WallpaperFilters['category'] })}
-          >
-            <SelectTrigger className="lg:w-[190px]" aria-label={t('filterCategory')}>
-              <SelectValue placeholder={t('filterCategory')} />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">{t('allCategories')}</SelectItem>
-              {categories.map((category) => (
-                <SelectItem key={category.id} value={category.id}>
-                  {category.title}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <div className="border-border/60 mt-4 flex flex-wrap items-center justify-between gap-3 border-t pt-4">
+            <label className="text-muted-foreground flex cursor-pointer items-center gap-2.5 text-sm">
+              <Switch
+                checked={Boolean(filters.favoritesOnly)}
+                onCheckedChange={(checked) => update({ favoritesOnly: checked })}
+              />
+              {t('filterFavorites')}
+            </label>
 
-          <Select
-            value={filters.mediaType ?? 'all'}
-            onValueChange={(value) => update({ mediaType: value as WallpaperFilters['mediaType'] })}
-          >
-            <SelectTrigger className="lg:w-[150px]" aria-label={t('filterType')}>
-              <SelectValue placeholder={t('filterType')} />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">{t('allTypes')}</SelectItem>
-              <SelectItem value="video">{t('typeVideo')}</SelectItem>
-              <SelectItem value="image">{t('typeImage')}</SelectItem>
-            </SelectContent>
-          </Select>
+            <div className="flex items-center gap-3">
+              <span className="text-muted-foreground text-sm">
+                {t('resultsCount', { count: page.total })}
+              </span>
 
-          <Select
-            value={filters.sort ?? 'newest'}
-            onValueChange={(value) => update({ sort: value as WallpaperFilters['sort'] })}
-          >
-            <SelectTrigger className="lg:w-[180px]" aria-label={t('sort')}>
-              <SelectValue placeholder={t('sort')} />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="newest">{t('sortNewest')}</SelectItem>
-              <SelectItem value="popular">{t('sortPopular')}</SelectItem>
-              <SelectItem value="name">{t('sortName')}</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-
-        <div className="border-border/60 mt-4 flex flex-wrap items-center justify-between gap-3 border-t pt-4">
-          <label className="text-muted-foreground flex cursor-pointer items-center gap-2.5 text-sm">
-            <Switch
-              checked={Boolean(filters.favoritesOnly)}
-              onCheckedChange={(checked) => update({ favoritesOnly: checked })}
-            />
-            {t('filterFavorites')}
-          </label>
-
-          <div className="flex items-center gap-3">
-            <span className="text-muted-foreground text-sm">
-              {t('resultsCount', { count: page.total })}
-            </span>
-
-            {hasActiveFilters && (
-              <Button variant="ghost" size="sm" onClick={reset} className="gap-1.5">
-                <X className="size-4" />
-                {t('clearFilters')}
-              </Button>
-            )}
+              {hasActiveFilters && (
+                <Button variant="ghost" size="sm" onClick={reset} className="gap-1.5">
+                  <X className="size-4" />
+                  {t('clearFilters')}
+                </Button>
+              )}
+            </div>
           </div>
         </div>
-      </div>
+      </Reveal>
 
       {/* Сетка */}
       {page.items.length > 0 ? (
         <>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <StaggerGroup className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {page.items.map((wallpaper, index) => (
-              <WallpaperCard key={wallpaper.id} wallpaper={wallpaper} priority={index < 4} />
+              <StaggerItem
+                key={wallpaper.id}
+                className="h-full"
+                direction={index % 4 === 0 ? 'left' : index % 4 === 3 ? 'right' : 'up'}
+              >
+                <WallpaperCard wallpaper={wallpaper} priority={index < 4} />
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGroup>
 
           {totalPages > 1 && (
-            <nav className="flex items-center justify-center gap-2" aria-label={t('page')}>
-              <Button
-                variant="outline"
-                size="sm"
-                disabled={page.page <= 1}
-                onClick={() => update({ page: page.page - 1 })}
-              >
-                ←
-              </Button>
+            <Reveal>
+              <nav className="flex items-center justify-center gap-2" aria-label={t('page')}>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  disabled={page.page <= 1}
+                  onClick={() => update({ page: page.page - 1 })}
+                >
+                  ←
+                </Button>
 
-              <span className="text-muted-foreground px-3 text-sm">
-                {t('page')} {page.page} {t('of')} {totalPages}
-              </span>
+                <span className="text-muted-foreground px-3 text-sm">
+                  {t('page')} {page.page} {t('of')} {totalPages}
+                </span>
 
-              <Button
-                variant="outline"
-                size="sm"
-                disabled={page.page >= totalPages}
-                onClick={() => update({ page: page.page + 1 })}
-              >
-                →
-              </Button>
-            </nav>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  disabled={page.page >= totalPages}
+                  onClick={() => update({ page: page.page + 1 })}
+                >
+                  →
+                </Button>
+              </nav>
+            </Reveal>
           )}
         </>
       ) : (
-        <EmptyState
-          icon={PackageSearch}
-          title={t('noResults')}
-          description={t('noResultsHint')}
-          action={
-            <Button variant="outline" onClick={reset}>
-              <SlidersHorizontal className="size-4" />
-              {t('clearFilters')}
-            </Button>
-          }
-        />
+        <Reveal direction="scale">
+          <EmptyState
+            icon={PackageSearch}
+            title={t('noResults')}
+            description={t('noResultsHint')}
+            action={
+              <Button variant="outline" onClick={reset}>
+                <SlidersHorizontal className="size-4" />
+                {t('clearFilters')}
+              </Button>
+            }
+          />
+        </Reveal>
       )}
 
       <p className="sr-only" aria-live="polite">

@@ -6,6 +6,7 @@ import { getCategories, getWallpapers } from '@/lib/api/wallpapers';
 import { parseFilters } from '@/lib/catalog/filters';
 import { isStaticExport } from '@/config/build';
 import { CatalogBrowser } from '@/components/catalog/catalog-browser';
+import { Reveal } from '@/components/shared/motion';
 
 /**
  * В статическом экспорте (Cloudflare Pages, GitHub Pages) query-параметры
@@ -58,12 +59,14 @@ export default async function WallpapersPage({
 
   return (
     <div className="mx-auto max-w-[1200px] px-4 py-12 sm:px-6 lg:py-16">
-      <header className="max-w-2xl">
-        <h1 className="text-foreground text-display-md">{t('title')}</h1>
-        <p className="text-muted-foreground mt-3 text-base leading-relaxed text-pretty">
-          {t('subtitle')}
-        </p>
-      </header>
+      <Reveal>
+        <header className="max-w-2xl">
+          <h1 className="text-foreground text-display-md">{t('title')}</h1>
+          <p className="text-muted-foreground mt-3 text-base leading-relaxed text-pretty">
+            {t('subtitle')}
+          </p>
+        </header>
+      </Reveal>
 
       <div className="mt-10">
         <CatalogBrowser

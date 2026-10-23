@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Reveal } from '@/components/shared/motion';
 
 /** SHA-256 от строки в hex. */
 async function sha256(value: string): Promise<string> {
@@ -62,79 +63,85 @@ export function AdminPanel({
 
   if (!unlocked) {
     return (
-      <div className="border-border/70 bg-card/50 mx-auto max-w-md rounded-3xl border p-6 backdrop-blur-xl sm:p-8">
-        <div className="flex items-center gap-3">
-          <span className="bg-brand/10 text-brand-foreground ring-brand/20 flex size-11 items-center justify-center rounded-xl ring-1">
-            <Lock className="size-5" aria-hidden="true" />
-          </span>
-          <h2 className="text-foreground text-lg font-semibold tracking-tight">{t('enter')}</h2>
-        </div>
-
-        <form onSubmit={handleSubmit} className="mt-6 space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="admin-password">{t('password')}</Label>
-            <Input
-              id="admin-password"
-              type="password"
-              autoComplete="current-password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-              placeholder={t('passwordPlaceholder')}
-              aria-invalid={error}
-              required
-            />
+      <Reveal direction="scale">
+        <div className="border-border/70 bg-card/50 mx-auto max-w-md rounded-3xl border p-6 backdrop-blur-xl sm:p-8">
+          <div className="flex items-center gap-3">
+            <span className="bg-brand/10 text-brand-foreground ring-brand/20 flex size-11 items-center justify-center rounded-xl ring-1">
+              <Lock className="size-5" aria-hidden="true" />
+            </span>
+            <h2 className="text-foreground text-lg font-semibold tracking-tight">{t('enter')}</h2>
           </div>
 
-          {error && (
-            <p className="border-destructive/30 bg-destructive/10 text-destructive rounded-xl border px-4 py-3 text-xs">
-              {t('unauthorizedBody')}
-            </p>
-          )}
+          <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="admin-password">{t('password')}</Label>
+              <Input
+                id="admin-password"
+                type="password"
+                autoComplete="current-password"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                placeholder={t('passwordPlaceholder')}
+                aria-invalid={error}
+                required
+              />
+            </div>
 
-          <Button type="submit" variant="gradient" className="w-full">
-            <KeyRound className="size-4" aria-hidden="true" />
-            {t('enter')}
-          </Button>
-        </form>
-      </div>
+            {error && (
+              <p className="border-destructive/30 bg-destructive/10 text-destructive rounded-xl border px-4 py-3 text-xs">
+                {t('unauthorizedBody')}
+              </p>
+            )}
+
+            <Button type="submit" variant="gradient" className="w-full">
+              <KeyRound className="size-4" aria-hidden="true" />
+              {t('enter')}
+            </Button>
+          </form>
+        </div>
+      </Reveal>
     );
   }
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-3 rounded-2xl border border-emerald-400/25 bg-emerald-400/8 px-4 py-3">
-        <ShieldCheck className="size-5 text-emerald-300" aria-hidden="true" />
-        <p className="text-muted-foreground text-sm">{t('mockNotice')}</p>
-      </div>
+      <Reveal>
+        <div className="flex items-center gap-3 rounded-2xl border border-emerald-400/25 bg-emerald-400/8 px-4 py-3">
+          <ShieldCheck className="size-5 text-emerald-300" aria-hidden="true" />
+          <p className="text-muted-foreground text-sm">{t('mockNotice')}</p>
+        </div>
+      </Reveal>
 
-      <Tabs defaultValue="wallpapers">
-        <TabsList>
-          <TabsTrigger value="wallpapers">{t('tabs.wallpapers')}</TabsTrigger>
-          <TabsTrigger value="users">{t('tabs.users')}</TabsTrigger>
-        </TabsList>
+      <Reveal delay={0.06} direction="up">
+        <Tabs defaultValue="wallpapers">
+          <TabsList>
+            <TabsTrigger value="wallpapers">{t('tabs.wallpapers')}</TabsTrigger>
+            <TabsTrigger value="users">{t('tabs.users')}</TabsTrigger>
+          </TabsList>
 
-        <TabsContent value="wallpapers">
-          <Table
-            headers={[t('columns.title'), t('columns.category'), t('columns.type')]}
-            rows={wallpapers.map((wallpaper) => [
-              wallpaper.title,
-              wallpaper.category,
-              wallpaper.mediaType,
-            ])}
-          />
-        </TabsContent>
+          <TabsContent value="wallpapers">
+            <Table
+              headers={[t('columns.title'), t('columns.category'), t('columns.type')]}
+              rows={wallpapers.map((wallpaper) => [
+                wallpaper.title,
+                wallpaper.category,
+                wallpaper.mediaType,
+              ])}
+            />
+          </TabsContent>
 
-        <TabsContent value="users">
-          <Table
-            headers={[t('columns.email'), t('columns.status'), t('columns.created')]}
-            rows={users.map((user) => [
-              user.email,
-              user.subscriptionStatus,
-              formatDateShort(user.createdAt),
-            ])}
-          />
-        </TabsContent>
-      </Tabs>
+          <TabsContent value="users">
+            <Table
+              headers={[t('columns.email'), t('columns.status'), t('columns.created')]}
+              rows={users.map((user) => [
+                user.email,
+                user.subscriptionStatus,
+                formatDateShort(user.createdAt),
+              ])}
+            />
+          </TabsContent>
+        </Tabs>
+      </Reveal>
     </div>
   );
 }

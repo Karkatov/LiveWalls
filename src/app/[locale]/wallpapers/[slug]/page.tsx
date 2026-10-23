@@ -13,7 +13,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Breadcrumbs } from '@/components/shared/breadcrumbs';
 import { SectionHeading } from '@/components/shared/section-heading';
-import { Reveal } from '@/components/shared/motion';
+import { Reveal, StaggerGroup, StaggerItem } from '@/components/shared/motion';
 import { WallpaperMedia } from '@/components/catalog/wallpaper-media';
 import { WallpaperCard } from '@/components/catalog/wallpaper-card';
 import { FavoriteButton } from '@/components/wallpaper/favorite-button';
@@ -83,7 +83,7 @@ export default async function WallpaperPage({
 
       <div className="grid gap-10 lg:grid-cols-[minmax(0,1.55fr)_minmax(0,1fr)]">
         {/* Превью */}
-        <Reveal>
+        <Reveal direction="left">
           <div className="border-border/70 bg-card/50 relative overflow-hidden rounded-3xl border shadow-[0_40px_120px_-40px_rgba(0,0,0,0.9)]">
             <div className="relative aspect-video">
               <WallpaperMedia
@@ -104,7 +104,7 @@ export default async function WallpaperPage({
         </Reveal>
 
         {/* Информация и покупка */}
-        <Reveal delay={0.08}>
+        <Reveal delay={0.08} direction="right">
           <div className="flex h-full flex-col">
             <div className="flex flex-wrap items-center gap-2">
               <Badge variant="outline">{wallpaper.category}</Badge>
@@ -182,7 +182,7 @@ export default async function WallpaperPage({
       </div>
 
       {/* Характеристики */}
-      <Reveal>
+      <Reveal direction="scale">
         <section className="mt-14">
           <h2 className="text-foreground text-xl font-semibold tracking-tight">{t('specs')}</h2>
 
@@ -207,11 +207,17 @@ export default async function WallpaperPage({
         <section className="mt-16">
           <SectionHeading align="left" title={t('similarTitle')} />
 
-          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {similar.map((item) => (
-              <WallpaperCard key={item.id} wallpaper={item} />
+          <StaggerGroup className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {similar.map((item, index) => (
+              <StaggerItem
+                key={item.id}
+                className="h-full"
+                direction={index % 2 === 0 ? 'left' : 'right'}
+              >
+                <WallpaperCard wallpaper={item} />
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGroup>
         </section>
       )}
 

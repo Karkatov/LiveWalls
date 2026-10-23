@@ -99,7 +99,11 @@ export default async function PricingPage({ params }: { params: Promise<{ locale
       {/* Тарифы */}
       <StaggerGroup className="mt-12 grid gap-5 lg:grid-cols-3">
         {plans.map((plan) => (
-          <StaggerItem key={plan.id} className="h-full">
+          <StaggerItem
+            key={plan.id}
+            className="h-full"
+            direction={plan.featured ? 'scale' : plan.id === 'trial' ? 'left' : 'right'}
+          >
             <div
               className={
                 plan.featured
@@ -157,7 +161,7 @@ export default async function PricingPage({ params }: { params: Promise<{ locale
       </StaggerGroup>
 
       {/* Скидка на триал */}
-      <Reveal>
+      <Reveal direction="left">
         <div className="border-brand/25 bg-brand/8 mt-6 flex flex-col items-start gap-3 rounded-2xl border p-5 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-start gap-3">
             <Sparkles className="text-brand-foreground mt-0.5 size-5 shrink-0" aria-hidden="true" />
@@ -182,60 +186,67 @@ export default async function PricingPage({ params }: { params: Promise<{ locale
       <section className="mt-16">
         <h2 className="text-foreground text-display-sm">{t('featuresTitle')}</h2>
 
-        <ul className="mt-6 grid gap-3 sm:grid-cols-2">
-          {featureKeys.map((key) => (
-            <li key={key} className="flex items-start gap-3">
-              <span className="bg-brand/15 text-brand-foreground mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full">
-                <Check className="size-3.5" aria-hidden="true" />
-              </span>
-              <span className="text-muted-foreground text-sm">{t(`features.${key}`)}</span>
-            </li>
-          ))}
-        </ul>
+        <Reveal direction="right">
+          <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+            {featureKeys.map((key) => (
+              <li key={key} className="flex items-start gap-3">
+                <span className="bg-brand/15 text-brand-foreground mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full">
+                  <Check className="size-3.5" aria-hidden="true" />
+                </span>
+                <span className="text-muted-foreground text-sm">{t(`features.${key}`)}</span>
+              </li>
+            ))}
+          </ul>
+        </Reveal>
       </section>
 
       {/* Сравнение */}
       <section className="mt-16">
         <h2 className="text-foreground text-display-sm">{t('compareTitle')}</h2>
 
-        <div className="border-border/70 mt-6 overflow-x-auto rounded-2xl border">
-          <table className="w-full min-w-[560px] border-collapse text-sm">
-            <thead>
-              <tr className="bg-card/60 text-left">
-                <th scope="col" className="text-muted-foreground px-4 py-3 font-medium">
-                  {tCommon('all')}
-                </th>
-                <th scope="col" className="text-foreground px-4 py-3 font-medium">
-                  {t('trial')}
-                </th>
-                <th scope="col" className="text-foreground px-4 py-3 font-medium">
-                  {t('lifetime')}
-                </th>
-                <th scope="col" className="text-foreground px-4 py-3 font-medium">
-                  {t('yearly')}
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {featureKeys.map((key) => (
-                <tr key={key} className="border-border/60 border-t">
-                  <th scope="row" className="text-muted-foreground px-4 py-3 text-left font-normal">
-                    {t(`features.${key}`)}
+        <Reveal direction="scale">
+          <div className="border-border/70 mt-6 overflow-x-auto rounded-2xl border">
+            <table className="w-full min-w-[560px] border-collapse text-sm">
+              <thead>
+                <tr className="bg-card/60 text-left">
+                  <th scope="col" className="text-muted-foreground px-4 py-3 font-medium">
+                    {tCommon('all')}
                   </th>
-                  <td className="px-4 py-3">
-                    <Check className="text-brand-foreground size-4" aria-hidden="true" />
-                  </td>
-                  <td className="px-4 py-3">
-                    <Check className="text-brand-foreground size-4" aria-hidden="true" />
-                  </td>
-                  <td className="px-4 py-3">
-                    <Check className="text-brand-foreground size-4" aria-hidden="true" />
-                  </td>
+                  <th scope="col" className="text-foreground px-4 py-3 font-medium">
+                    {t('trial')}
+                  </th>
+                  <th scope="col" className="text-foreground px-4 py-3 font-medium">
+                    {t('lifetime')}
+                  </th>
+                  <th scope="col" className="text-foreground px-4 py-3 font-medium">
+                    {t('yearly')}
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {featureKeys.map((key) => (
+                  <tr key={key} className="border-border/60 border-t">
+                    <th
+                      scope="row"
+                      className="text-muted-foreground px-4 py-3 text-left font-normal"
+                    >
+                      {t(`features.${key}`)}
+                    </th>
+                    <td className="px-4 py-3">
+                      <Check className="text-brand-foreground size-4" aria-hidden="true" />
+                    </td>
+                    <td className="px-4 py-3">
+                      <Check className="text-brand-foreground size-4" aria-hidden="true" />
+                    </td>
+                    <td className="px-4 py-3">
+                      <Check className="text-brand-foreground size-4" aria-hidden="true" />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Reveal>
       </section>
     </div>
   );

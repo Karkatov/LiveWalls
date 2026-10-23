@@ -56,15 +56,17 @@ export default async function SupportPage({ params }: { params: Promise<{ locale
 
   return (
     <div className="mx-auto max-w-[1200px] px-4 py-12 sm:px-6 lg:py-16">
-      <header className="max-w-2xl">
-        <h1 className="text-foreground text-display-md">{t('title')}</h1>
-        <p className="text-muted-foreground mt-3 text-base leading-relaxed text-pretty">
-          {t('subtitle')}
-        </p>
-      </header>
+      <Reveal>
+        <header className="max-w-2xl">
+          <h1 className="text-foreground text-display-md">{t('title')}</h1>
+          <p className="text-muted-foreground mt-3 text-base leading-relaxed text-pretty">
+            {t('subtitle')}
+          </p>
+        </header>
+      </Reveal>
 
       <div className="mt-12 grid gap-8 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)]">
-        <Reveal>
+        <Reveal direction="left">
           <div className="border-border/70 bg-card/50 rounded-3xl border p-6 backdrop-blur-xl sm:p-8">
             <h2 className="text-foreground text-lg font-semibold tracking-tight">
               {t('formTitle')}
@@ -76,7 +78,7 @@ export default async function SupportPage({ params }: { params: Promise<{ locale
           </div>
         </Reveal>
 
-        <Reveal delay={0.08}>
+        <Reveal delay={0.08} direction="right">
           <div className="border-border/70 bg-card/40 rounded-3xl border p-6 backdrop-blur-xl sm:p-8">
             <h2 className="text-foreground text-lg font-semibold tracking-tight">
               {t('contactsTitle')}

@@ -5,37 +5,67 @@ import type { ReactNode } from 'react';
 import { useRef } from 'react';
 import { cn } from '@/lib/utils/cn';
 
+export type RevealDirection = 'up' | 'down' | 'left' | 'right' | 'scale' | 'blur';
+
+const REVEAL_EASE = [0.22, 1, 0.36, 1] as const;
+
+function revealOffset(direction: RevealDirection, distance: number) {
+  switch (direction) {
+    case 'down':
+      return { y: -distance };
+    case 'left':
+      return { x: -distance };
+    case 'right':
+      return { x: distance };
+    case 'scale':
+      return { scale: 0.94 };
+    case 'blur':
+      return { y: distance * 0.5, filter: 'blur(12px)' };
+    case 'up':
+    default:
+      return { y: distance };
+  }
+}
+
 /**
  * Появление при скролле.
  *
- * Если пользователь просил уменьшить анимацию — элемент просто проявляется
- * без смещения (никакого параллакса и масштаба).
+ * Направление можно менять (`direction`), чтобы соседние блоки выезжали
+ * с разных сторон и страница ощущалась живой. Если пользователь просил
+ * уменьшить анимацию — элемент просто проявляется без смещения.
  */
 export function Reveal({
   children,
   delay = 0,
   y = 26,
+  direction = 'up',
   className,
   once = true,
 }: {
   children: ReactNode;
   delay?: number;
+  /** Устаревший алиас дистанции: оставлен для совместимости. */
   y?: number;
+  direction?: RevealDirection;
   className?: string;
   once?: boolean;
 }) {
   const reduce = useReducedMotion();
+  const offset = revealOffset(direction, y);
 
   return (
     <motion.div
       className={cn(className)}
-      initial={reduce ? { opacity: 0 } : { opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once, margin: '-80px 0px -60px 0px' }}
+      initial={reduce ? { opacity: 0 } : { opacity: 0, ...offset }}
+      whileInView={
+        reduce ? { opacity: 1 } : { opacity: 1, x: 0, y: 0, scale: 1, filter: 'blur(0px)' }
+      }
+      viewport={{ once, margin: '-70px 0px -50px 0px' }}
       transition={{
-        duration: reduce ? 0.01 : 0.65,
+        duration: reduce ? 0.01 : direction === 'blur' ? 0.8 : 0.68,
         delay: reduce ? 0 : delay,
-        ease: [0.22, 1, 0.36, 1],
+        ease: REVEAL_EASE,
+        filter: { duration: reduce ? 0.01 : 0.55 },
       }}
     >
       {children}
@@ -82,22 +112,28 @@ export function StaggerItem({
   children,
   className,
   y = 22,
+  direction = 'up',
 }: {
   children: ReactNode;
   className?: string;
   y?: number;
+  direction?: RevealDirection;
 }) {
   const reduce = useReducedMotion();
+  const offset = revealOffset(direction, y);
 
   return (
     <motion.div
       className={cn(className)}
       variants={{
-        hidden: reduce ? { opacity: 0 } : { opacity: 0, y },
+        hidden: reduce ? { opacity: 0 } : { opacity: 0, ...offset },
         visible: {
           opacity: 1,
+          x: 0,
           y: 0,
-          transition: { duration: reduce ? 0.01 : 0.55, ease: [0.22, 1, 0.36, 1] },
+          scale: 1,
+          ...(direction === 'blur' ? { filter: 'blur(0px)' } : {}),
+          transition: { duration: reduce ? 0.01 : 0.58, ease: REVEAL_EASE },
         },
       }}
     >

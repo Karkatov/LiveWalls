@@ -3,7 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import { Star } from 'lucide-react';
 import type { Review } from '@/types';
 import { SectionHeading } from '@/components/shared/section-heading';
-import { Marquee } from '@/components/shared/motion';
+import { Marquee, Reveal } from '@/components/shared/motion';
 
 /**
  * Отзывы пользователей.
@@ -18,17 +18,19 @@ export async function Reviews({ reviews }: { reviews: Review[] }) {
     <section className="relative mx-auto max-w-[1200px] px-4 py-16 sm:px-6 lg:py-24">
       <SectionHeading eyebrow={t('eyebrow')} title={t('title')} description={t('description')} />
 
-      <Marquee className="mt-10" duration={64}>
-        <div className="flex items-stretch gap-4 pr-4">
-          {reviews.map((review) => (
-            <ReviewCard
-              key={review.id}
-              review={review}
-              ratingLabel={t('rating', { rating: review.rating })}
-            />
-          ))}
-        </div>
-      </Marquee>
+      <Reveal direction="scale">
+        <Marquee className="mt-10" duration={64}>
+          <div className="flex items-stretch gap-4 pr-4">
+            {reviews.map((review) => (
+              <ReviewCard
+                key={review.id}
+                review={review}
+                ratingLabel={t('rating', { rating: review.rating })}
+              />
+            ))}
+          </div>
+        </Marquee>
+      </Reveal>
     </section>
   );
 }

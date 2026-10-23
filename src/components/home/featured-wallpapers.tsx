@@ -31,7 +31,11 @@ export async function FeaturedWallpapers({ wallpapers }: { wallpapers: Wallpaper
 
       <StaggerGroup className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {wallpapers.map((wallpaper, index) => (
-          <StaggerItem key={wallpaper.id} className="h-full">
+          <StaggerItem
+            key={wallpaper.id}
+            className="h-full"
+            direction={index % 3 === 0 ? 'left' : index % 3 === 2 ? 'right' : 'scale'}
+          >
             <WallpaperCard wallpaper={wallpaper} priority={index < 4} />
           </StaggerItem>
         ))}

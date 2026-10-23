@@ -12,7 +12,7 @@ export async function CtaBanner() {
 
   return (
     <section className="mx-auto max-w-[1200px] px-4 py-16 sm:px-6 lg:py-24">
-      <Reveal>
+      <Reveal direction="scale">
         <div className="border-brand/25 bg-gradient-brand-strong relative overflow-hidden rounded-3xl border px-6 py-14 text-center shadow-[0_40px_120px_-40px_var(--brand-glow-strong)] sm:px-12">
           <div className="bg-aurora pointer-events-none absolute inset-0 opacity-40 mix-blend-overlay" />
 
